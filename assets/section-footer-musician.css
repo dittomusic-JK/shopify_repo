@@ -1,0 +1,145 @@
+.footer--musician {
+  background-color: var(--color-brand-bg);
+  border-top: none !important;
+}
+
+/* Override Dawn's footer borders */
+.footer--musician .footer__content-bottom {
+  border-top: none !important;
+}
+
+.footer--musician .footer__content-top {
+  padding-bottom: 0;
+}
+
+.footer__musician-top {
+  padding: var(--space-lg) var(--space-md);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-lg);
+}
+
+.footer__streaming,
+.footer__social {
+  margin-bottom: var(--space-lg);
+}
+
+.footer__streaming:last-child,
+.footer__social:last-child {
+  margin-bottom: 0;
+}
+
+.footer__streaming-label,
+.footer__social-label {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--color-brand-secondary);
+  text-align: center;
+  margin: 0 0 var(--space-sm) 0;
+}
+
+.footer__streaming-links,
+.footer__social-links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+}
+
+.footer__streaming-link,
+.footer__social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  color: var(--color-brand-primary);
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--brand-hairline);
+  border-radius: 50%;
+  text-decoration: none;
+  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.footer__streaming-link:hover,
+.footer__streaming-link:focus,
+.footer__social-link:hover,
+.footer__social-link:focus {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: var(--color-brand-accent);
+  transform: translateY(-2px);
+}
+
+.footer__streaming-link svg,
+.footer__social-link svg {
+  width: 20px;
+  height: 20px;
+}
+
+.footer__copyright {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-xs);
+  text-align: center;
+}
+
+.footer__copyright .copyright__content {
+  color: var(--color-brand-secondary);
+}
+
+.footer__copyright .policies {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  justify-content: center;
+  margin-top: var(--space-xs);
+}
+
+.footer__copyright .policies a {
+  color: var(--color-brand-secondary);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer__copyright .policies a:hover,
+.footer__copyright .policies a:focus {
+  color: var(--color-brand-primary);
+}
+
+@media screen and (max-width: 768px) {
+  .footer__musician-top {
+    padding: var(--space-md) var(--space-sm);
+    gap: var(--space-md);
+  }
+
+  .footer__streaming-links,
+  .footer__social-links {
+    gap: var(--space-sm);
+  }
+
+  .footer__streaming-link,
+  .footer__social-link {
+    width: 40px;
+    height: 40px;
+  }
+
+  .footer__streaming-link svg,
+  .footer__social-link svg {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+@media screen and (min-width: 769px) {
+  .footer__musician-top {
+    flex-direction: row;
+    justify-content: center;
+    gap: var(--space-xl);
+  }
+}

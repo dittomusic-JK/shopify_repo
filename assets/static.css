@@ -1,0 +1,83 @@
+/* Riffride Static — identity layer: monospace type, film-grain overlay,
+   centred wordmark header, stylised numbered B&W merch grid.
+   Mono is hardwired (Space Mono) so it never falls back to a default font. */
+
+/* --- Monospace everywhere (the whole identity) --- */
+body[data-skin^="static"],
+body[data-skin^="static"] * {
+  font-family: "Space Mono", ui-monospace, "Courier New", monospace !important;
+}
+body[data-skin^="static"] h1,
+body[data-skin^="static"] h2,
+body[data-skin^="static"] .riffride-heading,
+body[data-skin^="static"] .musician-hero__headline,
+body[data-skin^="static"] .merch-featured__heading,
+body[data-skin^="static"] .tour-dates__heading {
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+body[data-skin^="static"] .riffride-subheading,
+body[data-skin^="static"] .latest-release__type {
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+}
+
+/* --- Film-grain overlay (covers the whole viewport) --- */
+.static-grain {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 160px 160px;
+}
+body[data-skin="static"] .static-grain { mix-blend-mode: multiply; opacity: 0.16; }
+body[data-skin="static-film"] .static-grain { mix-blend-mode: screen; opacity: 0.10; }
+@media (prefers-reduced-motion: reduce) { .static-grain { opacity: 0.10; } }
+
+/* --- Centred wordmark header --- */
+body[data-skin^="static"] .header__musician-inner {
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center;
+  gap: 0.75rem;
+}
+body[data-skin^="static"] .header__artist-name {
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+}
+body[data-skin^="static"] .header__nav-list { justify-content: center; flex-wrap: wrap; }
+body[data-skin^="static"] .header__nav-link { letter-spacing: 0.16em; }
+
+/* --- Stylised merch grid: hairline dividers, numbering, B&W -> colour --- */
+body[data-skin^="static"] .merch-featured__grid {
+  gap: 0;
+  border-top: 1px solid var(--brand-hairline);
+  border-left: 1px solid var(--brand-hairline);
+  counter-reset: merch;
+}
+body[data-skin^="static"] .merch-featured__grid > * {
+  position: relative;
+  counter-increment: merch;
+  border-right: 1px solid var(--brand-hairline);
+  border-bottom: 1px solid var(--brand-hairline);
+}
+body[data-skin^="static"] .merch-featured__grid > *::before {
+  content: counter(merch, decimal-leading-zero);
+  position: absolute;
+  top: 8px;
+  left: 10px;
+  z-index: 2;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  color: var(--color-brand-primary);
+}
+body[data-skin^="static"] .merch-featured__grid img {
+  filter: grayscale(1) contrast(1.05);
+  transition: filter 0.5s ease;
+}
+body[data-skin^="static"] .merch-featured__grid > *:hover img {
+  filter: none;
+}

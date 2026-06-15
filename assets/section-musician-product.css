@@ -1,0 +1,229 @@
+.musician-product-enhancements {
+  background-color: var(--color-brand-bg, #0a0a0a);
+  color: var(--color-brand-primary, #ffffff);
+}
+
+.musician-product-enhancements__container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: var(--space-lg, 4rem) var(--space-md, 2rem);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg, 4rem);
+}
+
+.musician-product-enhancements__subtitle {
+  font-family: var(--font-heading, sans-serif);
+  font-size: var(--text-lg, 1.25rem);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--color-brand-primary, #ffffff);
+  margin: 0 0 var(--space-sm, 1rem) 0;
+  text-align: center;
+}
+
+.musician-product-enhancements__audio-preview {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.musician-product-enhancements__audio-player {
+  width: 100%;
+  max-width: 600px;
+  height: 54px;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  border: 1px solid var(--brand-hairline);
+}
+
+.musician-product-enhancements__audio-player::-webkit-media-controls-panel {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.musician-product-enhancements__tracklist {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.musician-product-enhancements__track-list {
+  width: 100%;
+  max-width: 600px;
+  list-style-position: inside;
+  padding: 0;
+  margin: 0;
+  counter-reset: track-counter;
+}
+
+.musician-product-enhancements__track-item {
+  font-family: var(--font-body, sans-serif);
+  font-size: var(--text-base, 1rem);
+  color: var(--color-brand-primary, #ffffff);
+  padding: var(--space-sm, 1rem) 0;
+  border-bottom: 1px solid var(--brand-hairline);
+  counter-increment: track-counter;
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm, 1rem);
+}
+
+.musician-product-enhancements__track-item::before {
+  content: counter(track-counter, decimal-leading-zero);
+  font-family: var(--font-body, sans-serif);
+  font-size: var(--text-sm, 0.875rem);
+  font-weight: 600;
+  color: var(--color-brand-secondary, #666666);
+  min-width: 2rem;
+}
+
+.musician-product-enhancements__track-item:last-child {
+  border-bottom: none;
+}
+
+.musician-product-enhancements__badges {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-sm, 1rem);
+}
+
+.musician-product-enhancements__badge {
+  font-family: var(--font-body, sans-serif);
+  font-size: var(--text-xs, 0.75rem);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+.musician-product-enhancements__badge--format {
+  color: var(--color-brand-primary, #ffffff);
+  background-color: var(--color-brand-accent, #e8593c);
+}
+
+.musician-product-enhancements__badge--signed {
+  color: var(--color-brand-primary, #ffffff);
+  background-color: rgba(255, 215, 0, 0.2);
+  border: 1px solid rgba(255, 215, 0, 0.4);
+}
+
+.musician-product-enhancements__badge--limited {
+  color: var(--color-brand-primary, #ffffff);
+  background-color: rgba(138, 43, 226, 0.2);
+  border: 1px solid rgba(138, 43, 226, 0.4);
+}
+
+.musician-product-enhancements__streaming {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.musician-product-enhancements__streaming-links {
+  display: flex;
+  gap: var(--space-md, 2rem);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.musician-product-enhancements__streaming-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-xs, 0.5rem);
+  text-decoration: none;
+  color: var(--color-brand-primary, #ffffff);
+  transition: color 0.2s ease, transform 0.2s ease;
+  padding: var(--space-sm, 1rem);
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--brand-hairline);
+  border-radius: 8px;
+  min-width: 120px;
+}
+
+.musician-product-enhancements__streaming-link:hover,
+.musician-product-enhancements__streaming-link:focus {
+  color: var(--color-brand-accent, #e8593c);
+  transform: translateY(-2px);
+  border-color: var(--color-brand-accent, #e8593c);
+}
+
+.musician-product-enhancements__streaming-link svg {
+  width: 32px;
+  height: 32px;
+}
+
+.musician-product-enhancements__streaming-link span {
+  font-family: var(--font-body, sans-serif);
+  font-size: var(--text-sm, 0.875rem);
+  font-weight: 600;
+}
+
+.musician-product-enhancements__upsell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: var(--space-lg, 4rem);
+  border-top: 1px solid var(--brand-hairline);
+}
+
+.musician-product-enhancements__spotify-embed {
+  width: 100%;
+  max-width: 600px;
+}
+
+.musician-product-enhancements__spotify-embed iframe {
+  width: 100%;
+  border-radius: 12px;
+}
+
+@media screen and (max-width: 768px) {
+  .musician-product-enhancements__container {
+    padding: var(--space-md, 2rem) var(--space-sm, 1rem);
+    gap: var(--space-md, 2rem);
+  }
+
+  .musician-product-enhancements__subtitle {
+    font-size: var(--text-base, 1rem);
+  }
+
+  .musician-product-enhancements__track-item {
+    font-size: var(--text-sm, 0.875rem);
+    padding: var(--space-xs, 0.5rem) 0;
+  }
+
+  .musician-product-enhancements__streaming-links {
+    gap: var(--space-sm, 1rem);
+  }
+
+  .musician-product-enhancements__streaming-link {
+    min-width: 100px;
+    padding: var(--space-xs, 0.5rem);
+  }
+
+  .musician-product-enhancements__streaming-link svg {
+    width: 28px;
+    height: 28px;
+  }
+
+  .musician-product-enhancements__streaming-link span {
+    font-size: var(--text-xs, 0.75rem);
+  }
+
+  .musician-product-enhancements__upsell {
+    padding-top: var(--space-md, 2rem);
+  }
+
+  .musician-product-enhancements__spotify-embed iframe {
+    height: 380px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .musician-product-enhancements__streaming-link {
+    transition: none;
+  }
+}

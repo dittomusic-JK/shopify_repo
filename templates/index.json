@@ -1,0 +1,48 @@
+{
+  "sections": {
+    "hero": {
+      "type": "musician-hero",
+      "settings": {
+        "headline": "GREYFIELD",
+        "subheadline": "SLOW STATIC — OUT NOW",
+        "cta_label": "LISTEN",
+        "cta_url": "#listen",
+        "overlay_opacity": 40,
+        "show_scroll_indicator": false
+      }
+    },
+    "merch": {
+      "type": "merch-featured",
+      "settings": {
+        "heading": "SHOP",
+        "merch_collection": "frontpage",
+        "products_to_show": 8,
+        "show_view_all": true,
+        "view_all_label": "VIEW ALL"
+      }
+    },
+    "spotify": {
+      "type": "spotify-embed",
+      "settings": {
+        "heading": "LISTEN",
+        "spotify_url": "https://open.spotify.com/album/2noRn2Aes5aoNVsU6iWThc",
+        "height": "352",
+        "theme_dark": false
+      }
+    },
+    "tour": {
+      "type": "tour-dates",
+      "settings": {
+        "heading": "SHOWS"
+      }
+    },
+    "news": {
+      "type": "newsletter-signup",
+      "settings": {
+        "heading": "MAILING LIST",
+        "subheading": "NO HYPE. JUST DATES AND DROPS."
+      }
+    }
+  },
+  "order": ["hero", "merch", "spotify", "tour", "news"]
+}
