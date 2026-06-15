@@ -1,0 +1,304 @@
+{{ 'section-latest-release.css' | asset_url | stylesheet_tag }}
+
+<section id="music" class="latest-release">
+  <div class="latest-release__container">
+    <div class="latest-release__artwork">
+      {%- if section.settings.album_artwork != blank -%}
+        <img
+          src="{{ section.settings.album_artwork | image_url: width: 1200 }}"
+          srcset="{{ section.settings.album_artwork | image_url: width: 600 }} 600w,
+                  {{ section.settings.album_artwork | image_url: width: 1200 }} 1200w"
+          sizes="(max-width: 768px) 100vw, 50vw"
+          alt="{{ section.settings.release_title | escape }}"
+          loading="lazy"
+          width="1200"
+          height="1200"
+          class="latest-release__artwork-image"
+        >
+      {%- else -%}
+        <div class="latest-release__artwork-placeholder"></div>
+      {%- endif -%}
+    </div>
+
+    <div class="latest-release__content">
+      {%- if section.settings.release_type != blank -%}
+        <span class="latest-release__type">{{ section.settings.release_type }}</span>
+      {%- endif -%}
+
+      {%- if section.settings.release_title != blank -%}
+        <h2 class="latest-release__title">{{ section.settings.release_title }}</h2>
+      {%- endif -%}
+
+      {%- if section.settings.description != blank -%}
+        <div class="latest-release__description">
+          {{ section.settings.description | newline_to_br }}
+        </div>
+      {%- endif -%}
+
+      {%- if section.blocks.size > 0 -%}
+        {%- liquid
+          assign listen_url = ''
+          if section.settings.smart_link_url != blank
+            assign listen_url = section.settings.smart_link_url
+          elsif section.settings.spotify_url != blank
+            assign listen_url = section.settings.spotify_url
+          endif
+        -%}
+        <div class="latest-release__tracklist">
+          <ol class="latest-release__tracks">
+            {%- for block in section.blocks -%}
+              <li class="latest-release__track" {{ block.shopify_attributes }}>
+                <span class="latest-release__track-number">{{ forloop.index | prepend: '00' | slice: -2, 2 }}</span>
+                <span class="latest-release__track-name">{{ block.settings.track_name }}</span>
+                {%- if block.settings.track_duration != blank -%}
+                  <span class="latest-release__track-duration">{{ block.settings.track_duration }}</span>
+                {%- endif -%}
+                {%- if listen_url != blank -%}
+                  <a 
+                    href="{{ listen_url }}" 
+                    class="latest-release__track-play"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Play {{ block.settings.track_name }}"
+                  >
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M8 5v14l11-7z"/>
+                    </svg>
+                  </a>
+                {%- else -%}
+                  <span class="latest-release__track-play latest-release__track-play--disabled">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M8 5v14l11-7z"/>
+                    </svg>
+                  </span>
+                {%- endif -%}
+              </li>
+            {%- endfor -%}
+          </ol>
+        </div>
+      {%- endif -%}
+
+      {%- liquid
+        assign listen_url = ''
+        assign listen_label = ''
+        if section.settings.smart_link_url != blank
+          assign listen_url = section.settings.smart_link_url
+          assign listen_label = 'Listen now'
+        elsif section.settings.spotify_url != blank
+          assign listen_url = section.settings.spotify_url
+          assign listen_label = 'Listen on Spotify'
+        endif
+      -%}
+      {%- if listen_url != blank -%}
+        <a
+          href="{{ listen_url }}"
+          class="latest-release__listen-link"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {{ listen_label }}
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{%- if section.settings.release_title != blank -%}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MusicAlbum",
+    "name": {{ section.settings.release_title | json }},
+    {%- if section.settings.album_artwork != blank -%}
+    "image": {{ section.settings.album_artwork | image_url: width: 1200 | prepend: 'https:' | json }},
+    {%- endif -%}
+    {%- if section.settings.description != blank -%}
+    "description": {{ section.settings.description | strip_html | json }},
+    {%- endif -%}
+    {%- if settings.artist_name != blank -%}
+    "byArtist": {
+      "@type": "MusicGroup",
+      "name": {{ settings.artist_name | json }}
+    },
+    {%- endif -%}
+    {%- if section.settings.release_type != blank -%}
+    "albumReleaseType": {{ section.settings.release_type | json }},
+    {%- endif -%}
+    {%- if section.blocks.size > 0 -%}
+    "numTracks": {{ section.blocks.size }},
+    "track": [
+      {%- for block in section.blocks -%}
+        {
+          "@type": "MusicRecording",
+          "name": {{ block.settings.track_name | json }},
+          "position": {{ forloop.index }}
+          {%- if block.settings.track_duration != blank -%}
+          ,
+          "duration": {{ block.settings.track_duration | json }}
+          {%- endif -%}
+        }{% unless forloop.last %},{% endunless %}
+      {%- endfor -%}
+    ],
+    {%- endif -%}
+    "url": {{ shop.url | append: request.path | json }}
+  }
+  </script>
+{%- endif -%}
+
+{%- schema -%}
+{
+  "name": "Latest release",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Album artwork"
+    },
+    {
+      "type": "image_picker",
+      "id": "album_artwork",
+      "label": "Album artwork",
+      "info": "Square format recommended (1200x1200px minimum)"
+    },
+    {
+      "type": "header",
+      "content": "Release details"
+    },
+    {
+      "type": "text",
+      "id": "release_title",
+      "label": "Release title",
+      "default": "Album Title",
+      "info": "Album, EP, or single name"
+    },
+    {
+      "type": "select",
+      "id": "release_type",
+      "label": "Release type",
+      "options": [
+        {
+          "value": "Single",
+          "label": "Single"
+        },
+        {
+          "value": "EP",
+          "label": "EP"
+        },
+        {
+          "value": "Album",
+          "label": "Album"
+        },
+        {
+          "value": "Live Album",
+          "label": "Live Album"
+        },
+        {
+          "value": "Compilation",
+          "label": "Compilation"
+        }
+      ],
+      "default": "Album",
+      "info": "Type of release"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Available now on all streaming platforms.",
+      "info": "Short description or album notes"
+    },
+    {
+      "type": "header",
+      "content": "Streaming links"
+    },
+    {
+      "type": "url",
+      "id": "smart_link_url",
+      "label": "Smart link URL",
+      "info": "Linkfire, Feature.fm, Hyperfollow etc. Overrides Spotify link if set."
+    },
+    {
+      "type": "url",
+      "id": "spotify_url",
+      "label": "Spotify album or track URL",
+      "info": "Full Spotify URL (e.g., https://open.spotify.com/album/...)"
+    },
+    {
+      "type": "header",
+      "content": "Call to action"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "CTA button text",
+      "default": "Listen now",
+      "info": "Primary call-to-action button label"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "CTA button URL",
+      "info": "Link for the primary CTA button (Linkfire, Spotify, etc.)"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "track",
+      "name": "Track",
+      "settings": [
+        {
+          "type": "text",
+          "id": "track_name",
+          "label": "Track name",
+          "default": "Track Title",
+          "info": "Song title"
+        },
+        {
+          "type": "text",
+          "id": "track_duration",
+          "label": "Duration",
+          "default": "3:45",
+          "info": "Track length (e.g., 3:45)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Latest release",
+      "settings": {
+        "release_title": "Your Album Title",
+        "release_type": "Album",
+        "description": "A short description of your latest release. Available now on all streaming platforms."
+      },
+      "blocks": [
+        {
+          "type": "track",
+          "settings": {
+            "track_name": "Track One",
+            "track_duration": "3:42"
+          }
+        },
+        {
+          "type": "track",
+          "settings": {
+            "track_name": "Track Two",
+            "track_duration": "4:15"
+          }
+        },
+        {
+          "type": "track",
+          "settings": {
+            "track_name": "Track Three",
+            "track_duration": "5:01"
+          }
+        }
+      ]
+    }
+  ]
+}
+{%- endschema -%}

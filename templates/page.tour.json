@@ -1,0 +1,80 @@
+{
+  "sections": {
+    "tour_dates": {
+      "type": "tour-dates",
+      "blocks": {
+        "tour_date_1": {
+          "type": "tour_date",
+          "settings": {
+            "date": "Jan 15, 2026",
+            "city": "Los Angeles, CA",
+            "venue": "The Wiltern",
+            "ticket_url": "",
+            "sold_out": false
+          }
+        },
+        "tour_date_2": {
+          "type": "tour_date",
+          "settings": {
+            "date": "Jan 18, 2026",
+            "city": "San Francisco, CA",
+            "venue": "The Fillmore",
+            "ticket_url": "",
+            "sold_out": false
+          }
+        },
+        "tour_date_3": {
+          "type": "tour_date",
+          "settings": {
+            "date": "Jan 22, 2026",
+            "city": "Portland, OR",
+            "venue": "Crystal Ballroom",
+            "ticket_url": "",
+            "sold_out": true
+          }
+        },
+        "tour_date_4": {
+          "type": "tour_date",
+          "settings": {
+            "date": "Jan 25, 2026",
+            "city": "Seattle, WA",
+            "venue": "The Showbox",
+            "ticket_url": "",
+            "sold_out": false
+          }
+        },
+        "tour_date_5": {
+          "type": "tour_date",
+          "settings": {
+            "date": "Jan 28, 2026",
+            "city": "Vancouver, BC",
+            "venue": "Commodore Ballroom",
+            "ticket_url": "",
+            "sold_out": false
+          }
+        }
+      },
+      "block_order": [
+        "tour_date_1",
+        "tour_date_2",
+        "tour_date_3",
+        "tour_date_4",
+        "tour_date_5"
+      ],
+      "settings": {
+        "heading": "Tour Dates",
+        "use_bandsintown": false,
+        "bandsintown_limit": 10,
+        "text_color": "#ffffff",
+        "link_color": "#e8593c",
+        "separator_color": "#333333",
+        "empty_state_text": "No upcoming shows",
+        "newsletter_cta_label": "Join mailing list",
+        "newsletter_cta_url": ""
+      }
+    }
+  },
+  "order": [
+    "tour_dates"
+  ]
+}

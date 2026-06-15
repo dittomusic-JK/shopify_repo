@@ -1,0 +1,245 @@
+{
+  "sections": {
+    "musician_hero": {
+      "type": "musician-hero",
+      "disabled": false,
+      "settings": {
+        "headline": "Leonard Speck",
+        "subheadline": "Wandering Home — New Album",
+        "cta_label": "Listen Now",
+        "overlay_opacity": 50
+      }
+    },
+    "latest_release": {
+      "type": "latest-release",
+      "disabled": false,
+      "settings": {
+        "release_title": "Wandering Home",
+        "release_type": "album",
+        "description": "A deeply personal collection of ten songs written across three years of travel. Recorded live to tape in a farmhouse in Vermont. Raw, honest, and quietly devastating."
+      },
+      "blocks": {
+        "track_1": {
+          "type": "track",
+          "settings": {
+            "track_name": "Wandering Home",
+            "track_duration": "4:12"
+          }
+        },
+        "track_2": {
+          "type": "track",
+          "settings": {
+            "track_name": "Slow River",
+            "track_duration": "3:58"
+          }
+        },
+        "track_3": {
+          "type": "track",
+          "settings": {
+            "track_name": "November Girl",
+            "track_duration": "5:24"
+          }
+        },
+        "track_4": {
+          "type": "track",
+          "settings": {
+            "track_name": "Salt and Rust",
+            "track_duration": "3:41"
+          }
+        },
+        "track_5": {
+          "type": "track",
+          "settings": {
+            "track_name": "The Long Way",
+            "track_duration": "6:02"
+          }
+        }
+      },
+      "block_order": [
+        "track_1",
+        "track_2",
+        "track_3",
+        "track_4",
+        "track_5"
+      ]
+    },
+    "tour_dates": {
+      "type": "tour-dates",
+      "disabled": false,
+      "blocks": {
+        "tour_date_1": {
+          "type": "tour_date",
+          "settings": {
+            "date": "Apr 10, 2026",
+            "city": "Nashville, TN",
+            "venue": "The Basement East",
+            "ticket_url": "https://example.com/tickets",
+            "sold_out": false
+          }
+        },
+        "tour_date_2": {
+          "type": "tour_date",
+          "settings": {
+            "date": "Apr 17, 2026",
+            "city": "Chicago, IL",
+            "venue": "Schubas Tavern",
+            "ticket_url": "https://example.com/tickets",
+            "sold_out": true
+          }
+        },
+        "tour_date_3": {
+          "type": "tour_date",
+          "settings": {
+            "date": "Apr 24, 2026",
+            "city": "New York, NY",
+            "venue": "Rockwood Music Hall",
+            "ticket_url": "https://example.com/tickets",
+            "sold_out": false
+          }
+        },
+        "tour_date_4": {
+          "type": "tour_date",
+          "settings": {
+            "date": "May 02, 2026",
+            "city": "London, UK",
+            "venue": "Union Chapel",
+            "ticket_url": "https://example.com/tickets",
+            "sold_out": false
+          }
+        },
+        "tour_date_5": {
+          "type": "tour_date",
+          "settings": {
+            "date": "May 09, 2026",
+            "city": "Amsterdam, NL",
+            "venue": "Paradiso",
+            "ticket_url": "https://example.com/tickets",
+            "sold_out": false
+          }
+        }
+      },
+      "block_order": [
+        "tour_date_1",
+        "tour_date_2",
+        "tour_date_3",
+        "tour_date_4",
+        "tour_date_5"
+      ]
+    },
+    "merch_featured": {
+      "type": "merch-featured",
+      "disabled": false
+    },
+    "video_embed": {
+      "type": "video-embed",
+      "disabled": false,
+      "settings": {
+        "heading": "Watch",
+        "subheading": "Wandering Home — Live at Union Chapel"
+      }
+    },
+    "press_epk": {
+      "type": "press-epk",
+      "disabled": false,
+      "blocks": {
+        "press_quote_1": {
+          "type": "press_quote",
+          "settings": {
+            "quote_text": "Speck writes like he has nothing left to lose and everything to say.",
+            "publication_name": "No Depression"
+          }
+        },
+        "press_quote_2": {
+          "type": "press_quote",
+          "settings": {
+            "quote_text": "One of the most compelling voices in American folk music right now.",
+            "publication_name": "The Guardian"
+          }
+        },
+        "press_quote_3": {
+          "type": "press_quote",
+          "settings": {
+            "quote_text": "Wandering Home is a masterpiece of quiet intensity.",
+            "publication_name": "Uncut Magazine"
+          }
+        }
+      },
+      "block_order": [
+        "press_quote_1",
+        "press_quote_2",
+        "press_quote_3"
+      ]
+    },
+    "newsletter_signup": {
+      "type": "newsletter-signup",
+      "disabled": false,
+      "settings": {
+        "heading": "Stay in Touch",
+        "subheading": "New songs, tour dates, and stories from the road. No spam, ever."
+      }
+    },
+    "discography_grid": {
+      "type": "discography-grid",
+      "disabled": false,
+      "blocks": {
+        "album_1": {
+          "type": "album",
+          "settings": {
+            "album_title": "Wandering Home",
+            "release_year": "2026",
+            "release_type": "album"
+          }
+        },
+        "album_2": {
+          "type": "album",
+          "settings": {
+            "album_title": "Ghost Roads",
+            "release_year": "2023",
+            "release_type": "album"
+          }
+        },
+        "album_3": {
+          "type": "album",
+          "settings": {
+            "album_title": "Ember",
+            "release_year": "2021",
+            "release_type": "ep"
+          }
+        },
+        "album_4": {
+          "type": "album",
+          "settings": {
+            "album_title": "Letters Never Sent",
+            "release_year": "2019",
+            "release_type": "album"
+          }
+        },
+        "album_5": {
+          "type": "album",
+          "settings": {
+            "album_title": "First Light",
+            "release_year": "2017",
+            "release_type": "single"
+          }
+        }
+      },
+      "block_order": [
+        "album_1",
+        "album_2",
+        "album_3",
+        "album_4",
+        "album_5"
+      ]
+    }
+  },
+  "order": [
+    "musician_hero",
+    "latest_release",
+    "tour_dates",
+    "merch_featured",
+    "video_embed",
+    "press_epk",
+    "newsletter_signup",
+    "discography_grid"
+  ]
+}

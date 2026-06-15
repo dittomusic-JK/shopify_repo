@@ -1,0 +1,450 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Riffride",
+    "theme_version": "1.0.0",
+    "theme_author": "Riffride",
+    "theme_documentation_url": "https://riffride.com/docs",
+    "theme_support_url": "https://riffride.com/support"
+  },
+  {
+    "name": "Artist Branding",
+    "settings": [
+      {
+        "type": "text",
+        "id": "artist_name",
+        "label": "Artist / band name",
+        "info": "This will appear in the header and throughout the site"
+      },
+      {
+        "type": "textarea",
+        "id": "artist_bio_short",
+        "label": "Short bio (2-3 sentences)",
+        "info": "Used for SEO and press kit sections"
+      },
+      {
+        "type": "image_picker",
+        "id": "artist_press_photo",
+        "label": "Press photo",
+        "info": "High-resolution photo for press and about sections"
+      },
+      {
+        "type": "text",
+        "id": "artist_genre",
+        "label": "Genre",
+        "default": "Alternative",
+        "info": "Primary music genre"
+      },
+      {
+        "type": "paragraph",
+        "content": "Riffride publishes your artist info as structured data (schema.org) so search engines can build a knowledge panel. MusicBrainz and Bandsintown can't be filled automatically — claim those profiles yourself, then paste the links here so they're included. Google decides if and when a panel appears."
+      },
+      {
+        "type": "text",
+        "id": "musicbrainz_id",
+        "label": "MusicBrainz artist ID",
+        "info": "From your claimed MusicBrainz profile. Used to enrich your structured data."
+      },
+      {
+        "type": "url",
+        "id": "musicbrainz_url",
+        "label": "MusicBrainz artist URL",
+        "info": "Format: https://musicbrainz.org/artist/YOUR-ID — added to your profile's verified links (sameAs)."
+      }
+    ]
+  },
+  {
+    "name": "Riffride — Theme Style",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "Pick a skin. Editorial (dark) and Editorial Light (light) both ship with this theme. The premium skins — Mono, Wax and Atelier — are sold separately as deeper standalone themes."
+      },
+      {
+        "type": "select",
+        "id": "riffride_skin",
+        "label": "Skin",
+        "options": [
+          { "value": "editorial", "label": "Editorial — refined dark (default)" },
+          { "value": "editorial-light", "label": "Editorial Light — clean light" }
+        ],
+        "default": "editorial"
+      }
+    ]
+  },
+  {
+    "name": "Colors",
+    "settings": [
+      {
+        "type": "color_scheme_group",
+        "id": "color_schemes",
+        "definition": [
+          {
+            "type": "color",
+            "id": "background",
+            "label": "Background",
+            "default": "#FFFFFF"
+          },
+          {
+            "type": "color_background",
+            "id": "background_gradient",
+            "label": "Background gradient",
+            "info": "Visible if background image is not set"
+          },
+          {
+            "type": "color",
+            "id": "text",
+            "label": "Text",
+            "default": "#121212"
+          },
+          {
+            "type": "color",
+            "id": "button",
+            "label": "Button background",
+            "default": "#121212"
+          },
+          {
+            "type": "color",
+            "id": "button_label",
+            "label": "Button label",
+            "default": "#FFFFFF"
+          },
+          {
+            "type": "color",
+            "id": "secondary_button_label",
+            "label": "Secondary button label",
+            "default": "#121212"
+          },
+          {
+            "type": "color",
+            "id": "shadow",
+            "label": "Shadow",
+            "default": "#121212"
+          }
+        ],
+        "role": {
+          "text": "text",
+          "background": {
+            "solid": "background",
+            "gradient": "background_gradient"
+          },
+          "links": "secondary_button_label",
+          "icons": "text",
+          "primary_button": "button",
+          "on_primary_button": "button_label",
+          "primary_button_border": "button",
+          "secondary_button": "background",
+          "on_secondary_button": "secondary_button_label",
+          "secondary_button_border": "secondary_button_label"
+        }
+      },
+      {
+        "type": "header",
+        "content": "Musician theme colors"
+      },
+      {
+        "type": "paragraph",
+        "content": "These colors are used for musician-specific sections and override Dawn's color schemes in custom sections."
+      },
+      {
+        "type": "color",
+        "id": "brand_primary",
+        "label": "Primary brand colour",
+        "default": "#ffffff",
+        "info": "Main text and primary UI elements"
+      },
+      {
+        "type": "color",
+        "id": "brand_accent",
+        "label": "Accent / highlight colour",
+        "default": "#e8593c",
+        "info": "CTAs, hover states, and badges"
+      },
+      {
+        "type": "color",
+        "id": "brand_bg",
+        "label": "Background colour",
+        "default": "#0a0a0a",
+        "info": "Main background colour (dark theme default)"
+      },
+      {
+        "type": "color",
+        "id": "brand_secondary",
+        "label": "Secondary colour",
+        "default": "#666666",
+        "info": "Secondary text and subtle UI elements"
+      }
+    ]
+  },
+  {
+    "name": "Typography",
+    "settings": [
+      {
+        "type": "font_picker",
+        "id": "type_header_font",
+        "default": "assistant_n4",
+        "label": "Heading font",
+        "info": "Used for headlines, artist name, and section titles"
+      },
+      {
+        "type": "font_picker",
+        "id": "type_body_font",
+        "default": "assistant_n4",
+        "label": "Body font",
+        "info": "Used for body text, descriptions, and UI elements"
+      },
+      {
+        "type": "checkbox",
+        "id": "headings_uppercase",
+        "label": "Display headings in uppercase",
+        "default": false,
+        "info": "Apply text-transform: uppercase to all headings"
+      }
+    ]
+  },
+  {
+    "name": "Layout",
+    "settings": [
+      {
+        "type": "select",
+        "id": "layout_mode",
+        "label": "Site layout mode",
+        "options": [
+          {
+            "value": "onepage",
+            "label": "One-page (all sections on homepage)"
+          },
+          {
+            "value": "multipage",
+            "label": "Multi-page (traditional navigation)"
+          }
+        ],
+        "default": "onepage",
+        "info": "Choose between a single-page scrolling experience or traditional multi-page navigation"
+      },
+      {
+        "type": "checkbox",
+        "id": "hide_header_on_hero",
+        "label": "Hide navigation entirely",
+        "default": false,
+        "info": "Removes the navigation bar from the entire site. Useful for minimal single-page layouts."
+      }
+    ]
+  },
+  {
+    "name": "Streaming & Music",
+    "settings": [
+      {
+        "type": "text",
+        "id": "spotify_url",
+        "label": "Spotify artist URL",
+        "info": "Your full Spotify artist profile URL"
+      },
+      {
+        "type": "text",
+        "id": "apple_music_url",
+        "label": "Apple Music URL",
+        "info": "Your Apple Music artist profile URL"
+      },
+      {
+        "type": "text",
+        "id": "bandcamp_url",
+        "label": "Bandcamp URL",
+        "info": "Your Bandcamp profile or store URL"
+      },
+      {
+        "type": "text",
+        "id": "soundcloud_url",
+        "label": "SoundCloud URL",
+        "info": "Your SoundCloud profile URL"
+      }
+    ]
+  },
+  {
+    "name": "Social Media",
+    "settings": [
+      {
+        "type": "text",
+        "id": "instagram_url",
+        "label": "Instagram URL",
+        "info": "Your Instagram profile URL"
+      },
+      {
+        "type": "text",
+        "id": "youtube_url",
+        "label": "YouTube URL",
+        "info": "Your YouTube channel URL"
+      },
+      {
+        "type": "text",
+        "id": "tiktok_url",
+        "label": "TikTok URL",
+        "info": "Your TikTok profile URL"
+      },
+      {
+        "type": "text",
+        "id": "facebook_url",
+        "label": "Facebook URL",
+        "info": "Your Facebook page URL"
+      },
+      {
+        "type": "text",
+        "id": "twitter_url",
+        "label": "Twitter / X URL",
+        "info": "Your Twitter/X profile URL"
+      }
+    ]
+  },
+  {
+    "name": "Third Party Plugins",
+    "settings": [
+      {
+        "type": "text",
+        "id": "bandsintown_artist",
+        "label": "Bandsintown artist name",
+        "info": "Enter your artist name exactly as it appears on Bandsintown"
+      },
+      {
+        "type": "url",
+        "id": "linkfire_url",
+        "label": "Linkfire smart link URL",
+        "info": "Paste your Linkfire link URL here (can be overridden per section)"
+      },
+      {
+        "type": "textarea",
+        "id": "featurefm_embed",
+        "label": "Feature.fm embed code",
+        "info": "Paste your Feature.fm widget embed code here"
+      }
+    ]
+  },
+  {
+    "name": "Riffride — Partner & Affiliate",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "Riffride earns by referring artists to the services they need. Drop in your affiliate / referral links below — sections and the setup guide will route through them with attribution. Leave blank to fall back to the plain destination."
+      },
+      {
+        "type": "text",
+        "id": "riffride_partner_id",
+        "label": "Partner / attribution ID",
+        "default": "direct",
+        "info": "Identifies the distribution partner this install came from (e.g. 'ditto'). Appended to outbound links as &partner=."
+      },
+      {
+        "type": "header",
+        "content": "Print-on-demand merch"
+      },
+      {
+        "type": "select",
+        "id": "riffride_merch_provider",
+        "label": "Recommended POD provider",
+        "options": [
+          { "value": "printful", "label": "Printful" },
+          { "value": "printify", "label": "Printify" },
+          { "value": "gelato", "label": "Gelato" }
+        ],
+        "default": "printful",
+        "info": "Shown in the setup guide as the zero-inventory merch option."
+      },
+      {
+        "type": "url",
+        "id": "riffride_merch_affiliate_url",
+        "label": "POD affiliate / referral link",
+        "info": "Your affiliate link to the chosen POD provider's signup."
+      },
+      {
+        "type": "header",
+        "content": "Smart links"
+      },
+      {
+        "type": "select",
+        "id": "riffride_smartlink_provider",
+        "label": "Recommended smart-link provider",
+        "options": [
+          { "value": "ditto", "label": "Ditto" },
+          { "value": "linkfire", "label": "Linkfire" },
+          { "value": "featurefm", "label": "Feature.fm" },
+          { "value": "none", "label": "None / let artist choose" }
+        ],
+        "default": "ditto",
+        "info": "Default smart-link service recommended to the artist."
+      },
+      {
+        "type": "url",
+        "id": "riffride_smartlink_signup_url",
+        "label": "Smart-link signup / referral link",
+        "info": "Your affiliate link to the chosen smart-link provider's signup."
+      },
+      {
+        "type": "header",
+        "content": "Other referrals"
+      },
+      {
+        "type": "url",
+        "id": "riffride_disco_affiliate_url",
+        "label": "Disco.ac referral link",
+        "info": "Used by the private press kit for sharing assets."
+      },
+      {
+        "type": "url",
+        "id": "riffride_shopify_referral_url",
+        "label": "Shopify referral link",
+        "info": "Used only for 'Powered by' / share links. Main Shopify-signup attribution belongs on your marketing site, not here."
+      }
+    ]
+  },
+  {
+    "name": "Analytics & Tracking",
+    "settings": [
+      {
+        "type": "text",
+        "id": "ga4_measurement_id",
+        "label": "Google Analytics 4 measurement ID",
+        "info": "Format: G-XXXXXXXXXX"
+      },
+      {
+        "type": "text",
+        "id": "meta_pixel_id",
+        "label": "Meta (Facebook) Pixel ID",
+        "info": "Your Facebook Pixel ID for conversion tracking"
+      },
+      {
+        "type": "text",
+        "id": "tiktok_pixel_id",
+        "label": "TikTok Pixel ID",
+        "info": "Your TikTok Pixel ID for ad tracking"
+      }
+    ]
+  },
+  {
+    "name": "Webmaster Tools",
+    "settings": [
+      {
+        "type": "text",
+        "id": "google_site_verify",
+        "label": "Google Search Console verification code",
+        "info": "Paste the content value from your Google verification meta tag"
+      },
+      {
+        "type": "text",
+        "id": "bing_site_verify",
+        "label": "Bing Webmaster Tools verification code",
+        "info": "Paste the content value from your Bing verification meta tag"
+      }
+    ]
+  },
+  {
+    "name": "Theme Credit",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "show_theme_credit",
+        "label": "Show theme credit in footer",
+        "default": true,
+        "info": "Display 'Built with Riffride' credit link in footer. Required on the free theme; can be turned off on the paid version."
+      }
+    ]
+  }
+]

@@ -1,0 +1,259 @@
+{{ 'section-merch-featured.css' | asset_url | stylesheet_tag }}
+
+{%- assign printful_link = "https://www.printful.com" -%}
+{%- assign printify_link = "https://printify.com" -%}
+{%- assign gelato_link = "https://gelato.com" -%}
+
+<section id="merch" class="merch-featured">
+  <div class="merch-featured__container">
+    {%- if section.settings.heading != blank -%}
+      <h2 class="merch-featured__heading">{{ section.settings.heading }}</h2>
+    {%- endif -%}
+
+    {%- if section.settings.merch_collection != blank -%}
+      {%- assign collection = collections[section.settings.merch_collection] -%}
+      {%- assign products_to_show = section.settings.products_to_show -%}
+
+      {%- if collection.products.size > 0 -%}
+        <div class="merch-featured__grid">
+          {%- for product in collection.products limit: products_to_show -%}
+            <div class="merch-card">
+              <a href="{{ product.url }}" class="merch-card__link">
+                {%- if product.featured_image != blank -%}
+                  <div class="merch-card__image-wrapper">
+                    <img
+                      src="{{ product.featured_image | image_url: width: 800 }}"
+                      srcset="{{ product.featured_image | image_url: width: 400 }} 400w,
+                              {{ product.featured_image | image_url: width: 800 }} 800w"
+                      sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                      alt="{{ product.featured_image.alt | escape }}"
+                      loading="lazy"
+                      width="800"
+                      height="800"
+                    >
+                    
+                    {%- if product.tags contains 'new' -%}
+                      <span class="merch-card__badge merch-card__badge--new">New</span>
+                    {%- endif -%}
+
+                    {%- unless product.available -%}
+                      <span class="merch-card__badge merch-card__badge--sold-out">Sold out</span>
+                    {%- endunless -%}
+
+                    <div class="merch-card__overlay">
+                      <h3 class="merch-card__title">{{ product.title }}</h3>
+                      <p class="merch-card__price">{{ product.price | money }}</p>
+                      
+                      {%- if section.settings.show_add_to_cart and product.available -%}
+                        <button
+                          type="button"
+                          class="merch-card__add-to-cart btn btn--small"
+                          data-product-id="{{ product.selected_or_first_available_variant.id }}"
+                        >
+                          Add to cart
+                        </button>
+                      {%- endif -%}
+                    </div>
+                  </div>
+                {%- endif -%}
+              </a>
+            </div>
+          {%- endfor -%}
+        </div>
+
+        {%- if section.settings.show_view_all and section.settings.view_all_label != blank -%}
+          <div class="merch-featured__cta-wrapper">
+            <a
+              href="{{ collection.url }}"
+              class="merch-featured__cta btn btn--accent"
+            >
+              {{ section.settings.view_all_label }}
+            </a>
+          </div>
+        {%- endif -%}
+
+        {%- if section.settings.show_printful_credit -%}
+          <div class="merch-featured__credit">
+            <span class="merch-featured__credit-text">Set up merch with:</span>
+            <a
+              href="{{ printful_link }}"
+              class="merch-featured__credit-link"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Printful
+            </a>
+            <span class="merch-featured__credit-separator">|</span>
+            <a
+              href="{{ printify_link }}"
+              class="merch-featured__credit-link"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Printify
+            </a>
+            <span class="merch-featured__credit-separator">|</span>
+            <a
+              href="{{ gelato_link }}"
+              class="merch-featured__credit-link"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Gelato
+            </a>
+          </div>
+        {%- endif -%}
+      {%- else -%}
+        <div class="merch-featured__empty">
+          <p class="merch-featured__empty-text">This collection is empty.</p>
+        </div>
+      {%- endif -%}
+    {%- else -%}
+      <div class="merch-featured__empty">
+        <p class="merch-featured__empty-text">{{ section.settings.empty_state_text }}</p>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const addToCartButtons = document.querySelectorAll('.merch-card__add-to-cart');
+    
+    addToCartButtons.forEach(button => {
+      button.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        const variantId = this.dataset.productId;
+        const originalText = this.textContent;
+        
+        this.textContent = 'Adding...';
+        this.disabled = true;
+        
+        fetch(window.routes.cart_add_url, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-Requested-With': 'XMLHttpRequest'
+          },
+          body: JSON.stringify({
+            items: [{
+              id: variantId,
+              quantity: 1
+            }]
+          })
+        })
+        .then(response => response.json())
+        .then(data => {
+          this.textContent = 'Added!';
+          
+          document.dispatchEvent(new CustomEvent('cart:refresh'));
+          
+          setTimeout(() => {
+            this.textContent = originalText;
+            this.disabled = false;
+          }, 2000);
+        })
+        .catch(error => {
+          console.error('Add to cart failed:', error);
+          this.textContent = 'Error';
+          
+          setTimeout(() => {
+            this.textContent = originalText;
+            this.disabled = false;
+          }, 2000);
+        });
+      });
+    });
+  });
+</script>
+
+{%- schema -%}
+{
+  "name": "Featured merch",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Section heading",
+      "default": "Merch",
+      "info": "Main heading for the merch section"
+    },
+    {
+      "type": "collection",
+      "id": "merch_collection",
+      "label": "Merch collection",
+      "info": "Select the collection to display products from"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "min": 4,
+      "max": 16,
+      "step": 4,
+      "default": 8,
+      "label": "Products to show",
+      "info": "Number of products to display in the grid"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_add_to_cart",
+      "label": "Show add-to-cart on hover",
+      "default": true,
+      "info": "Display add-to-cart button in hover overlay"
+    },
+    {
+      "type": "header",
+      "content": "View all button"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_view_all",
+      "label": "Show 'View all' button",
+      "default": true,
+      "info": "Display a button below the grid linking to the full collection"
+    },
+    {
+      "type": "text",
+      "id": "view_all_label",
+      "label": "View all button text",
+      "default": "Shop all merch",
+      "info": "Button text for the view all CTA"
+    },
+    {
+      "type": "header",
+      "content": "POD affiliate links"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_printful_credit",
+      "label": "Show print-on-demand setup links",
+      "default": true,
+      "info": "Display 'Set up merch with' affiliate links (Printful, Printify, Gelato)"
+    },
+    {
+      "type": "header",
+      "content": "Empty state"
+    },
+    {
+      "type": "text",
+      "id": "empty_state_text",
+      "label": "Empty state message",
+      "default": "Select a collection to display products",
+      "info": "Message shown when no collection is selected"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured merch",
+      "settings": {
+        "heading": "Merch",
+        "products_to_show": 4
+      }
+    }
+  ]
+}
+{%- endschema -%}

@@ -1,0 +1,384 @@
+/* Override Dawn's default header-wrapper background with high specificity */
+.header-wrapper.header--musician,
+sticky-header.header-wrapper.header--musician,
+.header-wrapper.header--musician.gradient,
+sticky-header.header-wrapper.header--musician.gradient {
+  background-color: var(--color-brand-bg, #0a0a0a) !important;
+  background: var(--color-brand-bg, #0a0a0a) !important;
+  border-bottom: none;
+  transition: background-color 0.4s ease;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999 !important;
+  width: 100%;
+  height: 70px;
+}
+
+/* Add padding to body to prevent content hiding behind fixed header */
+body {
+  padding-top: 70px;
+}
+
+@media screen and (min-width: 990px) {
+  body {
+    padding-top: 70px;
+  }
+}
+
+/* Ensure section-header wrapper doesn't interfere */
+.section-header.shopify-section-group-header-group {
+  margin-bottom: 0;
+}
+
+.header-wrapper.header--musician.header--transparent,
+sticky-header.header-wrapper.header--musician.header--transparent {
+  background-color: transparent !important;
+  background: transparent !important;
+}
+
+.header-wrapper.header--musician.header--scrolled,
+sticky-header.header-wrapper.header--musician.header--scrolled,
+.header-wrapper.scrolled,
+.header.scrolled {
+  background-color: var(--brand-bg-1) !important;
+  background: var(--brand-bg-1) !important;
+}
+
+.header--hidden {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.header--visible {
+  opacity: 1;
+  pointer-events: all;
+  transition: opacity 0.3s ease;
+}
+
+/* Ensure Dawn's hidden header doesn't show */
+.header-wrapper.header--musician .header[style*="display: none"] {
+  display: none !important;
+  visibility: hidden !important;
+  height: 0 !important;
+  overflow: hidden !important;
+}
+
+/* Dark announcement bar styling - override Dawn's color schemes */
+.shopify-section-group-header-group .utility-bar,
+.announcement-bar-section .utility-bar {
+  background-color: var(--color-brand-bg, #0a0a0a) !important;
+  border-bottom: 1px solid var(--brand-hairline);
+}
+
+/* Override any color scheme classes on utility bar */
+.shopify-section-group-header-group .utility-bar.gradient,
+.announcement-bar-section .utility-bar.gradient {
+  background: var(--color-brand-bg, #0a0a0a) !important;
+}
+
+.shopify-section-group-header-group .announcement-bar,
+.shopify-section-group-header-group .announcement-bar__message,
+.announcement-bar-section .announcement-bar,
+.announcement-bar-section .announcement-bar__message {
+  color: var(--color-brand-primary, #ffffff) !important;
+}
+
+.shopify-section-group-header-group .announcement-bar__link,
+.announcement-bar-section .announcement-bar__link {
+  color: var(--color-brand-primary, #ffffff) !important;
+}
+
+.shopify-section-group-header-group .announcement-bar__link:hover,
+.announcement-bar-section .announcement-bar__link:hover {
+  color: var(--color-brand-accent, #e8593c) !important;
+}
+
+/* Style announcement bar slider buttons */
+.shopify-section-group-header-group .slider-button,
+.announcement-bar-section .slider-button {
+  color: var(--color-brand-primary, #ffffff) !important;
+}
+
+.shopify-section-group-header-group .slider-button:hover,
+.announcement-bar-section .slider-button:hover {
+  color: var(--color-brand-accent, #e8593c) !important;
+}
+
+/* Hide announcement bar if not needed */
+.shopify-section-group-header-group .utility-bar:empty,
+.announcement-bar-section .utility-bar:empty {
+  display: none;
+}
+
+.header__musician-inner {
+  display: flex !important;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--space-md, 2rem);
+  max-width: 1440px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  height: 70px;
+  box-sizing: border-box;
+}
+
+.header__artist-name {
+  font-family: var(--font-heading, sans-serif);
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--color-brand-primary, #ffffff);
+  text-decoration: none;
+  margin: 0;
+  transition: color 0.2s ease;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+}
+
+.header__artist-name:hover,
+.header__artist-name:focus {
+  color: var(--color-brand-accent, #e8593c);
+}
+
+.header__logo-image {
+  max-height: 40px;
+  width: auto;
+  display: block;
+}
+
+.header__nav {
+  display: none;
+}
+
+.header__nav-list {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.header__nav-link {
+  font-family: var(--font-body, sans-serif);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-brand-primary, #ffffff);
+  text-decoration: none;
+  padding: 0.5rem 0;
+  position: relative;
+  transition: color 0.2s ease;
+  white-space: nowrap;
+}
+
+.header__nav-link:hover,
+.header__nav-link:focus {
+  color: var(--color-brand-accent, #e8593c);
+}
+
+.header__nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 4px;
+  background-color: var(--color-brand-accent, #e8593c);
+  border-radius: 50%;
+}
+
+.header__streaming {
+  display: none;
+  align-items: center;
+  gap: var(--space-sm, 1rem);
+}
+
+.header__streaming-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  color: var(--color-brand-primary, #ffffff);
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--brand-hairline);
+  border-radius: 50%;
+  text-decoration: none;
+  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.header__streaming-link:hover,
+.header__streaming-link:focus {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: var(--color-brand-accent, #e8593c);
+  transform: translateY(-2px);
+}
+
+.header__streaming-link svg {
+  width: 18px;
+  height: 18px;
+}
+
+.header__mobile-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background: none;
+  border: none;
+  color: var(--color-brand-primary, #ffffff);
+  cursor: pointer;
+  padding: 0;
+}
+
+.header__mobile-toggle:hover,
+.header__mobile-toggle:focus {
+  color: var(--color-brand-accent, #e8593c);
+}
+
+.header__mobile-icon {
+  width: 24px;
+  height: 24px;
+}
+
+.header__mobile-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(10, 10, 10, 0.98);
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+  display: none;
+  flex-direction: column;
+  padding: var(--space-lg) var(--space-md);
+  overflow-y: auto;
+}
+
+.header__mobile-menu.active {
+  display: flex;
+}
+
+.header__mobile-close {
+  align-self: flex-end;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background: none;
+  border: none;
+  color: var(--color-brand-primary, #ffffff);
+  cursor: pointer;
+  padding: 0;
+  margin-bottom: var(--space-md, 2rem);
+}
+
+.header__mobile-close:hover,
+.header__mobile-close:focus {
+  color: var(--color-brand-accent, #e8593c);
+}
+
+.header__mobile-nav {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-md, 2rem);
+}
+
+.header__mobile-nav-link {
+  font-family: var(--font-heading, sans-serif);
+  font-size: var(--text-xl, 1.5rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  color: var(--color-brand-primary, #ffffff);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.header__mobile-nav-link:hover,
+.header__mobile-nav-link:focus,
+.header__mobile-nav-link.active {
+  color: var(--color-brand-accent, #e8593c);
+}
+
+@media screen and (min-width: 990px) {
+  .header__musician-inner {
+    padding: 0 var(--space-lg, 4rem);
+  }
+
+  .header__artist-name {
+    font-size: 1.1rem;
+  }
+
+  .header__nav {
+    display: block;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+  }
+
+  .header__streaming {
+    display: flex;
+  }
+
+  .header__mobile-toggle {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 989px) {
+  .header__musician-inner {
+    padding: 0 var(--space-sm, 1rem);
+  }
+
+  .header__artist-name {
+    font-size: 1rem;
+  }
+
+  .header__logo-image {
+    max-height: 32px;
+  }
+}
+
+.header-wrapper,
+.header,
+header-drawer,
+.shopify-section-group-header-group {
+  background-color: var(--color-brand-bg, #0a0a0a) !important;
+  color: var(--color-brand-primary, #ffffff) !important;
+}
+
+.header__heading-link,
+.header__menu-item,
+.header__icon {
+  color: var(--color-brand-primary, #ffffff) !important;
+}
+
+.header-wrapper,
+.header,
+header-drawer,
+.shopify-section-group-header-group {
+  background-color: var(--color-brand-bg, #0a0a0a) !important;
+  color: var(--color-brand-primary, #ffffff) !important;
+}
+
+.header__heading-link,
+.header__menu-item,
+.header__icon {
+  color: var(--color-brand-primary, #ffffff) !important;
+}

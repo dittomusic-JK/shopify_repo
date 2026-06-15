@@ -1,0 +1,22 @@
+/* Riffride skins — scoped overrides selected via body[data-skin], driven by
+   settings.riffride_skin. "Editorial" is the base look (defaults live in
+   musician-theme.css). The standard theme ships two skins: Editorial (dark)
+   and Editorial Light (light). The premium skins (Mono, Wax, Atelier) live in
+   their own standalone themes, not here.
+   body[data-skin] beats :root specificity, so these win cleanly. */
+
+/* ============================================================
+   EDITORIAL LIGHT — clean light version of the dark default.
+   Same editorial type + orange accent, inverted onto a light canvas.
+   ============================================================ */
+body[data-skin="editorial-light"] {
+  --brand-bg-0: #ffffff;
+  --brand-bg-1: #f7f7f5;
+  --brand-bg-2: #eeeeec;
+  --color-brand-bg: #ffffff;
+  --color-brand-primary: #141414;
+  --color-brand-secondary: #6f6f6b;
+  --color-brand-accent: #e8593c;
+  --color-brand-on-accent: #ffffff;
+  --brand-hairline: rgba(0, 0, 0, 0.12);
+}

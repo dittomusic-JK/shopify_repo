@@ -1,0 +1,167 @@
+{{ 'section-musician-hero.css' | asset_url | stylesheet_tag }}
+
+<section
+  id="hero"
+  class="musician-hero"
+  style="
+    --overlay-opacity: {{ section.settings.overlay_opacity | divided_by: 100.0 }};
+    {%- if section.settings.background_image != blank -%}
+      --hero-bg-image: url({{ section.settings.background_image | image_url: width: 2400 }});
+    {%- endif -%}
+  "
+>
+  {%- if section.settings.background_video != blank -%}
+    <video
+      class="musician-hero__video"
+      autoplay
+      muted
+      loop
+      playsinline
+      poster="{{ section.settings.background_image | image_url: width: 2400 }}"
+    >
+      <source src="{{ section.settings.background_video | file_url }}" type="video/mp4">
+    </video>
+  {%- elsif section.settings.background_image != blank -%}
+    <img
+      src="{{ section.settings.background_image | image_url: width: 2400 }}"
+      alt="{{ section.settings.background_image.alt | escape }}"
+      class="musician-hero__image"
+      loading="eager"
+      fetchpriority="high"
+      width="{{ section.settings.background_image.width }}"
+      height="{{ section.settings.background_image.height }}"
+    >
+  {%- endif -%}
+
+  <div class="musician-hero__overlay"></div>
+
+  <div class="musician-hero__content">
+    {%- if section.settings.headline != blank -%}
+      <h1 class="musician-hero__headline">
+        {{ section.settings.headline }}
+      </h1>
+    {%- endif -%}
+
+    {%- if section.settings.subheadline != blank -%}
+      <p class="musician-hero__subheadline">
+        {{ section.settings.subheadline }}
+      </p>
+    {%- endif -%}
+
+    {%- if section.settings.cta_label != blank and section.settings.cta_url != blank -%}
+      <a
+        href="{{ section.settings.cta_url }}"
+        class="musician-hero__cta btn btn--primary"
+        {% if section.settings.cta_url contains 'http' %}target="_blank" rel="noopener noreferrer"{% endif %}
+      >
+        {{ section.settings.cta_label }}
+      </a>
+    {%- endif -%}
+  </div>
+
+  {%- if section.settings.show_scroll_indicator -%}
+    <div class="musician-hero__scroll-indicator" aria-hidden="true">
+      <span class="musician-hero__scroll-text">{{ section.settings.scroll_indicator_text }}</span>
+      <svg class="musician-hero__scroll-arrow" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 5V19M12 19L5 12M12 19L19 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+  {%- endif -%}
+</section>
+
+{%- schema -%}
+{
+  "name": "Musician hero",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Background media"
+    },
+    {
+      "type": "video",
+      "id": "background_video",
+      "label": "Background video",
+      "info": "MP4 format recommended. Max 10MB for best performance. Video will be muted and loop automatically."
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background image",
+      "info": "Used as fallback if no video is set, or as poster frame for video. Recommended: 2400x1350px minimum."
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "min": 0,
+      "max": 90,
+      "step": 5,
+      "default": 50,
+      "unit": "%",
+      "label": "Overlay darkness",
+      "info": "Dark gradient overlay on bottom 40% of hero for text legibility"
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "headline",
+      "label": "Artist name / headline",
+      "default": "Artist Name",
+      "info": "Large display text. Leave blank to hide."
+    },
+    {
+      "type": "text",
+      "id": "subheadline",
+      "label": "Subheadline",
+      "default": "New album out now",
+      "info": "Tour name, album title, or tagline"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "CTA button text",
+      "default": "Shop now",
+      "info": "Primary call-to-action button label"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "CTA button URL",
+      "info": "Link for the primary CTA button"
+    },
+    {
+      "type": "header",
+      "content": "Scroll indicator"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_scroll_indicator",
+      "label": "Show scroll indicator",
+      "default": true,
+      "info": "Display a subtle arrow at the bottom prompting users to scroll"
+    },
+    {
+      "type": "text",
+      "id": "scroll_indicator_text",
+      "label": "Scroll indicator text",
+      "default": "Scroll",
+      "info": "Text shown above the scroll arrow"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Musician hero",
+      "settings": {
+        "headline": "Your Artist Name",
+        "subheadline": "New Album — Out Now",
+        "cta_label": "Shop Now",
+        "overlay_opacity": 50
+      }
+    }
+  ]
+}
+{%- endschema -%}
