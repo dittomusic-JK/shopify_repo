@@ -19,6 +19,14 @@ body[data-skin^="riot"] .riffride-heading {
 /* Neon punctuation flourish: wrap a stop in <span class="riot-dot">.</span> */
 .riot-dot { color: var(--color-brand-accent); }
 
+/* Oversized section headings for drama */
+body[data-skin^="riot"] .merch-featured__heading,
+body[data-skin^="riot"] .tour-dates__heading,
+body[data-skin^="riot"] .newsletter-signup__heading,
+body[data-skin^="riot"] .spotify-embed .riffride-heading {
+  font-size: clamp(2rem, 7vw, 4.5rem);
+}
+
 /* --- Neon marquee bar --- */
 .riot-marquee {
   background: var(--color-brand-accent);

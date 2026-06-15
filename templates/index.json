@@ -1,16 +1,18 @@
 {
   "sections": {
-    "musician_hero": {
-      "type": "musician-hero",
+    "riot_hero": {
+      "type": "riot-hero",
       "disabled": false,
       "settings": {
+        "eyebrow": "DEBUT ALBUM — ACID CHURCH",
         "headline": "VENOM HALO",
-        "subheadline": "DEBUT ALBUM ‘ACID CHURCH’ — OUT NOW",
-        "cta_label": "LISTEN NOW",
-        "cta_url": "#listen",
-        "overlay_opacity": 55,
-        "show_scroll_indicator": true,
-        "scroll_indicator_text": "SCROLL"
+        "show_neon_dot": true,
+        "subheadline": "OUT NOW — STREAM EVERYWHERE",
+        "cta1_label": "LISTEN NOW",
+        "cta1_url": "",
+        "cta2_label": "SHOP THE DROP",
+        "cta2_url": "/collections/all",
+        "min_height": 90
       }
     },
     "riot_marquee": {
@@ -121,7 +123,7 @@
     }
   },
   "order": [
-    "musician_hero",
+    "riot_hero",
     "riot_marquee",
     "spotify_embed",
     "merch_featured",
