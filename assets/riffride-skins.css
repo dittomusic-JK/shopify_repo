@@ -43,3 +43,13 @@ body[data-skin="atelier-ink"] .latest-release__type {
   letter-spacing: 0.22em;
   font-weight: 500;
 }
+
+/* Uppercase the headings (campaign hero, merch, section + release titles) */
+body[data-skin^="atelier"] h1,
+body[data-skin^="atelier"] h2,
+body[data-skin^="atelier"] .atelier-merch__heading,
+body[data-skin^="atelier"] .merch-featured__heading,
+body[data-skin^="atelier"] .latest-release__title {
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}

@@ -382,3 +382,16 @@ header-drawer,
 .header__icon {
   color: var(--color-brand-primary, #ffffff) !important;
 }
+
+/* --- Riffride fix: readable header over any hero (transparent state) --- */
+.header-wrapper.header--musician.header--transparent:not(.header--scrolled),
+sticky-header.header-wrapper.header--musician.header--transparent:not(.header--scrolled) {
+  background: linear-gradient(180deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.15) 55%, rgba(0,0,0,0) 100%) !important;
+}
+.header-wrapper.header--musician.header--transparent:not(.header--scrolled) .header__artist-name,
+.header-wrapper.header--musician.header--transparent:not(.header--scrolled) .header__nav-link,
+.header-wrapper.header--musician.header--transparent:not(.header--scrolled) .header__nav-link:hover,
+.header-wrapper.header--musician.header--transparent:not(.header--scrolled) .header__streaming-link,
+.header-wrapper.header--musician.header--transparent:not(.header--scrolled) .header__mobile-toggle {
+  color: #ffffff !important;
+}
