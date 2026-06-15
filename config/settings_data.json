@@ -9,7 +9,7 @@
  */
 {
   "current": {
-    "artist_name": "Artist Name",
+    "artist_name": "Vespa Lane",
     "artist_genre": "Alternative",
     "riffride_skin": "atelier",
     "brand_primary": "#ffffff",
@@ -20,6 +20,7 @@
     "type_body_font": "karla_n4",
     "headings_uppercase": false,
     "layout_mode": "onepage",
+    "hide_header_on_hero": true,
     "show_theme_credit": false,
     "logo_width": 90,
     "heading_scale": 150,
