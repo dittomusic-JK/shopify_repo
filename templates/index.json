@@ -1,8 +1,16 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "riot_hero": {
       "type": "riot-hero",
-      "disabled": false,
       "settings": {
         "eyebrow": "DEBUT ALBUM — ACID CHURCH",
         "headline": "VENOM HALO",
@@ -12,12 +20,13 @@
         "cta1_url": "",
         "cta2_label": "SHOP THE DROP",
         "cta2_url": "/collections/all",
+        "background_image": "shopify://shop_images/staticcoast_pressshot.png",
+        "media_wash": 55,
         "min_height": 90
       }
     },
     "riot_marquee": {
       "type": "riot-marquee",
-      "disabled": false,
       "settings": {
         "message": "NEW ALBUM ‘ACID CHURCH’ OUT NOW ✶ WORLDWIDE SHIPPING ✶ RIOT TOUR 2026 ✶ LIMITED MERCH DROP",
         "message_2": "STREAM EVERYWHERE ✶ TURN IT UP ✶ VENOM HALO ✶ NO ENCORES, NO MERCY"
@@ -25,7 +34,6 @@
     },
     "spotify_embed": {
       "type": "spotify-embed",
-      "disabled": false,
       "settings": {
         "heading": "LISTEN",
         "spotify_url": "https://open.spotify.com/album/2noRn2Aes5aoNVsU6iWThc",
@@ -35,22 +43,19 @@
     },
     "merch_featured": {
       "type": "merch-featured",
-      "disabled": false,
       "settings": {
         "heading": "THE DROP",
+        "merch_collection": "",
         "products_to_show": 8,
         "show_add_to_cart": true,
         "show_view_all": true,
         "view_all_label": "SHOP ALL MERCH",
-        "show_printful_credit": true
+        "show_printful_credit": true,
+        "empty_state_text": "Select a collection to display products"
       }
     },
     "tour_dates": {
       "type": "tour-dates",
-      "disabled": false,
-      "settings": {
-        "heading": "RIOT TOUR 2026"
-      },
       "blocks": {
         "tour_date_1": {
           "type": "tour_date",
@@ -109,14 +114,26 @@
         "tour_date_3",
         "tour_date_4",
         "tour_date_5"
-      ]
+      ],
+      "settings": {
+        "heading": "RIOT TOUR 2026",
+        "use_bandsintown": false,
+        "bandsintown_limit": 10,
+        "text_color": "#ffffff",
+        "link_color": "#e8593c",
+        "separator_color": "#333333",
+        "empty_state_text": "No upcoming shows",
+        "newsletter_cta_label": "Join mailing list",
+        "newsletter_cta_url": ""
+      }
     },
     "newsletter_signup": {
       "type": "newsletter-signup",
-      "disabled": false,
       "settings": {
         "heading": "JOIN THE RIOT",
         "subheading": "DROPS, SHOWS, AND CHAOS STRAIGHT TO YOUR INBOX. NO SPAM, JUST NOISE.",
+        "klaviyo_embed": "",
+        "mailchimp_embed": "",
         "streaming_label": "LISTEN",
         "social_label": "FOLLOW"
       }
