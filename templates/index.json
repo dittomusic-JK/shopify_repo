@@ -25,7 +25,7 @@
       "type": "merch-featured",
       "settings": {
         "heading": "Featured Collection",
-        "merch_collection": "frontpage",
+        "merch_collection": "june-halliday",
         "products_to_show": 8,
         "show_add_to_cart": true,
         "show_view_all": true,
