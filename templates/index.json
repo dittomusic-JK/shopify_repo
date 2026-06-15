@@ -1,28 +1,32 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "atelier_campaign_hero": {
       "type": "atelier-campaign-hero",
-      "disabled": false,
       "settings": {
+        "background_image": "shopify://shop_images/press_shot.png",
+        "overlay_opacity": 45,
+        "section_height": 90,
         "eyebrow": "New Album",
         "headline": "Halcyon",
         "subtext": "The third record from Vesper Lane. Eleven songs, recorded between two winters.",
-        "overlay_opacity": 45,
-        "section_height": 90,
         "listen_label": "Listen",
         "listen_url": "https://open.spotify.com/",
-        "shop_label": "Shop the collection"
+        "shop_label": "Shop the collection",
+        "shop_collection": "",
+        "shop_url": ""
       }
     },
     "latest_release": {
       "type": "latest-release",
-      "disabled": false,
-      "settings": {
-        "release_title": "Halcyon",
-        "release_type": "Album",
-        "description": "Written on the move and finished in a quiet room by the coast. Halcyon is a record about stillness after noise — spare arrangements, close vocals, and the kind of songs that ask to be played twice.",
-        "cta_label": "Listen now"
-      },
       "blocks": {
         "track_1": {
           "type": "track",
@@ -66,42 +70,55 @@
         "track_3",
         "track_4",
         "track_5"
-      ]
+      ],
+      "settings": {
+        "album_artwork": "shopify://shop_images/album_artwork.png",
+        "release_title": "Halcyon",
+        "release_type": "Album",
+        "description": "Written on the move and finished in a quiet room by the coast. Halcyon is a record about stillness after noise — spare arrangements, close vocals, and the kind of songs that ask to be played twice.",
+        "smart_link_url": "",
+        "spotify_url": "",
+        "cta_label": "Listen now",
+        "cta_url": ""
+      }
     },
     "atelier_era_filter": {
       "type": "atelier-era-filter",
-      "disabled": false,
-      "settings": {
-        "eyebrow": "Shop by era",
-        "heading": "Browse the Archive"
-      },
       "blocks": {
         "era_1": {
           "type": "era",
           "settings": {
             "label": "Halcyon",
-            "year": "2026"
+            "year": "2026",
+            "collection": "",
+            "url": ""
           }
         },
         "era_2": {
           "type": "era",
           "settings": {
             "label": "Northern Light",
-            "year": "2023"
+            "year": "2023",
+            "collection": "",
+            "url": ""
           }
         },
         "era_3": {
           "type": "era",
           "settings": {
             "label": "Paper Cities",
-            "year": "2021"
+            "year": "2021",
+            "collection": "",
+            "url": ""
           }
         },
         "era_4": {
           "type": "era",
           "settings": {
             "label": "First Pressing",
-            "year": "2019"
+            "year": "2019",
+            "collection": "",
+            "url": ""
           }
         }
       },
@@ -110,26 +127,27 @@
         "era_2",
         "era_3",
         "era_4"
-      ]
+      ],
+      "settings": {
+        "eyebrow": "Shop by era",
+        "heading": "Browse the Archive"
+      }
     },
     "atelier_dual_merch": {
       "type": "atelier-dual-merch",
-      "disabled": false,
       "settings": {
         "eyebrow": "The collection",
         "heading": "Merch",
+        "collection": "",
         "products_to_show": 4,
         "columns": 4,
         "show_view_all": true,
-        "view_all_label": "Shop all"
+        "view_all_label": "Shop all",
+        "empty_state_text": "Select a collection to display products."
       }
     },
     "tour_dates": {
       "type": "tour-dates",
-      "disabled": false,
-      "settings": {
-        "heading": "Live"
-      },
       "blocks": {
         "tour_date_1": {
           "type": "tour_date",
@@ -188,45 +206,63 @@
         "tour_date_3",
         "tour_date_4",
         "tour_date_5"
-      ]
+      ],
+      "settings": {
+        "heading": "Live",
+        "use_bandsintown": false,
+        "bandsintown_limit": 10,
+        "text_color": "#ffffff",
+        "link_color": "#e8593c",
+        "separator_color": "#333333",
+        "empty_state_text": "No upcoming shows",
+        "newsletter_cta_label": "Join mailing list",
+        "newsletter_cta_url": ""
+      }
     },
     "atelier_lookbook": {
       "type": "atelier-lookbook",
-      "disabled": false,
-      "settings": {
-        "eyebrow": "Editorial",
-        "heading": "The Lookbook"
-      },
       "blocks": {
         "look_1": {
           "type": "image",
           "settings": {
-            "caption": "Halcyon — Campaign 01"
+            "image": "shopify://shop_images/016b64e2-9fb9-4d3c-980a-bc1ceaf903d8.png",
+            "wide": false,
+            "caption": "Halcyon — Campaign 01",
+            "link": ""
           }
         },
         "look_2": {
           "type": "image",
           "settings": {
-            "caption": "Halcyon — Campaign 02"
+            "image": "shopify://shop_images/a273a7f6-041c-42b3-82e1-179d7080fd47.png",
+            "wide": false,
+            "caption": "Halcyon — Campaign 02",
+            "link": ""
           }
         },
         "look_3": {
           "type": "image",
           "settings": {
+            "image": "shopify://shop_images/liveshot_8c1d1f2a-84da-469d-a833-767b78cc23f7.png",
             "wide": true,
-            "caption": "On the road, Autumn 2026"
+            "caption": "On the road, Autumn 2026",
+            "link": ""
           }
         },
         "look_4": {
           "type": "image",
           "settings": {
-            "caption": "Studio sessions"
+            "wide": false,
+            "caption": "Studio sessions",
+            "link": ""
           }
         },
         "look_5": {
           "type": "image",
           "settings": {
-            "caption": "Tour merch — limited run"
+            "wide": false,
+            "caption": "Tour merch — limited run",
+            "link": ""
           }
         }
       },
@@ -236,14 +272,21 @@
         "look_3",
         "look_4",
         "look_5"
-      ]
+      ],
+      "settings": {
+        "eyebrow": "Editorial",
+        "heading": "The Lookbook"
+      }
     },
     "newsletter_signup": {
       "type": "newsletter-signup",
-      "disabled": false,
       "settings": {
         "heading": "Stay close",
-        "subheading": "New songs, tour dates, and the occasional letter from the studio. No noise."
+        "subheading": "New songs, tour dates, and the occasional letter from the studio. No noise.",
+        "klaviyo_embed": "",
+        "mailchimp_embed": "",
+        "streaming_label": "Listen",
+        "social_label": "Follow"
       }
     }
   },
