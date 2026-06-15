@@ -1,8 +1,18 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "hero": {
       "type": "wander-hero",
       "settings": {
+        "background_image": "shopify://shop_images/pressshot.png",
         "headline": "June Halliday",
         "tagline": "Wear the songs. Take the journey.",
         "cta1_label": "Listen now",
@@ -17,54 +27,204 @@
         "heading": "Featured Collection",
         "merch_collection": "frontpage",
         "products_to_show": 8,
+        "show_add_to_cart": true,
         "show_view_all": true,
-        "view_all_label": "View all merch"
+        "view_all_label": "View all merch",
+        "show_printful_credit": true,
+        "empty_state_text": "Select a collection to display products"
       }
     },
     "latest": {
       "type": "latest-release",
+      "blocks": {
+        "t1": {
+          "type": "track",
+          "settings": {
+            "track_name": "Long Way Around",
+            "track_duration": "3:54"
+          }
+        },
+        "t2": {
+          "type": "track",
+          "settings": {
+            "track_name": "The Dead of Five",
+            "track_duration": "4:08"
+          }
+        },
+        "t3": {
+          "type": "track",
+          "settings": {
+            "track_name": "River Road",
+            "track_duration": "3:21"
+          }
+        },
+        "t4": {
+          "type": "track",
+          "settings": {
+            "track_name": "Honest Love",
+            "track_duration": "3:46"
+          }
+        },
+        "t5": {
+          "type": "track",
+          "settings": {
+            "track_name": "Forgot to Tell You",
+            "track_duration": "4:31"
+          }
+        },
+        "t6": {
+          "type": "track",
+          "settings": {
+            "track_name": "Everything I Didn't Say",
+            "track_duration": "3:38"
+          }
+        },
+        "t7": {
+          "type": "track",
+          "settings": {
+            "track_name": "Home Again",
+            "track_duration": "4:02"
+          }
+        },
+        "t8": {
+          "type": "track",
+          "settings": {
+            "track_name": "Northern Light",
+            "track_duration": "3:29"
+          }
+        },
+        "t9": {
+          "type": "track",
+          "settings": {
+            "track_name": "Keep Me Wild",
+            "track_duration": "3:57"
+          }
+        },
+        "t10": {
+          "type": "track",
+          "settings": {
+            "track_name": "Still Learning",
+            "track_duration": "4:44"
+          }
+        }
+      },
+      "block_order": [
+        "t1",
+        "t2",
+        "t3",
+        "t4",
+        "t5",
+        "t6",
+        "t7",
+        "t8",
+        "t9",
+        "t10"
+      ],
       "settings": {
+        "album_artwork": "shopify://shop_images/longwayaround_EP.png",
         "release_title": "Long Way Around",
         "release_type": "Album",
         "description": "The new album. Out now.",
-        "spotify_url": "https://open.spotify.com/album/2noRn2Aes5aoNVsU6iWThc"
-      },
-      "blocks": {
-        "t1": { "type": "track", "settings": { "track_name": "Long Way Around", "track_duration": "3:54" } },
-        "t2": { "type": "track", "settings": { "track_name": "The Dead of Five", "track_duration": "4:08" } },
-        "t3": { "type": "track", "settings": { "track_name": "River Road", "track_duration": "3:21" } },
-        "t4": { "type": "track", "settings": { "track_name": "Honest Love", "track_duration": "3:46" } },
-        "t5": { "type": "track", "settings": { "track_name": "Forgot to Tell You", "track_duration": "4:31" } },
-        "t6": { "type": "track", "settings": { "track_name": "Everything I Didn't Say", "track_duration": "3:38" } },
-        "t7": { "type": "track", "settings": { "track_name": "Home Again", "track_duration": "4:02" } },
-        "t8": { "type": "track", "settings": { "track_name": "Northern Light", "track_duration": "3:29" } },
-        "t9": { "type": "track", "settings": { "track_name": "Keep Me Wild", "track_duration": "3:57" } },
-        "t10": { "type": "track", "settings": { "track_name": "Still Learning", "track_duration": "4:44" } }
-      },
-      "block_order": ["t1","t2","t3","t4","t5","t6","t7","t8","t9","t10"]
+        "smart_link_url": "",
+        "spotify_url": "https://open.spotify.com/album/2noRn2Aes5aoNVsU6iWThc",
+        "cta_label": "Listen now",
+        "cta_url": ""
+      }
     },
     "tour": {
       "type": "tour-dates",
-      "settings": { "heading": "Tour Dates" },
       "blocks": {
-        "d1": { "type": "tour_date", "settings": { "date": "Thu 12 Mar 2026", "city": "London, UK", "venue": "The Lexington", "ticket_url": "https://example.com/tickets" } },
-        "d2": { "type": "tour_date", "settings": { "date": "Fri 13 Mar 2026", "city": "Birmingham, UK", "venue": "Hare & Hounds", "ticket_url": "https://example.com/tickets" } },
-        "d3": { "type": "tour_date", "settings": { "date": "Sat 14 Mar 2026", "city": "Glasgow, UK", "venue": "Mono", "ticket_url": "https://example.com/tickets" } },
-        "d4": { "type": "tour_date", "settings": { "date": "Tue 17 Mar 2026", "city": "Manchester, UK", "venue": "The Deaf Institute", "ticket_url": "https://example.com/tickets" } },
-        "d5": { "type": "tour_date", "settings": { "date": "Wed 18 Mar 2026", "city": "Bristol, UK", "venue": "The Louisiana", "ticket_url": "https://example.com/tickets" } }
+        "d1": {
+          "type": "tour_date",
+          "settings": {
+            "date": "Thu 12 Mar 2026",
+            "city": "London, UK",
+            "venue": "The Lexington",
+            "ticket_url": "https://example.com/tickets",
+            "sold_out": false
+          }
+        },
+        "d2": {
+          "type": "tour_date",
+          "settings": {
+            "date": "Fri 13 Mar 2026",
+            "city": "Birmingham, UK",
+            "venue": "Hare & Hounds",
+            "ticket_url": "https://example.com/tickets",
+            "sold_out": false
+          }
+        },
+        "d3": {
+          "type": "tour_date",
+          "settings": {
+            "date": "Sat 14 Mar 2026",
+            "city": "Glasgow, UK",
+            "venue": "Mono",
+            "ticket_url": "https://example.com/tickets",
+            "sold_out": false
+          }
+        },
+        "d4": {
+          "type": "tour_date",
+          "settings": {
+            "date": "Tue 17 Mar 2026",
+            "city": "Manchester, UK",
+            "venue": "The Deaf Institute",
+            "ticket_url": "https://example.com/tickets",
+            "sold_out": false
+          }
+        },
+        "d5": {
+          "type": "tour_date",
+          "settings": {
+            "date": "Wed 18 Mar 2026",
+            "city": "Bristol, UK",
+            "venue": "The Louisiana",
+            "ticket_url": "https://example.com/tickets",
+            "sold_out": false
+          }
+        }
       },
-      "block_order": ["d1","d2","d3","d4","d5"]
+      "block_order": [
+        "d1",
+        "d2",
+        "d3",
+        "d4",
+        "d5"
+      ],
+      "settings": {
+        "heading": "Tour Dates",
+        "use_bandsintown": false,
+        "bandsintown_limit": 10,
+        "text_color": "#ffffff",
+        "link_color": "#e8593c",
+        "separator_color": "#333333",
+        "empty_state_text": "No upcoming shows",
+        "newsletter_cta_label": "Join mailing list",
+        "newsletter_cta_url": ""
+      }
     },
     "journey": {
       "type": "wander-journey",
       "settings": {
+        "instagram_label": "Instagram",
         "instagram_handle": "@junehallidaysings",
         "instagram_url": "https://instagram.com",
+        "newsletter_label": "Join the journey",
         "newsletter_title": "Stay in touch",
         "newsletter_text": "Be the first to hear about new music, tour dates and exclusive offers.",
+        "newsletter_button": "Join",
+        "merch_label": "Merch highlight",
+        "merch_link_label": "Shop merch",
         "merch_url": "/collections/all"
       }
     }
   },
-  "order": ["hero", "merch", "latest", "tour", "journey"]
+  "order": [
+    "hero",
+    "merch",
+    "latest",
+    "tour",
+    "journey"
+  ]
 }
