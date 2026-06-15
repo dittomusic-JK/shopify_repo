@@ -1,0 +1,240 @@
+{{ 'section-video-embed.css' | asset_url | stylesheet_tag }}
+
+<section id="video" class="video-embed">
+  <div class="video-embed__container">
+    {%- if section.settings.heading != blank -%}
+      <h2 class="video-embed__heading">{{ section.settings.heading }}</h2>
+    {%- endif -%}
+
+    {%- if section.settings.subheading != blank -%}
+      <p class="video-embed__subheading">{{ section.settings.subheading }}</p>
+    {%- endif -%}
+
+    {%- if section.settings.video_url != blank -%}
+      {%- liquid
+        assign embed_url = ''
+        assign video_id = ''
+        
+        if section.settings.video_url contains 'youtube.com/watch'
+          assign video_id = section.settings.video_url | split: 'v=' | last | split: '&' | first
+          assign embed_url = 'https://www.youtube.com/embed/' | append: video_id | append: '?modestbranding=1&rel=0'
+        elsif section.settings.video_url contains 'youtu.be/'
+          assign video_id = section.settings.video_url | split: 'youtu.be/' | last | split: '?' | first
+          assign embed_url = 'https://www.youtube.com/embed/' | append: video_id | append: '?modestbranding=1&rel=0'
+        elsif section.settings.video_url contains 'vimeo.com/'
+          assign video_id = section.settings.video_url | split: 'vimeo.com/' | last | split: '?' | first
+          assign embed_url = 'https://player.vimeo.com/video/' | append: video_id
+        endif
+      -%}
+
+      {%- if embed_url != blank -%}
+        <div class="video-embed__wrapper" data-video-wrapper>
+          {%- if section.settings.poster_image != blank -%}
+            <div class="video-embed__poster" data-video-poster>
+              <img
+                src="{{ section.settings.poster_image | image_url: width: 1440 }}"
+                srcset="{{ section.settings.poster_image | image_url: width: 720 }} 720w,
+                        {{ section.settings.poster_image | image_url: width: 1440 }} 1440w"
+                sizes="(max-width: 1440px) 100vw, 1440px"
+                alt="{{ section.settings.heading | escape }}"
+                loading="lazy"
+                width="1440"
+                height="810"
+              >
+              <button class="video-embed__play-button" data-video-play aria-label="Play video">
+                <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="40" cy="40" r="40" fill="currentColor" fill-opacity="0.9"/>
+                  <path d="M32 25L55 40L32 55V25Z" fill="white"/>
+                </svg>
+              </button>
+            </div>
+          {%- endif -%}
+          <div class="video-embed__iframe-container" data-video-container>
+            <iframe
+              data-src="{{ embed_url }}"
+              width="1440"
+              height="810"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+              loading="lazy"
+            ></iframe>
+          </div>
+        </div>
+      {%- endif -%}
+    {%- endif -%}
+
+    {%- if section.settings.second_video_url != blank -%}
+      {%- liquid
+        assign second_embed_url = ''
+        assign second_video_id = ''
+        
+        if section.settings.second_video_url contains 'youtube.com/watch'
+          assign second_video_id = section.settings.second_video_url | split: 'v=' | last | split: '&' | first
+          assign second_embed_url = 'https://www.youtube.com/embed/' | append: second_video_id | append: '?modestbranding=1&rel=0'
+        elsif section.settings.second_video_url contains 'youtu.be/'
+          assign second_video_id = section.settings.second_video_url | split: 'youtu.be/' | last | split: '?' | first
+          assign second_embed_url = 'https://www.youtube.com/embed/' | append: second_video_id | append: '?modestbranding=1&rel=0'
+        elsif section.settings.second_video_url contains 'vimeo.com/'
+          assign second_video_id = section.settings.second_video_url | split: 'vimeo.com/' | last | split: '?' | first
+          assign second_embed_url = 'https://player.vimeo.com/video/' | append: second_video_id
+        endif
+      -%}
+
+      {%- if second_embed_url != blank -%}
+        {%- if section.settings.second_video_label != blank -%}
+          <h3 class="video-embed__second-heading">{{ section.settings.second_video_label }}</h3>
+        {%- endif -%}
+
+        <div class="video-embed__wrapper" data-video-wrapper>
+          {%- if section.settings.second_poster_image != blank -%}
+            <div class="video-embed__poster" data-video-poster>
+              <img
+                src="{{ section.settings.second_poster_image | image_url: width: 1440 }}"
+                srcset="{{ section.settings.second_poster_image | image_url: width: 720 }} 720w,
+                        {{ section.settings.second_poster_image | image_url: width: 1440 }} 1440w"
+                sizes="(max-width: 1440px) 100vw, 1440px"
+                alt="{{ section.settings.second_video_label | escape }}"
+                loading="lazy"
+                width="1440"
+                height="810"
+              >
+              <button class="video-embed__play-button" data-video-play aria-label="Play video">
+                <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="40" cy="40" r="40" fill="currentColor" fill-opacity="0.9"/>
+                  <path d="M32 25L55 40L32 55V25Z" fill="white"/>
+                </svg>
+              </button>
+            </div>
+          {%- endif -%}
+          <div class="video-embed__iframe-container" data-video-container>
+            <iframe
+              data-src="{{ second_embed_url }}"
+              width="1440"
+              height="810"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+              loading="lazy"
+            ></iframe>
+          </div>
+        </div>
+      {%- endif -%}
+    {%- endif -%}
+  </div>
+</section>
+
+<script>
+  (function() {
+    'use strict';
+
+    function initVideoEmbeds() {
+      const videoWrappers = document.querySelectorAll('[data-video-wrapper]');
+
+      videoWrappers.forEach(wrapper => {
+        const poster = wrapper.querySelector('[data-video-poster]');
+        const playButton = wrapper.querySelector('[data-video-play]');
+        const container = wrapper.querySelector('[data-video-container]');
+        const iframe = container.querySelector('iframe');
+
+        if (!poster || !iframe) {
+          if (iframe && iframe.dataset.src) {
+            iframe.src = iframe.dataset.src;
+          }
+          return;
+        }
+
+        function loadVideo() {
+          requestAnimationFrame(() => {
+            if (iframe.dataset.src) {
+              iframe.src = iframe.dataset.src;
+            }
+            poster.style.display = 'none';
+            container.style.display = 'block';
+          });
+        }
+
+        playButton.addEventListener('click', loadVideo);
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initVideoEmbeds);
+    } else {
+      initVideoEmbeds();
+    }
+  })();
+</script>
+
+{%- schema -%}
+{
+  "name": "Video embed",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Section heading",
+      "default": "Videos",
+      "info": "Main heading for the video section"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Latest music video",
+      "info": "Optional subheading below the main heading"
+    },
+    {
+      "type": "header",
+      "content": "Primary video"
+    },
+    {
+      "type": "text",
+      "id": "video_url",
+      "label": "Video URL",
+      "info": "YouTube or Vimeo URL (e.g., https://www.youtube.com/watch?v=VIDEO_ID)"
+    },
+    {
+      "type": "image_picker",
+      "id": "poster_image",
+      "label": "Poster image",
+      "info": "Thumbnail shown before video loads. Recommended: 1440x810px (16:9 ratio)"
+    },
+    {
+      "type": "header",
+      "content": "Second video (optional)"
+    },
+    {
+      "type": "text",
+      "id": "second_video_label",
+      "label": "Second video label",
+      "default": "Live performance",
+      "info": "Heading for the second video"
+    },
+    {
+      "type": "text",
+      "id": "second_video_url",
+      "label": "Second video URL",
+      "info": "YouTube or Vimeo URL for a second video (e.g., live performance)"
+    },
+    {
+      "type": "image_picker",
+      "id": "second_poster_image",
+      "label": "Second poster image",
+      "info": "Thumbnail for second video. Recommended: 1440x810px (16:9 ratio)"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Video embed",
+      "settings": {
+        "heading": "Videos",
+        "subheading": "Latest music video",
+        "video_url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+      }
+    }
+  ]
+}
+{%- endschema -%}

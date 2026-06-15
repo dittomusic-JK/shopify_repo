@@ -1,0 +1,45 @@
+/* Riffride Atelier — tone overrides via body[data-skin] (settings.riffride_skin).
+   Atelier is a light high-fashion editorial theme; it ships two tones: Light
+   (white canvas, default) and Ink (near-black) so the same editorial layout can
+   run dark for a campaign. Display type is picker-driven (default Playfair).
+   body[data-skin] beats :root specificity, so these win cleanly. */
+
+/* ============================================================
+   ATELIER (LIGHT) — white editorial canvas, black ink, black accent.
+   ============================================================ */
+body[data-skin="atelier"] {
+  --brand-bg-0: #ffffff;
+  --brand-bg-1: #f7f6f3;
+  --brand-bg-2: #efede8;
+  --color-brand-bg: #ffffff;
+  --color-brand-primary: #111111;
+  --color-brand-secondary: #8a877f;
+  --color-brand-accent: #111111;
+  --color-brand-on-accent: #ffffff;
+  --brand-hairline: rgba(0, 0, 0, 0.13);
+}
+
+/* ============================================================
+   ATELIER INK — near-black editorial tone (same layout, dark canvas).
+   ============================================================ */
+body[data-skin="atelier-ink"] {
+  --brand-bg-0: #0b0b0b;
+  --brand-bg-1: #111110;
+  --brand-bg-2: #181816;
+  --color-brand-bg: #0b0b0b;
+  --color-brand-primary: #f4f2ec;
+  --color-brand-secondary: #9c988e;
+  --color-brand-accent: #f4f2ec;
+  --color-brand-on-accent: #0b0b0b;
+  --brand-hairline: rgba(255, 255, 255, 0.14);
+}
+
+/* Editorial label treatment (eyebrows/labels only — headings stay picker font) */
+body[data-skin="atelier"] .riffride-subheading,
+body[data-skin="atelier"] .latest-release__type,
+body[data-skin="atelier-ink"] .riffride-subheading,
+body[data-skin="atelier-ink"] .latest-release__type {
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  font-weight: 500;
+}

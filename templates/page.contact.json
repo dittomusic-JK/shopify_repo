@@ -1,0 +1,18 @@
+{
+  "sections": {
+    "newsletter_signup": {
+      "type": "newsletter-signup",
+      "settings": {
+        "heading": "Get in touch",
+        "subheading": "Sign up for updates on new releases, tour dates, and exclusive content",
+        "klaviyo_embed": "",
+        "mailchimp_embed": "",
+        "streaming_label": "Listen",
+        "social_label": "Follow"
+      }
+    }
+  },
+  "order": [
+    "newsletter_signup"
+  ]
+}

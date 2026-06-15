@@ -1,0 +1,269 @@
+{%- comment -%}
+  Atelier dual merch — editorial product grid from a chosen collection.
+  Each card uses the atl-dual front/back hover swap (front = featured image,
+  back = second image with a fallback to the featured image), with title and
+  price linking to the product. The grid staggers in; the section reveals.
+{%- endcomment -%}
+
+<style>
+  #atelier-merch-{{ section.id }} {
+    padding: var(--space-xl) var(--space-md);
+    background-color: var(--brand-bg-1);
+    color: var(--color-brand-primary);
+  }
+  #atelier-merch-{{ section.id }} .atelier-merch__inner {
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+  #atelier-merch-{{ section.id }} .atelier-merch__head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-lg);
+  }
+  #atelier-merch-{{ section.id }} .atelier-merch__eyebrow {
+    font-family: var(--font-body);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.32em;
+    font-weight: 500;
+    color: var(--color-brand-secondary);
+    margin: 0 0 var(--space-xs);
+  }
+  #atelier-merch-{{ section.id }} .atelier-merch__heading {
+    font-family: var(--font-heading);
+    font-size: var(--text-2xl);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    font-weight: 700;
+    margin: 0;
+  }
+  #atelier-merch-{{ section.id }} .atelier-merch__view-all {
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    text-decoration: none;
+    color: var(--color-brand-primary);
+  }
+  #atelier-merch-{{ section.id }} .atelier-merch__grid {
+    display: grid;
+    grid-template-columns: repeat({{ section.settings.columns }}, 1fr);
+    gap: var(--space-md);
+  }
+  #atelier-merch-{{ section.id }} .atelier-merch__card {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+  #atelier-merch-{{ section.id }} .atelier-merch__card .atl-dual {
+    aspect-ratio: 4 / 5;
+    background-color: var(--brand-bg-2);
+    margin-bottom: var(--space-sm);
+  }
+  #atelier-merch-{{ section.id }} .atelier-merch__placeholder {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background-color: var(--brand-bg-2);
+  }
+  #atelier-merch-{{ section.id }} .atelier-merch__meta {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-sm);
+  }
+  #atelier-merch-{{ section.id }} .atelier-merch__title {
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    letter-spacing: 0.04em;
+    margin: 0;
+    font-weight: 500;
+  }
+  #atelier-merch-{{ section.id }} .atelier-merch__price {
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    color: var(--color-brand-secondary);
+    white-space: nowrap;
+  }
+  #atelier-merch-{{ section.id }} .atelier-merch__price s {
+    opacity: 0.6;
+    margin-right: 0.4rem;
+  }
+  #atelier-merch-{{ section.id }} .atelier-merch__empty {
+    font-family: var(--font-body);
+    color: var(--color-brand-secondary);
+  }
+  @media screen and (max-width: 989px) {
+    #atelier-merch-{{ section.id }} .atelier-merch__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media screen and (max-width: 749px) {
+    #atelier-merch-{{ section.id }} {
+      padding: var(--space-lg) var(--space-sm);
+    }
+    #atelier-merch-{{ section.id }} .atelier-merch__grid {
+      gap: var(--space-sm);
+    }
+  }
+</style>
+
+<section id="atelier-merch-{{ section.id }}" class="atelier-dual-merch atl-reveal">
+  <div class="atelier-merch__inner">
+    <div class="atelier-merch__head">
+      <div>
+        {%- if section.settings.eyebrow != blank -%}
+          <p class="atelier-merch__eyebrow">{{ section.settings.eyebrow }}</p>
+        {%- endif -%}
+        {%- if section.settings.heading != blank -%}
+          <h2 class="atelier-merch__heading">{{ section.settings.heading }}</h2>
+        {%- endif -%}
+      </div>
+      {%- if section.settings.collection != blank and section.settings.show_view_all and section.settings.view_all_label != blank -%}
+        <a href="{{ section.settings.collection.url }}" class="atelier-merch__view-all atl-link">
+          {{ section.settings.view_all_label }}
+        </a>
+      {%- endif -%}
+    </div>
+
+    {%- if section.settings.collection != blank and section.settings.collection.products.size > 0 -%}
+      <div class="atelier-merch__grid atl-stagger">
+        {%- for product in section.settings.collection.products limit: section.settings.products_to_show -%}
+          {%- liquid
+            assign front_image = product.featured_image
+            assign back_image = product.images[1] | default: product.featured_image
+          -%}
+          <a href="{{ product.url }}" class="atelier-merch__card">
+            <div class="atl-dual">
+              {%- if front_image != blank -%}
+                <img
+                  class="atl-dual__img atl-dual__img--front"
+                  src="{{ front_image | image_url: width: 800 }}"
+                  srcset="{{ front_image | image_url: width: 400 }} 400w,
+                          {{ front_image | image_url: width: 800 }} 800w"
+                  sizes="(max-width: 749px) 50vw, (max-width: 989px) 50vw, 25vw"
+                  alt="{{ front_image.alt | default: product.title | escape }}"
+                  loading="lazy"
+                  width="800"
+                  height="1000"
+                >
+                <img
+                  class="atl-dual__img atl-dual__img--back"
+                  src="{{ back_image | image_url: width: 800 }}"
+                  srcset="{{ back_image | image_url: width: 400 }} 400w,
+                          {{ back_image | image_url: width: 800 }} 800w"
+                  sizes="(max-width: 749px) 50vw, (max-width: 989px) 50vw, 25vw"
+                  alt=""
+                  aria-hidden="true"
+                  loading="lazy"
+                  width="800"
+                  height="1000"
+                >
+              {%- else -%}
+                {{ 'product-1' | placeholder_svg_tag: 'atelier-merch__placeholder' }}
+              {%- endif -%}
+            </div>
+            <div class="atelier-merch__meta">
+              <h3 class="atelier-merch__title">{{ product.title }}</h3>
+              <span class="atelier-merch__price">
+                {%- if product.compare_at_price > product.price -%}
+                  <s>{{ product.compare_at_price | money }}</s>{{ product.price | money }}
+                {%- else -%}
+                  {{ product.price | money }}
+                {%- endif -%}
+              </span>
+            </div>
+          </a>
+        {%- endfor -%}
+      </div>
+    {%- else -%}
+      <p class="atelier-merch__empty">{{ section.settings.empty_state_text }}</p>
+    {%- endif -%}
+  </div>
+</section>
+
+{%- schema -%}
+{
+  "name": "Atelier dual merch",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow label",
+      "default": "The collection"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Merch"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection",
+      "info": "Products to display. Cards swap to the product's second image on hover."
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "min": 2,
+      "max": 16,
+      "step": 1,
+      "default": 4,
+      "label": "Products to show"
+    },
+    {
+      "type": "range",
+      "id": "columns",
+      "min": 2,
+      "max": 5,
+      "step": 1,
+      "default": 4,
+      "label": "Columns (desktop)"
+    },
+    {
+      "type": "header",
+      "content": "View all"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_view_all",
+      "label": "Show 'View all' link",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "view_all_label",
+      "label": "View all text",
+      "default": "Shop all"
+    },
+    {
+      "type": "header",
+      "content": "Empty state"
+    },
+    {
+      "type": "text",
+      "id": "empty_state_text",
+      "label": "Empty state message",
+      "default": "Select a collection to display products."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Atelier dual merch",
+      "settings": {
+        "eyebrow": "The collection",
+        "heading": "Merch",
+        "products_to_show": 4,
+        "columns": 4
+      }
+    }
+  ]
+}
+{%- endschema -%}

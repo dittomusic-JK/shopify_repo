@@ -1,0 +1,240 @@
+{%- comment -%}
+  Atelier lookbook — an asymmetric editorial image grid. Repeatable image
+  blocks, each wrapped in an atl-look__cell for hover zoom, with a "wide" toggle
+  so blocks can span two columns for an editorial rhythm. Optional caption and
+  link per image. Section reveals on scroll.
+{%- endcomment -%}
+
+<style>
+  #atelier-look-{{ section.id }} {
+    padding: var(--space-xl) var(--space-md);
+    background-color: var(--brand-bg-0);
+    color: var(--color-brand-primary);
+  }
+  #atelier-look-{{ section.id }} .atelier-look__inner {
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+  #atelier-look-{{ section.id }} .atelier-look__head {
+    margin-bottom: var(--space-lg);
+  }
+  #atelier-look-{{ section.id }} .atelier-look__eyebrow {
+    font-family: var(--font-body);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.32em;
+    font-weight: 500;
+    color: var(--color-brand-secondary);
+    margin: 0 0 var(--space-xs);
+  }
+  #atelier-look-{{ section.id }} .atelier-look__heading {
+    font-family: var(--font-heading);
+    font-size: var(--text-2xl);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    font-weight: 700;
+    margin: 0;
+  }
+  #atelier-look-{{ section.id }} .atelier-look__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-md);
+  }
+  #atelier-look-{{ section.id }} .atelier-look__item {
+    grid-column: span 2;
+  }
+  #atelier-look-{{ section.id }} .atelier-look__item--wide {
+    grid-column: span 4;
+  }
+  #atelier-look-{{ section.id }} .atelier-look__item--tall .atl-look__cell {
+    aspect-ratio: 3 / 4;
+  }
+  #atelier-look-{{ section.id }} .atl-look__cell {
+    aspect-ratio: 4 / 3;
+    display: block;
+    background-color: var(--brand-bg-2);
+  }
+  #atelier-look-{{ section.id }} .atelier-look__placeholder {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background-color: var(--brand-bg-2);
+  }
+  #atelier-look-{{ section.id }} .atelier-look__caption {
+    font-family: var(--font-body);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: var(--color-brand-secondary);
+    margin: var(--space-sm) 0 0;
+  }
+  #atelier-look-{{ section.id }} .atelier-look__empty {
+    font-family: var(--font-body);
+    color: var(--color-brand-secondary);
+  }
+  @media screen and (max-width: 749px) {
+    #atelier-look-{{ section.id }} {
+      padding: var(--space-lg) var(--space-sm);
+    }
+    #atelier-look-{{ section.id }} .atelier-look__grid {
+      gap: var(--space-sm);
+    }
+    #atelier-look-{{ section.id }} .atelier-look__item,
+    #atelier-look-{{ section.id }} .atelier-look__item--wide {
+      grid-column: span 4;
+    }
+  }
+</style>
+
+<section id="atelier-look-{{ section.id }}" class="atelier-lookbook atl-reveal">
+  <div class="atelier-look__inner">
+    {%- if section.settings.eyebrow != blank or section.settings.heading != blank -%}
+      <div class="atelier-look__head">
+        {%- if section.settings.eyebrow != blank -%}
+          <p class="atelier-look__eyebrow">{{ section.settings.eyebrow }}</p>
+        {%- endif -%}
+        {%- if section.settings.heading != blank -%}
+          <h2 class="atelier-look__heading">{{ section.settings.heading }}</h2>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    {%- if section.blocks.size > 0 -%}
+      <div class="atelier-look__grid">
+        {%- for block in section.blocks -%}
+          <figure
+            class="atelier-look__item{% if block.settings.wide %} atelier-look__item--wide{% endif %}{% unless block.settings.wide %} atelier-look__item--tall{% endunless %}"
+            {{ block.shopify_attributes }}
+          >
+            {%- capture cell -%}
+              {%- if block.settings.image != blank -%}
+                <img
+                  src="{{ block.settings.image | image_url: width: 1200 }}"
+                  srcset="{{ block.settings.image | image_url: width: 600 }} 600w,
+                          {{ block.settings.image | image_url: width: 1200 }} 1200w,
+                          {{ block.settings.image | image_url: width: 1800 }} 1800w"
+                  sizes="(max-width: 749px) 100vw, 50vw"
+                  alt="{{ block.settings.image.alt | default: block.settings.caption | escape }}"
+                  loading="lazy"
+                  width="{{ block.settings.image.width }}"
+                  height="{{ block.settings.image.height }}"
+                >
+              {%- else -%}
+                {{ 'lifestyle-1' | placeholder_svg_tag: 'atelier-look__placeholder' }}
+              {%- endif -%}
+            {%- endcapture -%}
+
+            {%- if block.settings.link != blank -%}
+              <a href="{{ block.settings.link }}" class="atl-look__cell">{{ cell }}</a>
+            {%- else -%}
+              <div class="atl-look__cell">{{ cell }}</div>
+            {%- endif -%}
+
+            {%- if block.settings.caption != blank -%}
+              <figcaption class="atelier-look__caption">{{ block.settings.caption }}</figcaption>
+            {%- endif -%}
+          </figure>
+        {%- endfor -%}
+      </div>
+    {%- else -%}
+      <p class="atelier-look__empty">Add image blocks in the theme editor to build the lookbook.</p>
+    {%- endif -%}
+  </div>
+</section>
+
+{%- schema -%}
+{
+  "name": "Atelier lookbook",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow label",
+      "default": "Editorial"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "The Lookbook"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": "Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "checkbox",
+          "id": "wide",
+          "label": "Full-width row",
+          "default": false,
+          "info": "Span the full width for an editorial break. Otherwise the image is a tall half-width tile."
+        },
+        {
+          "type": "text",
+          "id": "caption",
+          "label": "Caption",
+          "info": "Optional small label under the image."
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link",
+          "info": "Optional. Links the image to a collection, product, or page."
+        }
+      ]
+    }
+  ],
+  "max_blocks": 12,
+  "presets": [
+    {
+      "name": "Atelier lookbook",
+      "settings": {
+        "eyebrow": "Editorial",
+        "heading": "The Lookbook"
+      },
+      "blocks": [
+        {
+          "type": "image",
+          "settings": {
+            "caption": "Halcyon — Campaign 01"
+          }
+        },
+        {
+          "type": "image",
+          "settings": {
+            "caption": "Halcyon — Campaign 02"
+          }
+        },
+        {
+          "type": "image",
+          "settings": {
+            "wide": true,
+            "caption": "On the road, Spring 2026"
+          }
+        },
+        {
+          "type": "image",
+          "settings": {
+            "caption": "Studio sessions"
+          }
+        },
+        {
+          "type": "image",
+          "settings": {
+            "caption": "Tour merch — limited run"
+          }
+        }
+      ]
+    }
+  ]
+}
+{%- endschema -%}

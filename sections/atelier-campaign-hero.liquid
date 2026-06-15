@@ -1,0 +1,337 @@
+{%- comment -%}
+  Atelier campaign hero — full-bleed editorial hero for a music campaign.
+  Background can be an uploaded image OR an uploaded video (both optional).
+  Wide-tracked eyebrow, large display headline, optional subtext, and two CTAs:
+  a primary "Listen" (smart link / streaming URL) and a secondary "Shop"
+  (collection or url). Music-first: Listen leads, Shop is the editorial wrapper.
+{%- endcomment -%}
+
+{%- liquid
+  assign overlay = section.settings.overlay_opacity | divided_by: 100.0
+
+  assign shop_url = ''
+  if section.settings.shop_collection != blank
+    assign shop_url = section.settings.shop_collection.url
+  elsif section.settings.shop_url != blank
+    assign shop_url = section.settings.shop_url
+  endif
+-%}
+
+<style>
+  #atelier-hero-{{ section.id }} {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    min-height: {{ section.settings.section_height }}vh;
+    padding: var(--space-xl) var(--space-md) var(--space-lg);
+    overflow: hidden;
+    background-color: var(--brand-bg-0);
+    color: var(--color-brand-primary);
+  }
+  #atelier-hero-{{ section.id }} .atelier-hero__media,
+  #atelier-hero-{{ section.id }} .atelier-hero__media img,
+  #atelier-hero-{{ section.id }} .atelier-hero__media video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  #atelier-hero-{{ section.id }} .atelier-hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, {{ overlay }}) 0%,
+      rgba(0, 0, 0, {{ overlay | times: 0.45 }}) 45%,
+      rgba(0, 0, 0, 0) 80%
+    );
+  }
+  #atelier-hero-{{ section.id }} .atelier-hero__inner {
+    position: relative;
+    z-index: 1;
+    max-width: 1440px;
+    width: 100%;
+    margin: 0 auto;
+  }
+  #atelier-hero-{{ section.id }}.atelier-hero--on-media .atelier-hero__content {
+    color: var(--color-brand-primary);
+    text-shadow: 0 2px 24px rgba(0, 0, 0, 0.45);
+  }
+  #atelier-hero-{{ section.id }} .atelier-hero__eyebrow {
+    font-family: var(--font-body);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.32em;
+    font-weight: 500;
+    margin: 0 0 var(--space-sm);
+  }
+  #atelier-hero-{{ section.id }} .atelier-hero__headline {
+    font-family: var(--font-heading);
+    font-size: var(--text-hero);
+    line-height: 0.98;
+    letter-spacing: -0.02em;
+    font-weight: 700;
+    margin: 0;
+    max-width: 16ch;
+  }
+  #atelier-hero-{{ section.id }} .atelier-hero__subtext {
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    line-height: 1.6;
+    margin: var(--space-md) 0 0;
+    max-width: 46ch;
+    opacity: 0.9;
+  }
+  #atelier-hero-{{ section.id }} .atelier-hero__ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm) var(--space-md);
+    align-items: center;
+    margin-top: var(--space-lg);
+  }
+  #atelier-hero-{{ section.id }} .atelier-hero__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  #atelier-hero-{{ section.id }} .atelier-hero__cta--primary {
+    padding: 1rem 2.4rem;
+    background: var(--color-brand-accent);
+    color: var(--color-brand-on-accent);
+    border: 1px solid var(--color-brand-accent);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+  #atelier-hero-{{ section.id }} .atelier-hero__cta--primary:hover {
+    opacity: 0.88;
+    transform: translateY(-2px);
+  }
+  #atelier-hero-{{ section.id }} .atelier-hero__cta--secondary {
+    color: inherit;
+  }
+  #atelier-hero-{{ section.id }} .atelier-hero__cta svg {
+    flex: none;
+  }
+  @media screen and (max-width: 749px) {
+    #atelier-hero-{{ section.id }} {
+      min-height: {{ section.settings.section_height | times: 0.8 | round }}vh;
+      padding: var(--space-lg) var(--space-sm) var(--space-md);
+    }
+    #atelier-hero-{{ section.id }} .atelier-hero__ctas {
+      gap: var(--space-sm);
+    }
+    #atelier-hero-{{ section.id }} .atelier-hero__cta--primary {
+      flex: 1 1 auto;
+      justify-content: center;
+    }
+  }
+</style>
+
+<section
+  id="atelier-hero-{{ section.id }}"
+  class="atelier-campaign-hero atl-reveal{% if section.settings.background_video != blank or section.settings.background_image != blank %} atelier-hero--on-media{% endif %}"
+>
+  {%- if section.settings.background_video != blank -%}
+    <div class="atelier-hero__media" aria-hidden="true">
+      <video
+        autoplay
+        muted
+        loop
+        playsinline
+        {% if section.settings.background_image != blank %}poster="{{ section.settings.background_image | image_url: width: 2400 }}"{% endif %}
+      >
+        <source src="{{ section.settings.background_video | file_url }}" type="video/mp4">
+      </video>
+    </div>
+  {%- elsif section.settings.background_image != blank -%}
+    <div class="atelier-hero__media">
+      <img
+        src="{{ section.settings.background_image | image_url: width: 2400 }}"
+        srcset="{{ section.settings.background_image | image_url: width: 1200 }} 1200w,
+                {{ section.settings.background_image | image_url: width: 1800 }} 1800w,
+                {{ section.settings.background_image | image_url: width: 2400 }} 2400w"
+        sizes="100vw"
+        alt="{{ section.settings.background_image.alt | escape }}"
+        loading="eager"
+        fetchpriority="high"
+        width="{{ section.settings.background_image.width }}"
+        height="{{ section.settings.background_image.height }}"
+      >
+    </div>
+  {%- endif -%}
+
+  {%- if section.settings.background_video != blank or section.settings.background_image != blank -%}
+    <div class="atelier-hero__overlay" aria-hidden="true"></div>
+  {%- endif -%}
+
+  <div class="atelier-hero__inner">
+    <div class="atelier-hero__content">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="atelier-hero__eyebrow">{{ section.settings.eyebrow }}</p>
+      {%- endif -%}
+
+      {%- if section.settings.headline != blank -%}
+        <h1 class="atelier-hero__headline">{{ section.settings.headline }}</h1>
+      {%- endif -%}
+
+      {%- if section.settings.subtext != blank -%}
+        <p class="atelier-hero__subtext">{{ section.settings.subtext }}</p>
+      {%- endif -%}
+
+      {%- if section.settings.listen_url != blank or shop_url != blank -%}
+        <div class="atelier-hero__ctas">
+          {%- if section.settings.listen_url != blank and section.settings.listen_label != blank -%}
+            <a
+              href="{{ section.settings.listen_url }}"
+              class="atelier-hero__cta atelier-hero__cta--primary"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M8 5v14l11-7z"/>
+              </svg>
+              {{ section.settings.listen_label }}
+            </a>
+          {%- endif -%}
+
+          {%- if shop_url != blank and section.settings.shop_label != blank -%}
+            <a
+              href="{{ shop_url }}"
+              class="atelier-hero__cta atelier-hero__cta--secondary atl-link"
+            >
+              {{ section.settings.shop_label }}
+            </a>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{%- schema -%}
+{
+  "name": "Atelier campaign hero",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Background media (optional)"
+    },
+    {
+      "type": "video",
+      "id": "background_video",
+      "label": "Background video",
+      "info": "MP4 recommended, under 10MB. Muted, autoplaying loop. Takes priority over the image."
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background image",
+      "info": "Fallback if no video, or the video's poster frame. 2400x1350px minimum."
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "min": 0,
+      "max": 80,
+      "step": 5,
+      "default": 40,
+      "unit": "%",
+      "label": "Overlay darkness",
+      "info": "Gradient over the media for text legibility. Ignored when there is no background media."
+    },
+    {
+      "type": "range",
+      "id": "section_height",
+      "min": 55,
+      "max": 100,
+      "step": 5,
+      "default": 90,
+      "unit": "vh",
+      "label": "Section height"
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow label",
+      "default": "New Album",
+      "info": "Wide-tracked uppercase label above the headline."
+    },
+    {
+      "type": "text",
+      "id": "headline",
+      "label": "Headline",
+      "default": "Halcyon"
+    },
+    {
+      "type": "textarea",
+      "id": "subtext",
+      "label": "Subtext",
+      "default": "The new record. Out now on all platforms."
+    },
+    {
+      "type": "header",
+      "content": "Primary CTA — Listen"
+    },
+    {
+      "type": "text",
+      "id": "listen_label",
+      "label": "Listen button text",
+      "default": "Listen"
+    },
+    {
+      "type": "url",
+      "id": "listen_url",
+      "label": "Listen URL",
+      "info": "Smart link, Spotify, Apple Music, etc."
+    },
+    {
+      "type": "header",
+      "content": "Secondary CTA — Shop"
+    },
+    {
+      "type": "text",
+      "id": "shop_label",
+      "label": "Shop button text",
+      "default": "Shop the collection"
+    },
+    {
+      "type": "collection",
+      "id": "shop_collection",
+      "label": "Shop collection",
+      "info": "Links to this collection. Used before the custom URL below."
+    },
+    {
+      "type": "url",
+      "id": "shop_url",
+      "label": "Shop URL",
+      "info": "Used only if no collection is selected."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Atelier campaign hero",
+      "settings": {
+        "eyebrow": "New Album",
+        "headline": "Halcyon",
+        "subtext": "The new record. Out now on all platforms.",
+        "listen_label": "Listen",
+        "shop_label": "Shop the collection",
+        "overlay_opacity": 40,
+        "section_height": 90
+      }
+    }
+  ]
+}
+{%- endschema -%}

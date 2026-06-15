@@ -1,0 +1,16 @@
+{%- comment -%}
+  Riffride Atelier — docked audio mini-player.
+  Slides up when a track is triggered by any [data-atl-play] element
+  (hero CTA, tracklist rows). data-atl-src plays a real clip; without it,
+  a silent preview animates so the UI is demonstrable before clips are added.
+{%- endcomment -%}
+<div class="atl-player" id="atl-player" role="region" aria-label="Audio preview player">
+  <button class="atl-player__btn" type="button" data-atl-toggle aria-label="Play or pause preview">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+  </button>
+  <div class="atl-player__meta">
+    <div class="atl-player__track" data-atl-track>{{ settings.artist_name | default: 'Now playing' }}</div>
+    <div class="atl-player__bar"><div class="atl-player__fill" data-atl-fill></div></div>
+  </div>
+  <span class="atl-player__tag">PREVIEW</span>
+</div>

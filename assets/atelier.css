@@ -1,0 +1,72 @@
+/* Riffride Atelier — motion & editorial finish.
+   The "umph" layer: scroll reveals, marquee, hover image-swap, underline-draw
+   links, and the docked audio mini-player. All honour prefers-reduced-motion. */
+
+/* --- Scroll reveals (JS adds .is-visible via IntersectionObserver) --- */
+.atl-reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  will-change: opacity, transform;
+}
+.atl-reveal.is-visible {
+  opacity: 1;
+  transform: none;
+  transition: opacity 0.9s ease, transform 0.9s cubic-bezier(0.16, 0.84, 0.44, 1);
+}
+/* Stagger children of a revealed group */
+.atl-stagger.is-visible > * { animation: atl-rise 0.9s cubic-bezier(0.16, 0.84, 0.44, 1) both; }
+.atl-stagger.is-visible > *:nth-child(2) { animation-delay: 0.08s; }
+.atl-stagger.is-visible > *:nth-child(3) { animation-delay: 0.16s; }
+.atl-stagger.is-visible > *:nth-child(4) { animation-delay: 0.24s; }
+.atl-stagger.is-visible > *:nth-child(5) { animation-delay: 0.32s; }
+@keyframes atl-rise { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: none; } }
+
+/* --- Marquee ticker --- */
+.atl-marquee { overflow: hidden; white-space: nowrap; border-block: 1px solid var(--brand-hairline); padding: 0.7rem 0; }
+.atl-marquee__track { display: inline-block; animation: atl-marq 26s linear infinite; }
+.atl-marquee__track span { padding: 0 1.5rem; color: var(--color-brand-secondary); font-style: italic; }
+@keyframes atl-marq { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* --- Dual-image product hover swap (front <-> back) --- */
+.atl-dual { position: relative; overflow: hidden; }
+.atl-dual__img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.atl-dual__img--back { position: absolute; inset: 0; opacity: 0; transition: opacity 0.55s ease; }
+.atl-dual__img--front { transition: opacity 0.55s ease, transform 1.2s ease; }
+.atl-dual:hover .atl-dual__img--back { opacity: 1; }
+.atl-dual:hover .atl-dual__img--front { opacity: 0; transform: scale(1.04); }
+
+/* --- Underline-draw links --- */
+.atl-link { position: relative; text-decoration: none; }
+.atl-link::after {
+  content: ""; position: absolute; left: 0; bottom: -3px; width: 0; height: 1px;
+  background: currentColor; transition: width 0.4s ease;
+}
+.atl-link:hover::after { width: 100%; }
+
+/* --- Lookbook hover zoom --- */
+.atl-look__cell { overflow: hidden; }
+.atl-look__cell img { transition: transform 1.4s cubic-bezier(0.16, 0.84, 0.44, 1); width: 100%; height: 100%; object-fit: cover; }
+.atl-look__cell:hover img { transform: scale(1.05); }
+
+/* --- Docked audio mini-player --- */
+.atl-player {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 50;
+  display: flex; align-items: center; gap: 1rem;
+  padding: 0.75rem 1.25rem;
+  background: var(--color-brand-primary); color: var(--color-brand-bg);
+  transform: translateY(110%); transition: transform 0.5s cubic-bezier(0.16, 0.84, 0.44, 1);
+}
+.atl-player.is-open { transform: translateY(0); }
+.atl-player__btn { background: none; border: 0; color: inherit; font-size: 1.4rem; cursor: pointer; line-height: 1; padding: 0; }
+.atl-player__meta { flex: 1; min-width: 0; }
+.atl-player__track { font-size: 0.8rem; letter-spacing: 0.08em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.atl-player__bar { height: 2px; background: var(--brand-hairline); margin-top: 0.45rem; }
+.atl-player__fill { height: 2px; width: 0; background: var(--color-brand-bg); }
+.atl-player__tag { font-size: 0.65rem; letter-spacing: 0.12em; opacity: 0.6; }
+
+@media (prefers-reduced-motion: reduce) {
+  .atl-reveal, .atl-reveal.is-visible { opacity: 1; transform: none; transition: none; }
+  .atl-stagger.is-visible > * { animation: none; }
+  .atl-marquee__track { animation: none; }
+  .atl-player { transition: none; }
+}

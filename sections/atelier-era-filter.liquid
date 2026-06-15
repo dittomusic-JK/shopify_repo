@@ -1,0 +1,220 @@
+{%- comment -%}
+  Atelier era filter — browse merch by album era. A heading plus repeatable
+  "era" blocks, each a label linking to a collection or URL, rendered as
+  bordered editorial chips with the atl-link underline-draw cue.
+{%- endcomment -%}
+
+<style>
+  #atelier-era-{{ section.id }} {
+    padding: var(--space-xl) var(--space-md);
+    background-color: var(--brand-bg-0);
+    color: var(--color-brand-primary);
+  }
+  #atelier-era-{{ section.id }} .atelier-era__inner {
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+  #atelier-era-{{ section.id }} .atelier-era__head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-sm);
+    border-bottom: 1px solid var(--brand-hairline);
+    padding-bottom: var(--space-md);
+    margin-bottom: var(--space-lg);
+  }
+  #atelier-era-{{ section.id }} .atelier-era__eyebrow {
+    font-family: var(--font-body);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.32em;
+    font-weight: 500;
+    color: var(--color-brand-secondary);
+    margin: 0;
+  }
+  #atelier-era-{{ section.id }} .atelier-era__heading {
+    font-family: var(--font-heading);
+    font-size: var(--text-2xl);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    font-weight: 700;
+    margin: 0;
+  }
+  #atelier-era-{{ section.id }} .atelier-era__chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+  }
+  #atelier-era-{{ section.id }} .atelier-era__chip {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.75rem;
+    padding: 0.9rem 1.6rem;
+    border: 1px solid var(--brand-hairline);
+    text-decoration: none;
+    color: var(--color-brand-primary);
+    transition: border-color 0.35s ease, background-color 0.35s ease, color 0.35s ease;
+  }
+  #atelier-era-{{ section.id }} .atelier-era__chip:hover {
+    border-color: var(--color-brand-accent);
+    background-color: var(--color-brand-accent);
+    color: var(--color-brand-on-accent);
+  }
+  #atelier-era-{{ section.id }} .atelier-era__chip-label {
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+  }
+  #atelier-era-{{ section.id }} .atelier-era__chip-year {
+    font-family: var(--font-body);
+    font-size: var(--text-xs);
+    letter-spacing: 0.1em;
+    opacity: 0.6;
+  }
+  #atelier-era-{{ section.id }} .atelier-era__empty {
+    font-family: var(--font-body);
+    color: var(--color-brand-secondary);
+  }
+  @media screen and (max-width: 749px) {
+    #atelier-era-{{ section.id }} {
+      padding: var(--space-lg) var(--space-sm);
+    }
+  }
+</style>
+
+<section id="atelier-era-{{ section.id }}" class="atelier-era-filter atl-reveal">
+  <div class="atelier-era__inner">
+    <div class="atelier-era__head">
+      <div>
+        {%- if section.settings.eyebrow != blank -%}
+          <p class="atelier-era__eyebrow">{{ section.settings.eyebrow }}</p>
+        {%- endif -%}
+        {%- if section.settings.heading != blank -%}
+          <h2 class="atelier-era__heading">{{ section.settings.heading }}</h2>
+        {%- endif -%}
+      </div>
+    </div>
+
+    {%- if section.blocks.size > 0 -%}
+      <div class="atelier-era__chips">
+        {%- for block in section.blocks -%}
+          {%- liquid
+            assign era_url = ''
+            if block.settings.collection != blank
+              assign era_url = block.settings.collection.url
+            elsif block.settings.url != blank
+              assign era_url = block.settings.url
+            endif
+          -%}
+          {%- if era_url != blank and block.settings.label != blank -%}
+            <a href="{{ era_url }}" class="atelier-era__chip" {{ block.shopify_attributes }}>
+              <span class="atelier-era__chip-label atl-link">{{ block.settings.label }}</span>
+              {%- if block.settings.year != blank -%}
+                <span class="atelier-era__chip-year">{{ block.settings.year }}</span>
+              {%- endif -%}
+            </a>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    {%- else -%}
+      <p class="atelier-era__empty">Add era blocks in the theme editor to let fans browse merch by album.</p>
+    {%- endif -%}
+  </div>
+</section>
+
+{%- schema -%}
+{
+  "name": "Atelier era filter",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow label",
+      "default": "Shop by era"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Browse the Archive"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "era",
+      "name": "Era",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Era label",
+          "default": "Halcyon",
+          "info": "Album or era name."
+        },
+        {
+          "type": "text",
+          "id": "year",
+          "label": "Year",
+          "default": "2026"
+        },
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection",
+          "info": "Links to this collection. Used before the custom URL below."
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "Custom URL",
+          "info": "Used only if no collection is selected."
+        }
+      ]
+    }
+  ],
+  "max_blocks": 12,
+  "presets": [
+    {
+      "name": "Atelier era filter",
+      "settings": {
+        "eyebrow": "Shop by era",
+        "heading": "Browse the Archive"
+      },
+      "blocks": [
+        {
+          "type": "era",
+          "settings": {
+            "label": "Halcyon",
+            "year": "2026"
+          }
+        },
+        {
+          "type": "era",
+          "settings": {
+            "label": "Northern Light",
+            "year": "2023"
+          }
+        },
+        {
+          "type": "era",
+          "settings": {
+            "label": "Paper Cities",
+            "year": "2021"
+          }
+        },
+        {
+          "type": "era",
+          "settings": {
+            "label": "First Pressing",
+            "year": "2019"
+          }
+        }
+      ]
+    }
+  ]
+}
+{%- endschema -%}
