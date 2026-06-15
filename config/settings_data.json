@@ -9,7 +9,8 @@
  */
 {
   "current": {
-    "artist_name": "Artist Name",
+    "artist_name": "Static Coast",
+    "artist_press_photo": "shopify://shop_images/01c7e527-df65-4d4a-997d-0b07752ca72c.png",
     "artist_genre": "Alternative",
     "riffride_skin": "riot",
     "brand_primary": "#ffffff",
