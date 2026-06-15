@@ -1,0 +1,85 @@
+{%- comment -%}
+  Riffride Wander — hero. Full-bleed lifestyle photo, script wordmark, tagline,
+  Listen/Shop CTAs, and a floating product shot beside it.
+{%- endcomment -%}
+
+{%- liquid
+  assign sid = 'wander-hero-' | append: section.id
+  assign name = section.settings.headline | default: settings.artist_name | default: 'Artist Name'
+-%}
+
+<style>
+  #{{ sid }} { position: relative; background: var(--brand-bg-1); overflow: hidden; }
+  #{{ sid }} .wh__bg, #{{ sid }} .wh__bg img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  #{{ sid }} .wh__scrim { position: absolute; inset: 0; background: linear-gradient(90deg, var(--brand-bg-0) 0%, rgba(246,240,230,0.55) 42%, rgba(246,240,230,0) 70%); }
+  body[data-skin="wander-dusk"] #{{ sid }} .wh__scrim { background: linear-gradient(90deg, var(--brand-bg-0) 0%, rgba(42,33,27,0.6) 42%, rgba(42,33,27,0) 70%); }
+  #{{ sid }} .wh__inner { position: relative; z-index: 2; max-width: 1240px; margin: 0 auto; padding: clamp(3rem, 8vw, 7rem) clamp(1.25rem, 5vw, 4rem); display: grid; grid-template-columns: 1.1fr 0.9fr; align-items: center; gap: 2rem; min-height: 72vh; }
+  #{{ sid }} .wh__name { font-family: "Dancing Script", cursive; color: var(--color-brand-accent); font-size: clamp(3rem, 9vw, 6.5rem); line-height: 0.95; margin: 0; font-weight: 700; }
+  #{{ sid }} .wh__flourish { width: 4.5rem; height: 1px; background: var(--color-brand-accent); margin: 0.5rem 0 1.5rem; }
+  #{{ sid }} .wh__tagline { font-family: "EB Garamond", serif; color: var(--color-brand-primary); font-size: clamp(1rem, 2vw, 1.3rem); letter-spacing: 0.04em; margin: 0 0 2rem; }
+  #{{ sid }} .wh__ctas { display: flex; flex-wrap: wrap; gap: 0.85rem; }
+  #{{ sid }} .wh__cta { font-family: "EB Garamond", serif; font-size: 0.85rem; letter-spacing: 0.14em; text-transform: uppercase; padding: 0.85rem 1.75rem; text-decoration: none; display: inline-block; }
+  #{{ sid }} .wh__cta--primary { background: var(--color-brand-accent); color: var(--color-brand-on-accent); }
+  #{{ sid }} .wh__cta--secondary { background: transparent; color: var(--color-brand-accent); border: 1px solid var(--color-brand-accent); }
+  #{{ sid }} .wh__cta:hover { opacity: 0.9; }
+  #{{ sid }} .wh__product { justify-self: center; max-width: 360px; width: 100%; }
+  #{{ sid }} .wh__product img { width: 100%; height: auto; display: block; }
+  @media (max-width: 749px) {
+    #{{ sid }} .wh__inner { grid-template-columns: 1fr; min-height: auto; }
+    #{{ sid }} .wh__scrim { background: linear-gradient(180deg, rgba(246,240,230,0.2), var(--brand-bg-0) 88%); }
+    #{{ sid }} .wh__product { max-width: 240px; }
+  }
+</style>
+
+<section id="{{ sid }}" class="wander-hero wander-reveal">
+  {%- if section.settings.background_image != blank -%}
+    <div class="wh__bg" aria-hidden="true">
+      <img src="{{ section.settings.background_image | image_url: width: 2400 }}" alt="" loading="eager" fetchpriority="high" width="{{ section.settings.background_image.width }}" height="{{ section.settings.background_image.height }}">
+    </div>
+  {%- endif -%}
+  <div class="wh__scrim" aria-hidden="true"></div>
+
+  <div class="wh__inner">
+    <div class="wh__text">
+      <h1 class="wh__name">{{ name }}</h1>
+      <div class="wh__flourish"></div>
+      {%- if section.settings.tagline != blank -%}<p class="wh__tagline">{{ section.settings.tagline }}</p>{%- endif -%}
+      <div class="wh__ctas">
+        {%- if section.settings.cta1_label != blank -%}
+          <a class="wh__cta wh__cta--primary" href="{{ section.settings.cta1_url | default: '#' }}">{{ section.settings.cta1_label }}</a>
+        {%- endif -%}
+        {%- if section.settings.cta2_label != blank -%}
+          <a class="wh__cta wh__cta--secondary" href="{{ section.settings.cta2_url | default: '#' }}">{{ section.settings.cta2_label }}</a>
+        {%- endif -%}
+      </div>
+    </div>
+    {%- if section.settings.product_image != blank -%}
+      <div class="wh__product">
+        <img src="{{ section.settings.product_image | image_url: width: 720 }}" alt="{{ section.settings.product_image.alt | escape }}" loading="eager" width="{{ section.settings.product_image.width }}" height="{{ section.settings.product_image.height }}">
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{%- schema -%}
+{
+  "name": "Wander hero",
+  "tag": "section",
+  "settings": [
+    { "type": "image_picker", "id": "background_image", "label": "Background photo", "info": "Full-bleed lifestyle shot. ~2400px wide." },
+    { "type": "text", "id": "headline", "label": "Artist name", "info": "Shown in the script wordmark. Defaults to your theme artist name." },
+    { "type": "text", "id": "tagline", "label": "Tagline", "default": "Wear the songs. Take the journey." },
+    { "type": "text", "id": "cta1_label", "label": "Primary button", "default": "Listen now" },
+    { "type": "url", "id": "cta1_url", "label": "Primary link" },
+    { "type": "text", "id": "cta2_label", "label": "Secondary button", "default": "Shop merch" },
+    { "type": "url", "id": "cta2_url", "label": "Secondary link" },
+    { "type": "image_picker", "id": "product_image", "label": "Hero product image", "info": "A merch shot to feature beside the name (e.g. the tour tee)." }
+  ],
+  "presets": [
+    {
+      "name": "Wander hero",
+      "settings": { "tagline": "Wear the songs. Take the journey.", "cta1_label": "Listen now", "cta2_label": "Shop merch" }
+    }
+  ]
+}
+{%- endschema -%}

@@ -1,0 +1,34 @@
+/* Riffride Wander — tone overrides via body[data-skin] (settings.riffride_skin).
+   Warm, creamy, lifestyle-led folk theme. Two tones: Cream (default) and Dusk.
+   Script + serif type live in wander.css.
+   body[data-skin] beats :root specificity, so these win cleanly. */
+
+/* ============================================================
+   WANDER — CREAM (warm daylight)
+   ============================================================ */
+body[data-skin="wander"] {
+  --brand-bg-0: #f6f0e6;
+  --brand-bg-1: #f1e9db;
+  --brand-bg-2: #ebe2d0;
+  --color-brand-bg: #f6f0e6;
+  --color-brand-primary: #43392e;
+  --color-brand-secondary: #8a7e6b;
+  --color-brand-accent: #c0613a;
+  --color-brand-on-accent: #f6f0e6;
+  --brand-hairline: rgba(67, 57, 46, 0.18);
+}
+
+/* ============================================================
+   WANDER — DUSK (warm evening)
+   ============================================================ */
+body[data-skin="wander-dusk"] {
+  --brand-bg-0: #2a211b;
+  --brand-bg-1: #2f2620;
+  --brand-bg-2: #362c24;
+  --color-brand-bg: #2a211b;
+  --color-brand-primary: #f1e7d8;
+  --color-brand-secondary: #b3a491;
+  --color-brand-accent: #d2734a;
+  --color-brand-on-accent: #2a211b;
+  --brand-hairline: rgba(241, 231, 216, 0.2);
+}

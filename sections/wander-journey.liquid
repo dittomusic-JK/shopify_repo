@@ -1,0 +1,96 @@
+{%- comment -%}
+  Riffride Wander — "Journey" band: Instagram grid · Join the Journey newsletter
+  (paper-note) · Merch Highlight. Three soft columns.
+{%- endcomment -%}
+
+{%- liquid
+  assign sid = 'wander-journey-' | append: section.id
+-%}
+
+<style>
+  #{{ sid }} { background: var(--brand-bg-0); padding: clamp(3rem, 7vw, 6rem) clamp(1.25rem, 5vw, 4rem); }
+  #{{ sid }} .wj__grid { max-width: 1240px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(1.5rem, 3vw, 3rem); align-items: start; }
+  #{{ sid }} .wj__label { font-family: "EB Garamond", serif; text-transform: uppercase; letter-spacing: 0.26em; font-size: 0.75rem; color: var(--color-brand-accent); text-align: center; margin: 0 0 1.25rem; }
+  #{{ sid }} .wj__img { display: block; width: 100%; height: auto; }
+  #{{ sid }} .wj__handle, #{{ sid }} .wj__shoplink { display: block; text-align: center; margin-top: 1rem; font-family: "EB Garamond", serif; letter-spacing: 0.12em; text-transform: uppercase; font-size: 0.78rem; color: var(--color-brand-primary); text-decoration: none; }
+  #{{ sid }} .wj__shoplink { color: var(--color-brand-accent); }
+  #{{ sid }} .wj__note { background: var(--brand-bg-2); border: 1px solid var(--brand-hairline); padding: 2rem 1.75rem; text-align: center; position: relative; }
+  #{{ sid }} .wj__note::before { content: ""; position: absolute; top: -10px; left: 50%; transform: translateX(-50%) rotate(-3deg); width: 70px; height: 20px; background: var(--color-brand-accent); opacity: 0.25; }
+  #{{ sid }} .wj__note-title { font-family: "Cormorant Garamond", serif; font-weight: 600; font-size: 1.6rem; color: var(--color-brand-primary); margin: 0 0 0.75rem; }
+  #{{ sid }} .wj__note-text { font-family: "EB Garamond", serif; color: var(--color-brand-secondary); line-height: 1.6; margin: 0 0 1.5rem; }
+  #{{ sid }} .wj__form { display: flex; flex-direction: column; gap: 0.6rem; }
+  #{{ sid }} .wj__input { font-family: "EB Garamond", serif; padding: 0.75rem 1rem; border: 1px solid var(--brand-hairline); background: var(--brand-bg-0); color: var(--color-brand-primary); }
+  #{{ sid }} .wj__submit { font-family: "EB Garamond", serif; text-transform: uppercase; letter-spacing: 0.14em; font-size: 0.8rem; padding: 0.8rem 1rem; background: var(--color-brand-accent); color: var(--color-brand-on-accent); border: 0; cursor: pointer; }
+  #{{ sid }} .wj__success { color: var(--color-brand-accent); font-family: "EB Garamond", serif; margin-top: 0.5rem; }
+  #{{ sid }} .wj__placeholder { aspect-ratio: 1; background: var(--brand-bg-2); }
+  @media (max-width: 749px) { #{{ sid }} .wj__grid { grid-template-columns: 1fr; } }
+</style>
+
+<section id="{{ sid }}" class="wander-journey wander-reveal">
+  <div class="wj__grid">
+
+    <div class="wj__col">
+      <p class="wj__label">{{ section.settings.instagram_label | default: 'Instagram' }}</p>
+      {%- if section.settings.instagram_image != blank -%}
+        <img class="wj__img" src="{{ section.settings.instagram_image | image_url: width: 800 }}" alt="Instagram" loading="lazy">
+      {%- else -%}
+        <div class="wj__placeholder"></div>
+      {%- endif -%}
+      {%- if section.settings.instagram_handle != blank -%}
+        <a class="wj__handle" href="{{ section.settings.instagram_url | default: '#' }}" target="_blank" rel="noopener noreferrer">{{ section.settings.instagram_handle }}</a>
+      {%- endif -%}
+    </div>
+
+    <div class="wj__col">
+      <p class="wj__label">{{ section.settings.newsletter_label | default: 'Join the journey' }}</p>
+      <div class="wj__note">
+        {%- if section.settings.newsletter_title != blank -%}<h3 class="wj__note-title">{{ section.settings.newsletter_title }}</h3>{%- endif -%}
+        {%- if section.settings.newsletter_text != blank -%}<p class="wj__note-text">{{ section.settings.newsletter_text }}</p>{%- endif -%}
+        {%- form 'customer' -%}
+          <input type="hidden" name="contact[tags]" value="newsletter">
+          <div class="wj__form">
+            <input class="wj__input" type="email" name="contact[email]" placeholder="your email address" required>
+            <button class="wj__submit" type="submit">{{ section.settings.newsletter_button | default: 'Join' }}</button>
+          </div>
+          {%- if form.posted_successfully? -%}<p class="wj__success">Thanks — you're on the list.</p>{%- endif -%}
+        {%- endform -%}
+      </div>
+    </div>
+
+    <div class="wj__col">
+      <p class="wj__label">{{ section.settings.merch_label | default: 'Merch highlight' }}</p>
+      {%- if section.settings.merch_image != blank -%}
+        <img class="wj__img" src="{{ section.settings.merch_image | image_url: width: 800 }}" alt="Merch" loading="lazy">
+      {%- else -%}
+        <div class="wj__placeholder"></div>
+      {%- endif -%}
+      <a class="wj__shoplink" href="{{ section.settings.merch_url | default: '/collections/all' }}">{{ section.settings.merch_link_label | default: 'Shop merch' }}</a>
+    </div>
+
+  </div>
+</section>
+
+{%- schema -%}
+{
+  "name": "Wander journey",
+  "tag": "section",
+  "settings": [
+    { "type": "header", "content": "Instagram" },
+    { "type": "text", "id": "instagram_label", "label": "Label", "default": "Instagram" },
+    { "type": "image_picker", "id": "instagram_image", "label": "Instagram image (grid composite)" },
+    { "type": "text", "id": "instagram_handle", "label": "Handle", "default": "@artist" },
+    { "type": "url", "id": "instagram_url", "label": "Instagram link" },
+    { "type": "header", "content": "Join the journey (newsletter)" },
+    { "type": "text", "id": "newsletter_label", "label": "Label", "default": "Join the journey" },
+    { "type": "text", "id": "newsletter_title", "label": "Title", "default": "Stay in touch" },
+    { "type": "textarea", "id": "newsletter_text", "label": "Text", "default": "Be the first to hear about new music, tour dates and exclusive offers." },
+    { "type": "text", "id": "newsletter_button", "label": "Button label", "default": "Join" },
+    { "type": "header", "content": "Merch highlight" },
+    { "type": "text", "id": "merch_label", "label": "Label", "default": "Merch highlight" },
+    { "type": "image_picker", "id": "merch_image", "label": "Merch image (flat-lay)" },
+    { "type": "text", "id": "merch_link_label", "label": "Link label", "default": "Shop merch" },
+    { "type": "url", "id": "merch_url", "label": "Link" }
+  ],
+  "presets": [ { "name": "Wander journey" } ]
+}
+{%- endschema -%}

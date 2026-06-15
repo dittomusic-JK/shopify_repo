@@ -1,0 +1,64 @@
+/* Riffride Wander — identity layer: warm script + serif type, soft restyle,
+   gentle scroll reveals. Fonts are hardwired (Google Fonts) so the script
+   wordmark and serif headings always render. */
+
+/* --- Type system (override both custom + Dawn-native font vars) --- */
+body[data-skin^="wander"] {
+  --font-heading: "Cormorant Garamond", Georgia, serif;
+  --font-heading-family: "Cormorant Garamond", Georgia, serif;
+  --font-body: "EB Garamond", Georgia, serif;
+  --font-body-family: "EB Garamond", Georgia, serif;
+}
+body[data-skin^="wander"] { font-family: "EB Garamond", Georgia, serif; }
+body[data-skin^="wander"] h1,
+body[data-skin^="wander"] h2,
+body[data-skin^="wander"] h3,
+body[data-skin^="wander"] .riffride-heading,
+body[data-skin^="wander"] .latest-release__title,
+body[data-skin^="wander"] .merch-featured__heading,
+body[data-skin^="wander"] .tour-dates__heading {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  line-height: 1.1;
+}
+
+/* --- Handwritten script wordmark --- */
+body[data-skin^="wander"] .header__artist-name {
+  font-family: "Dancing Script", cursive !important;
+  font-weight: 700;
+  font-size: 2rem;
+  letter-spacing: 0;
+  color: var(--color-brand-accent);
+  text-transform: none;
+}
+
+/* --- Small-caps tracked section labels --- */
+body[data-skin^="wander"] .riffride-subheading,
+body[data-skin^="wander"] .latest-release__type,
+body[data-skin^="wander"] .merch-featured__credit-text {
+  font-family: "EB Garamond", Georgia, serif;
+  text-transform: uppercase;
+  letter-spacing: 0.28em;
+  font-size: 0.78rem;
+  color: var(--color-brand-accent);
+}
+
+/* --- Soft warm buttons + hairlines --- */
+body[data-skin^="wander"] .btn--accent,
+body[data-skin^="wander"] .merch-featured__cta,
+body[data-skin^="wander"] .latest-release__listen-link {
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+}
+
+/* --- Gentle, dreamy scroll reveals --- */
+.wander-reveal { opacity: 0; transform: translateY(16px); will-change: opacity, transform; }
+.wander-reveal.is-visible {
+  opacity: 1; transform: none;
+  transition: opacity 1.1s ease, transform 1.1s cubic-bezier(0.16, 0.84, 0.44, 1);
+}
+@media (prefers-reduced-motion: reduce) {
+  .wander-reveal, .wander-reveal.is-visible { opacity: 1; transform: none; transition: none; }
+}
