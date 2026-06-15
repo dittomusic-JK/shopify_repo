@@ -82,57 +82,6 @@
         "cta_url": ""
       }
     },
-    "atelier_era_filter": {
-      "type": "atelier-era-filter",
-      "blocks": {
-        "era_1": {
-          "type": "era",
-          "settings": {
-            "label": "Halcyon",
-            "year": "2026",
-            "collection": "",
-            "url": ""
-          }
-        },
-        "era_2": {
-          "type": "era",
-          "settings": {
-            "label": "Northern Light",
-            "year": "2023",
-            "collection": "",
-            "url": ""
-          }
-        },
-        "era_3": {
-          "type": "era",
-          "settings": {
-            "label": "Paper Cities",
-            "year": "2021",
-            "collection": "",
-            "url": ""
-          }
-        },
-        "era_4": {
-          "type": "era",
-          "settings": {
-            "label": "First Pressing",
-            "year": "2019",
-            "collection": "",
-            "url": ""
-          }
-        }
-      },
-      "block_order": [
-        "era_1",
-        "era_2",
-        "era_3",
-        "era_4"
-      ],
-      "settings": {
-        "eyebrow": "Shop by era",
-        "heading": "Browse the Archive"
-      }
-    },
     "atelier_dual_merch": {
       "type": "atelier-dual-merch",
       "settings": {
@@ -252,6 +201,7 @@
         "look_4": {
           "type": "image",
           "settings": {
+            "image": "shopify://shop_images/fdb1df2f-f790-4d6f-8b5c-56d65bf90699.png",
             "wide": false,
             "caption": "Studio sessions",
             "link": ""
@@ -260,6 +210,7 @@
         "look_5": {
           "type": "image",
           "settings": {
+            "image": "shopify://shop_images/22a83597-c85b-45d0-867a-2db38dd646b7.png",
             "wide": false,
             "caption": "Tour merch — limited run",
             "link": ""
@@ -293,7 +244,6 @@
   "order": [
     "atelier_campaign_hero",
     "latest_release",
-    "atelier_era_filter",
     "atelier_dual_merch",
     "tour_dates",
     "atelier_lookbook",
