@@ -1,0 +1,57 @@
+/* Riffride Riot — bold type system, neon marquee, motion.
+   Headings go oversized/heavy/uppercase; a neon marquee bar; scroll reveals.
+   Honours prefers-reduced-motion. */
+
+/* --- Bold display type --- */
+body[data-skin^="riot"] h1,
+body[data-skin^="riot"] h2,
+body[data-skin^="riot"] .musician-hero__headline,
+body[data-skin^="riot"] .merch-featured__heading,
+body[data-skin^="riot"] .tour-dates__heading,
+body[data-skin^="riot"] .discography-grid__heading,
+body[data-skin^="riot"] .riffride-heading {
+  text-transform: uppercase;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 0.9;
+}
+
+/* Neon punctuation flourish: wrap a stop in <span class="riot-dot">.</span> */
+.riot-dot { color: var(--color-brand-accent); }
+
+/* --- Neon marquee bar --- */
+.riot-marquee {
+  background: var(--color-brand-accent);
+  color: var(--color-brand-on-accent);
+  overflow: hidden;
+  white-space: nowrap;
+  padding: 0.5rem 0;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-size: 0.78rem;
+}
+.riot-marquee__track { display: inline-block; animation: riot-marq 24s linear infinite; }
+.riot-marquee__track span { padding: 0 1.25rem; }
+@keyframes riot-marq { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* --- Scroll reveals --- */
+.riot-reveal { opacity: 0; transform: translateY(22px); will-change: opacity, transform; }
+.riot-reveal.is-visible {
+  opacity: 1; transform: none;
+  transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.16, 0.84, 0.44, 1);
+}
+
+/* --- Neon quick-add / button accents --- */
+body[data-skin^="riot"] .btn--accent,
+body[data-skin^="riot"] .merch-featured__cta {
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-radius: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .riot-reveal, .riot-reveal.is-visible { opacity: 1; transform: none; transition: none; }
+  .riot-marquee__track { animation: none; }
+}

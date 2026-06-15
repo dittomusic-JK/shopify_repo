@@ -1,0 +1,245 @@
+{%- comment -%}
+Riffride Theme: For print-on-demand merch fulfilment
+we recommend Printful, Printify or Gelato.
+{%- endcomment -%}
+
+{{ 'section-musician-product.css' | asset_url | stylesheet_tag }}
+
+{%- assign printful_link = "https://www.printful.com" -%}
+{%- assign printify_link = "https://printify.com" -%}
+{%- assign gelato_link = "https://gelato.com" -%}
+
+{%- liquid
+  assign has_music_metafields = false
+  assign has_preview = false
+  assign has_tracklist = false
+  assign has_spotify = false
+  assign has_apple_music = false
+  assign file_format = ''
+  assign is_signed = false
+  assign is_limited = false
+
+  if product.metafields.album.preview_url != blank
+    assign has_preview = true
+    assign has_music_metafields = true
+  endif
+
+  if product.metafields.album.tracklist != blank
+    assign has_tracklist = true
+    assign has_music_metafields = true
+  endif
+
+  if product.metafields.album.spotify_id != blank
+    assign has_spotify = true
+    assign has_music_metafields = true
+  endif
+
+  if product.metafields.album.apple_music_url != blank
+    assign has_apple_music = true
+    assign has_music_metafields = true
+  endif
+
+  for tag in product.tags
+    if tag contains 'format:'
+      assign file_format = tag | remove: 'format:' | strip
+    endif
+    if tag == 'signed'
+      assign is_signed = true
+    endif
+    if tag == 'limited'
+      assign is_limited = true
+    endif
+  endfor
+-%}
+
+{%- if has_music_metafields or file_format != '' or is_signed or is_limited -%}
+  <div class="musician-product-enhancements">
+    <div class="musician-product-enhancements__container">
+      
+      {%- if has_preview -%}
+        <div class="musician-product-enhancements__audio-preview">
+          <h3 class="musician-product-enhancements__subtitle">Preview</h3>
+          <audio 
+            controls 
+            preload="metadata"
+            class="musician-product-enhancements__audio-player"
+          >
+            <source src="{{ product.metafields.album.preview_url }}" type="audio/mpeg">
+            Your browser does not support the audio element.
+          </audio>
+        </div>
+      {%- endif -%}
+
+      {%- if has_tracklist -%}
+        <div class="musician-product-enhancements__tracklist">
+          <h3 class="musician-product-enhancements__subtitle">Tracklist</h3>
+          {%- assign tracks = product.metafields.album.tracklist | parse_json -%}
+          {%- if tracks.size > 0 -%}
+            <ol class="musician-product-enhancements__track-list">
+              {%- for track in tracks -%}
+                <li class="musician-product-enhancements__track-item">{{ track }}</li>
+              {%- endfor -%}
+            </ol>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+
+      {%- if file_format != '' or is_signed or is_limited -%}
+        <div class="musician-product-enhancements__badges">
+          {%- if file_format != '' -%}
+            <span class="musician-product-enhancements__badge musician-product-enhancements__badge--format">
+              {{ file_format | upcase }}
+            </span>
+          {%- endif -%}
+          
+          {%- if is_signed -%}
+            <span class="musician-product-enhancements__badge musician-product-enhancements__badge--signed">
+              Ships with signed insert
+            </span>
+          {%- endif -%}
+          
+          {%- if is_limited -%}
+            <span class="musician-product-enhancements__badge musician-product-enhancements__badge--limited">
+              Limited edition
+            </span>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+
+      {%- if has_spotify or has_apple_music -%}
+        <div class="musician-product-enhancements__streaming">
+          <h3 class="musician-product-enhancements__subtitle">Stream this album</h3>
+          <div class="musician-product-enhancements__streaming-links">
+            {%- if has_spotify -%}
+              <a 
+                href="https://open.spotify.com/album/{{ product.metafields.album.spotify_id }}"
+                class="musician-product-enhancements__streaming-link"
+                aria-label="Listen on Spotify"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/>
+                </svg>
+                <span>Spotify</span>
+              </a>
+            {%- endif -%}
+            
+            {%- if has_apple_music -%}
+              <a 
+                href="{{ product.metafields.album.apple_music_url }}"
+                class="musician-product-enhancements__streaming-link"
+                aria-label="Listen on Apple Music"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M23.994 6.124a9.23 9.23 0 0 0-.24-2.19c-.317-1.31-1.062-2.31-2.18-3.043a5.022 5.022 0 0 0-1.877-.726 10.496 10.496 0 0 0-1.564-.15c-.04-.003-.083-.01-.124-.013H5.986c-.152.01-.303.017-.455.026-.747.043-1.49.123-2.193.4-1.336.53-2.3 1.452-2.865 2.78-.192.448-.292.925-.363 1.408a10.61 10.61 0 0 0-.1 1.18c-.01.193-.01.386-.015.578v11.956c.01.2.01.402.02.603.038.723.112 1.444.354 2.13.49 1.395 1.4 2.395 2.708 3.015.582.276 1.187.42 1.827.49.45.048.9.062 1.35.065h12.016c.195 0 .39-.01.586-.016.72-.024 1.44-.08 2.13-.3 1.446-.464 2.472-1.426 3.06-2.842.267-.64.39-1.323.44-2.016.033-.46.046-.922.046-1.383V6.124zM9.626 18.985a3.016 3.016 0 0 1-2.313-.583 2.91 2.91 0 0 1-1.058-1.642 2.978 2.978 0 0 1 1.678-3.377 2.93 2.93 0 0 1 2.644.114v-7.06l7.945-1.345v7.273a3.022 3.022 0 0 1-2.313-.583 2.91 2.91 0 0 1-1.058-1.642 2.978 2.978 0 0 1 1.678-3.377 2.93 2.93 0 0 1 2.644.114v9.098c0 .02-.004.04-.005.058a2.975 2.975 0 0 1-2.99 2.952z"/>
+                </svg>
+                <span>Apple Music</span>
+              </a>
+            {%- endif -%}
+          </div>
+        </div>
+      {%- endif -%}
+
+      {%- if has_spotify -%}
+        <div class="musician-product-enhancements__upsell">
+          <h3 class="musician-product-enhancements__subtitle">Fans also stream</h3>
+          <div class="musician-product-enhancements__spotify-embed">
+            <iframe 
+              style="border-radius:12px" 
+              src="https://open.spotify.com/embed/album/{{ product.metafields.album.spotify_id }}?utm_source=generator&theme=0" 
+              width="100%" 
+              height="352" 
+              frameBorder="0" 
+              allowfullscreen="" 
+              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+              loading="lazy"
+            ></iframe>
+          </div>
+        </div>
+      {%- endif -%}
+
+    </div>
+  </div>
+{%- endif -%}
+
+{%- schema -%}
+{
+  "name": "Product Enhancements",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "This section automatically displays music-specific features when product metafields are set. No configuration needed."
+    },
+    {
+      "type": "header",
+      "content": "Audio preview"
+    },
+    {
+      "type": "paragraph",
+      "content": "Set product metafield: album.preview_url (URL) to display audio preview player"
+    },
+    {
+      "type": "header",
+      "content": "Tracklist"
+    },
+    {
+      "type": "paragraph",
+      "content": "Set product metafield: album.tracklist (JSON) with array of track names"
+    },
+    {
+      "type": "header",
+      "content": "File format badge"
+    },
+    {
+      "type": "paragraph",
+      "content": "Add product tag: format:MP3 or format:FLAC or format:WAV"
+    },
+    {
+      "type": "header",
+      "content": "Trust badges"
+    },
+    {
+      "type": "paragraph",
+      "content": "Add product tag 'signed' for signed insert badge, or 'limited' for limited edition badge"
+    },
+    {
+      "type": "header",
+      "content": "Streaming links"
+    },
+    {
+      "type": "paragraph",
+      "content": "Set product metafields: album.spotify_id (text) and/or album.apple_music_url (URL)"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 36
+    }
+  ],
+  "presets": [
+    {
+      "name": "Musician product enhancements"
+    }
+  ]
+}
+{%- endschema -%}

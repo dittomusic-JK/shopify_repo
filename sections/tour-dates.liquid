@@ -1,0 +1,305 @@
+{{ 'section-tour-dates.css' | asset_url | stylesheet_tag }}
+
+<section 
+  id="tour" 
+  class="tour-dates"
+  data-bandsintown-artist="{{ settings.bandsintown_artist }}"
+  data-use-bandsintown="{{ section.settings.use_bandsintown }}"
+>
+  <div class="tour-dates__container">
+    {%- if section.settings.heading != blank -%}
+      <h2 class="tour-dates__heading">{{ section.settings.heading }}</h2>
+    {%- endif -%}
+
+    {%- if settings.bandsintown_artist != blank and section.settings.use_bandsintown -%}
+      <div class="tour-dates__table-wrapper">
+        <div class="tour-dates__loading" id="tourDatesLoading">
+          <p>Loading tour dates...</p>
+        </div>
+        <table class="tour-dates__table" id="tourDatesTable" style="display: none;">
+          <thead>
+            <tr>
+              <th scope="col">Date</th>
+              <th scope="col">City</th>
+              <th scope="col">Venue</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody id="tourDatesBody">
+          </tbody>
+        </table>
+      </div>
+    {%- elsif section.blocks.size > 0 -%}
+      <div class="tour-dates__table-wrapper">
+        <table class="tour-dates__table">
+          <thead>
+            <tr>
+              <th scope="col">Date</th>
+              <th scope="col">City</th>
+              <th scope="col">Venue</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            {%- for block in section.blocks -%}
+              <tr class="tour-dates__row{% if block.settings.sold_out %} tour-dates__row--sold-out{% endif %}" {{ block.shopify_attributes }}>
+                <td class="tour-dates__date" data-label="Date">
+                  {{ block.settings.date }}
+                </td>
+                <td class="tour-dates__city" data-label="City">
+                  {{ block.settings.city }}
+                </td>
+                <td class="tour-dates__venue" data-label="Venue">
+                  {{ block.settings.venue }}
+                </td>
+                <td class="tour-dates__tickets" data-label="">
+                  {%- if block.settings.sold_out -%}
+                    <span class="tour-dates__badge tour-dates__badge--sold-out">Sold out</span>
+                  {%- elsif block.settings.ticket_url != blank -%}
+                    <a
+                      href="{{ block.settings.ticket_url }}"
+                      class="tour-dates__ticket-link btn btn--small"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Tickets
+                    </a>
+                  {%- endif -%}
+                </td>
+              </tr>
+            {%- endfor -%}
+          </tbody>
+        </table>
+      </div>
+    {%- else -%}
+      <div class="tour-dates__empty">
+        <p class="tour-dates__empty-text">{{ section.settings.empty_state_text }}</p>
+        {%- if section.settings.newsletter_cta_label != blank and section.settings.newsletter_cta_url != blank -%}
+          <a
+            href="{{ section.settings.newsletter_cta_url }}"
+            class="tour-dates__empty-cta btn btn--accent"
+          >
+            {{ section.settings.newsletter_cta_label }}
+          </a>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{%- if section.blocks.size > 0 -%}
+  {%- for block in section.blocks -%}
+    {%- unless block.settings.sold_out -%}
+      <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "MusicEvent",
+        "name": "{{ settings.artist_name | default: 'Concert' | append: ' - ' | append: block.settings.city | json }}",
+        {%- if block.settings.date != blank -%}
+        "startDate": {{ block.settings.date | json }},
+        {%- endif -%}
+        "location": {
+          "@type": "Place",
+          "name": {{ block.settings.venue | json }},
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": {{ block.settings.city | json }}
+          }
+        },
+        {%- if settings.artist_name != blank -%}
+        "performer": {
+          "@type": "MusicGroup",
+          "name": {{ settings.artist_name | json }}
+        },
+        {%- endif -%}
+        {%- if block.settings.ticket_url != blank -%}
+        "offers": {
+          "@type": "Offer",
+          "url": {{ block.settings.ticket_url | json }},
+          "availability": "https://schema.org/InStock"
+        },
+        {%- endif -%}
+        "eventStatus": "https://schema.org/EventScheduled"
+      }
+      </script>
+    {%- endunless -%}
+  {%- endfor -%}
+{%- endif -%}
+
+{%- schema -%}
+{
+  "name": "Tour dates",
+  "tag": "section",
+  "class": "section",
+  "max_blocks": 20,
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Section heading",
+      "default": "Tour dates",
+      "info": "Main heading for the tour dates section"
+    },
+    {
+      "type": "header",
+      "content": "Bandsintown integration"
+    },
+    {
+      "type": "checkbox",
+      "id": "use_bandsintown",
+      "label": "Use Bandsintown widget",
+      "default": false,
+      "info": "If enabled and Bandsintown artist name is set in theme settings, shows Bandsintown widget instead of manual tour dates"
+    },
+    {
+      "type": "range",
+      "id": "bandsintown_limit",
+      "min": 5,
+      "max": 50,
+      "step": 5,
+      "default": 10,
+      "label": "Bandsintown events to show",
+      "info": "Maximum number of events to display in Bandsintown widget"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Bandsintown text colour",
+      "default": "#ffffff",
+      "info": "Text colour for Bandsintown widget"
+    },
+    {
+      "type": "color",
+      "id": "link_color",
+      "label": "Bandsintown link colour",
+      "default": "#e8593c",
+      "info": "Link colour for Bandsintown widget"
+    },
+    {
+      "type": "color",
+      "id": "separator_color",
+      "label": "Bandsintown separator colour",
+      "default": "#333333",
+      "info": "Separator line colour for Bandsintown widget"
+    },
+    {
+      "type": "header",
+      "content": "Empty state"
+    },
+    {
+      "type": "text",
+      "id": "empty_state_text",
+      "label": "No shows message",
+      "default": "No upcoming shows",
+      "info": "Message shown when there are no tour dates"
+    },
+    {
+      "type": "text",
+      "id": "newsletter_cta_label",
+      "label": "Newsletter CTA label",
+      "default": "Join mailing list",
+      "info": "Button text for empty state CTA"
+    },
+    {
+      "type": "url",
+      "id": "newsletter_cta_url",
+      "label": "Newsletter CTA URL",
+      "info": "Link to newsletter signup page or form"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "tour_date",
+      "name": "Tour date",
+      "settings": [
+        {
+          "type": "text",
+          "id": "date",
+          "label": "Date",
+          "default": "Jan 15, 2026",
+          "info": "Show date (e.g., Jan 15, 2026)"
+        },
+        {
+          "type": "text",
+          "id": "city",
+          "label": "City",
+          "default": "Los Angeles, CA",
+          "info": "City and state/country"
+        },
+        {
+          "type": "text",
+          "id": "venue",
+          "label": "Venue",
+          "default": "The Wiltern",
+          "info": "Venue name"
+        },
+        {
+          "type": "url",
+          "id": "ticket_url",
+          "label": "Ticket URL",
+          "info": "External ticketing link (e.g., Ticketmaster, Eventbrite)"
+        },
+        {
+          "type": "checkbox",
+          "id": "sold_out",
+          "label": "Sold out",
+          "default": false,
+          "info": "Mark this show as sold out"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Tour dates",
+      "settings": {
+        "heading": "Tour Dates"
+      },
+      "blocks": [
+        {
+          "type": "tour_date",
+          "settings": {
+            "date": "Mar 28, 2026",
+            "city": "Los Angeles, CA",
+            "venue": "The Wiltern",
+            "ticket_url": "",
+            "sold_out": false
+          }
+        },
+        {
+          "type": "tour_date",
+          "settings": {
+            "date": "Apr 02, 2026",
+            "city": "San Francisco, CA",
+            "venue": "The Fillmore",
+            "ticket_url": "",
+            "sold_out": false
+          }
+        },
+        {
+          "type": "tour_date",
+          "settings": {
+            "date": "Apr 08, 2026",
+            "city": "New York, NY",
+            "venue": "Brooklyn Steel",
+            "ticket_url": "",
+            "sold_out": false
+          }
+        },
+        {
+          "type": "tour_date",
+          "settings": {
+            "date": "Apr 15, 2026",
+            "city": "London, UK",
+            "venue": "O2 Forum Kentish Town",
+            "ticket_url": "",
+            "sold_out": true
+          }
+        }
+      ]
+    }
+  ]
+}
+{%- endschema -%}
+
+<script src="{{ 'section-tour-dates.js' | asset_url }}" defer></script>

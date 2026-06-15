@@ -1,0 +1,79 @@
+{%- comment -%}
+  Riffride — Spotify Embed (portable across all Riffride themes).
+  Paste a normal Spotify share link (track, album, playlist or artist) and this
+  renders the official Spotify player: cover art, tracklist, play button,
+  30-second previews for everyone and full playback for logged-in Spotify users.
+{%- endcomment -%}
+
+{%- liquid
+  assign url = section.settings.spotify_url
+  assign embed = url | replace: 'open.spotify.com/track/', 'open.spotify.com/embed/track/' | replace: 'open.spotify.com/album/', 'open.spotify.com/embed/album/' | replace: 'open.spotify.com/playlist/', 'open.spotify.com/embed/playlist/' | replace: 'open.spotify.com/artist/', 'open.spotify.com/embed/artist/' | replace: 'open.spotify.com/episode/', 'open.spotify.com/embed/episode/' | replace: 'open.spotify.com/show/', 'open.spotify.com/embed/show/'
+-%}
+
+<section class="spotify-embed" style="background: var(--brand-bg-1); padding: 4rem 1.25rem;">
+  <div style="max-width: 900px; margin: 0 auto;">
+    {%- if section.settings.heading != blank -%}
+      <h2 class="riffride-heading" style="color: var(--color-brand-primary); margin: 0 0 1.5rem; font-size: clamp(1.75rem, 5vw, 3rem);">
+        {{ section.settings.heading }}
+      </h2>
+    {%- endif -%}
+
+    {%- if embed contains 'open.spotify.com/embed/' -%}
+      <iframe
+        style="border-radius: 12px; border: 0;"
+        src="{{ embed }}?utm_source=generator{% if section.settings.theme_dark %}&theme=0{% endif %}"
+        width="100%"
+        height="{{ section.settings.height }}"
+        frameborder="0"
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+        loading="lazy"
+        title="Spotify player">
+      </iframe>
+    {%- else -%}
+      {%- if request.design_mode -%}
+        <p style="color: var(--color-brand-secondary);">Paste a Spotify share link (track, album, playlist or artist) in this section's settings to show the player.</p>
+      {%- endif -%}
+    {%- endif -%}
+  </div>
+</section>
+
+{%- schema -%}
+{
+  "name": "Spotify Embed",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Listen"
+    },
+    {
+      "type": "url",
+      "id": "spotify_url",
+      "label": "Spotify share link",
+      "info": "Open Spotify → Share → Copy link, for a track, album, playlist or artist. e.g. https://open.spotify.com/album/..."
+    },
+    {
+      "type": "select",
+      "id": "height",
+      "label": "Player size",
+      "options": [
+        { "value": "152", "label": "Compact (single track)" },
+        { "value": "352", "label": "Standard (album / playlist)" },
+        { "value": "452", "label": "Tall (long tracklist)" }
+      ],
+      "default": "352"
+    },
+    {
+      "type": "checkbox",
+      "id": "theme_dark",
+      "label": "Use Spotify's dark player",
+      "default": true
+    }
+  ],
+  "presets": [
+    { "name": "Spotify Embed" }
+  ]
+}
+{%- endschema -%}

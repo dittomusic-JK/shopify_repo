@@ -1,0 +1,34 @@
+/* Riffride Riot — tone overrides via body[data-skin] (settings.riffride_skin).
+   Bold black-and-neon streetwear. Two tones: Riot (black, default) and Riot
+   Paper (white). Acid-green accent #C6FF3A — recolour here to rebrand the neon.
+   body[data-skin] beats :root specificity, so these win cleanly. */
+
+/* ============================================================
+   RIOT — black canvas, acid-green neon.
+   ============================================================ */
+body[data-skin="riot"] {
+  --brand-bg-0: #000000;
+  --brand-bg-1: #0a0a0a;
+  --brand-bg-2: #121212;
+  --color-brand-bg: #000000;
+  --color-brand-primary: #ffffff;
+  --color-brand-secondary: #8a8a8a;
+  --color-brand-accent: #c6ff3a;
+  --color-brand-on-accent: #000000;
+  --brand-hairline: rgba(255, 255, 255, 0.14);
+}
+
+/* ============================================================
+   RIOT PAPER — white canvas, same acid-green neon.
+   ============================================================ */
+body[data-skin="riot-paper"] {
+  --brand-bg-0: #ffffff;
+  --brand-bg-1: #f4f4f2;
+  --brand-bg-2: #ebebe8;
+  --color-brand-bg: #ffffff;
+  --color-brand-primary: #0a0a0a;
+  --color-brand-secondary: #6f6f6b;
+  --color-brand-accent: #c6ff3a;
+  --color-brand-on-accent: #000000;
+  --brand-hairline: rgba(0, 0, 0, 0.13);
+}

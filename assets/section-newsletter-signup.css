@@ -1,0 +1,214 @@
+.newsletter-signup {
+  padding: 12rem 0;
+  background-color: var(--brand-bg-1);
+}
+
+.newsletter-signup__container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 var(--space-md);
+}
+
+.newsletter-signup__heading {
+  font-family: var(--font-heading);
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  color: var(--color-brand-primary);
+  text-align: left;
+  margin: 0 0 var(--space-sm) 0;
+  position: relative;
+  padding-top: var(--space-md);
+}
+
+.newsletter-signup__heading::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4rem;
+  height: 3px;
+  background-color: var(--color-brand-accent);
+  color: var(--color-brand-on-accent);
+}
+
+.newsletter-signup__subheading {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: 1.6;
+  color: var(--color-brand-secondary);
+  text-align: left;
+  margin: 0 0 var(--space-lg) 0;
+}
+
+.newsletter-signup__form {
+  margin-bottom: var(--space-lg);
+}
+
+.newsletter-signup__form input[type="email"] {
+  width: 100%;
+  max-width: 400px;
+  padding: 1rem 1.5rem;
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  color: var(--color-brand-primary);
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--brand-hairline);
+  border-radius: 4px;
+  outline: none;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.newsletter-signup__form input[type="email"]:focus {
+  border-color: var(--color-brand-accent);
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+.newsletter-signup__form input[type="email"]::placeholder {
+  color: var(--color-brand-secondary);
+  opacity: 0.6;
+}
+
+.newsletter-signup__form button[type="submit"],
+.newsletter-signup__form input[type="submit"] {
+  padding: 1rem 2.5rem;
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-brand-primary);
+  background-color: var(--color-brand-accent);
+  color: var(--color-brand-on-accent);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  margin-top: var(--space-sm);
+}
+
+.newsletter-signup__form button[type="submit"]:hover,
+.newsletter-signup__form button[type="submit"]:focus,
+.newsletter-signup__form input[type="submit"]:hover,
+.newsletter-signup__form input[type="submit"]:focus {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.newsletter-signup__form button[type="submit"]:active,
+.newsletter-signup__form input[type="submit"]:active {
+  transform: translateY(0);
+}
+
+.newsletter-signup__streaming,
+.newsletter-signup__social {
+  margin-top: var(--space-lg);
+}
+
+.newsletter-signup__streaming-label,
+.newsletter-signup__social-label {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--color-brand-secondary);
+  margin: 0 0 var(--space-sm) 0;
+}
+
+.newsletter-signup__streaming-links,
+.newsletter-signup__social-links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+}
+
+.newsletter-signup__streaming-link,
+.newsletter-signup__social-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  text-decoration: none;
+  color: var(--color-brand-primary);
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--brand-hairline);
+  border-radius: 4px;
+  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.newsletter-signup__streaming-link:hover,
+.newsletter-signup__streaming-link:focus,
+.newsletter-signup__social-link:hover,
+.newsletter-signup__social-link:focus {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: var(--color-brand-accent);
+  transform: translateY(-2px);
+}
+
+.newsletter-signup__streaming-link svg,
+.newsletter-signup__social-link svg {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.newsletter-signup__streaming-link[data-platform="spotify"]:hover,
+.newsletter-signup__streaming-link[data-platform="spotify"]:focus {
+  border-color: #1DB954;
+}
+
+.newsletter-signup__streaming-link[data-platform="apple-music"]:hover,
+.newsletter-signup__streaming-link[data-platform="apple-music"]:focus {
+  border-color: #FA243C;
+}
+
+@media screen and (max-width: 768px) {
+  .newsletter-signup {
+    padding: var(--space-lg) 0;
+  }
+
+  .newsletter-signup__container {
+    padding: 0 var(--space-sm);
+  }
+
+  .newsletter-signup__heading {
+    font-size: var(--text-xl);
+  }
+
+  .newsletter-signup__subheading {
+    font-size: var(--text-sm);
+  }
+
+  .newsletter-signup__form input[type="email"] {
+    max-width: 100%;
+  }
+
+  .newsletter-signup__form button[type="submit"],
+  .newsletter-signup__form input[type="submit"] {
+    width: 100%;
+  }
+
+  .newsletter-signup__streaming-links,
+  .newsletter-signup__social-links {
+    gap: var(--space-sm);
+  }
+
+  .newsletter-signup__streaming-link,
+  .newsletter-signup__social-link {
+    padding: 0.625rem 1rem;
+    font-size: var(--text-xs);
+  }
+
+  .newsletter-signup__streaming-link svg,
+  .newsletter-signup__social-link svg {
+    width: 18px;
+    height: 18px;
+  }
+}

@@ -1,0 +1,131 @@
+{
+  "sections": {
+    "musician_hero": {
+      "type": "musician-hero",
+      "disabled": false,
+      "settings": {
+        "headline": "VENOM HALO",
+        "subheadline": "DEBUT ALBUM ‘ACID CHURCH’ — OUT NOW",
+        "cta_label": "LISTEN NOW",
+        "cta_url": "#listen",
+        "overlay_opacity": 55,
+        "show_scroll_indicator": true,
+        "scroll_indicator_text": "SCROLL"
+      }
+    },
+    "riot_marquee": {
+      "type": "riot-marquee",
+      "disabled": false,
+      "settings": {
+        "message": "NEW ALBUM ‘ACID CHURCH’ OUT NOW ✶ WORLDWIDE SHIPPING ✶ RIOT TOUR 2026 ✶ LIMITED MERCH DROP",
+        "message_2": "STREAM EVERYWHERE ✶ TURN IT UP ✶ VENOM HALO ✶ NO ENCORES, NO MERCY"
+      }
+    },
+    "spotify_embed": {
+      "type": "spotify-embed",
+      "disabled": false,
+      "settings": {
+        "heading": "LISTEN",
+        "spotify_url": "https://open.spotify.com/album/2noRn2Aes5aoNVsU6iWThc",
+        "height": "352",
+        "theme_dark": true
+      }
+    },
+    "merch_featured": {
+      "type": "merch-featured",
+      "disabled": false,
+      "settings": {
+        "heading": "THE DROP",
+        "products_to_show": 8,
+        "show_add_to_cart": true,
+        "show_view_all": true,
+        "view_all_label": "SHOP ALL MERCH",
+        "show_printful_credit": true
+      }
+    },
+    "tour_dates": {
+      "type": "tour-dates",
+      "disabled": false,
+      "settings": {
+        "heading": "RIOT TOUR 2026"
+      },
+      "blocks": {
+        "tour_date_1": {
+          "type": "tour_date",
+          "settings": {
+            "date": "Sep 12, 2026",
+            "city": "Los Angeles, CA",
+            "venue": "The Roxy",
+            "ticket_url": "https://example.com/tickets",
+            "sold_out": false
+          }
+        },
+        "tour_date_2": {
+          "type": "tour_date",
+          "settings": {
+            "date": "Sep 18, 2026",
+            "city": "New York, NY",
+            "venue": "Webster Hall",
+            "ticket_url": "https://example.com/tickets",
+            "sold_out": true
+          }
+        },
+        "tour_date_3": {
+          "type": "tour_date",
+          "settings": {
+            "date": "Sep 24, 2026",
+            "city": "Chicago, IL",
+            "venue": "Metro",
+            "ticket_url": "https://example.com/tickets",
+            "sold_out": false
+          }
+        },
+        "tour_date_4": {
+          "type": "tour_date",
+          "settings": {
+            "date": "Oct 02, 2026",
+            "city": "London, UK",
+            "venue": "Electric Ballroom",
+            "ticket_url": "https://example.com/tickets",
+            "sold_out": false
+          }
+        },
+        "tour_date_5": {
+          "type": "tour_date",
+          "settings": {
+            "date": "Oct 09, 2026",
+            "city": "Berlin, DE",
+            "venue": "SO36",
+            "ticket_url": "https://example.com/tickets",
+            "sold_out": false
+          }
+        }
+      },
+      "block_order": [
+        "tour_date_1",
+        "tour_date_2",
+        "tour_date_3",
+        "tour_date_4",
+        "tour_date_5"
+      ]
+    },
+    "newsletter_signup": {
+      "type": "newsletter-signup",
+      "disabled": false,
+      "settings": {
+        "heading": "JOIN THE RIOT",
+        "subheading": "DROPS, SHOWS, AND CHAOS STRAIGHT TO YOUR INBOX. NO SPAM, JUST NOISE.",
+        "streaming_label": "LISTEN",
+        "social_label": "FOLLOW"
+      }
+    }
+  },
+  "order": [
+    "musician_hero",
+    "riot_marquee",
+    "spotify_embed",
+    "merch_featured",
+    "tour_dates",
+    "newsletter_signup"
+  ]
+}

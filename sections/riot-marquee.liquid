@@ -1,0 +1,61 @@
+{%- comment -%}
+  Riffride Riot — Neon Marquee.
+  A loud, scrolling neon ticker bar. Styling/animation live in assets/riot.css
+  (.riot-marquee / .riot-marquee__track). The message text is repeated TWICE
+  inside the track so the -50% loop is seamless. Add a second line for a
+  stacked double-ticker.
+{%- endcomment -%}
+
+<div class="riot-marquee riot-reveal" role="marquee" aria-label="{{ section.settings.message | strip_html | escape }}">
+  {%- if section.settings.message != blank -%}
+    <div class="riot-marquee__track">
+      <span>{{ section.settings.message }}</span>
+      <span aria-hidden="true">{{ section.settings.message }}</span>
+    </div>
+  {%- endif -%}
+
+  {%- if section.settings.message_2 != blank -%}
+    <div class="riot-marquee__track">
+      <span>{{ section.settings.message_2 }}</span>
+      <span aria-hidden="true">{{ section.settings.message_2 }}</span>
+    </div>
+  {%- endif -%}
+
+  {%- if section.settings.message == blank and section.settings.message_2 == blank and request.design_mode -%}
+    <div class="riot-marquee__track">
+      <span>Add your marquee message in this section's settings</span>
+      <span aria-hidden="true">Add your marquee message in this section's settings</span>
+    </div>
+  {%- endif -%}
+</div>
+
+{%- schema -%}
+{
+  "name": "Riot marquee",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "message",
+      "label": "Marquee message",
+      "default": "NEW SINGLE OUT NOW ✶ WORLDWIDE SHIPPING ✶ TOUR 2026",
+      "info": "Scrolling neon ticker text. Separate phrases with a symbol like ✶ or •."
+    },
+    {
+      "type": "text",
+      "id": "message_2",
+      "label": "Second line (optional)",
+      "info": "Adds a second scrolling ticker below the first. Leave blank to hide."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Riot marquee",
+      "settings": {
+        "message": "NEW SINGLE OUT NOW ✶ WORLDWIDE SHIPPING ✶ TOUR 2026"
+      }
+    }
+  ]
+}
+{%- endschema -%}
