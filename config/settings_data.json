@@ -1,21 +1,8 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "current": {
     "artist_name": "Vespa Lane",
     "artist_genre": "Alternative",
     "riffride_skin": "atelier",
-    "brand_primary": "#ffffff",
-    "brand_accent": "#e8593c",
-    "brand_bg": "#FFFFFF",
-    "brand_secondary": "#666666",
     "type_header_font": "lexend_zetta_n4",
     "type_body_font": "karla_n4",
     "headings_uppercase": false,
@@ -207,10 +194,6 @@
   "presets": {
     "Default": {
       "logo_width": 90,
-      "brand_primary": "#ffffff",
-      "brand_accent": "#e8593c",
-      "brand_bg": "#0a0a0a",
-      "brand_secondary": "#666666",
       "layout_mode": "onepage",
       "headings_uppercase": false,
       "show_theme_credit": false,
