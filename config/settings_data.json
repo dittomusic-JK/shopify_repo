@@ -1,22 +1,9 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "current": {
     "artist_name": "VENOM HALO",
     "artist_press_photo": "shopify://shop_images/5bc234f5-f4ac-4629-b4d8-909df2b58c63.png",
     "artist_genre": "Alternative",
     "riffride_skin": "riot",
-    "brand_primary": "#ffffff",
-    "brand_accent": "#e8593c",
-    "brand_bg": "#0a0a0a",
-    "brand_secondary": "#666666",
     "type_header_font": "archivo_black_n4",
     "type_body_font": "anonymous_pro_n4",
     "headings_uppercase": true,
@@ -207,10 +194,6 @@
   "presets": {
     "Default": {
       "logo_width": 90,
-      "brand_primary": "#ffffff",
-      "brand_accent": "#e8593c",
-      "brand_bg": "#0a0a0a",
-      "brand_secondary": "#666666",
       "layout_mode": "onepage",
       "headings_uppercase": true,
       "show_theme_credit": false,

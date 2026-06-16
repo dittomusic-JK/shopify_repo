@@ -324,6 +324,15 @@
     {{ 'base.css' | asset_url | stylesheet_tag }}
     {{ 'musician-theme.css' | asset_url | stylesheet_tag }}
     {{ 'riffride-skins.css' | asset_url | stylesheet_tag }}
+    {%- comment -%} Custom colour overrides (Colors tab) — beat the skin via !important {%- endcomment -%}
+    <style>
+      body {
+        {%- if settings.brand_primary != blank %} --color-brand-primary: {{ settings.brand_primary }} !important;{% endif %}
+        {%- if settings.brand_accent != blank %} --color-brand-accent: {{ settings.brand_accent }} !important;{% endif %}
+        {%- if settings.brand_secondary != blank %} --color-brand-secondary: {{ settings.brand_secondary }} !important;{% endif %}
+        {%- if settings.brand_bg != blank %} --color-brand-bg: {{ settings.brand_bg }} !important; --brand-bg-0: {{ settings.brand_bg }} !important; --brand-bg-1: {{ settings.brand_bg }} !important; --brand-bg-2: {{ settings.brand_bg }} !important;{% endif %}
+      }
+    </style>
     {{ 'riot.css' | asset_url | stylesheet_tag }}
     <script src="{{ 'riot.js' | asset_url }}" defer="defer"></script>
     <link rel="stylesheet" href="{{ 'component-cart-items.css' | asset_url }}" media="print" onload="this.media='all'">
