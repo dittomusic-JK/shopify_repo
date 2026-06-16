@@ -3,10 +3,6 @@
   "presets": {
     "Default": {
       "logo_width": 90,
-      "brand_primary": "#ffffff",
-      "brand_accent": "#e8593c",
-      "brand_bg": "#0a0a0a",
-      "brand_secondary": "#666666",
       "layout_mode": "onepage",
       "headings_uppercase": false,
       "show_theme_credit": false,

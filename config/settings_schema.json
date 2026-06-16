@@ -146,39 +146,35 @@
       },
       {
         "type": "header",
-        "content": "Musician theme colors"
+        "content": "Custom colours (optional)"
       },
       {
         "type": "paragraph",
-        "content": "These colors are used for musician-specific sections and override Dawn's color schemes in custom sections."
+        "content": "Optional. Leave these blank to use the theme's built-in palette. Set any to override the text, highlight (accent), secondary, or background colour across the theme."
       },
       {
         "type": "color",
         "id": "brand_primary",
         "label": "Primary brand colour",
-        "default": "#ffffff",
-        "info": "Main text and primary UI elements"
+        "info": "Leave blank to use the theme's colour; set to override."
       },
       {
         "type": "color",
         "id": "brand_accent",
         "label": "Accent / highlight colour",
-        "default": "#e8593c",
-        "info": "CTAs, hover states, and badges"
+        "info": "Leave blank to use the theme's colour; set to override."
       },
       {
         "type": "color",
         "id": "brand_bg",
         "label": "Background colour",
-        "default": "#0a0a0a",
-        "info": "Main background colour (dark theme default)"
+        "info": "Leave blank to use the theme's colour; set to override."
       },
       {
         "type": "color",
         "id": "brand_secondary",
         "label": "Secondary colour",
-        "default": "#666666",
-        "info": "Secondary text and subtle UI elements"
+        "info": "Leave blank to use the theme's colour; set to override."
       }
     ]
   },
