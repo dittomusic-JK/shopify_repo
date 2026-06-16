@@ -65,8 +65,14 @@
         "id": "riffride_skin",
         "label": "Tone",
         "options": [
-          { "value": "riot", "label": "Riot — black + neon" },
-          { "value": "riot-paper", "label": "Riot Paper — white + neon" }
+          {
+            "value": "riot",
+            "label": "Riot — black + neon"
+          },
+          {
+            "value": "riot-paper",
+            "label": "Riot Paper — white + neon"
+          }
         ],
         "default": "riot"
       }
@@ -341,9 +347,18 @@
         "id": "riffride_merch_provider",
         "label": "Recommended POD provider",
         "options": [
-          { "value": "printful", "label": "Printful" },
-          { "value": "printify", "label": "Printify" },
-          { "value": "gelato", "label": "Gelato" }
+          {
+            "value": "printful",
+            "label": "Printful"
+          },
+          {
+            "value": "printify",
+            "label": "Printify"
+          },
+          {
+            "value": "gelato",
+            "label": "Gelato"
+          }
         ],
         "default": "printful",
         "info": "Shown in the setup guide as the zero-inventory merch option."
@@ -352,7 +367,8 @@
         "type": "url",
         "id": "riffride_merch_affiliate_url",
         "label": "POD affiliate / referral link",
-        "info": "Your affiliate link to the chosen POD provider's signup."
+        "info": "Your affiliate link to the chosen POD provider's signup.",
+        "default": "https://www.printful.com/a/5712245:0aca4da7a9719dac375172c1cc754cb2"
       },
       {
         "type": "header",
@@ -363,10 +379,22 @@
         "id": "riffride_smartlink_provider",
         "label": "Recommended smart-link provider",
         "options": [
-          { "value": "ditto", "label": "Ditto" },
-          { "value": "linkfire", "label": "Linkfire" },
-          { "value": "featurefm", "label": "Feature.fm" },
-          { "value": "none", "label": "None / let artist choose" }
+          {
+            "value": "ditto",
+            "label": "Ditto"
+          },
+          {
+            "value": "linkfire",
+            "label": "Linkfire"
+          },
+          {
+            "value": "featurefm",
+            "label": "Feature.fm"
+          },
+          {
+            "value": "none",
+            "label": "None / let artist choose"
+          }
         ],
         "default": "ditto",
         "info": "Default smart-link service recommended to the artist."
@@ -391,7 +419,8 @@
         "type": "url",
         "id": "riffride_shopify_referral_url",
         "label": "Shopify referral link",
-        "info": "Used only for 'Powered by' / share links. Main Shopify-signup attribution belongs on your marketing site, not here."
+        "info": "Used only for 'Powered by' / share links. Main Shopify-signup attribution belongs on your marketing site, not here.",
+        "default": "https://shopify.pxf.io/c/5452671/1061744/13624"
       }
     ]
   },

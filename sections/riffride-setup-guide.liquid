@@ -48,10 +48,12 @@
       <div class="riffride-step__num">1</div>
       <div>
         <h2 class="riffride-step__title">Add merch — no inventory, no upfront cost</h2>
-        <p class="riffride-step__body">Install {{ merch_provider }} and connect it to your store. Products are printed and shipped on demand, so you pay nothing until a fan buys. Add a few designs and they'll appear in your store automatically.</p>
-        {%- if settings.riffride_merch_affiliate_url != blank -%}
-          <a class="riffride-step__cta" href="{% render 'riffride-referral', url: settings.riffride_merch_affiliate_url, campaign: 'setup_merch' %}" target="_blank" rel="noopener sponsored">Install {{ merch_provider }} →</a>
-        {%- endif -%}
+        <p class="riffride-step__body">Install a print-on-demand app and connect it to your store. Products are printed and shipped on demand, so you pay nothing until a fan buys. We recommend Printful (easiest) — or pick whichever suits you.</p>
+        <a class="riffride-step__cta" href="{% render 'riffride-referral', url: 'https://www.printful.com/a/5712245:0aca4da7a9719dac375172c1cc754cb2', campaign: 'setup_printful' %}" target="_blank" rel="noopener sponsored">Install Printful →</a>
+        <p class="riffride-step__body" style="margin-top: 1rem; font-size: 0.85rem;">Prefer another?
+          <a href="{% render 'riffride-referral', url: 'https://try.printify.com/atg42obyjxuj', campaign: 'setup_printify' %}" target="_blank" rel="noopener sponsored" style="color: var(--color-brand-accent);">Printify</a> ·
+          <a href="{% render 'riffride-referral', url: 'https://try.gelato.com/or8oijoe11gn', campaign: 'setup_gelato' %}" target="_blank" rel="noopener sponsored" style="color: var(--color-brand-accent);">Gelato</a>
+        </p>
       </div>
     </div>
 
