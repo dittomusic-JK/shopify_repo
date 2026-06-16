@@ -138,38 +138,6 @@
         "subheading": "Wandering Home — Live at Union Chapel"
       }
     },
-    "press_epk": {
-      "type": "press-epk",
-      "disabled": false,
-      "blocks": {
-        "press_quote_1": {
-          "type": "press_quote",
-          "settings": {
-            "quote_text": "Speck writes like he has nothing left to lose and everything to say.",
-            "publication_name": "No Depression"
-          }
-        },
-        "press_quote_2": {
-          "type": "press_quote",
-          "settings": {
-            "quote_text": "One of the most compelling voices in American folk music right now.",
-            "publication_name": "The Guardian"
-          }
-        },
-        "press_quote_3": {
-          "type": "press_quote",
-          "settings": {
-            "quote_text": "Wandering Home is a masterpiece of quiet intensity.",
-            "publication_name": "Uncut Magazine"
-          }
-        }
-      },
-      "block_order": [
-        "press_quote_1",
-        "press_quote_2",
-        "press_quote_3"
-      ]
-    },
     "newsletter_signup": {
       "type": "newsletter-signup",
       "disabled": false,
@@ -238,7 +206,6 @@
     "tour_dates",
     "merch_featured",
     "video_embed",
-    "press_epk",
     "newsletter_signup",
     "discography_grid"
   ]
