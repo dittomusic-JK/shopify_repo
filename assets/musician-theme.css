@@ -1,21 +1,22 @@
 /* Riffride Theme: Global Typography System */
 
 :root {
-  --color-brand-primary: #ffffff;
-  --color-brand-accent: #e8593c;
-  --color-brand-bg: #0a0a0a;
-  --color-brand-secondary: #666666;
+  --color-brand-primary: #111111;
+  --color-brand-accent: #111111;
+  --color-brand-bg: #ffffff;
+  --color-brand-secondary: #8a877f;
 
-  /* Alternating section background steps (skins override these) */
-  --brand-bg-0: #000000;
-  --brand-bg-1: #0a0a0a;
-  --brand-bg-2: #111111;
+  /* Alternating section background steps (skins override these). Atelier is a
+     LIGHT theme, so the defaults are light too — correct even if no skin matches. */
+  --brand-bg-0: #ffffff;
+  --brand-bg-1: #f7f6f3;
+  --brand-bg-2: #efede8;
 
   /* Text/icon colour to use on top of the accent colour (skins override) */
   --color-brand-on-accent: #ffffff;
 
-  /* Hairline/divider colour — light on dark skins, dark on light skins */
-  --brand-hairline: rgba(255, 255, 255, 0.12);
+  /* Hairline/divider colour */
+  --brand-hairline: rgba(0, 0, 0, 0.13);
   --font-heading: var(--font-heading-family, sans-serif);
   --font-body: var(--font-body-family, sans-serif);
 
