@@ -45,7 +45,7 @@
       "type": "merch-featured",
       "settings": {
         "heading": "THE DROP",
-        "merch_collection": "frontpage",
+        "merch_collection": "venom-halo",
         "products_to_show": 8,
         "show_add_to_cart": true,
         "show_view_all": true,

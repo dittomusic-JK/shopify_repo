@@ -9,8 +9,8 @@
  */
 {
   "current": {
-    "artist_name": "Static Coast",
-    "artist_press_photo": "shopify://shop_images/01c7e527-df65-4d4a-997d-0b07752ca72c.png",
+    "artist_name": "VENOM HALO",
+    "artist_press_photo": "shopify://shop_images/5bc234f5-f4ac-4629-b4d8-909df2b58c63.png",
     "artist_genre": "Alternative",
     "riffride_skin": "riot",
     "brand_primary": "#ffffff",
@@ -18,7 +18,7 @@
     "brand_bg": "#0a0a0a",
     "brand_secondary": "#666666",
     "type_header_font": "archivo_black_n4",
-    "type_body_font": "assistant_n4",
+    "type_body_font": "anonymous_pro_n4",
     "headings_uppercase": true,
     "layout_mode": "onepage",
     "show_theme_credit": false,
