@@ -20,7 +20,7 @@
     "type_body_font": "karla_n4",
     "headings_uppercase": false,
     "layout_mode": "onepage",
-    "hide_header_on_hero": true,
+    "hide_header_on_hero": false,
     "show_theme_credit": false,
     "logo_width": 90,
     "heading_scale": 150,
