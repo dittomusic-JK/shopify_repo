@@ -1,21 +1,21 @@
 /* Riffride Theme: Global Typography System */
 
 :root {
-  --color-brand-primary: #ffffff;
-  --color-brand-accent: #e8593c;
-  --color-brand-bg: #0a0a0a;
-  --color-brand-secondary: #666666;
+  --color-brand-primary: #43392e;
+  --color-brand-accent: #c0613a;
+  --color-brand-bg: #f6f0e6;
+  --color-brand-secondary: #8a7e6b;
 
-  /* Alternating section background steps (skins override these) */
-  --brand-bg-0: #000000;
-  --brand-bg-1: #0a0a0a;
-  --brand-bg-2: #111111;
+  /* Wander is a warm LIGHT theme — defaults are cream so it's correct even if no skin matches. */
+  --brand-bg-0: #f6f0e6;
+  --brand-bg-1: #f1e9db;
+  --brand-bg-2: #ebe2d0;
 
   /* Text/icon colour to use on top of the accent colour (skins override) */
-  --color-brand-on-accent: #ffffff;
+  --color-brand-on-accent: #f6f0e6;
 
-  /* Hairline/divider colour — light on dark skins, dark on light skins */
-  --brand-hairline: rgba(255, 255, 255, 0.12);
+  /* Hairline/divider colour */
+  --brand-hairline: rgba(67, 57, 46, 0.18);
   --font-heading: var(--font-heading-family, sans-serif);
   --font-body: var(--font-body-family, sans-serif);
 
