@@ -158,16 +158,8 @@
     </a>
 
     <nav class="header__nav" aria-label="Primary navigation">
-      {%- if settings.layout_mode == 'onepage' -%}
-        <ul class="header__nav-list">
-          <li><a href="#music" class="header__nav-link">Music</a></li>
-          <li><a href="#tour" class="header__nav-link">Tour</a></li>
-          <li><a href="#merch" class="header__nav-link">Merch</a></li>
-          <li><a href="#video" class="header__nav-link">Videos</a></li>
-          <li><a href="#press" class="header__nav-link">Press</a></li>
-          <li><a href="#contact" class="header__nav-link">Contact</a></li>
-        </ul>
-      {%- elsif section.settings.menu != blank -%}
+      {%- comment -%} Frame is a splash theme — always multi-page; nav uses the store menu {%- endcomment -%}
+      {%- if section.settings.menu != blank -%}
         <ul class="header__nav-list">
           {%- for link in section.settings.menu.links -%}
             <li>
@@ -246,14 +238,7 @@
       </svg>
     </button>
     <nav class="header__mobile-nav" aria-label="Mobile navigation">
-      {%- if settings.layout_mode == 'onepage' -%}
-        <a href="#music" class="header__mobile-nav-link">Music</a>
-        <a href="#tour" class="header__mobile-nav-link">Tour</a>
-        <a href="#merch" class="header__mobile-nav-link">Merch</a>
-        <a href="#video" class="header__mobile-nav-link">Videos</a>
-        <a href="#press" class="header__mobile-nav-link">Press</a>
-        <a href="#contact" class="header__mobile-nav-link">Contact</a>
-      {%- elsif section.settings.menu != blank -%}
+      {%- if section.settings.menu != blank -%}
         {%- for link in section.settings.menu.links -%}
           <a href="{{ link.url }}" class="header__mobile-nav-link{% if link.active %} active{% endif %}">
             {{ link.title }}
@@ -437,7 +422,7 @@
 
 <script>
   window.musicianTheme = window.musicianTheme || {};
-  window.musicianTheme.layoutMode = '{{ settings.layout_mode }}';
+  window.musicianTheme.layoutMode = 'multipage';
 </script>
 
 {%- if settings.cart_type == "notification" -%}

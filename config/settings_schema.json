@@ -208,23 +208,6 @@
     "name": "Layout",
     "settings": [
       {
-        "type": "select",
-        "id": "layout_mode",
-        "label": "Site layout mode",
-        "options": [
-          {
-            "value": "onepage",
-            "label": "One-page (all sections on homepage)"
-          },
-          {
-            "value": "multipage",
-            "label": "Multi-page (traditional navigation)"
-          }
-        ],
-        "default": "onepage",
-        "info": "Choose between a single-page scrolling experience or traditional multi-page navigation"
-      },
-      {
         "type": "checkbox",
         "id": "hide_header_on_hero",
         "label": "Hide navigation entirely",
