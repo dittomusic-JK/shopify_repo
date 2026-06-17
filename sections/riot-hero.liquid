@@ -30,7 +30,7 @@
     <div class="riot-hero__media" aria-hidden="true">
       {%- if section.settings.background_video != blank -%}
         <video autoplay muted loop playsinline poster="{{ section.settings.background_image | image_url: width: 2400 }}">
-          <source src="{{ section.settings.background_video | file_url }}" type="video/mp4">
+          {%- for vsrc in section.settings.background_video.sources -%}{%- if vsrc.mime_type == "video/mp4" -%}<source src="{{ vsrc.url }}" type="{{ vsrc.mime_type }}">{%- endif -%}{%- endfor -%}
         </video>
       {%- elsif section.settings.background_image != blank -%}
         <img src="{{ section.settings.background_image | image_url: width: 2400 }}" alt="" loading="eager" fetchpriority="high" width="{{ section.settings.background_image.width }}" height="{{ section.settings.background_image.height }}">
