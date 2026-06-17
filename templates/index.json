@@ -1,14 +1,25 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "hero": {
       "type": "musician-hero",
       "settings": {
-        "headline": "ATLAS",
-        "subheadline": "NEW ALBUM — OUT NOW",
-        "cta_label": "LISTEN",
-        "cta_url": "#listen",
+        "background_image": "shopify://shop_images/ab076daf-783a-4850-a834-beaaae4c0183.png",
         "overlay_opacity": 45,
-        "show_scroll_indicator": false
+        "headline": "US TOUR",
+        "subheadline": "PRE SALE ON NOW",
+        "cta_label": "BUY TICKETS",
+        "cta_url": "#listen",
+        "show_scroll_indicator": false,
+        "scroll_indicator_text": "Scroll"
       }
     },
     "spotify": {
@@ -24,30 +35,137 @@
       "type": "block-merch-slider",
       "settings": {
         "heading": "MERCH",
-        "collection": "frontpage",
+        "collection": "saint-laurent",
         "products_to_show": 10,
         "autoplay": true
       }
     },
     "discography": {
       "type": "discography-grid",
-      "settings": { "heading": "DISCOGRAPHY" },
       "blocks": {
-        "a1": { "type": "album", "settings": { "album_title": "ATLAS", "release_year": "2026", "release_type": "Album", "smart_link_url": "https://open.spotify.com/album/2noRn2Aes5aoNVsU6iWThc" } },
-        "a2": { "type": "album", "settings": { "album_title": "NIGHTS", "release_year": "2024", "release_type": "Album", "smart_link_url": "https://open.spotify.com/album/2noRn2Aes5aoNVsU6iWThc" } },
-        "a3": { "type": "album", "settings": { "album_title": "RUNNER", "release_year": "2022", "release_type": "EP", "smart_link_url": "https://open.spotify.com/album/2noRn2Aes5aoNVsU6iWThc" } },
-        "a4": { "type": "album", "settings": { "album_title": "FIRST LIGHT", "release_year": "2020", "release_type": "Single", "smart_link_url": "https://open.spotify.com/album/2noRn2Aes5aoNVsU6iWThc" } }
+        "a1": {
+          "type": "album",
+          "settings": {
+            "album_artwork": "shopify://shop_images/14cda3b7-ecf9-4d7e-ac5f-d2f4c585a74f.png",
+            "album_title": "OVER SEAS",
+            "release_year": "2026",
+            "release_type": "EP",
+            "smart_link_url": "https://open.spotify.com/album/2noRn2Aes5aoNVsU6iWThc",
+            "spotify_url": "",
+            "apple_music_url": "",
+            "bandcamp_url": ""
+          }
+        },
+        "a2": {
+          "type": "album",
+          "settings": {
+            "album_artwork": "shopify://shop_images/a4806bc5-274b-41e4-ab11-8b3440118768.png",
+            "album_title": "MIDNIGHT CURRENCY",
+            "release_year": "2025",
+            "release_type": "Album",
+            "smart_link_url": "https://open.spotify.com/album/2noRn2Aes5aoNVsU6iWThc",
+            "spotify_url": "",
+            "apple_music_url": "",
+            "bandcamp_url": ""
+          }
+        },
+        "a3": {
+          "type": "album",
+          "settings": {
+            "album_artwork": "shopify://shop_images/40c3960c-3d07-464d-9496-cd5ea1e953ef.png",
+            "album_title": "OLD BOTTLES",
+            "release_year": "2025",
+            "release_type": "Single",
+            "smart_link_url": "https://open.spotify.com/album/2noRn2Aes5aoNVsU6iWThc",
+            "spotify_url": "",
+            "apple_music_url": "",
+            "bandcamp_url": ""
+          }
+        },
+        "a4": {
+          "type": "album",
+          "settings": {
+            "album_artwork": "shopify://shop_images/317ba7ec-bee4-482a-8a14-f1526d39a924.png",
+            "album_title": "NO SLEEP",
+            "release_year": "2025",
+            "release_type": "Single",
+            "smart_link_url": "https://open.spotify.com/album/2noRn2Aes5aoNVsU6iWThc",
+            "spotify_url": "",
+            "apple_music_url": "",
+            "bandcamp_url": ""
+          }
+        }
       },
-      "block_order": ["a1", "a2", "a3", "a4"]
+      "block_order": [
+        "a1",
+        "a2",
+        "a3",
+        "a4"
+      ],
+      "settings": {
+        "heading": "DISCOGRAPHY",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
     },
     "tour": {
       "type": "tour-dates",
-      "settings": { "heading": "TOUR" }
+      "blocks": {
+        "tour_date_C8WEiD": {
+          "type": "tour_date",
+          "settings": {
+            "date": "Jan 15, 2026",
+            "city": "Los Angeles, CA",
+            "venue": "The Wiltern",
+            "ticket_url": "",
+            "sold_out": false
+          }
+        },
+        "tour_date_qW7NgN": {
+          "type": "tour_date",
+          "settings": {
+            "date": "Jan 16, 2026",
+            "city": "Los Angeles, CA",
+            "venue": "The Wiltern",
+            "ticket_url": "",
+            "sold_out": false
+          }
+        }
+      },
+      "block_order": [
+        "tour_date_C8WEiD",
+        "tour_date_qW7NgN"
+      ],
+      "settings": {
+        "heading": "TOUR",
+        "use_bandsintown": false,
+        "bandsintown_limit": 10,
+        "text_color": "#ffffff",
+        "link_color": "#e8593c",
+        "separator_color": "#333333",
+        "empty_state_text": "No upcoming shows",
+        "newsletter_cta_label": "Join mailing list",
+        "newsletter_cta_url": ""
+      }
     },
     "news": {
       "type": "newsletter-signup",
-      "settings": { "heading": "MAILING LIST" }
+      "settings": {
+        "heading": "MAILING LIST",
+        "subheading": "Get updates on new releases, tour dates, and exclusive content",
+        "klaviyo_embed": "",
+        "mailchimp_embed": "",
+        "streaming_label": "Listen",
+        "social_label": "Follow"
+      }
     }
   },
-  "order": ["hero", "spotify", "merch_slider", "discography", "tour", "news"]
+  "order": [
+    "hero",
+    "spotify",
+    "merch_slider",
+    "discography",
+    "tour",
+    "news"
+  ]
 }
