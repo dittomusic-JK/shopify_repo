@@ -32,6 +32,13 @@ body[data-skin^="frame"] .header-wrapper.header--musician.header--transparent:no
   color: var(--color-brand-accent) !important;
 }
 
+/* --- Full-bleed splash: video runs to the very top, header floats over it ---
+   On normal pages the fixed header reserves 70px via body padding-top so content
+   clears it. The homepage is just the splash, so we drop that reservation there:
+   the video starts at y=0 and the transparent header overlaps it (no box at top). */
+body[data-skin^="frame"].template-index { padding-top: 0 !important; }
+body[data-skin^="frame"].template-index .frame-splash { min-height: 100vh; }
+
 /* Grungy grain on inner pages (the div is only rendered off the index splash) */
 .frame-grain {
   position: fixed;
