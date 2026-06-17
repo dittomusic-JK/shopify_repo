@@ -146,7 +146,7 @@
         playsinline
         {% if section.settings.background_image != blank %}poster="{{ section.settings.background_image | image_url: width: 2400 }}"{% endif %}
       >
-        <source src="{{ section.settings.background_video | file_url }}" type="video/mp4">
+        {%- for vsrc in section.settings.background_video.sources -%}{%- if vsrc.mime_type == "video/mp4" -%}<source src="{{ vsrc.url }}" type="{{ vsrc.mime_type }}">{%- endif -%}{%- endfor -%}
       </video>
     </div>
   {%- elsif section.settings.background_image != blank -%}
