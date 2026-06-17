@@ -9,8 +9,9 @@
  */
 {
   "current": {
-    "artist_name": "Artist Name",
-    "artist_genre": "Alternative",
+    "artist_name": "Saint Laurent",
+    "artist_press_photo": "shopify://shop_images/55abbd56-6e45-4fb1-93a4-cf30184f12f2.png",
+    "artist_genre": "Rap/Hip-hop",
     "riffride_skin": "block",
     "brand_accent": "#EBC847",
     "type_header_font": "anton_n4",
