@@ -1,45 +1,22 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
-    "latest_release": {
-      "type": "latest-release",
-      "blocks": {
-        "track_1": {
-          "type": "track",
-          "settings": {
-            "track_name": "Track One",
-            "track_duration": "3:24"
-          }
-        },
-        "track_2": {
-          "type": "track",
-          "settings": {
-            "track_name": "Track Two",
-            "track_duration": "4:12"
-          }
-        },
-        "track_3": {
-          "type": "track",
-          "settings": {
-            "track_name": "Track Three",
-            "track_duration": "3:58"
-          }
-        }
-      },
-      "block_order": [
-        "track_1",
-        "track_2",
-        "track_3"
-      ],
+    "spotify_embed_NanQw6": {
+      "type": "spotify-embed",
+      "name": "Spotify Embed",
       "settings": {
-        "album_artwork": "",
-        "release_title": "Latest Album",
-        "release_type": "Album",
-        "description": "Available now on all streaming platforms.",
-        "linkfire_url": "",
-        "featurefm_embed": "",
-        "spotify_url": "",
-        "cta_label": "Listen now",
-        "cta_url": ""
+        "heading": "Listen",
+        "spotify_url": "https://open.spotify.com/album/36E5LAM5D3AKnVx8s5dyc6?si=UElZbUaKQOqTVbMHY4fdog",
+        "height": "352",
+        "theme_dark": true
       }
     },
     "discography_grid": {
@@ -48,7 +25,6 @@
         "album_1": {
           "type": "album",
           "settings": {
-            "album_artwork": "",
             "album_title": "Album Title",
             "release_year": "2024",
             "release_type": "Album",
@@ -61,7 +37,6 @@
         "album_2": {
           "type": "album",
           "settings": {
-            "album_artwork": "",
             "album_title": "EP Title",
             "release_year": "2023",
             "release_type": "EP",
@@ -74,23 +49,9 @@
         "album_3": {
           "type": "album",
           "settings": {
-            "album_artwork": "",
             "album_title": "Single Title",
             "release_year": "2023",
             "release_type": "Single",
-            "smart_link_url": "",
-            "spotify_url": "",
-            "apple_music_url": "",
-            "bandcamp_url": ""
-          }
-        },
-        "album_4": {
-          "type": "album",
-          "settings": {
-            "album_artwork": "",
-            "album_title": "Live Album",
-            "release_year": "2022",
-            "release_type": "Live",
             "smart_link_url": "",
             "spotify_url": "",
             "apple_music_url": "",
@@ -101,18 +62,17 @@
       "block_order": [
         "album_1",
         "album_2",
-        "album_3",
-        "album_4"
+        "album_3"
       ],
       "settings": {
-        "heading": "Full Discography",
+        "heading": "Releases",
         "padding_top": 80,
         "padding_bottom": 80
       }
     }
   },
   "order": [
-    "latest_release",
+    "spotify_embed_NanQw6",
     "discography_grid"
   ]
 }
