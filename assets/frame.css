@@ -1,25 +1,46 @@
-/* Riffride Frame — minimal video-splash chrome.
-   Header becomes: logo top-left + burger top-right (inline nav hidden, burger
-   always shown), transparent over the splash. Nav lives in the mobile drawer. */
+/* Riffride Frame — minimal video-splash chrome + inner-page grain.
+   Header: logo top-left + burger top-right (inline nav hidden, burger always on,
+   nav in the mobile drawer). Chrome uses the Accent (highlight) colour. */
 
-body[data-skin="frame"] {
+body[data-skin^="frame"] {
   --font-heading: "Oswald", sans-serif;
   --font-heading-family: "Oswald", sans-serif;
 }
 
-/* Logo left, burger right; hide the inline nav + header socials on all sizes */
-body[data-skin="frame"] .header__nav { display: none !important; }
-body[data-skin="frame"] .header__streaming { display: none !important; }
-body[data-skin="frame"] .header__mobile-toggle { display: inline-flex !important; }
-body[data-skin="frame"] .header__musician-inner {
+/* Logo left, burger right; hide inline nav + header socials */
+body[data-skin^="frame"] .header__nav { display: none !important; }
+body[data-skin^="frame"] .header__streaming { display: none !important; }
+body[data-skin^="frame"] .header__mobile-toggle { display: inline-flex !important; }
+body[data-skin^="frame"] .header__musician-inner {
   display: flex !important;
   align-items: center;
   justify-content: space-between;
   width: 100%;
 }
-body[data-skin="frame"] .header__artist-name {
+body[data-skin^="frame"] .header__artist-name {
   font-family: "Oswald", sans-serif;
   font-weight: 700;
   letter-spacing: 0.06em;
   font-size: 1.2rem;
 }
+
+/* Chrome uses the highlight/accent colour (beats the generic transparent-header fix) */
+body[data-skin^="frame"] .header__artist-name,
+body[data-skin^="frame"] .header__mobile-toggle,
+body[data-skin^="frame"] .header-wrapper.header--musician.header--transparent:not(.header--scrolled) .header__artist-name,
+body[data-skin^="frame"] .header-wrapper.header--musician.header--transparent:not(.header--scrolled) .header__mobile-toggle {
+  color: var(--color-brand-accent) !important;
+}
+
+/* Grungy grain on inner pages (the div is only rendered off the index splash) */
+.frame-grain {
+  position: fixed;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 160px 160px;
+}
+body[data-skin="frame"] .frame-grain { mix-blend-mode: screen; opacity: 0.08; }
+body[data-skin="frame-light"] .frame-grain { mix-blend-mode: multiply; opacity: 0.10; }
+@media (prefers-reduced-motion: reduce) { .frame-grain { opacity: 0.06; } }

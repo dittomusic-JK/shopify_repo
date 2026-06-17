@@ -58,16 +58,20 @@
     "settings": [
       {
         "type": "paragraph",
-        "content": "Frame is a video-first splash theme: full-screen background video, a centred artwork link, logo top-left, burger top-right and socials bottom-centre."
+        "content": "Frame is a video-first splash theme. Choose a black or white background; the logo, burger and social icons use the Accent (highlight) colour — set it in Colors → Custom colours."
       },
       {
         "type": "select",
         "id": "riffride_skin",
-        "label": "Tone",
+        "label": "Background",
         "options": [
           {
             "value": "frame",
-            "label": "Frame — dark"
+            "label": "Black"
+          },
+          {
+            "value": "frame-light",
+            "label": "White"
           }
         ],
         "default": "frame"
