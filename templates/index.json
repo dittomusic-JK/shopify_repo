@@ -1,23 +1,29 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "musician_hero": {
       "type": "musician-hero",
-      "disabled": false,
       "settings": {
+        "background_image": "shopify://shop_images/DSC00613.jpg",
+        "overlay_opacity": 50,
         "headline": "Leonard Speck",
         "subheadline": "Wandering Home — New Album",
         "cta_label": "Listen Now",
-        "overlay_opacity": 50
+        "cta_url": "",
+        "show_scroll_indicator": true,
+        "scroll_indicator_text": "Scroll"
       }
     },
     "latest_release": {
       "type": "latest-release",
-      "disabled": false,
-      "settings": {
-        "release_title": "Wandering Home",
-        "release_type": "album",
-        "description": "A deeply personal collection of ten songs written across three years of travel. Recorded live to tape in a farmhouse in Vermont. Raw, honest, and quietly devastating."
-      },
       "blocks": {
         "track_1": {
           "type": "track",
@@ -61,11 +67,19 @@
         "track_3",
         "track_4",
         "track_5"
-      ]
+      ],
+      "settings": {
+        "release_title": "Wandering Home",
+        "release_type": "album",
+        "description": "A deeply personal collection of ten songs written across three years of travel. Recorded live to tape in a farmhouse in Vermont. Raw, honest, and quietly devastating.",
+        "smart_link_url": "",
+        "spotify_url": "",
+        "cta_label": "Listen now",
+        "cta_url": ""
+      }
     },
     "tour_dates": {
       "type": "tour-dates",
-      "disabled": false,
       "blocks": {
         "tour_date_1": {
           "type": "tour_date",
@@ -124,38 +138,66 @@
         "tour_date_3",
         "tour_date_4",
         "tour_date_5"
-      ]
+      ],
+      "settings": {
+        "heading": "Tour dates",
+        "use_bandsintown": false,
+        "bandsintown_limit": 10,
+        "text_color": "#ffffff",
+        "link_color": "#e8593c",
+        "separator_color": "#333333",
+        "empty_state_text": "No upcoming shows",
+        "newsletter_cta_label": "Join mailing list",
+        "newsletter_cta_url": ""
+      }
     },
     "merch_featured": {
       "type": "merch-featured",
-      "disabled": false
+      "settings": {
+        "heading": "Merch",
+        "merch_collection": "frontpage",
+        "products_to_show": 8,
+        "show_add_to_cart": true,
+        "show_view_all": true,
+        "view_all_label": "Shop all merch",
+        "show_printful_credit": true,
+        "empty_state_text": "Select a collection to display products"
+      }
     },
     "video_embed": {
       "type": "video-embed",
-      "disabled": false,
       "settings": {
         "heading": "Watch",
-        "subheading": "Wandering Home — Live at Union Chapel"
+        "subheading": "Wandering Home — Live at Union Chapel",
+        "video_url": "",
+        "second_video_label": "Live performance",
+        "second_video_url": ""
       }
     },
     "newsletter_signup": {
       "type": "newsletter-signup",
-      "disabled": false,
       "settings": {
         "heading": "Stay in Touch",
-        "subheading": "New songs, tour dates, and stories from the road. No spam, ever."
+        "subheading": "New songs, tour dates, and stories from the road. No spam, ever.",
+        "klaviyo_embed": "",
+        "mailchimp_embed": "",
+        "streaming_label": "Listen",
+        "social_label": "Follow"
       }
     },
     "discography_grid": {
       "type": "discography-grid",
-      "disabled": false,
       "blocks": {
         "album_1": {
           "type": "album",
           "settings": {
             "album_title": "Wandering Home",
             "release_year": "2026",
-            "release_type": "album"
+            "release_type": "album",
+            "smart_link_url": "",
+            "spotify_url": "",
+            "apple_music_url": "",
+            "bandcamp_url": ""
           }
         },
         "album_2": {
@@ -163,7 +205,11 @@
           "settings": {
             "album_title": "Ghost Roads",
             "release_year": "2023",
-            "release_type": "album"
+            "release_type": "album",
+            "smart_link_url": "",
+            "spotify_url": "",
+            "apple_music_url": "",
+            "bandcamp_url": ""
           }
         },
         "album_3": {
@@ -171,7 +217,11 @@
           "settings": {
             "album_title": "Ember",
             "release_year": "2021",
-            "release_type": "ep"
+            "release_type": "ep",
+            "smart_link_url": "",
+            "spotify_url": "",
+            "apple_music_url": "",
+            "bandcamp_url": ""
           }
         },
         "album_4": {
@@ -179,7 +229,11 @@
           "settings": {
             "album_title": "Letters Never Sent",
             "release_year": "2019",
-            "release_type": "album"
+            "release_type": "album",
+            "smart_link_url": "",
+            "spotify_url": "",
+            "apple_music_url": "",
+            "bandcamp_url": ""
           }
         },
         "album_5": {
@@ -187,7 +241,11 @@
           "settings": {
             "album_title": "First Light",
             "release_year": "2017",
-            "release_type": "single"
+            "release_type": "single",
+            "smart_link_url": "",
+            "spotify_url": "",
+            "apple_music_url": "",
+            "bandcamp_url": ""
           }
         }
       },
@@ -197,7 +255,12 @@
         "album_3",
         "album_4",
         "album_5"
-      ]
+      ],
+      "settings": {
+        "heading": "Discography",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
     }
   },
   "order": [
