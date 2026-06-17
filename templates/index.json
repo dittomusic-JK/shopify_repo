@@ -1,13 +1,25 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "splash": {
       "type": "frame-splash",
       "settings": {
-        "overlay_opacity": 35,
-        "caption": "New single — Listen",
-        "artwork_link": "https://open.spotify.com/album/2noRn2Aes5aoNVsU6iWThc"
+        "background_video": "shopify://files/videos/weird_video.mp4",
+        "overlay_opacity": 25,
+        "artwork_link": "https://open.spotify.com/album/2noRn2Aes5aoNVsU6iWThc",
+        "caption": "New single — Listen"
       }
     }
   },
-  "order": ["splash"]
+  "order": [
+    "splash"
+  ]
 }
