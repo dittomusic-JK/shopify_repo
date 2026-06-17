@@ -1,7 +1,7 @@
-/* Riffride Block — identity: chunky condensed Anton headings (hardwired) +
+/* Riffride Block — chunky condensed Anton type, centred accent headings,
    centred 3-part header (menu left · logo centre · socials right). */
 
-/* --- Chunky condensed display type --- */
+/* --- Anton everywhere it's display type: headings, nav, logo --- */
 body[data-skin^="block"] {
   --font-heading: "Anton", "Oswald", sans-serif;
   --font-heading-family: "Anton", "Oswald", sans-serif;
@@ -14,11 +14,40 @@ body[data-skin^="block"] .musician-hero__headline,
 body[data-skin^="block"] .merch-featured__heading,
 body[data-skin^="block"] .merch-card__title,
 body[data-skin^="block"] .tour-dates__heading,
-body[data-skin^="block"] .header__artist-name {
+body[data-skin^="block"] .discography-grid__heading,
+body[data-skin^="block"] .latest-release__title,
+body[data-skin^="block"] .newsletter-signup__heading,
+body[data-skin^="block"] .header__artist-name,
+body[data-skin^="block"] .header__nav-link {
   font-family: "Anton", sans-serif !important;
   text-transform: uppercase;
   letter-spacing: 0.01em;
-  line-height: 0.92;
+  line-height: 0.95;
+}
+body[data-skin^="block"] .header__nav-link { font-size: 1rem; font-weight: 400; }
+
+/* --- Centre all section headings + colour them with the highlight (accent) --- */
+body[data-skin^="block"] h1,
+body[data-skin^="block"] h2,
+body[data-skin^="block"] .riffride-heading,
+body[data-skin^="block"] .musician-hero__headline,
+body[data-skin^="block"] .merch-featured__heading,
+body[data-skin^="block"] .discography-grid__heading,
+body[data-skin^="block"] .tour-dates__heading,
+body[data-skin^="block"] .latest-release__title,
+body[data-skin^="block"] .newsletter-signup__heading,
+body[data-skin^="block"] .block-slider__heading {
+  text-align: center !important;
+  color: var(--color-brand-accent) !important;
+}
+/* Centre the little accent line that sits above section headings */
+body[data-skin^="block"] .merch-featured__heading::before,
+body[data-skin^="block"] .discography-grid__heading::before,
+body[data-skin^="block"] .tour-dates__heading::before,
+body[data-skin^="block"] .riffride-heading::before,
+body[data-skin^="block"] .newsletter-signup__heading::before {
+  left: 50% !important;
+  transform: translateX(-50%) !important;
 }
 
 /* --- Centred 3-part header: menu (left) · logo (centre) · socials (right) --- */
@@ -31,7 +60,9 @@ body[data-skin^="block"] .header__musician-inner {
 body[data-skin^="block"] .header__nav { order: 1; flex: 1 1 0; }
 body[data-skin^="block"] .header__nav-list { justify-content: flex-start; }
 body[data-skin^="block"] .header__artist-name { order: 2; flex: 0 0 auto; text-align: center; font-size: 1.6rem; }
-body[data-skin^="block"] .header__streaming { order: 3; flex: 1 1 0; display: flex; justify-content: flex-end; }
+body[data-skin^="block"] .header__streaming { order: 3; flex: 1 1 0; display: flex !important; justify-content: flex-end; gap: 0.75rem; }
+body[data-skin^="block"] .header__streaming-link { color: var(--color-brand-primary); }
+body[data-skin^="block"] .header__streaming-link svg { width: 20px; height: 20px; }
 
 @media (max-width: 749px) {
   body[data-skin^="block"] .header__nav { flex: 0 0 auto; }

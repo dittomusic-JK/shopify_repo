@@ -1,25 +1,14 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
     "hero": {
       "type": "musician-hero",
       "settings": {
-        "background_image": "shopify://shop_images/55abbd56-6e45-4fb1-93a4-cf30184f12f2.png",
-        "overlay_opacity": 45,
         "headline": "ATLAS",
         "subheadline": "NEW ALBUM — OUT NOW",
         "cta_label": "LISTEN",
         "cta_url": "#listen",
-        "show_scroll_indicator": false,
-        "scroll_indicator_text": "Scroll"
+        "overlay_opacity": 45,
+        "show_scroll_indicator": false
       }
     },
     "spotify": {
@@ -31,76 +20,34 @@
         "theme_dark": true
       }
     },
-    "merch": {
-      "type": "merch-featured",
+    "merch_slider": {
+      "type": "block-merch-slider",
       "settings": {
         "heading": "SHOP",
-        "merch_collection": "frontpage",
-        "products_to_show": 8,
-        "show_add_to_cart": true,
-        "show_view_all": true,
-        "view_all_label": "VIEW ALL",
-        "show_printful_credit": true,
-        "empty_state_text": "Select a collection to display products"
+        "collection": "frontpage",
+        "products_to_show": 10,
+        "autoplay": true
       }
+    },
+    "discography": {
+      "type": "discography-grid",
+      "settings": { "heading": "DISCOGRAPHY" },
+      "blocks": {
+        "a1": { "type": "album", "settings": { "album_title": "ATLAS", "release_year": "2026", "release_type": "Album", "smart_link_url": "https://open.spotify.com/album/2noRn2Aes5aoNVsU6iWThc" } },
+        "a2": { "type": "album", "settings": { "album_title": "NIGHTS", "release_year": "2024", "release_type": "Album", "smart_link_url": "https://open.spotify.com/album/2noRn2Aes5aoNVsU6iWThc" } },
+        "a3": { "type": "album", "settings": { "album_title": "RUNNER", "release_year": "2022", "release_type": "EP", "smart_link_url": "https://open.spotify.com/album/2noRn2Aes5aoNVsU6iWThc" } },
+        "a4": { "type": "album", "settings": { "album_title": "FIRST LIGHT", "release_year": "2020", "release_type": "Single", "smart_link_url": "https://open.spotify.com/album/2noRn2Aes5aoNVsU6iWThc" } }
+      },
+      "block_order": ["a1", "a2", "a3", "a4"]
     },
     "tour": {
       "type": "tour-dates",
-      "blocks": {
-        "tour_date_E7L4hM": {
-          "type": "tour_date",
-          "settings": {
-            "date": "Jan 15, 2026",
-            "city": "Los Angeles, CA",
-            "venue": "The Wiltern",
-            "ticket_url": "",
-            "sold_out": false
-          }
-        },
-        "tour_date_3mefrA": {
-          "type": "tour_date",
-          "settings": {
-            "date": "Jan 16, 2026",
-            "city": "Los Angeles, CA",
-            "venue": "The Wiltern",
-            "ticket_url": "",
-            "sold_out": false
-          }
-        }
-      },
-      "block_order": [
-        "tour_date_E7L4hM",
-        "tour_date_3mefrA"
-      ],
-      "settings": {
-        "heading": "TOUR",
-        "use_bandsintown": false,
-        "bandsintown_limit": 10,
-        "text_color": "#ffffff",
-        "link_color": "#e8593c",
-        "separator_color": "#333333",
-        "empty_state_text": "No upcoming shows",
-        "newsletter_cta_label": "Join mailing list",
-        "newsletter_cta_url": ""
-      }
+      "settings": { "heading": "TOUR" }
     },
     "news": {
       "type": "newsletter-signup",
-      "settings": {
-        "heading": "MAILING LIST",
-        "subheading": "Get updates on new releases, tour dates, and exclusive content",
-        "klaviyo_embed": "",
-        "mailchimp_embed": "",
-        "streaming_label": "Listen",
-        "social_label": "Follow"
-      }
+      "settings": { "heading": "MAILING LIST" }
     }
   },
-  "order": [
-    "hero",
-    "spotify",
-    "merch",
-    "tour",
-    "news"
-  ]
+  "order": ["hero", "spotify", "merch_slider", "discography", "tour", "news"]
 }

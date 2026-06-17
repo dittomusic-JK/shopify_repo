@@ -1,0 +1,98 @@
+{%- comment -%}
+  Riffride Block — animated merch slider. Horizontal auto-advancing carousel of
+  products from a collection, with prev/next arrows, drag/swipe and scroll-snap.
+  Pauses on hover; respects prefers-reduced-motion.
+{%- endcomment -%}
+
+{%- liquid
+  assign sid = 'block-slider-' | append: section.id
+  assign coll = collections[section.settings.collection]
+  assign count = section.settings.products_to_show | default: 10
+-%}
+
+<style>
+  #{{ sid }} { background: var(--brand-bg-1); padding: clamp(3rem, 6vw, 5rem) 0; }
+  #{{ sid }} .block-slider__heading { margin: 0 0 2rem; font-size: clamp(2rem, 6vw, 4rem); }
+  #{{ sid }} .block-slider__viewport { position: relative; }
+  #{{ sid }} .block-slider__track { display: flex; gap: 1rem; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; padding: 0 clamp(1.25rem, 5vw, 4rem); scrollbar-width: none; -ms-overflow-style: none; }
+  #{{ sid }} .block-slider__track::-webkit-scrollbar { display: none; }
+  #{{ sid }} .block-slider__card { flex: 0 0 auto; width: clamp(200px, 26vw, 280px); scroll-snap-align: start; text-decoration: none; color: var(--color-brand-primary); }
+  #{{ sid }} .block-slider__media { aspect-ratio: 1; background: var(--brand-bg-2); overflow: hidden; display: flex; align-items: center; justify-content: center; }
+  #{{ sid }} .block-slider__media img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+  #{{ sid }} .block-slider__card:hover .block-slider__media img { transform: scale(1.05); }
+  #{{ sid }} .block-slider__title { margin: 0.75rem 0 0.2rem; font-size: 1.15rem; }
+  #{{ sid }} .block-slider__price { color: var(--color-brand-secondary); font-size: 0.9rem; }
+  #{{ sid }} .block-slider__nav { position: absolute; top: 40%; width: 44px; height: 44px; border-radius: 50%; border: 0; cursor: pointer; background: var(--color-brand-accent); color: var(--color-brand-on-accent); display: flex; align-items: center; justify-content: center; z-index: 2; }
+  #{{ sid }} .block-slider__nav--prev { left: 0.5rem; } #{{ sid }} .block-slider__nav--next { right: 0.5rem; }
+  #{{ sid }} .block-slider__nav:hover { opacity: 0.85; }
+  #{{ sid }} .block-slider__empty { aspect-ratio: 1; background: var(--brand-bg-2); display: flex; align-items: center; justify-content: center; color: var(--color-brand-secondary); }
+</style>
+
+<section id="{{ sid }}" class="block-slider">
+  {%- if section.settings.heading != blank -%}
+    <h2 class="block-slider__heading riffride-heading">{{ section.settings.heading }}</h2>
+  {%- endif -%}
+  <div class="block-slider__viewport">
+    <button class="block-slider__nav block-slider__nav--prev" data-dir="-1" aria-label="Previous">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <div class="block-slider__track" data-track>
+      {%- if coll != blank and coll.products.size > 0 -%}
+        {%- for product in coll.products limit: count -%}
+          <a class="block-slider__card" href="{{ product.url }}">
+            <div class="block-slider__media">
+              {%- if product.featured_image -%}
+                <img src="{{ product.featured_image | image_url: width: 600 }}" alt="{{ product.title | escape }}" loading="lazy" width="600" height="600">
+              {%- endif -%}
+            </div>
+            <div class="block-slider__title">{{ product.title }}</div>
+            <div class="block-slider__price">{{ product.price | money }}</div>
+          </a>
+        {%- endfor -%}
+      {%- else -%}
+        {%- for i in (1..4) -%}
+          <div class="block-slider__card"><div class="block-slider__empty">MERCH</div><div class="block-slider__title">Product</div><div class="block-slider__price">£0.00</div></div>
+        {%- endfor -%}
+      {%- endif -%}
+    </div>
+    <button class="block-slider__nav block-slider__nav--next" data-dir="1" aria-label="Next">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+  </div>
+</section>
+
+<script>
+(function(){
+  var root = document.getElementById('{{ sid }}');
+  if (!root) return;
+  var track = root.querySelector('[data-track]');
+  var step = function(){ var c = track.querySelector('.block-slider__card'); return c ? c.offsetWidth + 16 : 280; };
+  root.querySelectorAll('.block-slider__nav').forEach(function(btn){
+    btn.addEventListener('click', function(){ track.scrollBy({ left: step() * (+btn.dataset.dir), behavior: 'smooth' }); });
+  });
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  {% if section.settings.autoplay %}
+  if (!reduce) {
+    var timer = setInterval(function(){
+      if (track.scrollLeft + track.clientWidth >= track.scrollWidth - 4) { track.scrollTo({ left: 0, behavior: 'smooth' }); }
+      else { track.scrollBy({ left: step(), behavior: 'smooth' }); }
+    }, 3000);
+    root.addEventListener('mouseenter', function(){ clearInterval(timer); });
+  }
+  {% endif %}
+})();
+</script>
+
+{%- schema -%}
+{
+  "name": "Block merch slider",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Shop" },
+    { "type": "collection", "id": "collection", "label": "Collection" },
+    { "type": "range", "id": "products_to_show", "min": 4, "max": 20, "step": 1, "default": 10, "label": "Max products" },
+    { "type": "checkbox", "id": "autoplay", "label": "Auto-advance", "default": true }
+  ],
+  "presets": [ { "name": "Block merch slider" } ]
+}
+{%- endschema -%}
