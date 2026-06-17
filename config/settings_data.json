@@ -9,10 +9,11 @@
  */
 {
   "current": {
-    "artist_name": "Leonard Speck",
+    "artist_name": "Alder & Vale",
     "artist_genre": "Alternative",
-    "type_header_font": "montserrat_n7",
-    "type_body_font": "assistant_n4",
+    "brand_accent": "#1E4154",
+    "type_header_font": "gilda_display_n4",
+    "type_body_font": "nothing_you_could_do_n4",
     "headings_uppercase": false,
     "layout_mode": "onepage",
     "show_theme_credit": true,

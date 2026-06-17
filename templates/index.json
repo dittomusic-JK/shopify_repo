@@ -12,12 +12,12 @@
     "musician_hero": {
       "type": "musician-hero",
       "settings": {
-        "background_image": "shopify://shop_images/DSC00613.jpg",
+        "background_image": "shopify://shop_images/e9c1d317-2904-4639-9b2d-f4fabd0af36d.png",
         "overlay_opacity": 50,
-        "headline": "Leonard Speck",
-        "subheadline": "Wandering Home — New Album",
+        "headline": "Alder & Vale",
+        "subheadline": "Northern Lights - New Single",
         "cta_label": "Listen Now",
-        "cta_url": "",
+        "cta_url": "https://www.spotify.com",
         "show_scroll_indicator": true,
         "scroll_indicator_text": "Scroll"
       }
@@ -28,7 +28,7 @@
         "track_1": {
           "type": "track",
           "settings": {
-            "track_name": "Wandering Home",
+            "track_name": "Northern Lights",
             "track_duration": "4:12"
           }
         },
@@ -69,7 +69,8 @@
         "track_5"
       ],
       "settings": {
-        "release_title": "Wandering Home",
+        "album_artwork": "shopify://shop_images/0f20f01d-5f64-4ff0-aa8e-9d82646af77a.png",
+        "release_title": "Northern Lights",
         "release_type": "album",
         "description": "A deeply personal collection of ten songs written across three years of travel. Recorded live to tape in a farmhouse in Vermont. Raw, honest, and quietly devastating.",
         "smart_link_url": "",
@@ -191,7 +192,8 @@
         "album_1": {
           "type": "album",
           "settings": {
-            "album_title": "Wandering Home",
+            "album_artwork": "shopify://shop_images/0f20f01d-5f64-4ff0-aa8e-9d82646af77a_59ca3b54-52b9-465a-8e81-cc570e86fa8a.png",
+            "album_title": "Northern Lights",
             "release_year": "2026",
             "release_type": "album",
             "smart_link_url": "",
@@ -203,45 +205,10 @@
         "album_2": {
           "type": "album",
           "settings": {
-            "album_title": "Ghost Roads",
-            "release_year": "2023",
+            "album_artwork": "shopify://shop_images/266fde5d-92e0-408c-a99b-b0aca64860df.png",
+            "album_title": "Halfway Home",
+            "release_year": "2025",
             "release_type": "album",
-            "smart_link_url": "",
-            "spotify_url": "",
-            "apple_music_url": "",
-            "bandcamp_url": ""
-          }
-        },
-        "album_3": {
-          "type": "album",
-          "settings": {
-            "album_title": "Ember",
-            "release_year": "2021",
-            "release_type": "ep",
-            "smart_link_url": "",
-            "spotify_url": "",
-            "apple_music_url": "",
-            "bandcamp_url": ""
-          }
-        },
-        "album_4": {
-          "type": "album",
-          "settings": {
-            "album_title": "Letters Never Sent",
-            "release_year": "2019",
-            "release_type": "album",
-            "smart_link_url": "",
-            "spotify_url": "",
-            "apple_music_url": "",
-            "bandcamp_url": ""
-          }
-        },
-        "album_5": {
-          "type": "album",
-          "settings": {
-            "album_title": "First Light",
-            "release_year": "2017",
-            "release_type": "single",
             "smart_link_url": "",
             "spotify_url": "",
             "apple_music_url": "",
@@ -251,10 +218,7 @@
       },
       "block_order": [
         "album_1",
-        "album_2",
-        "album_3",
-        "album_4",
-        "album_5"
+        "album_2"
       ],
       "settings": {
         "heading": "Discography",
