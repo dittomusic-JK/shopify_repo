@@ -1,14 +1,25 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "hero": {
       "type": "musician-hero",
       "settings": {
+        "background_image": "shopify://shop_images/55abbd56-6e45-4fb1-93a4-cf30184f12f2.png",
+        "overlay_opacity": 45,
         "headline": "ATLAS",
         "subheadline": "NEW ALBUM — OUT NOW",
         "cta_label": "LISTEN",
         "cta_url": "#listen",
-        "overlay_opacity": 45,
-        "show_scroll_indicator": false
+        "show_scroll_indicator": false,
+        "scroll_indicator_text": "Scroll"
       }
     },
     "spotify": {
@@ -26,18 +37,70 @@
         "heading": "SHOP",
         "merch_collection": "frontpage",
         "products_to_show": 8,
+        "show_add_to_cart": true,
         "show_view_all": true,
-        "view_all_label": "VIEW ALL"
+        "view_all_label": "VIEW ALL",
+        "show_printful_credit": true,
+        "empty_state_text": "Select a collection to display products"
       }
     },
     "tour": {
       "type": "tour-dates",
-      "settings": { "heading": "TOUR" }
+      "blocks": {
+        "tour_date_E7L4hM": {
+          "type": "tour_date",
+          "settings": {
+            "date": "Jan 15, 2026",
+            "city": "Los Angeles, CA",
+            "venue": "The Wiltern",
+            "ticket_url": "",
+            "sold_out": false
+          }
+        },
+        "tour_date_3mefrA": {
+          "type": "tour_date",
+          "settings": {
+            "date": "Jan 16, 2026",
+            "city": "Los Angeles, CA",
+            "venue": "The Wiltern",
+            "ticket_url": "",
+            "sold_out": false
+          }
+        }
+      },
+      "block_order": [
+        "tour_date_E7L4hM",
+        "tour_date_3mefrA"
+      ],
+      "settings": {
+        "heading": "TOUR",
+        "use_bandsintown": false,
+        "bandsintown_limit": 10,
+        "text_color": "#ffffff",
+        "link_color": "#e8593c",
+        "separator_color": "#333333",
+        "empty_state_text": "No upcoming shows",
+        "newsletter_cta_label": "Join mailing list",
+        "newsletter_cta_url": ""
+      }
     },
     "news": {
       "type": "newsletter-signup",
-      "settings": { "heading": "MAILING LIST" }
+      "settings": {
+        "heading": "MAILING LIST",
+        "subheading": "Get updates on new releases, tour dates, and exclusive content",
+        "klaviyo_embed": "",
+        "mailchimp_embed": "",
+        "streaming_label": "Listen",
+        "social_label": "Follow"
+      }
     }
   },
-  "order": ["hero", "spotify", "merch", "tour", "news"]
+  "order": [
+    "hero",
+    "spotify",
+    "merch",
+    "tour",
+    "news"
+  ]
 }
