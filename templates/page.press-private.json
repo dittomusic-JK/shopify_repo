@@ -1,0 +1,47 @@
+{ 
+  "sections": {
+    "press_private": {
+      "type": "press-private",
+      "settings": {
+        "access_code": "press2026",
+        "heading": "Press & Industry",
+        "subheading": "Enter your access code to continue",
+        "embargo_notice": "This content is embargoed until March 31, 2026. Please do not share publicly before this date.",
+        "show_embargo_notice": true
+      },
+      "blocks": {
+        "soundcloud_1": {
+          "type": "soundcloud_embed",
+          "settings": {
+            "track_title": "Unreleased Track 1",
+            "soundcloud_url": ""
+          }
+        },
+        "smartlink_1": {
+          "type": "smart_link",
+          "settings": {
+            "link_title": "Pre-save Campaign",
+            "link_url": "",
+            "link_description": "Feature.fm pre-save link for upcoming release"
+          }
+        },
+        "press_photo_1": {
+          "type": "press_photo",
+          "settings": {
+            "photo_title": "Press Photo 1",
+            "press_photo": "",
+            "photo_credit": ""
+          }
+        }
+      },
+      "block_order": [
+        "soundcloud_1",
+        "smartlink_1",
+        "press_photo_1"
+      ]
+    }
+  },
+  "order": [
+    "press_private"
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "sections": {
+    "hero": {
+      "type": "musician-hero",
+      "settings": {
+        "headline": "ATLAS",
+        "subheadline": "NEW ALBUM — OUT NOW",
+        "cta_label": "LISTEN",
+        "cta_url": "#listen",
+        "overlay_opacity": 45,
+        "show_scroll_indicator": false
+      }
+    },
+    "spotify": {
+      "type": "spotify-embed",
+      "settings": {
+        "heading": "LISTEN",
+        "spotify_url": "https://open.spotify.com/album/2noRn2Aes5aoNVsU6iWThc",
+        "height": "352",
+        "theme_dark": true
+      }
+    },
+    "merch": {
+      "type": "merch-featured",
+      "settings": {
+        "heading": "SHOP",
+        "merch_collection": "frontpage",
+        "products_to_show": 8,
+        "show_view_all": true,
+        "view_all_label": "VIEW ALL"
+      }
+    },
+    "tour": {
+      "type": "tour-dates",
+      "settings": { "heading": "TOUR" }
+    },
+    "news": {
+      "type": "newsletter-signup",
+      "settings": { "heading": "MAILING LIST" }
+    }
+  },
+  "order": ["hero", "spotify", "merch", "tour", "news"]
+}

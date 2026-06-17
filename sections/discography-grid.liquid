@@ -1,0 +1,315 @@
+{{ 'section-discography-grid.css' | asset_url | stylesheet_tag }}
+
+<section id="discography" class="discography-grid section-{{ section.id }}-padding">
+  <div class="discography-grid__inner page-width">
+    {%- if section.settings.heading != blank -%}
+      <h2 class="discography-grid__heading">{{ section.settings.heading }}</h2>
+    {%- endif -%}
+
+    {%- if section.blocks.size > 0 -%}
+      <div class="discography-grid__albums">
+        {%- for block in section.blocks -%}
+          <article class="album-card" {{ block.shopify_attributes }}>
+            {%- if block.settings.album_artwork != blank -%}
+              <div class="album-card__image-wrapper">
+                {{
+                  block.settings.album_artwork
+                  | image_url: width: 800
+                  | image_tag:
+                    loading: 'lazy',
+                    class: 'album-card__image',
+                    widths: '400, 600, 800, 1000',
+                    sizes: '(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw',
+                    alt: block.settings.album_title
+                }}
+                
+                <div class="album-card__overlay">
+                  <div class="album-card__overlay-content">
+                    {%- if block.settings.release_year != blank or block.settings.release_type != blank -%}
+                      <div class="album-card__meta">
+                        {%- if block.settings.release_type != blank -%}
+                          <span class="album-card__badge">{{ block.settings.release_type }}</span>
+                        {%- endif -%}
+                        {%- if block.settings.release_year != blank -%}
+                          <span class="album-card__year">{{ block.settings.release_year }}</span>
+                        {%- endif -%}
+                      </div>
+                    {%- endif -%}
+
+                    {%- if block.settings.smart_link_url != blank -%}
+                      <a 
+                        href="{{ block.settings.smart_link_url }}" 
+                        class="album-card__cta btn btn--accent"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Listen now
+                      </a>
+                    {%- else -%}
+                      {%- liquid
+                        assign has_streaming_links = false
+                        if block.settings.spotify_url != blank or block.settings.apple_music_url != blank or block.settings.bandcamp_url != blank
+                          assign has_streaming_links = true
+                        endif
+                      -%}
+                      
+                      {%- if has_streaming_links -%}
+                        <div class="album-card__streaming-links">
+                          <span class="album-card__listen-label">Listen now</span>
+                          <div class="album-card__streaming-icons">
+                            {%- if block.settings.spotify_url != blank -%}
+                              <a 
+                                href="{{ block.settings.spotify_url }}" 
+                                class="album-card__streaming-link"
+                                aria-label="Listen on Spotify"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                data-platform="spotify"
+                              >
+                                <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                  <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/>
+                                </svg>
+                              </a>
+                            {%- endif -%}
+                            
+                            {%- if block.settings.apple_music_url != blank -%}
+                              <a 
+                                href="{{ block.settings.apple_music_url }}" 
+                                class="album-card__streaming-link"
+                                aria-label="Listen on Apple Music"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                data-platform="apple-music"
+                              >
+                                <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                  <path d="M23.994 6.124a9.23 9.23 0 0 0-.24-2.19c-.317-1.31-1.062-2.31-2.18-3.043a5.022 5.022 0 0 0-1.877-.726 10.496 10.496 0 0 0-1.564-.15c-.04-.003-.083-.01-.124-.013H5.986c-.152.01-.303.017-.455.026-.747.043-1.49.123-2.193.4-1.336.53-2.3 1.452-2.865 2.78-.192.448-.292.925-.363 1.408a10.61 10.61 0 0 0-.1 1.18c-.01.193-.01.386-.015.578v11.956c.01.2.01.402.02.603.038.723.112 1.444.354 2.13.49 1.395 1.4 2.395 2.708 3.015.582.276 1.187.42 1.827.49.45.048.9.062 1.35.065h12.016c.195 0 .39-.01.586-.016.72-.024 1.44-.08 2.13-.3 1.446-.464 2.472-1.426 3.06-2.842.267-.64.39-1.323.44-2.016.033-.46.046-.922.046-1.383V6.124zM9.626 18.985a3.016 3.016 0 0 1-2.313-.583 2.91 2.91 0 0 1-1.058-1.642 2.978 2.978 0 0 1 1.678-3.377 2.93 2.93 0 0 1 2.644.114v-7.06l7.945-1.345v7.273a3.022 3.022 0 0 1-2.313-.583 2.91 2.91 0 0 1-1.058-1.642 2.978 2.978 0 0 1 1.678-3.377 2.93 2.93 0 0 1 2.644.114v9.098c0 .02-.004.04-.005.058a2.975 2.975 0 0 1-2.99 2.952z"/>
+                                </svg>
+                              </a>
+                            {%- endif -%}
+                            
+                            {%- if block.settings.bandcamp_url != blank -%}
+                              <a 
+                                href="{{ block.settings.bandcamp_url }}" 
+                                class="album-card__streaming-link"
+                                aria-label="Listen on Bandcamp"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                data-platform="bandcamp"
+                              >
+                                <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                  <path d="M0 18.75l7.437-13.5H24l-7.438 13.5H0z"/>
+                                </svg>
+                              </a>
+                            {%- endif -%}
+                          </div>
+                        </div>
+                      {%- endif -%}
+                    {%- endif -%}
+                  </div>
+                </div>
+              </div>
+            {%- else -%}
+              <div class="album-card__image-wrapper album-card__image-wrapper--placeholder">
+                {{ 'collection-1' | placeholder_svg_tag: 'album-card__image album-card__image--placeholder' }}
+              </div>
+            {%- endif -%}
+
+            {%- if block.settings.album_title != blank -%}
+              <h3 class="album-card__title">{{ block.settings.album_title }}</h3>
+            {%- endif -%}
+
+            {%- liquid
+              assign album_url = block.settings.smart_link_url
+              if album_url == blank
+                assign album_url = block.settings.spotify_url
+              endif
+              if album_url == blank
+                assign album_url = block.settings.apple_music_url
+              endif
+              if album_url == blank
+                assign album_url = block.settings.bandcamp_url
+              endif
+            -%}
+
+            {%- if album_url != blank -%}
+              <script type="application/ld+json">
+              {
+                "@context": "https://schema.org",
+                "@type": "MusicAlbum",
+                "name": {{ block.settings.album_title | json }},
+                {%- if block.settings.album_artwork != blank -%}
+                  "image": {{ block.settings.album_artwork | image_url: width: 800 | json }},
+                {%- endif -%}
+                {%- if block.settings.release_year != blank -%}
+                  "datePublished": "{{ block.settings.release_year }}",
+                {%- endif -%}
+                {%- if settings.artist_name != blank -%}
+                  "byArtist": {
+                    "@type": "MusicGroup",
+                    "name": {{ settings.artist_name | json }}
+                  },
+                {%- endif -%}
+                "url": {{ album_url | json }}
+              }
+              </script>
+            {%- endif -%}
+          </article>
+        {%- endfor -%}
+      </div>
+    {%- else -%}
+      <div class="discography-grid__empty">
+        <p class="discography-grid__empty-text">No albums added yet. Add album blocks in the theme editor.</p>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{%- schema -%}
+{
+  "name": "Discography grid",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Section heading",
+      "default": "Discography"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 80
+    }
+  ],
+  "blocks": [
+    {
+      "type": "album",
+      "name": "Album",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "album_artwork",
+          "label": "Album artwork"
+        },
+        {
+          "type": "text",
+          "id": "album_title",
+          "label": "Album title",
+          "default": "Album Title"
+        },
+        {
+          "type": "text",
+          "id": "release_year",
+          "label": "Release year",
+          "default": "2024",
+          "info": "Format: YYYY"
+        },
+        {
+          "type": "select",
+          "id": "release_type",
+          "label": "Release type",
+          "options": [
+            {
+              "value": "Album",
+              "label": "Album"
+            },
+            {
+              "value": "EP",
+              "label": "EP"
+            },
+            {
+              "value": "Single",
+              "label": "Single"
+            },
+            {
+              "value": "Live",
+              "label": "Live"
+            }
+          ],
+          "default": "Album"
+        },
+        {
+          "type": "url",
+          "id": "smart_link_url",
+          "label": "Smart link URL",
+          "info": "Paste any smart link URL — Linkfire, Feature.fm, Hyperfollow, Toneden etc. If set, this overrides individual platform links"
+        },
+        {
+          "type": "url",
+          "id": "spotify_url",
+          "label": "Spotify album URL"
+        },
+        {
+          "type": "url",
+          "id": "apple_music_url",
+          "label": "Apple Music URL"
+        },
+        {
+          "type": "url",
+          "id": "bandcamp_url",
+          "label": "Bandcamp URL"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 20,
+  "presets": [
+    {
+      "name": "Discography grid",
+      "settings": {
+        "heading": "Discography"
+      },
+      "blocks": [
+        {
+          "type": "album",
+          "settings": {
+            "album_title": "Latest Album",
+            "release_year": "2026",
+            "release_type": "album"
+          }
+        },
+        {
+          "type": "album",
+          "settings": {
+            "album_title": "Second Album",
+            "release_year": "2023",
+            "release_type": "album"
+          }
+        },
+        {
+          "type": "album",
+          "settings": {
+            "album_title": "Early EP",
+            "release_year": "2021",
+            "release_type": "ep"
+          }
+        },
+        {
+          "type": "album",
+          "settings": {
+            "album_title": "Debut Single",
+            "release_year": "2019",
+            "release_type": "single"
+          }
+        }
+      ]
+    }
+  ]
+}
+{%- endschema -%}

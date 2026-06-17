@@ -1,0 +1,38 @@
+/* Riffride Block — identity: chunky condensed Anton headings (hardwired) +
+   centred 3-part header (menu left · logo centre · socials right). */
+
+/* --- Chunky condensed display type --- */
+body[data-skin^="block"] {
+  --font-heading: "Anton", "Oswald", sans-serif;
+  --font-heading-family: "Anton", "Oswald", sans-serif;
+}
+body[data-skin^="block"] h1,
+body[data-skin^="block"] h2,
+body[data-skin^="block"] h3,
+body[data-skin^="block"] .riffride-heading,
+body[data-skin^="block"] .musician-hero__headline,
+body[data-skin^="block"] .merch-featured__heading,
+body[data-skin^="block"] .merch-card__title,
+body[data-skin^="block"] .tour-dates__heading,
+body[data-skin^="block"] .header__artist-name {
+  font-family: "Anton", sans-serif !important;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  line-height: 0.92;
+}
+
+/* --- Centred 3-part header: menu (left) · logo (centre) · socials (right) --- */
+body[data-skin^="block"] .header__musician-inner {
+  display: flex !important;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+body[data-skin^="block"] .header__nav { order: 1; flex: 1 1 0; }
+body[data-skin^="block"] .header__nav-list { justify-content: flex-start; }
+body[data-skin^="block"] .header__artist-name { order: 2; flex: 0 0 auto; text-align: center; font-size: 1.6rem; }
+body[data-skin^="block"] .header__streaming { order: 3; flex: 1 1 0; display: flex; justify-content: flex-end; }
+
+@media (max-width: 749px) {
+  body[data-skin^="block"] .header__nav { flex: 0 0 auto; }
+}

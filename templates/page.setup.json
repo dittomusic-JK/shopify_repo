@@ -1,0 +1,15 @@
+{
+  "sections": {
+    "setup_guide": {
+      "type": "riffride-setup-guide",
+      "settings": {
+        "eyebrow": "Start here",
+        "heading": "Get your merch on Spotify",
+        "lede": "Five steps from empty store to merch live on your Spotify profile. No inventory, no design skills, no big budget."
+      }
+    }
+  },
+  "order": [
+    "setup_guide"
+  ]
+}
