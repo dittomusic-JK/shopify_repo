@@ -13,7 +13,8 @@
       "type": "frame-splash",
       "settings": {
         "background_video": "shopify://files/videos/weird_video.mp4",
-        "overlay_opacity": 25,
+        "overlay_opacity": 80,
+        "artwork_image": "shopify://shop_images/de958629-bbdb-44bb-9e7c-a6f56ccedf99.png",
         "artwork_link": "https://open.spotify.com/album/2noRn2Aes5aoNVsU6iWThc",
         "caption": "New single — Listen"
       }
