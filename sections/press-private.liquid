@@ -1,0 +1,395 @@
+{%- comment -%}
+Note: This is a JavaScript password gate suitable for press embargoes.
+It is not cryptographically secure. Do not use for highly sensitive content.
+{%- endcomment -%}
+
+{{ 'section-press-private.css' | asset_url | stylesheet_tag }}
+
+<section class="press-private" id="press-private" data-access-code="{{ section.settings.access_code }}">
+  <div class="press-private__gate" id="pressGate">
+    <div class="press-private__gate-inner">
+      {%- if section.settings.heading != blank -%}
+        <h1 class="press-private__gate-heading">{{ section.settings.heading }}</h1>
+      {%- endif -%}
+      
+      {%- if section.settings.subheading != blank -%}
+        <p class="press-private__gate-subheading">{{ section.settings.subheading }}</p>
+      {%- endif -%}
+      
+      <form class="press-private__gate-form" id="pressGateForm">
+        <div class="press-private__gate-input-wrapper">
+          <input
+            type="password"
+            id="pressAccessCode"
+            class="press-private__gate-input"
+            placeholder="Access code"
+            autocomplete="off"
+            required
+          >
+          <button type="submit" class="press-private__gate-submit">
+            Enter
+          </button>
+        </div>
+        <p class="press-private__gate-error" id="pressGateError" style="display: none;">
+          Incorrect access code
+        </p>
+      </form>
+    </div>
+  </div>
+
+  <div class="press-private__content" id="pressContent" style="display: none;">
+    <div class="press-private__inner">
+      {%- if section.settings.show_embargo_notice and section.settings.embargo_notice != blank -%}
+        <div class="press-private__embargo">
+          <svg class="press-private__embargo-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="12" cy="12" r="10" stroke-width="2"/>
+            <line x1="12" y1="8" x2="12" y2="12" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="12" cy="16" r="1" fill="currentColor"/>
+          </svg>
+          <p class="press-private__embargo-text">{{ section.settings.embargo_notice }}</p>
+        </div>
+      {%- endif -%}
+
+      {%- assign soundcloud_blocks = section.blocks | where: "type", "soundcloud_embed" -%}
+      {%- if soundcloud_blocks.size > 0 -%}
+        <div class="press-private__section">
+          <h2 class="press-private__section-heading">Unreleased Tracks</h2>
+          <div class="press-private__soundcloud-grid">
+            {%- for block in soundcloud_blocks -%}
+              {%- if block.settings.soundcloud_url != blank -%}
+                <div class="press-private__soundcloud-item" {{ block.shopify_attributes }}>
+                  {%- if block.settings.track_title != blank -%}
+                    <h3 class="press-private__soundcloud-title">{{ block.settings.track_title }}</h3>
+                  {%- endif -%}
+                  <div class="press-private__soundcloud-embed">
+                    <iframe
+                      width="100%"
+                      height="166"
+                      scrolling="no"
+                      frameborder="no"
+                      allow="autoplay"
+                      src="https://w.soundcloud.com/player/?url={{ block.settings.soundcloud_url | url_encode }}&color=%23e8593c&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false"
+                      loading="lazy"
+                    ></iframe>
+                  </div>
+                </div>
+              {%- endif -%}
+            {%- endfor -%}
+          </div>
+        </div>
+      {%- endif -%}
+
+      {%- assign smartlink_blocks = section.blocks | where: "type", "smart_link" -%}
+      {%- if smartlink_blocks.size > 0 -%}
+        <div class="press-private__section">
+          <h2 class="press-private__section-heading">Campaign Links</h2>
+          <div class="press-private__smartlinks">
+            {%- for block in smartlink_blocks -%}
+              {%- if block.settings.link_url != blank -%}
+                <div class="press-private__smartlink-item" {{ block.shopify_attributes }}>
+                  {%- if block.settings.link_title != blank -%}
+                    <h3 class="press-private__smartlink-title">{{ block.settings.link_title }}</h3>
+                  {%- endif -%}
+                  {%- if block.settings.link_description != blank -%}
+                    <p class="press-private__smartlink-description">{{ block.settings.link_description }}</p>
+                  {%- endif -%}
+                  <a
+                    href="{{ block.settings.link_url }}"
+                    class="press-private__smartlink-button"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Open Link
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </a>
+                </div>
+              {%- endif -%}
+            {%- endfor -%}
+          </div>
+        </div>
+      {%- endif -%}
+
+      {%- assign photo_blocks = section.blocks | where: "type", "press_photo" -%}
+      {%- if photo_blocks.size > 0 -%}
+        <div class="press-private__section">
+          <h2 class="press-private__section-heading">Press Photos</h2>
+          <div class="press-private__photos-grid">
+            {%- for block in photo_blocks -%}
+              {%- if block.settings.press_photo != blank -%}
+                <div class="press-private__photo-item" {{ block.shopify_attributes }}>
+                  <img
+                    src="{{ block.settings.press_photo | image_url: width: 800 }}"
+                    srcset="{{ block.settings.press_photo | image_url: width: 400 }} 400w,
+                            {{ block.settings.press_photo | image_url: width: 800 }} 800w,
+                            {{ block.settings.press_photo | image_url: width: 1200 }} 1200w"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    alt="{{ block.settings.photo_title | escape }}"
+                    loading="lazy"
+                    class="press-private__photo-image"
+                  >
+                  <div class="press-private__photo-info">
+                    {%- if block.settings.photo_title != blank -%}
+                      <h3 class="press-private__photo-title">{{ block.settings.photo_title }}</h3>
+                    {%- endif -%}
+                    {%- if block.settings.photo_credit != blank -%}
+                      <p class="press-private__photo-credit">Photo: {{ block.settings.photo_credit }}</p>
+                    {%- endif -%}
+                    <a
+                      href="{{ block.settings.press_photo | image_url: width: 3000 }}"
+                      download
+                      class="press-private__photo-download"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                      Download High-Res
+                    </a>
+                  </div>
+                </div>
+              {%- endif -%}
+            {%- endfor -%}
+          </div>
+        </div>
+      {%- endif -%}
+
+      {%- if section.settings.epk_pdf != blank -%}
+        <div class="press-private__section">
+          <h2 class="press-private__section-heading">Electronic Press Kit</h2>
+          <a
+            href="{{ section.settings.epk_pdf }}"
+            class="press-private__epk-download"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <polyline points="14 2 14 8 20 8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <line x1="12" y1="18" x2="12" y2="12" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <line x1="9" y1="15" x2="15" y2="15" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>Download Full EPK (PDF)</span>
+          </a>
+        </div>
+      {%- endif -%}
+
+      {%- if section.settings.private_notes != blank -%}
+        <div class="press-private__section">
+          <h2 class="press-private__section-heading">Notes</h2>
+          <div class="press-private__notes">
+            {{ section.settings.private_notes | newline_to_br }}
+          </div>
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+<script>
+(function() {
+  'use strict';
+
+  const section = document.getElementById('press-private');
+  const gate = document.getElementById('pressGate');
+  const content = document.getElementById('pressContent');
+  const form = document.getElementById('pressGateForm');
+  const input = document.getElementById('pressAccessCode');
+  const error = document.getElementById('pressGateError');
+  const accessCode = section.dataset.accessCode;
+  const storageKey = 'press_private_unlocked';
+
+  if (!section || !gate || !content || !form) return;
+
+  function checkUnlocked() {
+    if (sessionStorage.getItem(storageKey) === 'true') {
+      showContent();
+    }
+  }
+
+  function showContent() {
+    gate.style.display = 'none';
+    content.style.display = 'block';
+    sessionStorage.setItem(storageKey, 'true');
+  }
+
+  function showError() {
+    error.style.display = 'block';
+    input.classList.add('shake');
+    setTimeout(() => {
+      input.classList.remove('shake');
+    }, 500);
+  }
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    error.style.display = 'none';
+
+    if (input.value === accessCode) {
+      showContent();
+    } else {
+      showError();
+      input.value = '';
+      input.focus();
+    }
+  });
+
+  checkUnlocked();
+})();
+</script>
+
+{%- schema -%}
+{
+  "name": "Press (Private)",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Security note: this is a lightweight access gate for press embargoes, not encryption. A determined visitor could view the page source. For genuinely sensitive material (unreleased audio/video), use unlisted or expiring links (e.g. private SoundCloud, time-limited Dropbox/Disco links) so access can be revoked."
+    },
+    {
+      "type": "text",
+      "id": "access_code",
+      "label": "Access code",
+      "default": "press2026",
+      "info": "Password required to view this page. Share only with press and industry contacts."
+    },
+    {
+      "type": "header",
+      "content": "Password Gate"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Gate heading",
+      "default": "Press & Industry"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Gate subheading",
+      "default": "Enter your access code to continue"
+    },
+    {
+      "type": "header",
+      "content": "Embargo Notice"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_embargo_notice",
+      "label": "Show embargo notice",
+      "default": true
+    },
+    {
+      "type": "textarea",
+      "id": "embargo_notice",
+      "label": "Embargo notice text",
+      "default": "This content is embargoed until [DATE]. Please do not share publicly before this date.",
+      "info": "Displayed at the top of the private content"
+    },
+    {
+      "type": "header",
+      "content": "Downloads"
+    },
+    {
+      "type": "url",
+      "id": "epk_pdf",
+      "label": "EPK PDF link",
+      "info": "Paste a direct link to your EPK PDF file (Google Drive, Dropbox, etc.)"
+    },
+    {
+      "type": "header",
+      "content": "Private Notes"
+    },
+    {
+      "type": "textarea",
+      "id": "private_notes",
+      "label": "Private notes / instructions",
+      "info": "Additional information for press contacts"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "soundcloud_embed",
+      "name": "SoundCloud Track",
+      "limit": 5,
+      "settings": [
+        {
+          "type": "text",
+          "id": "track_title",
+          "label": "Track title"
+        },
+        {
+          "type": "url",
+          "id": "soundcloud_url",
+          "label": "SoundCloud URL",
+          "info": "Paste the full SoundCloud track URL (works with unlisted tracks)"
+        }
+      ]
+    },
+    {
+      "type": "smart_link",
+      "name": "Smart Link",
+      "limit": 5,
+      "settings": [
+        {
+          "type": "text",
+          "id": "link_title",
+          "label": "Link title"
+        },
+        {
+          "type": "url",
+          "id": "link_url",
+          "label": "Link URL",
+          "info": "Disco.ac, Feature.fm, Linkfire, or any smart link URL"
+        },
+        {
+          "type": "textarea",
+          "id": "link_description",
+          "label": "Description"
+        }
+      ]
+    },
+    {
+      "type": "press_photo",
+      "name": "Press Photo",
+      "limit": 5,
+      "settings": [
+        {
+          "type": "text",
+          "id": "photo_title",
+          "label": "Photo title"
+        },
+        {
+          "type": "image_picker",
+          "id": "press_photo",
+          "label": "Press photo",
+          "info": "Upload high-resolution press photo"
+        },
+        {
+          "type": "text",
+          "id": "photo_credit",
+          "label": "Photo credit"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Press (Private)",
+      "blocks": [
+        {
+          "type": "soundcloud_embed"
+        },
+        {
+          "type": "smart_link"
+        },
+        {
+          "type": "press_photo"
+        }
+      ]
+    }
+  ]
+}
+{%- endschema -%}

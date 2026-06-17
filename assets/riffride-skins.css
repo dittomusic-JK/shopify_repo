@@ -1,0 +1,14 @@
+/* Riffride Frame — tone override via body[data-skin] (settings.riffride_skin).
+   Video-first splash theme, single dark tone. Splash + burger header in frame.css. */
+
+body[data-skin="frame"] {
+  --brand-bg-0: #0c0d10;
+  --brand-bg-1: #111317;
+  --brand-bg-2: #16181d;
+  --color-brand-bg: #0c0d10;
+  --color-brand-primary: #ffffff;
+  --color-brand-secondary: #aab0bb;
+  --color-brand-accent: #ffffff;
+  --color-brand-on-accent: #0c0d10;
+  --brand-hairline: rgba(255, 255, 255, 0.18);
+}

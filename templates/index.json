@@ -1,0 +1,13 @@
+{
+  "sections": {
+    "splash": {
+      "type": "frame-splash",
+      "settings": {
+        "overlay_opacity": 35,
+        "caption": "New single — Listen",
+        "artwork_link": "https://open.spotify.com/album/2noRn2Aes5aoNVsU6iWThc"
+      }
+    }
+  },
+  "order": ["splash"]
+}

@@ -1,0 +1,25 @@
+/* Riffride Frame — minimal video-splash chrome.
+   Header becomes: logo top-left + burger top-right (inline nav hidden, burger
+   always shown), transparent over the splash. Nav lives in the mobile drawer. */
+
+body[data-skin="frame"] {
+  --font-heading: "Oswald", sans-serif;
+  --font-heading-family: "Oswald", sans-serif;
+}
+
+/* Logo left, burger right; hide the inline nav + header socials on all sizes */
+body[data-skin="frame"] .header__nav { display: none !important; }
+body[data-skin="frame"] .header__streaming { display: none !important; }
+body[data-skin="frame"] .header__mobile-toggle { display: inline-flex !important; }
+body[data-skin="frame"] .header__musician-inner {
+  display: flex !important;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+body[data-skin="frame"] .header__artist-name {
+  font-family: "Oswald", sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  font-size: 1.2rem;
+}

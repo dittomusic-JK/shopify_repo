@@ -1,0 +1,26 @@
+{%- comment -%}
+  Riffride — outbound referral / affiliate link builder.
+
+  Appends partner + UTM attribution to monetisable outbound links so Riffride
+  (and any distribution partner, e.g. Ditto) can track installs and referrals.
+
+  Usage:
+    {% render 'riffride-referral', url: settings.riffride_merch_affiliate_url, campaign: 'onboarding' %}
+
+  Returns the URL with attribution appended, or nothing if no URL is set.
+  Note: Shopify-signup attribution lives in the marketing funnel (blog/landing
+  page), not here — by the time this theme runs the artist is already on Shopify.
+{%- endcomment -%}
+{%- liquid
+  assign base = url | default: ''
+  assign campaign = campaign | default: 'theme'
+  assign partner = settings.riffride_partner_id | default: 'direct'
+  if base != blank
+    if base contains '?'
+      assign sep = '&'
+    else
+      assign sep = '?'
+    endif
+    echo base | append: sep | append: 'utm_source=riffride&utm_medium=theme&utm_campaign=' | append: campaign | append: '&partner=' | append: partner
+  endif
+-%}
