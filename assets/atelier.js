@@ -1,4 +1,4 @@
-/* Riffride Atelier — motion & audio mini-player.
+/* Riffride Vesper — motion & audio mini-player.
    - Reveals elements with .atl-reveal as they scroll into view.
    - Drives the docked audio mini-player (#atl-player).
    Any element with [data-atl-play] starts a track:

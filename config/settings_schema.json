@@ -1,7 +1,7 @@
 [
   {
     "name": "theme_info",
-    "theme_name": "Riffride Atelier",
+    "theme_name": "Riffride Vesper",
     "theme_version": "1.0.0",
     "theme_author": "Riffride",
     "theme_documentation_url": "https://riffride.com/docs",
@@ -58,7 +58,7 @@
     "settings": [
       {
         "type": "paragraph",
-        "content": "Atelier is a light, high-fashion editorial theme. It ships in two tones — Light (white canvas) and Ink (near-black) — so you can run the same editorial layout dark for a campaign."
+        "content": "Vesper is a light, high-fashion editorial theme. It ships in two tones — Light (white canvas) and Ink (near-black) — so you can run the same editorial layout dark for a campaign."
       },
       {
         "type": "select",

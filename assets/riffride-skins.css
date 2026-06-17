@@ -1,5 +1,5 @@
-/* Riffride Atelier — tone overrides via body[data-skin] (settings.riffride_skin).
-   Atelier is a light high-fashion editorial theme; it ships two tones: Light
+/* Riffride Vesper — tone overrides via body[data-skin] (settings.riffride_skin).
+   Vesper is a light high-fashion editorial theme; it ships two tones: Light
    (white canvas, default) and Ink (near-black) so the same editorial layout can
    run dark for a campaign. Display type is picker-driven (default Playfair).
    body[data-skin] beats :root specificity, so these win cleanly. */

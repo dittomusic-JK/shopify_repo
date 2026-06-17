@@ -6,7 +6,7 @@
   --color-brand-bg: #ffffff;
   --color-brand-secondary: #8a877f;
 
-  /* Alternating section background steps (skins override these). Atelier is a
+  /* Alternating section background steps (skins override these). Vesper is a
      LIGHT theme, so the defaults are light too — correct even if no skin matches. */
   --brand-bg-0: #ffffff;
   --brand-bg-1: #f7f6f3;
