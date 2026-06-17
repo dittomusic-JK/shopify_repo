@@ -395,3 +395,11 @@ sticky-header.header-wrapper.header--musician.header--transparent:not(.header--s
 .header-wrapper.header--musician.header--transparent:not(.header--scrolled) .header__mobile-toggle {
   color: #ffffff !important;
 }
+/* --- Socials move into the mobile menu drawer on small screens (universal) --- */
+@media (max-width: 989px) {
+  .header-wrapper.header--musician .header__streaming { display: none !important; }
+}
+.header__mobile-social { display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem; margin-top: 2.5rem; }
+.header__mobile-social a { color: var(--color-brand-primary); display: inline-flex; }
+.header__mobile-social a:hover { color: var(--color-brand-accent); }
+.header__mobile-social svg { width: 26px; height: 26px; }
