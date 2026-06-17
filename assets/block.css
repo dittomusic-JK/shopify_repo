@@ -76,3 +76,17 @@ body[data-skin^="block"] .header__streaming-link svg { width: 20px; height: 20px
 @media (max-width: 749px) {
   body[data-skin^="block"] .header__nav { flex: 0 0 auto; }
 }
+
+/* --- On mobile, socials live in the menu drawer, not the top bar --- */
+@media (max-width: 989px) {
+  body[data-skin^="block"] .header__streaming { display: none !important; }
+}
+body[data-skin^="block"] .header__mobile-social {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+}
+body[data-skin^="block"] .header__mobile-social a { color: var(--color-brand-primary); display: inline-flex; }
+body[data-skin^="block"] .header__mobile-social a:hover { color: var(--color-brand-accent); }
