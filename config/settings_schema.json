@@ -363,8 +363,7 @@
         "type": "url",
         "id": "riffride_merch_affiliate_url",
         "label": "POD affiliate / referral link",
-        "info": "Your affiliate link to the chosen POD provider's signup.",
-        "default": "https://www.printful.com/a/5712245:0aca4da7a9719dac375172c1cc754cb2"
+        "info": "Your affiliate link to the chosen POD provider's signup."
       },
       {
         "type": "header",
@@ -415,8 +414,7 @@
         "type": "url",
         "id": "riffride_shopify_referral_url",
         "label": "Shopify referral link",
-        "info": "Used only for 'Powered by' / share links. Main Shopify-signup attribution belongs on your marketing site, not here.",
-        "default": "https://shopify.pxf.io/c/5452671/1061744/13624"
+        "info": "Used only for 'Powered by' / share links. Main Shopify-signup attribution belongs on your marketing site, not here."
       }
     ]
   },
