@@ -23,7 +23,7 @@
     "merch_slider": {
       "type": "block-merch-slider",
       "settings": {
-        "heading": "SHOP",
+        "heading": "MERCH",
         "collection": "frontpage",
         "products_to_show": 10,
         "autoplay": true

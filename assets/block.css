@@ -26,7 +26,13 @@ body[data-skin^="block"] .header__nav-link {
 }
 body[data-skin^="block"] .header__nav-link { font-size: 1rem; font-weight: 400; }
 
-/* --- Centre all section headings + colour them with the highlight (accent) --- */
+/* --- Bigger hero headline --- */
+body[data-skin^="block"] .musician-hero__headline {
+  font-size: clamp(4rem, 17vw, 13rem) !important;
+  line-height: 0.88 !important;
+}
+
+/* --- Centre section headings + colour them with the highlight (accent) --- */
 body[data-skin^="block"] h1,
 body[data-skin^="block"] h2,
 body[data-skin^="block"] .riffride-heading,
@@ -40,15 +46,18 @@ body[data-skin^="block"] .block-slider__heading {
   text-align: center !important;
   color: var(--color-brand-accent) !important;
 }
-/* Centre the little accent line that sits above section headings */
+/* Remove the little stroke/line above section headings */
 body[data-skin^="block"] .merch-featured__heading::before,
 body[data-skin^="block"] .discography-grid__heading::before,
 body[data-skin^="block"] .tour-dates__heading::before,
 body[data-skin^="block"] .riffride-heading::before,
-body[data-skin^="block"] .newsletter-signup__heading::before {
-  left: 50% !important;
-  transform: translateX(-50%) !important;
+body[data-skin^="block"] .newsletter-signup__heading::before,
+body[data-skin^="block"] .latest-release__type::before {
+  display: none !important;
 }
+
+/* --- Tighter discography spacing --- */
+body[data-skin^="block"] .discography-grid__albums { gap: 0.5rem !important; }
 
 /* --- Centred 3-part header: menu (left) · logo (centre) · socials (right) --- */
 body[data-skin^="block"] .header__musician-inner {
@@ -58,7 +67,7 @@ body[data-skin^="block"] .header__musician-inner {
   gap: 1rem;
 }
 body[data-skin^="block"] .header__nav { order: 1; flex: 1 1 0; }
-body[data-skin^="block"] .header__nav-list { justify-content: flex-start; }
+body[data-skin^="block"] .header__nav-list { justify-content: flex-start; gap: 1.1rem !important; }
 body[data-skin^="block"] .header__artist-name { order: 2; flex: 0 0 auto; text-align: center; font-size: 1.6rem; }
 body[data-skin^="block"] .header__streaming { order: 3; flex: 1 1 0; display: flex !important; justify-content: flex-end; gap: 0.75rem; }
 body[data-skin^="block"] .header__streaming-link { color: var(--color-brand-primary); }
