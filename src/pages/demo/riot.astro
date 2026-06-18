@@ -1,0 +1,272 @@
+---
+import DemoLayout from '../../layouts/DemoLayout.astro';
+import { themes } from '../../data/themes.js';
+const theme = themes.find((t) => t.slug === 'riot');
+const fonts = 'https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Mono:wght@400;700&display=swap';
+
+const merch = [
+  { name: 'Venom Halo Sticker + Pin Set', price: '£12', img: 'pins.jpg' },
+  { name: 'Acid Church Tour Poster', price: '£18', img: 'lp-riot.jpg' },
+  { name: 'Venom Halo Dad Cap', price: '£25', img: 'cap.jpg' },
+  { name: 'No Gods Tee', price: '£30', img: 'tee.jpg' },
+];
+const tour = [
+  { date: 'Sep 12 2026', city: 'Los Angeles, CA', venue: 'The Roxy', soldout: false },
+  { date: 'Sep 18 2026', city: 'New York, NY', venue: 'Webster Hall', soldout: true },
+  { date: 'Sep 24 2026', city: 'Chicago, IL', venue: 'Metro', soldout: false },
+  { date: 'Oct 02 2026', city: 'London, UK', venue: 'Electric Ballroom', soldout: false },
+  { date: 'Oct 09 2026', city: 'Berlin, DE', venue: 'SO36', soldout: false },
+];
+const marqueeText = 'OUT NOW · WORLDWIDE SHIPPING · RIOT TOUR 2026 · LIMITED MERCH DROP · STREAM EVERYWHERE · TURN IT UP · ';
+---
+<DemoLayout theme={theme} fonts={fonts} title="Venom Halo — Riffride Riot demo">
+  <div class="ri-page">
+    <!-- header (overlaid on hero) -->
+    <header class="ri-head">
+      <div class="ri-wrap ri-head__inner">
+        <a class="ri-logo" href="#"><img class="ri-logo__img" src="/demo/riot/logo.png" alt="Venom Halo" /></a>
+        <nav class="ri-nav">
+          <a href="#listen">Music</a>
+          <a href="#tour">Tour</a>
+          <a href="#merch">Merch</a>
+          <a href="#listen">Videos</a>
+          <a href="#news">Press</a>
+          <a href="#news">Contact</a>
+        </nav>
+        <div class="ri-soc">
+          <a href="https://spotify.com" target="_blank" rel="noopener" aria-label="Spotify"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm4.6 14.4a.75.75 0 01-1 .25c-2.7-1.6-6.1-2-10.1-1.1a.75.75 0 11-.3-1.45c4.3-1 8.1-.5 11.1 1.3.36.22.47.69.3 1zm1.2-2.7a.94.94 0 01-1.3.3c-3-1.85-7.6-2.4-11.2-1.3a.94.94 0 11-.55-1.8c4.1-1.25 9.2-.65 12.7 1.5.44.27.58.85.35 1.3zm.1-2.8C14.6 8.1 8.9 7.9 5.6 8.9a1.12 1.12 0 11-.65-2.15c3.8-1.15 10.1-.9 14 1.4a1.12 1.12 0 01-1.15 1.95z"/></svg></a>
+          <a href="https://instagram.com" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+          <a href="https://tiktok.com" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 3c.3 2.2 1.7 3.8 4 4v2.6c-1.5 0-2.9-.5-4-1.3V15a5.5 5.5 0 1 1-5.5-5.5c.3 0 .6 0 .9.1v2.7a2.8 2.8 0 1 0 2 2.7V3H14z"/></svg></a>
+          <a href="https://youtube.com" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 12s0-3.2-.4-4.7a2.5 2.5 0 0 0-1.7-1.7C19.3 5.2 12 5.2 12 5.2s-7.3 0-8.9.4A2.5 2.5 0 0 0 1.4 7.3C1 8.8 1 12 1 12s0 3.2.4 4.7a2.5 2.5 0 0 0 1.7 1.7c1.6.4 8.9.4 8.9.4s7.3 0 8.9-.4a2.5 2.5 0 0 0 1.7-1.7C23 15.2 23 12 23 12zM9.8 15.3V8.7l5.7 3.3z"/></svg></a>
+        </div>
+      </div>
+    </header>
+
+    <!-- hero -->
+    <section class="ri-hero">
+      <img class="ri-hero__bg" src="/demo/riot/hero.jpg" alt="" />
+      <div class="ri-hero__scrim"></div>
+      <div class="ri-hero__inner">
+        <p class="ri-eyebrow">Out Now · Acid Church</p>
+        <h1 class="ri-hero__title">Venom Halo<span class="ri-block"></span></h1>
+        <p class="ri-hero__sub">Out Now · Stream Everywhere</p>
+        <div class="ri-cta">
+          <a class="ri-btn ri-btn--neon" href="#listen">Listen Now</a>
+          <a class="ri-btn ri-btn--ghost" href="#merch">Shop The Drop</a>
+        </div>
+      </div>
+      <!-- marquee along very bottom of hero -->
+      <div class="ri-marq ri-marq--hero">
+        <div class="ri-marq__track">
+          <span>{marqueeText}{marqueeText}</span>
+          <span>{marqueeText}{marqueeText}</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 1) marquee band below hero -->
+    <div class="ri-marq">
+      <div class="ri-marq__track">
+        <span>{marqueeText}{marqueeText}</span>
+        <span>{marqueeText}{marqueeText}</span>
+      </div>
+    </div>
+
+    <!-- 2) listen -->
+    <section class="ri-listen" id="listen">
+      <div class="ri-wrap">
+        <p class="ri-dash">—</p>
+        <h2 class="ri-h2">Listen</h2>
+        <div class="ri-embed">
+          <iframe style="border-radius:12px" src="https://open.spotify.com/embed/album/2NrYPcMmQBlbBxopc2XlzS?theme=0" width="100%" height="352" frameborder="0" allow="autoplay;clipboard-write;encrypted-media;fullscreen;picture-in-picture" loading="lazy"></iframe>
+        </div>
+        <p class="ri-caption">New Album — Acid Church — Out Now</p>
+      </div>
+    </section>
+
+    <!-- 3) the drop -->
+    <section class="ri-merch" id="merch">
+      <div class="ri-wrap">
+        <p class="ri-dash">—</p>
+        <h2 class="ri-h2">The Drop</h2>
+        <div class="ri-grid">
+          {merch.map((m) => (
+            <article class="ri-card">
+              <div class="ri-card__media">
+                <img class="ri-card__img" src={`/demo/riot/${m.img}`} alt={m.name} loading="lazy" />
+                <span class="ri-pill">Sold Out</span>
+              </div>
+              <div class="ri-card__body">
+                <h3 class="ri-card__title">{m.name}</h3>
+                <span class="ri-price">{m.price}</span>
+              </div>
+            </article>
+          ))}
+        </div>
+        <div class="ri-merch__cta">
+          <a class="ri-btn ri-btn--neon" href="#">Shop All Merch</a>
+          <p class="ri-micro">100% Official Merch · Worldwide Shipping</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4) riot tour 2026 -->
+    <section class="ri-tour" id="tour">
+      <div class="ri-wrap">
+        <p class="ri-dash">—</p>
+        <h2 class="ri-h2">Riot Tour 2026</h2>
+        <div class="ri-table">
+          <div class="ri-table__head">
+            <span>Date</span>
+            <span>City</span>
+            <span>Venue</span>
+            <span></span>
+          </div>
+          {tour.map((d) => (
+            <div class="ri-row">
+              <span class="ri-row__date">{d.date}</span>
+              <span class="ri-row__city">{d.city}</span>
+              <span class="ri-row__venue">{d.venue}</span>
+              {d.soldout
+                ? <span class="ri-row__out">Sold Out</span>
+                : <a class="ri-row__tix" href="#">Tickets</a>}
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- 5) join the riot -->
+    <section class="ri-news" id="news">
+      <div class="ri-wrap">
+        <p class="ri-dash">—</p>
+        <h2 class="ri-h2">Join The Riot</h2>
+        <p class="ri-news__sub">Drops, shows, and chaos straight to your inbox. No spam, just noise.</p>
+        <form class="ri-news__form" onsubmit="return false">
+          <input type="email" placeholder="YOUR@EMAIL.COM" aria-label="Email" />
+          <button class="ri-btn ri-btn--neon" type="submit">Subscribe</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- 6) footer -->
+    <footer class="ri-foot">
+      <p class="ri-foot__line">© 2026 · Venom Halo</p>
+      <p class="ri-credit">Created with <a href="/">Riffride</a></p>
+    </footer>
+  </div>
+</DemoLayout>
+
+<style>
+  .ri-wrap{max-width:1200px;margin:0 auto;padding:0 clamp(1.25rem,4vw,3rem)}
+
+  /* page */
+  .ri-page{position:relative;background:#121212}
+
+  /* header (overlaid + transparent) */
+  .ri-head{position:absolute;top:0;left:0;right:0;z-index:20;background:transparent}
+  .ri-head__inner{display:flex;align-items:center;justify-content:space-between;gap:1.5rem;height:74px}
+  .ri-logo{display:inline-flex;align-items:center}
+  .ri-logo__img{height:38px;width:auto;display:block}
+  .ri-nav{display:flex;gap:1.5rem}
+  .ri-nav a{font-family:'Space Mono',monospace;text-transform:uppercase;font-weight:700;font-size:.72rem;letter-spacing:.18em;color:#fff;opacity:.85;transition:.18s}
+  .ri-nav a:hover{opacity:1;color:#EBFE53}
+  .ri-soc{display:flex;gap:.75rem;align-items:center}
+  .ri-soc a{color:#fff;display:inline-flex;transition:.18s}
+  .ri-soc a:hover{color:#EBFE53}
+  .ri-soc svg{width:20px;height:20px;display:block}
+
+  /* hero */
+  .ri-hero{position:relative;min-height:92vh;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end}
+  .ri-hero__bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top}
+  .ri-hero__scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.45) 0%,rgba(0,0,0,.15) 40%,rgba(0,0,0,.85) 100%);z-index:1}
+  .ri-hero__inner{position:relative;z-index:2;width:100%;max-width:1200px;margin:0 auto;padding:0 clamp(1.25rem,4vw,3rem) clamp(3.5rem,8vw,5rem)}
+  .ri-eyebrow{font-family:'Space Mono',monospace;text-transform:uppercase;letter-spacing:.18em;font-weight:700;font-size:.74rem;color:#EBFE53;margin-bottom:1rem}
+  .ri-hero__title{font-family:'Archivo Black',Impact,sans-serif;text-transform:uppercase;color:#fff;font-size:clamp(3.4rem,13vw,9rem);line-height:.86;letter-spacing:-.01em;display:inline-flex;align-items:flex-end;flex-wrap:wrap}
+  .ri-block{display:inline-block;width:clamp(.5em,2vw,.6em);height:.22em;background:#EBFE53;margin-left:.08em;margin-bottom:.06em}
+  .ri-hero__sub{font-family:'Space Mono',monospace;text-transform:uppercase;letter-spacing:.18em;font-weight:700;font-size:.82rem;color:#fff;margin:1.3rem 0 0}
+  .ri-cta{display:flex;gap:1rem;flex-wrap:wrap;margin-top:1.8rem}
+
+  /* buttons (sharp corners) */
+  .ri-btn{font-family:'Space Mono',monospace;display:inline-flex;align-items:center;justify-content:center;font-weight:700;text-transform:uppercase;letter-spacing:.18em;font-size:.76rem;padding:1rem 1.9rem;border:1px solid transparent;border-radius:0;cursor:pointer;transition:.18s}
+  .ri-btn--neon{background:#EBFE53;color:#000;border-color:#EBFE53}
+  .ri-btn--neon:hover{box-shadow:0 0 26px rgba(235,254,83,.55);transform:translateY(-2px)}
+  .ri-btn--ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.7)}
+  .ri-btn--ghost:hover{border-color:#EBFE53;color:#EBFE53}
+
+  /* marquee */
+  .ri-marq{background:#EBFE53;overflow:hidden;white-space:nowrap;padding:.7rem 0}
+  .ri-marq--hero{position:relative;z-index:2;border-top:2px solid #000}
+  .ri-marq__track{display:inline-flex;will-change:transform;animation:ri-marq 30s linear infinite}
+  .ri-marq:hover .ri-marq__track{animation-play-state:paused}
+  .ri-marq__track span{font-family:'Space Mono',monospace;font-weight:700;text-transform:uppercase;letter-spacing:.18em;font-size:.82rem;color:#000;padding-right:0}
+  @keyframes ri-marq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+  /* section eyebrow dash + headings */
+  .ri-dash{font-family:'Space Mono',monospace;color:#EBFE53;font-weight:700;font-size:1.1rem;line-height:1;letter-spacing:.18em;margin-bottom:.6rem}
+  .ri-h2{font-family:'Archivo Black',Impact,sans-serif;text-transform:uppercase;letter-spacing:-.01em;line-height:.92;color:#fff;font-size:clamp(2.2rem,6.5vw,4.4rem);margin-bottom:2rem}
+
+  /* listen */
+  .ri-listen{background:#000;padding:clamp(3.5rem,8vw,6rem) 0}
+  .ri-embed{background:#181818;border-radius:16px;padding:clamp(1rem,3vw,1.75rem);max-width:880px;margin:0 auto}
+  .ri-embed iframe{display:block}
+  .ri-caption{font-family:'Space Mono',monospace;text-transform:uppercase;letter-spacing:.18em;font-weight:700;font-size:.74rem;color:#56B54A;text-align:center;margin-top:1.4rem}
+
+  /* the drop */
+  .ri-merch{background:#000;padding:clamp(3.5rem,8vw,6rem) 0}
+  .ri-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem}
+  .ri-card{background:#121212;border:1px solid #222;transition:.18s}
+  .ri-card:hover{border-color:#EBFE53;transform:translateY(-4px)}
+  .ri-card__media{position:relative;aspect-ratio:1;overflow:hidden}
+  .ri-card__img{width:100%;height:100%;object-fit:cover}
+  .ri-pill{position:absolute;top:.7rem;right:.7rem;background:#EBFE53;color:#000;font-family:'Space Mono',monospace;font-weight:700;text-transform:uppercase;letter-spacing:.14em;font-size:.62rem;padding:.32rem .6rem}
+  .ri-card__body{padding:1rem}
+  .ri-card__title{font-family:'Space Mono',monospace;text-transform:uppercase;font-weight:700;font-size:.78rem;letter-spacing:.1em;color:#fff;line-height:1.35}
+  .ri-price{display:block;font-family:'Space Mono',monospace;font-weight:700;font-size:.92rem;letter-spacing:.1em;color:#EBFE53;margin-top:.7rem}
+  .ri-merch__cta{text-align:center;margin-top:2.6rem}
+  .ri-micro{font-family:'Space Mono',monospace;text-transform:uppercase;letter-spacing:.18em;font-weight:700;font-size:.68rem;color:#56B54A;margin-top:1.1rem}
+
+  /* riot tour */
+  .ri-tour{background:#000;padding:clamp(3.5rem,8vw,6rem) 0}
+  .ri-table__head{display:grid;grid-template-columns:150px 1.3fr 1.3fr auto;align-items:center;gap:1rem;padding:0 0 1rem;border-bottom:1px solid #2a2a2a}
+  .ri-table__head span{font-family:'Space Mono',monospace;text-transform:uppercase;letter-spacing:.18em;font-weight:700;font-size:.72rem;color:#EBFE53}
+  .ri-row{display:grid;grid-template-columns:150px 1.3fr 1.3fr auto;align-items:center;gap:1rem;padding:1.2rem 0;border-bottom:1px solid #1f1f1f}
+  .ri-row__date{font-family:'Space Mono',monospace;text-transform:uppercase;font-weight:700;font-size:.82rem;letter-spacing:.1em;color:#fff}
+  .ri-row__city{font-family:'Space Mono',monospace;text-transform:uppercase;font-weight:700;font-size:.82rem;letter-spacing:.1em;color:#fff}
+  .ri-row__venue{font-family:'Space Mono',monospace;text-transform:uppercase;font-size:.78rem;letter-spacing:.1em;color:#888}
+  .ri-row__tix{font-family:'Space Mono',monospace;text-transform:uppercase;font-weight:700;font-size:.7rem;letter-spacing:.18em;color:#EBFE53;border:1px solid #EBFE53;padding:.5rem 1.1rem;justify-self:end;transition:.18s}
+  .ri-row__tix:hover{background:#EBFE53;color:#000}
+  .ri-row__out{font-family:'Space Mono',monospace;text-transform:uppercase;font-weight:700;font-size:.7rem;letter-spacing:.18em;color:#888;justify-self:end}
+
+  /* join the riot */
+  .ri-news{background:#000;padding:clamp(3.5rem,8vw,6rem) 0}
+  .ri-news .ri-h2{margin-bottom:1.2rem}
+  .ri-news__sub{font-family:'Space Mono',monospace;text-transform:uppercase;letter-spacing:.16em;font-weight:700;font-size:.78rem;color:#56B54A;max-width:60ch;margin-bottom:2rem;line-height:1.7}
+  .ri-news__form{display:flex;gap:.7rem;flex-wrap:wrap;max-width:560px}
+  .ri-news__form input{flex:1;min-width:220px;background:#121212;border:1px solid #333;border-radius:0;color:#fff;font-family:'Space Mono',monospace;text-transform:uppercase;letter-spacing:.12em;font-size:.78rem;padding:1rem 1.1rem}
+  .ri-news__form input::placeholder{color:#666}
+  .ri-news__form input:focus{outline:none;border-color:#EBFE53}
+
+  /* footer */
+  .ri-foot{background:#000;border-top:1px solid #1a1a1a;padding:2.8rem 1.25rem;text-align:center}
+  .ri-foot__line{font-family:'Space Mono',monospace;text-transform:uppercase;letter-spacing:.18em;font-weight:700;font-size:.74rem;color:#56B54A}
+  .ri-credit{font-family:'Space Mono',monospace;text-transform:uppercase;letter-spacing:.18em;font-size:.72rem;color:#888;margin-top:.9rem}
+  .ri-credit a{color:#56B54A}
+  .ri-credit a:hover{color:#EBFE53}
+
+  /* responsive */
+  @media(max-width:860px){
+    .ri-nav{display:none}
+    .ri-grid{grid-template-columns:repeat(2,1fr)}
+  }
+  @media(max-width:600px){
+    .ri-soc{display:none}
+    .ri-grid{grid-template-columns:1fr}
+    .ri-table__head{display:none}
+    .ri-row{grid-template-columns:1fr auto;grid-template-areas:"date action" "city action" "venue action";gap:.25rem 1rem}
+    .ri-row__date{grid-area:date}
+    .ri-row__city{grid-area:city}
+    .ri-row__venue{grid-area:venue}
+    .ri-row__tix,.ri-row__out{grid-area:action;align-self:center}
+  }
+</style>

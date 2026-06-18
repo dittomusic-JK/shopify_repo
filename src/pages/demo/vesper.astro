@@ -1,0 +1,335 @@
+---
+import DemoLayout from '../../layouts/DemoLayout.astro';
+import { themes } from '../../data/themes.js';
+const theme = themes.find((t) => t.slug === 'vesper');
+const fonts = 'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Montserrat:wght@200;300;400;500&display=swap';
+
+const tracks = [
+  { n: '01', title: 'Halcyon', dur: '4:06' },
+  { n: '02', title: 'Glass Harbour', dur: '3:49' },
+  { n: '03', title: 'Paper Cities', dur: '5:11' },
+  { n: '04', title: 'Low Tide', dur: '3:33' },
+  { n: '05', title: 'After the Noise', dur: '5:47' },
+];
+
+const merch = [
+  { img: 'tees.jpg', name: 'Halcyon Print Tee', price: '£29' },
+  { img: 'print.jpg', name: 'Album Art Tee', price: '£32' },
+  { img: 'book.jpg', name: 'Halcyon Art Book', price: '£22' },
+  { img: 'crewneck.jpg', name: 'Cream Crewneck', price: '£59' },
+];
+
+const live = [
+  { date: 'Sep 18 2026', city: 'Copenhagen, DK', venue: 'Vega', sold: false },
+  { date: 'Sep 22 2026', city: 'Berlin, DE', venue: 'Säälchen', sold: true },
+  { date: 'Sep 27 2026', city: 'Paris, FR', venue: 'La Maroquinerie', sold: false },
+  { date: 'Oct 03 2026', city: 'London, UK', venue: 'Union Chapel', sold: false },
+  { date: 'Oct 09 2026', city: 'Dublin, IE', venue: "Whelan's", sold: false },
+];
+
+const editorial = [
+  { img: 'look1.jpg', title: 'PORCELAIN', tone: 'dark' },
+  { img: 'look2.jpg', title: 'SLOW VIOLENCE', tone: 'dark' },
+];
+
+const road = [
+  { img: 'look4.jpg', title: 'GOLDFRAME', tone: 'gold' },
+  { img: 'look5.jpg', title: 'ECHOES', tone: 'dark' },
+];
+---
+<DemoLayout theme={theme} fonts={fonts} title="Vesper Lane — Riffride Vesper demo">
+  <div class="ve-page">
+    <!-- header overlaid on hero -->
+    <header class="ve-head">
+      <a class="ve-logo" href="#">Vesper Lane</a>
+      <nav class="ve-nav">
+        <a href="#music">MUSIC</a>
+        <a href="#tour">TOUR</a>
+        <a href="#merch">MERCH</a>
+        <a href="#videos">VIDEOS</a>
+        <a href="#press">PRESS</a>
+        <a href="#contact">CONTACT</a>
+      </nav>
+      <div class="ve-soc">
+        <a href="https://spotify.com" target="_blank" rel="noopener" aria-label="Spotify"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm4.6 14.4a.75.75 0 01-1 .25c-2.7-1.6-6.1-2-10.1-1.1a.75.75 0 11-.3-1.45c4.3-1 8.1-.5 11.1 1.3.36.22.47.69.3 1zm1.2-2.7a.94.94 0 01-1.3.3c-3-1.85-7.6-2.4-11.2-1.3a.94.94 0 11-.55-1.8c4.1-1.25 9.2-.65 12.7 1.5.44.27.58.85.35 1.3zm.1-2.8C14.6 8.1 8.9 7.9 5.6 8.9a1.12 1.12 0 11-.65-2.15c3.8-1.15 10.1-.9 14 1.4a1.12 1.12 0 01-1.15 1.95z"/></svg></a>
+        <a href="https://instagram.com" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+        <a href="https://tiktok.com" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 3c.3 2.2 1.7 3.8 4 4v2.6c-1.5 0-2.9-.5-4-1.3V15a5.5 5.5 0 1 1-5.5-5.5c.3 0 .6 0 .9.1v2.7a2.8 2.8 0 1 0 2 2.7V3H14z"/></svg></a>
+      </div>
+    </header>
+
+    <!-- hero -->
+    <section class="ve-hero">
+      <img class="ve-hero__bg" src="/demo/vesper/hero.jpg" alt="Vesper Lane portrait" />
+      <div class="ve-hero__scrim"></div>
+      <div class="ve-hero__inner">
+        <p class="ve-eyebrow ve-eyebrow--light">New Album</p>
+        <h1 class="ve-hero__title">HALCYON</h1>
+        <p class="ve-hero__sub">The third record from Vesper Lane. Recorded between two winters<br />by the coast — spare, close, and quietly devastating.</p>
+        <a class="ve-btn" href="#music">&#9656; LISTEN</a>
+      </div>
+    </section>
+
+    <!-- 1) album feature -->
+    <section class="ve-album" id="music">
+      <div class="ve-album__grid">
+        <div class="ve-album__art">
+          <img src="/demo/vesper/album.jpg" alt="Halcyon album cover" loading="lazy" />
+        </div>
+        <div class="ve-album__body">
+          <p class="ve-eyebrow">Album</p>
+          <h2 class="ve-display ve-display--lg">HALCYON</h2>
+          <p class="ve-para">Written on the move and finished in a quiet room by the coast. Halcyon is a record about stillness after noise — spare arrangements, close vocals, and the kind of songs that ask to be played twice.</p>
+          <ul class="ve-tracks">
+            {tracks.map((t) => (
+              <li class="ve-track">
+                <span class="ve-track__n">{t.n}</span>
+                <span class="ve-track__title">{t.title}</span>
+                <span class="ve-track__dur">{t.dur}</span>
+                <span class="ve-track__play">&#9656;</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2) merch -->
+    <section class="ve-merch" id="merch">
+      <div class="ve-wrap">
+        <div class="ve-merch__head">
+          <div>
+            <p class="ve-eyebrow">The Collection</p>
+            <h2 class="ve-display ve-display--faint">MERCH</h2>
+          </div>
+          <a class="ve-shopall" href="#merch">SHOP ALL</a>
+        </div>
+        <div class="ve-merch__grid">
+          {merch.map((m) => (
+            <article class="ve-product">
+              <div class="ve-product__imgwrap">
+                <img src={`/demo/vesper/${m.img}`} alt={m.name} loading="lazy" />
+              </div>
+              <h3 class="ve-product__name">{m.name}</h3>
+              <p class="ve-product__price">{m.price}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- 3) live -->
+    <section class="ve-live" id="tour">
+      <div class="ve-wrap">
+        <div class="ve-tick"></div>
+        <h2 class="ve-display">LIVE</h2>
+        <div class="ve-live__table">
+          <div class="ve-live__headrow">
+            <span>Date</span>
+            <span>City</span>
+            <span>Venue</span>
+            <span></span>
+          </div>
+          {live.map((d) => (
+            <div class="ve-live__row">
+              <span class="ve-live__date">{d.date}</span>
+              <span class="ve-live__city">{d.city}</span>
+              <span class="ve-live__venue">{d.venue}</span>
+              {d.sold
+                ? <span class="ve-live__btn ve-live__btn--sold">SOLD OUT</span>
+                : <a class="ve-live__btn" href="#">TICKETS</a>}
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- 4) editorial -->
+    <section class="ve-editorial" id="press">
+      <div class="ve-wrap">
+        <p class="ve-eyebrow">Editorial</p>
+        <div class="ve-pair">
+          {editorial.map((e) => (
+            <figure class="ve-look">
+              <img src={`/demo/vesper/${e.img}`} alt="Vesper Lane editorial" loading="lazy" />
+            </figure>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- 5) film -->
+    <section class="ve-film" id="videos">
+      <img class="ve-film__bg" src="/demo/vesper/look3.jpg" alt="Vesper Lane film still" loading="lazy" />
+      <div class="ve-film__scrim"></div>
+      <div class="ve-film__inner">
+        <span class="ve-film__play" aria-hidden="true">&#9656;</span>
+      </div>
+    </section>
+
+    <!-- 6) on the road -->
+    <section class="ve-road">
+      <div class="ve-wrap">
+        <p class="ve-eyebrow">On the Road, Autumn 2026</p>
+        <div class="ve-pair">
+          {road.map((e) => (
+            <figure class="ve-look">
+              <img src={`/demo/vesper/${e.img}`} alt="Vesper Lane editorial" loading="lazy" />
+            </figure>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- 7) stay close -->
+    <section class="ve-stay" id="contact">
+      <div class="ve-wrap ve-stay__inner">
+        <div class="ve-tick ve-tick--center"></div>
+        <h2 class="ve-display">STAY CLOSE</h2>
+        <p class="ve-stay__sub">New songs, tour dates, and the occasional letter from the studio. No noise.</p>
+        <form class="ve-stay__form" onsubmit="return false">
+          <input type="email" placeholder="Email address" aria-label="Email address" />
+          <button class="ve-btn" type="submit">SUBSCRIBE</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- 8) footer -->
+    <footer class="ve-foot">
+      <p class="ve-foot__line">© 2026 · Vesper Lane</p>
+      <p class="ve-credit">Created with <a href="/">Riffride</a></p>
+    </footer>
+  </div>
+</DemoLayout>
+
+<style>
+  .ve-page{position:relative;background:#F2F0EB;color:#1A1A1A;font-family:'Montserrat',system-ui,sans-serif;font-weight:300}
+  .ve-wrap{max-width:1200px;margin:0 auto;padding:0 clamp(1.5rem,5vw,4rem)}
+
+  /* shared type */
+  .ve-eyebrow{font-family:'Montserrat',sans-serif;text-transform:uppercase;letter-spacing:.32em;font-size:.66rem;font-weight:400;color:#9A9A9A}
+  .ve-eyebrow--light{color:rgba(255,255,255,.82)}
+  .ve-display{font-family:'Montserrat',sans-serif;font-weight:200;text-transform:uppercase;letter-spacing:.28em;color:#1A1A1A;line-height:1.05;font-size:clamp(2rem,5vw,3.4rem)}
+  .ve-display--lg{font-size:clamp(2.6rem,6vw,4.2rem)}
+  .ve-display--faint{color:#9A9A9A;opacity:.85}
+  .ve-para{font-family:'Montserrat',sans-serif;font-weight:300;color:#1A1A1A;font-size:.98rem;line-height:1.85;max-width:46ch}
+  .ve-tick{width:40px;height:1px;background:#1A1A1A;margin:0 0 1.4rem}
+  .ve-tick--center{margin-left:auto;margin-right:auto}
+
+  .ve-btn{font-family:'Montserrat',sans-serif;display:inline-flex;align-items:center;gap:.4rem;background:#111111;color:#fff;font-size:.72rem;font-weight:400;text-transform:uppercase;letter-spacing:.22em;padding:1rem 2.1rem;border:none;border-radius:0;cursor:pointer;transition:.25s}
+  .ve-btn:hover{background:#9C8456}
+
+  /* header */
+  .ve-head{position:absolute;top:0;left:0;right:0;z-index:20;display:flex;align-items:center;justify-content:space-between;padding:1.4rem clamp(1.5rem,5vw,4rem);background:transparent}
+  .ve-logo{font-family:'Montserrat',sans-serif;font-weight:300;font-size:1.18rem;letter-spacing:.24em;text-transform:none;color:#fff}
+  .ve-nav{display:flex;gap:2rem}
+  .ve-nav a{font-family:'Montserrat',sans-serif;font-weight:300;text-transform:uppercase;letter-spacing:.2em;font-size:.66rem;color:rgba(255,255,255,.85);transition:.2s}
+  .ve-nav a:hover{color:#fff}
+  .ve-soc{display:flex;gap:.9rem;align-items:center}
+  .ve-soc a{color:rgba(255,255,255,.85);transition:.2s}
+  .ve-soc a:hover{color:#fff}
+  .ve-soc svg{width:17px;height:17px}
+
+  /* hero */
+  .ve-hero{position:relative;min-height:90vh;overflow:hidden;display:flex;align-items:flex-end}
+  .ve-hero__bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top}
+  .ve-hero__scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.28) 0%,rgba(0,0,0,0) 32%,rgba(0,0,0,0) 55%,rgba(0,0,0,.62) 100%)}
+  .ve-hero__inner{position:relative;z-index:2;width:100%;max-width:1200px;margin:0 auto;padding:0 clamp(1.5rem,5vw,4rem) clamp(3rem,7vw,5rem)}
+  .ve-hero__title{font-family:'Montserrat',sans-serif;font-weight:200;text-transform:uppercase;letter-spacing:.22em;font-size:clamp(3.4rem,12vw,8.5rem);line-height:.98;color:#fff;margin:.6rem 0 0}
+  .ve-hero__sub{font-family:'Montserrat',sans-serif;font-weight:300;color:rgba(255,255,255,.8);font-size:.92rem;line-height:1.8;margin-top:1.2rem;letter-spacing:.02em}
+  .ve-hero .ve-btn{margin-top:2rem}
+
+  /* 1) album */
+  .ve-album{background:#F2F0EB;padding:clamp(3.5rem,8vw,6.5rem) 0}
+  .ve-album__grid{max-width:1200px;margin:0 auto;padding:0 clamp(1.5rem,5vw,4rem);display:grid;grid-template-columns:1fr 1fr;gap:clamp(2.5rem,6vw,5rem);align-items:center}
+  .ve-album__art img{width:100%;aspect-ratio:1;object-fit:cover}
+  .ve-album__body .ve-display{margin:.5rem 0 1.4rem}
+  .ve-tracks{list-style:none;margin:2.2rem 0 0}
+  .ve-track{display:grid;grid-template-columns:auto 1fr auto auto;align-items:center;gap:1.1rem;padding:1rem 0;border-top:1px solid rgba(26,26,26,.14)}
+  .ve-track:last-child{border-bottom:1px solid rgba(26,26,26,.14)}
+  .ve-track__n{font-family:'Montserrat',sans-serif;font-weight:300;font-size:.78rem;letter-spacing:.12em;color:#9A9A9A}
+  .ve-track__title{font-family:'Montserrat',sans-serif;font-weight:300;font-size:1rem;letter-spacing:.04em;color:#1A1A1A}
+  .ve-track__dur{font-family:'Montserrat',sans-serif;font-weight:300;font-size:.82rem;color:#9A9A9A;text-align:right}
+  .ve-track__play{font-size:.7rem;color:#1A1A1A;transition:.2s}
+  .ve-track:hover .ve-track__play{color:#9C8456}
+
+  /* 2) merch */
+  .ve-merch{background:#FFFFFF;padding:clamp(3.5rem,8vw,6.5rem) 0}
+  .ve-merch__head{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:clamp(2.5rem,5vw,4rem)}
+  .ve-merch__head .ve-display{margin-top:.6rem}
+  .ve-shopall{font-family:'Montserrat',sans-serif;font-weight:400;text-transform:uppercase;letter-spacing:.22em;font-size:.66rem;color:#1A1A1A;border-bottom:1px solid #1A1A1A;padding-bottom:.25rem;transition:.2s}
+  .ve-shopall:hover{color:#9C8456;border-color:#9C8456}
+  .ve-merch__grid{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(1.5rem,3vw,2.6rem)}
+  .ve-product__imgwrap{overflow:hidden;background:#F2F0EB}
+  .ve-product__imgwrap img{width:100%;aspect-ratio:4/5;object-fit:cover;transition:transform .6s ease}
+  .ve-product:hover .ve-product__imgwrap img{transform:scale(1.04)}
+  .ve-product__name{font-family:'Montserrat',sans-serif;font-weight:300;font-size:.9rem;letter-spacing:.04em;color:#1A1A1A;margin-top:1.1rem}
+  .ve-product__price{font-family:'Montserrat',sans-serif;font-weight:300;font-size:.82rem;color:#9A9A9A;margin-top:.35rem}
+
+  /* 3) live */
+  .ve-live{background:#F2F0EB;padding:clamp(3.5rem,8vw,6rem) 0}
+  .ve-live .ve-display{margin-bottom:clamp(2rem,4vw,3rem)}
+  .ve-live__headrow,.ve-live__row{display:grid;grid-template-columns:1.1fr 1.3fr 1.5fr auto;align-items:center;gap:1.2rem}
+  .ve-live__headrow{padding-bottom:1rem;border-bottom:1px solid rgba(26,26,26,.2)}
+  .ve-live__headrow span{font-family:'Montserrat',sans-serif;font-weight:400;text-transform:uppercase;letter-spacing:.26em;font-size:.62rem;color:#9A9A9A}
+  .ve-live__row{padding:1.3rem 0;border-bottom:1px solid rgba(26,26,26,.12)}
+  .ve-live__date{font-family:'Montserrat',sans-serif;font-weight:300;font-size:.9rem;color:#1A1A1A;letter-spacing:.04em}
+  .ve-live__city{font-family:'Montserrat',sans-serif;font-weight:400;font-size:.95rem;color:#1A1A1A}
+  .ve-live__venue{font-family:'Montserrat',sans-serif;font-weight:300;font-size:.9rem;color:#9A9A9A}
+  .ve-live__btn{font-family:'Montserrat',sans-serif;font-weight:400;text-transform:uppercase;letter-spacing:.2em;font-size:.62rem;padding:.65rem 1.4rem;justify-self:end;background:#111111;color:#fff;transition:.25s}
+  a.ve-live__btn:hover{background:#9C8456}
+  .ve-live__btn--sold{background:transparent;color:#9A9A9A;border:1px solid rgba(154,154,154,.5);cursor:default}
+
+  /* 4 & 6) editorial / road pairs */
+  .ve-editorial{background:#FFFFFF;padding:clamp(3.5rem,8vw,6rem) 0}
+  .ve-road{background:#F2F0EB;padding:clamp(3.5rem,8vw,6rem) 0}
+  .ve-editorial .ve-eyebrow,.ve-road .ve-eyebrow{display:block;margin-bottom:clamp(1.6rem,3vw,2.4rem)}
+  .ve-pair{display:grid;grid-template-columns:1fr 1fr;gap:clamp(1.5rem,3vw,2.4rem)}
+  .ve-look{position:relative;margin:0;overflow:hidden}
+  .ve-look img{width:100%;aspect-ratio:3/4;object-fit:cover;transition:transform .7s ease}
+  .ve-look:hover img{transform:scale(1.03)}
+  .ve-look__cap{position:absolute;top:clamp(1.5rem,3vw,2.4rem);left:0;right:0;text-align:center;display:flex;flex-direction:column;gap:.5rem}
+  .ve-look__title{font-family:'Cormorant Garamond',serif;font-weight:300;text-transform:uppercase;letter-spacing:.2em;font-size:clamp(1.5rem,3vw,2.3rem);color:#1A1A1A}
+  .ve-look__title--gold{color:#9C8456}
+  .ve-look__sub{font-family:'Cormorant Garamond',serif;font-weight:400;text-transform:uppercase;letter-spacing:.34em;font-size:.72rem;color:rgba(26,26,26,.65)}
+
+  /* 5) film */
+  .ve-film{position:relative;min-height:78vh;overflow:hidden;display:flex;align-items:center;justify-content:center}
+  .ve-film__bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center}
+  .ve-film__scrim{position:absolute;inset:0;background:rgba(0,0,0,.5)}
+  .ve-film__inner{position:relative;z-index:2;text-align:center}
+  .ve-film__play{display:inline-flex;align-items:center;justify-content:center;width:64px;height:64px;border:1px solid rgba(255,255,255,.55);border-radius:50%;color:rgba(255,255,255,.9);font-size:1.1rem;padding-left:.2rem;margin-bottom:2rem;transition:.25s}
+  .ve-film:hover .ve-film__play{border-color:#9C8456;color:#9C8456}
+  .ve-film__title{font-family:'Cormorant Garamond',serif;font-weight:300;text-transform:uppercase;letter-spacing:.32em;font-size:clamp(2.2rem,5vw,3.6rem);color:rgba(255,255,255,.92)}
+  .ve-film__sub{font-family:'Cormorant Garamond',serif;font-weight:400;text-transform:uppercase;letter-spacing:.42em;font-size:.92rem;color:#9C8456;margin-top:1rem}
+
+  /* 7) stay close */
+  .ve-stay{background:#F2F0EB;padding:clamp(4rem,8vw,6.5rem) 0;text-align:center}
+  .ve-stay__inner{max-width:620px}
+  .ve-stay .ve-display{margin-bottom:1.2rem}
+  .ve-stay__sub{font-family:'Montserrat',sans-serif;font-weight:300;color:#9A9A9A;font-size:.95rem;line-height:1.8;max-width:42ch;margin:0 auto 2.2rem}
+  .ve-stay__form{display:flex;gap:.7rem;justify-content:center;max-width:480px;margin:0 auto;flex-wrap:wrap}
+  .ve-stay__form input{flex:1;min-width:220px;background:#FFFFFF;border:1px solid rgba(26,26,26,.18);color:#1A1A1A;font-family:'Montserrat',sans-serif;font-weight:300;font-size:.9rem;letter-spacing:.04em;padding:1rem 1.1rem;border-radius:0}
+  .ve-stay__form input::placeholder{color:#9A9A9A}
+
+  /* 8) footer */
+  .ve-foot{background:#F2F0EB;padding:3rem 1.5rem 3.5rem;text-align:center;border-top:1px solid rgba(26,26,26,.1)}
+  .ve-foot__line{font-family:'Montserrat',sans-serif;font-weight:300;text-transform:uppercase;letter-spacing:.22em;font-size:.7rem;color:#9A9A9A}
+  .ve-credit{font-family:'Montserrat',sans-serif;font-weight:300;text-transform:uppercase;letter-spacing:.2em;font-size:.68rem;color:#9A9A9A;margin-top:.8rem}
+  .ve-credit a{color:#9C8456}
+
+  /* responsive */
+  @media(max-width:760px){
+    .ve-nav{display:none}
+    .ve-hero__title{font-size:clamp(2.8rem,16vw,4.5rem)}
+    .ve-hero__sub br{display:none}
+    .ve-album__grid{grid-template-columns:1fr}
+    .ve-merch__grid{grid-template-columns:1fr}
+    .ve-pair{grid-template-columns:1fr}
+    .ve-live__headrow{display:none}
+    .ve-live__row{grid-template-columns:1fr auto;grid-template-areas:"date btn" "city btn" "venue btn";gap:.2rem 1rem}
+    .ve-live__date{grid-area:date}
+    .ve-live__city{grid-area:city}
+    .ve-live__venue{grid-area:venue}
+    .ve-live__btn{grid-area:btn;align-self:center}
+  }
+</style>

@@ -1,0 +1,28 @@
+---
+import DemoBar from '../components/DemoBar.astro';
+const { theme, fonts, title } = Astro.props;
+const hideChrome = Astro.url.searchParams.get('chrome') === '0';
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>{title}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    {fonts && <link href={fonts} rel="stylesheet" />}
+    <style is:global>
+      *{margin:0;padding:0;box-sizing:border-box}
+      html{scroll-behavior:smooth}
+      img{display:block;max-width:100%}
+      a{text-decoration:none;color:inherit}
+      body{-webkit-font-smoothing:antialiased}
+    </style>
+  </head>
+  <body>
+    {!hideChrome && <DemoBar theme={theme} />}
+    <slot />
+  </body>
+</html>

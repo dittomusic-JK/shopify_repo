@@ -1,0 +1,335 @@
+---
+import DemoLayout from '../../layouts/DemoLayout.astro';
+import { themes } from '../../data/themes.js';
+const theme = themes.find((t) => t.slug === 'block');
+const fonts = 'https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@400;500;600;700&display=swap';
+
+const nav = ['Music', 'Tour', 'Merch', 'Videos', 'Press', 'Contact'];
+
+const socials = [
+  {
+    label: 'Spotify',
+    href: 'https://spotify.com',
+    svg: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm4.6 14.4a.75.75 0 01-1 .25c-2.7-1.6-6.1-2-10.1-1.1a.75.75 0 11-.3-1.45c4.3-1 8.1-.5 11.1 1.3.36.22.47.69.3 1zm1.2-2.7a.94.94 0 01-1.3.3c-3-1.85-7.6-2.4-11.2-1.3a.94.94 0 11-.55-1.8c4.1-1.25 9.2-.65 12.7 1.5.44.27.58.85.35 1.3zm.1-2.8C14.6 8.1 8.9 7.9 5.6 8.9a1.12 1.12 0 11-.65-2.15c3.8-1.15 10.1-.9 14 1.4a1.12 1.12 0 01-1.15 1.95z"/></svg>',
+  },
+  {
+    label: 'Instagram',
+    href: 'https://instagram.com',
+    svg: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>',
+  },
+  {
+    label: 'X',
+    href: 'https://x.com',
+    svg: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.2 2H21l-6.5 7.4L22 22h-6l-4.7-6.1L5.8 22H3l7-8L2 2h6.2l4.2 5.6zm-1 18h1.6L7.8 3.7H6z"/></svg>',
+  },
+  {
+    label: 'YouTube',
+    href: 'https://youtube.com',
+    svg: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 12s0-3.2-.4-4.7a2.5 2.5 0 0 0-1.7-1.7C19.3 5.2 12 5.2 12 5.2s-7.3 0-8.9.4A2.5 2.5 0 0 0 1.4 7.3C1 8.8 1 12 1 12s0 3.2.4 4.7a2.5 2.5 0 0 0 1.7 1.7c1.6.4 8.9.4 8.9.4s7.3 0 8.9-.4a2.5 2.5 0 0 0 1.7-1.7C23 15.2 23 12 23 12zM9.8 15.3V8.7l5.7 3.3z"/></svg>',
+  },
+  {
+    label: 'TikTok',
+    href: 'https://tiktok.com',
+    svg: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 3c.3 2.2 1.7 3.8 4 4v2.6c-1.5 0-2.9-.5-4-1.3V15a5.5 5.5 0 1 1-5.5-5.5c.3 0 .6 0 .9.1v2.7a2.8 2.8 0 1 0 2 2.7V3H14z"/></svg>',
+  },
+];
+
+const merch = [
+  { name: 'Midnight Currency Collectors Vinyl', price: '£79.00', img: 'vinyl.jpg' },
+  { name: 'AT Monogram Tee', price: '£29.00', img: 'tee.jpg' },
+  { name: 'Midnight Currency Framed Poster', price: '£43.00', img: 'print.jpg' },
+  { name: 'Midnight Currency Zine', price: '£25.00', img: 'zine.jpg' },
+  { name: 'ATLAS Chain Pendant', price: '£219.00', img: 'pendant.jpg' },
+];
+
+const tour = [
+  { date: 'Jan 15 2026', city: 'Los Angeles, CA', venue: 'The Wiltern', soldOut: false },
+  { date: 'Jan 18 2026', city: 'Phoenix, AZ', venue: 'The Van Buren', soldOut: false },
+  { date: 'Jan 22 2026', city: 'Dallas, TX', venue: 'House of Blues', soldOut: false },
+  { date: 'Jan 26 2026', city: 'Atlanta, GA', venue: 'Tabernacle', soldOut: true },
+  { date: 'Jan 30 2026', city: 'New York, NY', venue: 'Terminal 5', soldOut: false },
+];
+
+const listenLinks = [
+  {
+    label: 'Spotify',
+    href: 'https://spotify.com',
+    svg: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm4.6 14.4a.75.75 0 01-1 .25c-2.7-1.6-6.1-2-10.1-1.1a.75.75 0 11-.3-1.45c4.3-1 8.1-.5 11.1 1.3.36.22.47.69.3 1zm1.2-2.7a.94.94 0 01-1.3.3c-3-1.85-7.6-2.4-11.2-1.3a.94.94 0 11-.55-1.8c4.1-1.25 9.2-.65 12.7 1.5.44.27.58.85.35 1.3zm.1-2.8C14.6 8.1 8.9 7.9 5.6 8.9a1.12 1.12 0 11-.65-2.15c3.8-1.15 10.1-.9 14 1.4a1.12 1.12 0 01-1.15 1.95z"/></svg>',
+  },
+  {
+    label: 'Apple Music',
+    href: 'https://music.apple.com',
+    svg: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 17.5a2.5 2.5 0 1 1-2-2.45V7.2l9-1.9v8.2a2.5 2.5 0 1 1-2-2.45V8L9 9.1z"/></svg>',
+  },
+  {
+    label: 'SoundCloud',
+    href: 'https://soundcloud.com',
+    svg: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M2 14v3a.5.5 0 0 0 1 0v-3a.5.5 0 0 0-1 0zm2-1v4a.5.5 0 0 0 1 0v-4a.5.5 0 0 0-1 0zm2-1v5a.5.5 0 0 0 1 0v-5a.5.5 0 0 0-1 0zm3-2.5V18a.5.5 0 0 0 .5.5H19a3.5 3.5 0 0 0 .4-6.97A5 5 0 0 0 9.5 9a.5.5 0 0 0-.5.5z"/></svg>',
+  },
+];
+
+const followLinks = [
+  {
+    label: 'Instagram',
+    href: 'https://instagram.com',
+    svg: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>',
+  },
+  {
+    label: 'YouTube',
+    href: 'https://youtube.com',
+    svg: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 12s0-3.2-.4-4.7a2.5 2.5 0 0 0-1.7-1.7C19.3 5.2 12 5.2 12 5.2s-7.3 0-8.9.4A2.5 2.5 0 0 0 1.4 7.3C1 8.8 1 12 1 12s0 3.2.4 4.7a2.5 2.5 0 0 0 1.7 1.7c1.6.4 8.9.4 8.9.4s7.3 0 8.9-.4a2.5 2.5 0 0 0 1.7-1.7C23 15.2 23 12 23 12zM9.8 15.3V8.7l5.7 3.3z"/></svg>',
+  },
+  {
+    label: 'TikTok',
+    href: 'https://tiktok.com',
+    svg: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 3c.3 2.2 1.7 3.8 4 4v2.6c-1.5 0-2.9-.5-4-1.3V15a5.5 5.5 0 1 1-5.5-5.5c.3 0 .6 0 .9.1v2.7a2.8 2.8 0 1 0 2 2.7V3H14z"/></svg>',
+  },
+  {
+    label: 'X',
+    href: 'https://x.com',
+    svg: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.2 2H21l-6.5 7.4L22 22h-6l-4.7-6.1L5.8 22H3l7-8L2 2h6.2l4.2 5.6zm-1 18h1.6L7.8 3.7H6z"/></svg>',
+  },
+];
+---
+<DemoLayout theme={theme} fonts={fonts} title="ATLAS — Riffride Block demo">
+  <div class="bl-page">
+    <header class="bl-head">
+      <nav class="bl-nav bl-nav--l">
+        {nav.map((item) => <a href="#">{item}</a>)}
+      </nav>
+      <a class="bl-logo" href="#" aria-label="ATLAS">AT</a>
+      <div class="bl-nav bl-nav--r">
+        {socials.map((s) => (
+          <a class="bl-soc" href={s.href} target="_blank" rel="noopener" aria-label={s.label} set:html={s.svg}></a>
+        ))}
+      </div>
+    </header>
+
+    <section class="bl-hero">
+      <img class="bl-hero__bg" src="/demo/block/hero.jpg" alt="ATLAS performing live on stage" />
+      <div class="bl-hero__scrim"></div>
+      <div class="bl-hero__inner">
+        <p class="bl-hero__over">Live in Concert</p>
+        <p class="bl-hero__sold">Sold Out</p>
+        <h1 class="bl-hero__title">US Tour</h1>
+        <p class="bl-hero__sub">Pre Sale On Now</p>
+        <a class="bl-btn" href="#">Buy Tickets</a>
+      </div>
+    </section>
+
+    <section class="bl-listen" id="listen">
+      <div class="bl-wrap">
+        <h2 class="bl-h2">Listen</h2>
+        <div class="bl-embed">
+          <iframe style="border-radius:12px" src="https://open.spotify.com/embed/album/41GuZcammIkupMPKH2OJ6I?theme=0" width="100%" height="352" frameborder="0" allow="autoplay;clipboard-write;encrypted-media;fullscreen;picture-in-picture" loading="lazy"></iframe>
+        </div>
+        <p class="bl-embed__cap">New Album — Midnight Currency</p>
+      </div>
+    </section>
+
+    <section class="bl-merch" id="merch">
+      <div class="bl-wrap bl-merch__head">
+        <h2 class="bl-h2">Merch</h2>
+        <div class="bl-arrows">
+          <button class="bl-arrow" type="button" aria-label="Previous">&lsaquo;</button>
+          <button class="bl-arrow" type="button" aria-label="Next">&rsaquo;</button>
+        </div>
+      </div>
+      <div class="bl-slider">
+        {merch.map((m) => (
+          <article class="bl-card">
+            <img class="bl-card__img" src={`/demo/block/${m.img}`} alt={m.name} loading="lazy" />
+            <h3 class="bl-card__name">{m.name}</h3>
+            <span class="bl-card__price">{m.price}</span>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="bl-disco" id="discography">
+      <div class="bl-wrap">
+        <h2 class="bl-h2">Discography</h2>
+        <div class="bl-feature">
+          <img class="bl-feature__art" src="/demo/block/album.jpg" alt="Midnight Currency album cover" loading="lazy" />
+          <div class="bl-feature__body">
+            <span class="bl-feature__tag">Parental Advisory · Explicit Content</span>
+            <h3 class="bl-feature__title">Midnight Currency</h3>
+            <p class="bl-feature__copy">The album — out now.</p>
+            <a class="bl-btn" href="#listen">Listen Now</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="bl-tour" id="tour">
+      <div class="bl-wrap">
+        <h2 class="bl-h2">Tour</h2>
+        <ul class="bl-tour__list">
+          <li class="bl-tour__row bl-tour__row--head">
+            <span class="bl-tour__date">Date</span>
+            <span class="bl-tour__city">City</span>
+            <span class="bl-tour__venue">Venue</span>
+            <span class="bl-tour__act"></span>
+          </li>
+          {tour.map((t) => (
+            <li class="bl-tour__row">
+              <span class="bl-tour__date">{t.date}</span>
+              <span class="bl-tour__city">{t.city}</span>
+              <span class="bl-tour__venue">{t.venue}</span>
+              {t.soldOut ? (
+                <span class="bl-tour__sold">Sold Out</span>
+              ) : (
+                <a class="bl-tour__tix" href="#">Buy Tickets</a>
+              )}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <section class="bl-mail" id="contact">
+      <div class="bl-wrap bl-mail__inner">
+        <h2 class="bl-h2">Mailing List</h2>
+        <p class="bl-mail__sub">Get updates on new releases, tour dates, and exclusive content.</p>
+
+        <p class="bl-mail__over">Listen</p>
+        <div class="bl-pills">
+          {listenLinks.map((l) => (
+            <a class="bl-pill" href={l.href} target="_blank" rel="noopener">
+              <span class="bl-pill__ico" set:html={l.svg}></span>
+              <span>{l.label}</span>
+            </a>
+          ))}
+        </div>
+
+        <p class="bl-mail__over">Follow</p>
+        <div class="bl-pills">
+          {followLinks.map((l) => (
+            <a class="bl-pill" href={l.href} target="_blank" rel="noopener">
+              <span class="bl-pill__ico" set:html={l.svg}></span>
+              <span>{l.label}</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <footer class="bl-foot">
+      <p class="bl-foot__copy">© 2026 · ATLAS</p>
+      <p class="bl-credit">Created with <a href="/">Riffride</a></p>
+    </footer>
+  </div>
+</DemoLayout>
+
+<style>
+  .bl-page{position:relative;background:#0E0E0E;color:#FFFFFF;font-family:'Montserrat',sans-serif}
+  .bl-wrap{max-width:1160px;margin:0 auto;padding:0 clamp(1.25rem,4vw,2.5rem)}
+  .bl-h2{font-family:'Anton',sans-serif;text-transform:uppercase;color:#C8A04A;text-align:center;font-size:clamp(2rem,6vw,3.4rem);letter-spacing:.02em;line-height:.95}
+
+  .bl-btn{font-family:'Anton',sans-serif;display:inline-block;background:#C8A04A;color:#0E0E0E;text-transform:uppercase;letter-spacing:.06em;font-size:1rem;padding:.85rem 2.2rem;border-radius:3px;border:0;cursor:pointer;transition:background .2s}
+  .bl-btn:hover{background:#d9b663}
+
+  /* HEADER — overlaid, transparent, centered 3-part */
+  .bl-head{position:absolute;top:0;left:0;right:0;z-index:20;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:1rem;padding:1.5rem clamp(1.25rem,4vw,2.5rem)}
+  .bl-logo{font-family:Georgia,'Times New Roman',serif;font-weight:700;color:#C8A04A;font-size:2rem;letter-spacing:.04em;text-align:center;justify-self:center}
+  .bl-nav{display:flex;align-items:center}
+  .bl-nav--l{gap:clamp(.9rem,2vw,1.7rem);flex-wrap:wrap}
+  .bl-nav--l a{font-family:'Anton',sans-serif;text-transform:uppercase;color:#fff;font-size:.78rem;letter-spacing:.16em;opacity:.85;transition:.2s}
+  .bl-nav--l a:hover{opacity:1;color:#C8A04A}
+  .bl-nav--r{gap:.55rem;justify-content:flex-end}
+  .bl-soc{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;background:#262626;color:#fff;transition:.2s}
+  .bl-soc:hover{background:#C8A04A;color:#0E0E0E}
+  .bl-soc :global(svg){width:16px;height:16px}
+
+  /* HERO */
+  .bl-hero{position:relative;min-height:92vh;display:grid;place-items:center;text-align:center;overflow:hidden}
+  .bl-hero__bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center}
+  .bl-hero__scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,14,14,.5),rgba(14,14,14,.35) 45%,rgba(14,14,14,.85))}
+  .bl-hero__inner{position:relative;z-index:2;padding:2rem}
+  .bl-hero__over{font-family:'Anton',sans-serif;text-transform:uppercase;color:#fff;font-size:clamp(.85rem,2vw,1.1rem);letter-spacing:.34em}
+  .bl-hero__sold{font-family:'Anton',sans-serif;text-transform:uppercase;color:#fff;font-size:clamp(1rem,2.4vw,1.4rem);letter-spacing:.28em;margin-top:.35rem}
+  .bl-hero__title{font-family:'Anton',sans-serif;text-transform:uppercase;color:#C8A04A;font-size:clamp(4rem,16vw,12rem);line-height:.85;letter-spacing:.04em;margin:.4rem 0}
+  .bl-hero__sub{font-family:'Anton',sans-serif;text-transform:uppercase;color:#F2F2F2;font-size:clamp(.8rem,1.8vw,1rem);letter-spacing:.24em;margin-bottom:1.7rem}
+
+  /* LISTEN */
+  .bl-listen{padding:clamp(3.5rem,7vw,5.5rem) 0;text-align:center}
+  .bl-listen .bl-h2{margin-bottom:1.8rem}
+  .bl-embed{max-width:720px;margin:0 auto;background:#1C1C1C;border-radius:16px;padding:1rem}
+  .bl-embed iframe{display:block}
+  .bl-embed__cap{margin-top:1.1rem;color:#9A9A9A;text-transform:uppercase;letter-spacing:.18em;font-size:.74rem;font-weight:600}
+
+  /* MERCH */
+  .bl-merch{padding:clamp(3.5rem,7vw,5.5rem) 0;background:#1A1A1A}
+  .bl-merch__head{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-bottom:1.8rem}
+  .bl-merch__head .bl-h2{text-align:left}
+  .bl-arrows{display:flex;gap:.6rem}
+  .bl-arrow{width:42px;height:42px;border-radius:50%;border:0;background:#C8A04A;color:#0E0E0E;font-size:1.4rem;line-height:1;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:background .2s}
+  .bl-arrow:hover{background:#d9b663}
+  .bl-slider{display:flex;gap:1.2rem;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:1rem;padding-left:max(1.25rem,calc((100vw - 1160px)/2 + 1.25rem));padding-right:1.25rem}
+  .bl-slider::-webkit-scrollbar{height:6px}
+  .bl-slider::-webkit-scrollbar-thumb{background:#3a3a3a;border-radius:3px}
+  .bl-card{flex:0 0 clamp(220px,40vw,290px);scroll-snap-align:start}
+  .bl-card__img{width:100%;aspect-ratio:1;object-fit:cover;background:#0E0E0E;border:1px solid #2a2a2a}
+  .bl-card__name{font-family:'Anton',sans-serif;text-transform:uppercase;color:#fff;font-size:1rem;letter-spacing:.03em;line-height:1.1;margin:.85rem 0 .35rem}
+  .bl-card__price{color:#9A9A9A;font-size:.9rem;font-weight:500}
+
+  /* DISCOGRAPHY */
+  .bl-disco{padding:clamp(3.5rem,7vw,5.5rem) 0}
+  .bl-disco .bl-h2{margin-bottom:2rem}
+  .bl-feature{display:grid;grid-template-columns:minmax(0,420px) 1fr;gap:clamp(1.5rem,4vw,3rem);align-items:center}
+  .bl-feature__art{width:100%;aspect-ratio:1;object-fit:cover;border:1px solid #2a2a2a}
+  .bl-feature__tag{display:inline-block;border:1px solid #6E6E6E;color:#9A9A9A;text-transform:uppercase;font-size:.62rem;font-weight:700;letter-spacing:.12em;padding:.35rem .6rem;margin-bottom:1rem}
+  .bl-feature__title{font-family:'Anton',sans-serif;text-transform:uppercase;color:#fff;font-size:clamp(2.2rem,6vw,4rem);line-height:.9;letter-spacing:.02em}
+  .bl-feature__copy{color:#9A9A9A;font-size:1.05rem;margin:.9rem 0 1.6rem}
+
+  /* TOUR */
+  .bl-tour{padding:clamp(3.5rem,7vw,5.5rem) 0;background:#1A1A1A}
+  .bl-tour .bl-h2{margin-bottom:2rem}
+  .bl-tour__list{list-style:none}
+  .bl-tour__row{display:grid;grid-template-columns:160px 1fr 1.2fr auto;gap:1.2rem;align-items:center;padding:1.1rem 0;border-bottom:1px solid #2c2c2c}
+  .bl-tour__row--head{padding-bottom:.8rem}
+  .bl-tour__row--head span{font-family:'Anton',sans-serif;text-transform:uppercase;color:#6E6E6E;font-size:.78rem;letter-spacing:.16em}
+  .bl-tour__date{color:#fff;font-weight:600;font-size:.95rem}
+  .bl-tour__city{color:#9A9A9A;font-size:.92rem}
+  .bl-tour__venue{color:#9A9A9A;font-size:.92rem}
+  .bl-tour__tix{font-family:'Anton',sans-serif;background:#C8A04A;color:#0E0E0E;text-transform:uppercase;letter-spacing:.06em;font-size:.78rem;padding:.55rem 1.3rem;border-radius:3px;justify-self:end;transition:background .2s}
+  .bl-tour__tix:hover{background:#d9b663}
+  .bl-tour__sold{font-family:'Anton',sans-serif;color:#6E6E6E;text-transform:uppercase;letter-spacing:.14em;font-size:.78rem;justify-self:end}
+
+  /* MAILING LIST */
+  .bl-mail{padding:clamp(3.5rem,7vw,5.5rem) 0;text-align:center}
+  .bl-mail__sub{color:#9A9A9A;font-size:1.02rem;max-width:520px;margin:1rem auto 0}
+  .bl-mail__over{font-family:'Anton',sans-serif;text-transform:uppercase;color:#C8A04A;font-size:.85rem;letter-spacing:.22em;margin-top:2.4rem;margin-bottom:1rem}
+  .bl-pills{display:flex;flex-wrap:wrap;gap:.7rem;justify-content:center}
+  .bl-pill{display:inline-flex;align-items:center;gap:.55rem;border:1px solid #3a3a3a;background:#161616;color:#F2F2F2;padding:.6rem 1.2rem;border-radius:999px;font-family:'Anton',sans-serif;text-transform:uppercase;letter-spacing:.08em;font-size:.82rem;transition:.2s}
+  .bl-pill:hover{border-color:#C8A04A;color:#C8A04A}
+  .bl-pill__ico{display:inline-flex}
+  .bl-pill__ico :global(svg){width:16px;height:16px}
+
+  /* FOOTER */
+  .bl-foot{background:#0E0E0E;border-top:1px solid #1f1f1f;padding:2.4rem 1.5rem;text-align:center}
+  .bl-foot__copy{color:#9A9A9A;font-size:.8rem;letter-spacing:.04em}
+  .bl-credit{margin-top:.7rem;color:#6E6E6E;font-size:.8rem;letter-spacing:.04em}
+  .bl-credit a{color:#C8A04A}
+
+  /* RESPONSIVE */
+  @media(max-width:860px){
+    .bl-feature{grid-template-columns:1fr;text-align:center;justify-items:center}
+  }
+  @media(max-width:740px){
+    .bl-head{grid-template-columns:1fr;justify-items:center;gap:.9rem;text-align:center}
+    .bl-nav--l{justify-content:center;order:2}
+    .bl-logo{order:1}
+    .bl-nav--r{justify-content:center;order:3}
+    .bl-merch__head{flex-direction:column;align-items:flex-start}
+    .bl-merch__head .bl-h2{text-align:center;width:100%}
+  }
+  @media(max-width:600px){
+    .bl-tour__row{grid-template-columns:1fr auto;grid-template-areas:"date act" "city act" "venue act";gap:.15rem 1rem}
+    .bl-tour__row--head{display:none}
+    .bl-tour__date{grid-area:date}
+    .bl-tour__city{grid-area:city}
+    .bl-tour__venue{grid-area:venue}
+    .bl-tour__tix,.bl-tour__sold{grid-area:act;align-self:center}
+  }
+</style>

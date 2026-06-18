@@ -1,0 +1,310 @@
+---
+import DemoLayout from '../../layouts/DemoLayout.astro';
+import { themes } from '../../data/themes.js';
+const theme = themes.find((t) => t.slug === 'wander');
+const fonts = 'https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=EB+Garamond:wght@400;500&display=swap';
+
+const featured = [
+  { img: 'mug.jpg', name: 'Long Way Mug', price: '£14' },
+  { img: 'print.jpg', name: 'Framed Tour Print', price: '£30' },
+  { img: 'beanie.jpg', name: 'Terracotta Beanie', price: '£22' },
+  { img: 'hoodie.jpg', name: 'Wander Hoodie', price: '£58' },
+  { img: 'tote.jpg', name: 'Canvas Tote', price: '£18' },
+  { img: 'poster.jpg', name: 'Tour Poster', price: '£20' },
+  { img: 'tee.jpg', name: 'June Halliday Tee', price: '£26' },
+  { img: 'merchflat.jpg', name: 'The Bundle', price: '£75' },
+];
+
+const tracks = [
+  { n: '01', title: 'Long Way Around', dur: '4:14' },
+  { n: '02', title: 'The Road of Fire', dur: '3:52' },
+  { n: '03', title: 'River Road', dur: '4:08' },
+  { n: '04', title: 'Honest Love', dur: '3:46' },
+  { n: '05', title: 'Forget or Tell You', dur: '4:21' },
+  { n: '06', title: "Everything I Didn't Say", dur: '3:59' },
+  { n: '07', title: 'Home Again', dur: '4:33' },
+  { n: '08', title: 'Northern Lights', dur: '5:02' },
+];
+
+const tour = [
+  { date: 'Thu 12 Mar 2026', city: 'London, UK', venue: 'The Lexington' },
+  { date: 'Fri 13 Mar 2026', city: 'Birmingham, UK', venue: 'Hare & Hounds' },
+  { date: 'Sat 14 Mar 2026', city: 'Glasgow, UK', venue: 'Mono' },
+  { date: 'Tue 17 Mar 2026', city: 'Manchester, UK', venue: 'The Deaf Institute' },
+  { date: 'Wed 18 Mar 2026', city: 'Bristol, UK', venue: 'The Louisiana' },
+];
+---
+<DemoLayout theme={theme} fonts={fonts} title="June Halliday — Riffride Wander demo">
+  <div class="wa-page">
+    <!-- header overlaid on hero -->
+    <header class="wa-head">
+      <a class="wa-logo" href="#">June Halliday</a>
+      <nav class="wa-nav">
+        <a href="#music">MUSIC</a>
+        <a href="#tour">TOUR</a>
+        <a href="#merch">MERCH</a>
+        <a href="#videos">VIDEOS</a>
+        <a href="#press">PRESS</a>
+        <a href="#contact">CONTACT</a>
+      </nav>
+      <div class="wa-soc">
+        <a href="https://spotify.com" target="_blank" rel="noopener" aria-label="Spotify"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm4.6 14.4a.75.75 0 01-1 .25c-2.7-1.6-6.1-2-10.1-1.1a.75.75 0 11-.3-1.45c4.3-1 8.1-.5 11.1 1.3.36.22.47.69.3 1zm1.2-2.7a.94.94 0 01-1.3.3c-3-1.85-7.6-2.4-11.2-1.3a.94.94 0 11-.55-1.8c4.1-1.25 9.2-.65 12.7 1.5.44.27.58.85.35 1.3zm.1-2.8C14.6 8.1 8.9 7.9 5.6 8.9a1.12 1.12 0 11-.65-2.15c3.8-1.15 10.1-.9 14 1.4a1.12 1.12 0 01-1.15 1.95z"/></svg></a>
+        <a href="https://instagram.com" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+        <a href="https://youtube.com" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23 12s0-3.2-.4-4.7a2.5 2.5 0 0 0-1.7-1.7C19.3 5.2 12 5.2 12 5.2s-7.3 0-8.9.4A2.5 2.5 0 0 0 1.4 7.3C1 8.8 1 12 1 12s0 3.2.4 4.7a2.5 2.5 0 0 0 1.7 1.7c1.6.4 8.9.4 8.9.4s7.3 0 8.9-.4a2.5 2.5 0 0 0 1.7-1.7C23 15.2 23 12 23 12zM9.8 15.3V8.7l5.7 3.3z"/></svg></a>
+      </div>
+    </header>
+
+    <!-- hero -->
+    <section class="wa-hero">
+      <img class="wa-hero__bg" src="/demo/wander/hero.jpg" alt="June Halliday by a train window" />
+      <div class="wa-hero__scrim"></div>
+      <div class="wa-hero__inner">
+        <h1 class="wa-hero__title">June Halliday</h1>
+        <p class="wa-hero__sub">Wear the songs. Take the journey.</p>
+        <a class="wa-btn" href="#music">Listen Now</a>
+      </div>
+    </section>
+
+    <!-- 1) featured collection -->
+    <section class="wa-featured" id="merch">
+      <div class="wa-wrap">
+        <div class="wa-rule"></div>
+        <h2 class="wa-heading">Featured Collection</h2>
+        <div class="wa-featured__grid">
+          {featured.map((p) => (
+            <article class="wa-product">
+              <div class="wa-product__imgwrap">
+                <img src={`/demo/wander/${p.img}`} alt={p.name} loading="lazy" />
+              </div>
+              <h3 class="wa-product__name">{p.name}</h3>
+              <p class="wa-product__price">{p.price}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- 2) latest release -->
+    <section class="wa-release" id="music">
+      <div class="wa-release__photo">
+        <img class="wa-release__bg" src="/demo/wander/vinyl.jpg" alt="Long Way Around vinyl on the road" loading="lazy" />
+        <div class="wa-release__scrim"></div>
+        <div class="wa-release__photoinner">
+          <p class="wa-eyebrow wa-eyebrow--light">The New EP</p>
+          <h2 class="wa-script">Long Way Around</h2>
+          <p class="wa-eyebrow wa-eyebrow--light wa-release__tag">Four songs about leaving and coming back. — Out Now —</p>
+        </div>
+      </div>
+      <div class="wa-release__panel">
+        <p class="wa-eyebrow">Album</p>
+        <h3 class="wa-heading wa-heading--md">Long Way Around</h3>
+        <p class="wa-para">The new album. Out now.</p>
+        <ul class="wa-tracks">
+          {tracks.map((t) => (
+            <li class="wa-track">
+              <span class="wa-track__n">{t.n}</span>
+              <span class="wa-track__title">{t.title}</span>
+              <span class="wa-track__dur">{t.dur}</span>
+              <span class="wa-track__play" aria-hidden="true">&#9656;</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <!-- 3) tour dates -->
+    <section class="wa-tour" id="tour">
+      <div class="wa-wrap">
+        <div class="wa-rule"></div>
+        <h2 class="wa-heading">Tour Dates</h2>
+        <div class="wa-tour__table">
+          <div class="wa-tour__headrow">
+            <span>Date</span>
+            <span>City</span>
+            <span>Venue</span>
+            <span></span>
+          </div>
+          {tour.map((d) => (
+            <div class="wa-tour__row">
+              <span class="wa-tour__date">{d.date}</span>
+              <span class="wa-tour__city">{d.city}</span>
+              <span class="wa-tour__venue">{d.venue}</span>
+              <a class="wa-tourbtn" href="#">Tickets</a>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- 4) take the journey -->
+    <section class="wa-journey" id="contact">
+      <div class="wa-wrap">
+        <div class="wa-journey__grid">
+          <div class="wa-jcol">
+            <p class="wa-eyebrow">Instagram</p>
+            <a class="wa-jimg" href="https://instagram.com" target="_blank" rel="noopener">
+              <img src="/demo/wander/instagram.jpg" alt="June Halliday on Instagram" loading="lazy" />
+            </a>
+            <a class="wa-jlink" href="https://instagram.com" target="_blank" rel="noopener">@JUNEHALLIDAYSINGS</a>
+          </div>
+
+          <div class="wa-jcol wa-jcol--center">
+            <p class="wa-eyebrow">Join the Journey</p>
+            <div class="wa-signup">
+              <h3 class="wa-heading wa-heading--sm">Stay in touch</h3>
+              <p class="wa-para wa-para--center">Be the first to hear about new music, tour dates and exclusive offers.</p>
+              <form class="wa-signup__form" onsubmit="return false">
+                <input type="email" placeholder="your email address" aria-label="Your email address" />
+                <button class="wa-btn wa-btn--block" type="submit">Join</button>
+              </form>
+            </div>
+          </div>
+
+          <div class="wa-jcol wa-jcol--right">
+            <p class="wa-eyebrow">Merch Highlight</p>
+            <a class="wa-jimg" href="#merch">
+              <img src="/demo/wander/tee.jpg" alt="June Halliday Tee" loading="lazy" />
+            </a>
+            <a class="wa-jlink" href="#merch">Shop Merch</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5) footer -->
+    <footer class="wa-foot">
+      <p class="wa-foot__line">© 2026 · June Halliday</p>
+      <p class="wa-credit">Created with <a href="/">Riffride</a></p>
+    </footer>
+  </div>
+</DemoLayout>
+
+<style>
+  .wa-page{position:relative;background:#EAE2D2;color:#423A2F;font-family:'EB Garamond',Georgia,serif;font-weight:400}
+  .wa-wrap{max-width:1180px;margin:0 auto;padding:0 clamp(1.5rem,5vw,4rem)}
+
+  /* shared type */
+  .wa-eyebrow{font-family:'Cormorant Garamond',serif;font-weight:600;text-transform:uppercase;letter-spacing:.3em;font-size:.72rem;color:#B46643}
+  .wa-eyebrow--light{color:rgba(255,255,255,.92)}
+  .wa-rule{width:46px;height:2px;background:#B46643;margin:0 0 1.3rem}
+  .wa-heading{font-family:'Cormorant Garamond',serif;font-weight:600;color:#423A2F;font-size:clamp(2.1rem,4.6vw,3.2rem);line-height:1.05;letter-spacing:.01em}
+  .wa-heading--md{font-size:clamp(1.9rem,3.6vw,2.6rem);margin:.5rem 0 .6rem}
+  .wa-heading--sm{font-size:clamp(1.6rem,3vw,2.1rem)}
+  .wa-para{font-family:'EB Garamond',serif;font-weight:400;color:#423A2F;font-size:1.05rem;line-height:1.8;max-width:46ch}
+  .wa-para--center{max-width:34ch;margin-left:auto;margin-right:auto}
+  .wa-script{font-family:'Dancing Script',cursive;font-weight:700}
+
+  /* buttons — sharp-corner terracotta, tracked caps */
+  .wa-btn{font-family:'Cormorant Garamond',serif;display:inline-flex;align-items:center;justify-content:center;background:#B46643;color:#fff;font-size:.78rem;font-weight:600;text-transform:uppercase;letter-spacing:.26em;padding:.95rem 2.2rem;border:none;border-radius:0;cursor:pointer;transition:.25s}
+  .wa-btn:hover{background:#9d5535}
+  .wa-btn--block{width:100%;padding:.95rem 1.4rem}
+
+  /* header */
+  .wa-head{position:absolute;top:0;left:0;right:0;z-index:20;display:flex;align-items:center;justify-content:space-between;padding:1.5rem clamp(1.5rem,5vw,4rem);background:transparent}
+  .wa-logo{font-family:'Dancing Script',cursive;font-weight:700;font-size:1.7rem;color:#fff;line-height:1}
+  .wa-nav{display:flex;gap:1.9rem}
+  .wa-nav a{font-family:'Cormorant Garamond',serif;font-weight:500;text-transform:uppercase;letter-spacing:.24em;font-size:.74rem;color:rgba(255,255,255,.9);transition:.2s}
+  .wa-nav a:hover{color:#fff}
+  .wa-soc{display:flex;gap:.95rem;align-items:center}
+  .wa-soc a{color:rgba(255,255,255,.9);transition:.2s}
+  .wa-soc a:hover{color:#fff}
+  .wa-soc svg{width:18px;height:18px}
+
+  /* hero — full-bleed, content lower-left */
+  .wa-hero{position:relative;min-height:90vh;overflow:hidden;display:flex;align-items:flex-end}
+  .wa-hero__bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top}
+  .wa-hero__scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(40,30,20,.32) 0%,rgba(40,30,20,0) 30%,rgba(40,30,20,0) 50%,rgba(40,30,20,.5) 100%)}
+  .wa-hero__inner{position:relative;z-index:2;width:100%;max-width:1180px;margin:0 auto;padding:0 clamp(1.5rem,5vw,4rem) clamp(3rem,7vw,5.5rem);text-align:left}
+  .wa-hero__title{font-family:'Dancing Script',cursive;font-weight:700;font-size:clamp(3.4rem,11vw,7.5rem);line-height:1;color:#B46643;text-shadow:0 2px 18px rgba(40,25,15,.35);margin:0}
+  .wa-hero__sub{font-family:'Cormorant Garamond',serif;font-weight:500;text-transform:uppercase;letter-spacing:.32em;font-size:clamp(.8rem,1.6vw,.95rem);color:rgba(255,255,255,.92);margin:1rem 0 0}
+  .wa-hero .wa-btn{margin-top:1.9rem}
+
+  /* 1) featured collection */
+  .wa-featured{background:#EAE2D2;padding:clamp(3.5rem,8vw,6.5rem) 0}
+  .wa-featured .wa-heading{margin-bottom:clamp(2.2rem,5vw,3.4rem)}
+  .wa-featured__grid{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(1.5rem,3vw,2.6rem) clamp(1.5rem,3vw,2.4rem)}
+  .wa-product__imgwrap{overflow:hidden;background:#F0EBE1}
+  .wa-product__imgwrap img{width:100%;aspect-ratio:4/5;object-fit:cover;transition:transform .6s ease}
+  .wa-product:hover .wa-product__imgwrap img{transform:scale(1.04)}
+  .wa-product__name{font-family:'EB Garamond',serif;font-weight:500;font-size:1rem;letter-spacing:.01em;color:#423A2F;margin-top:.95rem}
+  .wa-product__price{font-family:'EB Garamond',serif;font-weight:400;font-size:.92rem;color:#B46643;margin-top:.25rem}
+
+  /* 2) latest release — split */
+  .wa-release{display:grid;grid-template-columns:1fr 1fr;align-items:stretch;background:#EAE2D2}
+  .wa-release__photo{position:relative;overflow:hidden;min-height:clamp(420px,52vw,620px);display:flex;align-items:center}
+  .wa-release__bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center}
+  .wa-release__scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(40,25,15,.28),rgba(40,25,15,.5))}
+  .wa-release__photoinner{position:relative;z-index:2;padding:clamp(2.5rem,5vw,4rem);text-align:left}
+  .wa-release__photoinner .wa-script{color:#C1502A;font-size:clamp(3rem,7vw,5.6rem);line-height:1.02;margin:.4rem 0 .9rem;text-shadow:0 2px 16px rgba(40,20,10,.3)}
+  .wa-release__tag{display:block;max-width:24ch;line-height:1.9;letter-spacing:.26em}
+  .wa-release__panel{background:#EAE2D2;padding:clamp(2.5rem,5vw,4.5rem) clamp(1.8rem,4vw,4rem);display:flex;flex-direction:column;justify-content:center}
+  .wa-release__panel .wa-para{margin-bottom:1.6rem}
+  .wa-tracks{list-style:none;margin:0}
+  .wa-track{display:grid;grid-template-columns:auto 1fr auto auto;align-items:center;gap:1rem;padding:.85rem 0;border-top:1px solid rgba(66,58,47,.18)}
+  .wa-track:last-child{border-bottom:1px solid rgba(66,58,47,.18)}
+  .wa-track__n{font-family:'EB Garamond',serif;font-weight:500;font-size:.82rem;letter-spacing:.08em;color:#B46643}
+  .wa-track__title{font-family:'EB Garamond',serif;font-weight:400;font-size:1.02rem;color:#423A2F}
+  .wa-track__dur{font-family:'EB Garamond',serif;font-weight:400;font-size:.88rem;color:#8a7d6a;text-align:right}
+  .wa-track__play{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border:1px solid rgba(180,102,67,.5);border-radius:50%;font-size:.6rem;color:#B46643;padding-left:.1rem;transition:.2s}
+  .wa-track:hover .wa-track__play{background:#B46643;color:#fff;border-color:#B46643}
+
+  /* 3) tour dates */
+  .wa-tour{background:#EAE2D2;padding:clamp(3.5rem,8vw,6rem) 0}
+  .wa-tour .wa-heading{margin-bottom:clamp(2rem,4vw,3rem)}
+  .wa-tour__headrow,.wa-tour__row{display:grid;grid-template-columns:1.2fr 1.3fr 1.6fr auto;align-items:center;gap:1.2rem}
+  .wa-tour__headrow{padding-bottom:1rem;border-bottom:1px solid rgba(66,58,47,.28)}
+  .wa-tour__headrow span{font-family:'Cormorant Garamond',serif;font-weight:600;text-transform:uppercase;letter-spacing:.26em;font-size:.68rem;color:#8a7d6a}
+  .wa-tour__row{padding:1.25rem 0;border-bottom:1px solid rgba(66,58,47,.14)}
+  .wa-tour__date{font-family:'EB Garamond',serif;font-weight:500;font-size:.96rem;color:#423A2F;letter-spacing:.02em}
+  .wa-tour__city{font-family:'EB Garamond',serif;font-weight:500;font-size:1rem;color:#423A2F}
+  .wa-tour__venue{font-family:'EB Garamond',serif;font-weight:400;font-size:.96rem;color:#8a7d6a}
+  .wa-tourbtn{font-family:'Cormorant Garamond',serif;font-weight:600;text-transform:uppercase;letter-spacing:.22em;font-size:.68rem;padding:.6rem 1.4rem;justify-self:end;background:#B46643;color:#fff;border-radius:0;transition:.25s}
+  .wa-tourbtn:hover{background:#9d5535}
+
+  /* 4) take the journey */
+  .wa-journey{background:#F5F0E7;padding:clamp(3.5rem,8vw,6rem) 0}
+  .wa-journey__grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:clamp(2rem,4vw,3.4rem);align-items:start}
+  .wa-jcol{display:flex;flex-direction:column}
+  .wa-jcol--center{text-align:center;align-items:center}
+  .wa-jcol--right{text-align:right;align-items:flex-end}
+  .wa-jcol .wa-eyebrow{margin-bottom:1.1rem}
+  .wa-jimg{display:block;width:100%;overflow:hidden;background:#F0EBE1}
+  .wa-jimg img{width:100%;aspect-ratio:1;object-fit:cover;transition:transform .6s ease}
+  .wa-jimg:hover img{transform:scale(1.04)}
+  .wa-jlink{font-family:'Cormorant Garamond',serif;font-weight:600;text-transform:uppercase;letter-spacing:.22em;font-size:.74rem;color:#423A2F;margin-top:1rem;border-bottom:1px solid #B46643;padding-bottom:.25rem;align-self:flex-start;transition:.2s}
+  .wa-jcol--right .wa-jlink{align-self:flex-end}
+  .wa-jlink:hover{color:#B46643}
+  /* center signup card */
+  .wa-signup{background:#F0EBE1;border:1px solid #B46643;padding:clamp(1.8rem,3vw,2.6rem);text-align:center;width:100%}
+  .wa-signup .wa-heading{margin-bottom:.7rem}
+  .wa-signup .wa-para{margin:0 auto 1.5rem}
+  .wa-signup__form{display:flex;flex-direction:column;gap:.7rem}
+  .wa-signup__form input{background:#fff;border:1px solid rgba(66,58,47,.22);color:#423A2F;font-family:'EB Garamond',serif;font-weight:400;font-size:.96rem;padding:.85rem 1rem;border-radius:0}
+  .wa-signup__form input::placeholder{color:#9b8e7b}
+
+  /* 5) footer */
+  .wa-foot{background:#EAE2D2;padding:3rem 1.5rem 3.4rem;text-align:center;border-top:1px solid rgba(66,58,47,.14)}
+  .wa-foot__line{font-family:'EB Garamond',serif;font-weight:400;font-size:.9rem;letter-spacing:.06em;color:#8a7d6a}
+  .wa-credit{font-family:'EB Garamond',serif;font-weight:400;font-size:.86rem;letter-spacing:.04em;color:#8a7d6a;margin-top:.7rem}
+  .wa-credit a{color:#B46643}
+
+  /* responsive */
+  @media(max-width:880px){
+    .wa-nav{display:none}
+    .wa-featured__grid{grid-template-columns:repeat(2,1fr)}
+    .wa-release{grid-template-columns:1fr}
+    .wa-journey__grid{grid-template-columns:1fr}
+    .wa-jcol,.wa-jcol--center,.wa-jcol--right{text-align:left;align-items:flex-start}
+    .wa-jcol--right .wa-jlink,.wa-jcol--center .wa-jlink{align-self:flex-start}
+    .wa-jcol--center{align-items:stretch}
+    .wa-tour__headrow{display:none}
+    .wa-tour__row{grid-template-columns:1fr auto;grid-template-areas:"date btn" "city btn" "venue btn";gap:.15rem 1rem}
+    .wa-tour__date{grid-area:date}
+    .wa-tour__city{grid-area:city}
+    .wa-tour__venue{grid-area:venue}
+    .wa-tourbtn{grid-area:btn;align-self:center}
+  }
+  @media(max-width:480px){
+    .wa-featured__grid{grid-template-columns:1fr}
+  }
+</style>

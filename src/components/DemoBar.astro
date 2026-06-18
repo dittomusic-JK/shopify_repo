@@ -1,0 +1,27 @@
+---
+const { theme } = Astro.props;
+---
+<div class="demobar">
+  <a class="demobar__back" href="/#templates">← All themes</a>
+  <div class="demobar__mid">
+    <img src="/logo_light.webp" alt="Riffride" class="demobar__logo" />
+    <span class="demobar__label">{theme.name} demo</span>
+  </div>
+  <div class="demobar__right">
+    <span class="demobar__price">{theme.price}</span>
+    <a class="demobar__cta" href={theme.buy}>{theme.free ? 'Get it free' : 'Get this theme'}</a>
+  </div>
+</div>
+<style>
+  .demobar{position:sticky;top:0;z-index:2000;display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.5rem 1rem;background:#171320;color:#f4efe5;border-bottom:1px solid rgba(255,255,255,.12);font-family:'Inter',system-ui,-apple-system,sans-serif;font-size:.8rem}
+  .demobar__logo{height:22px;width:auto;display:inline-block;vertical-align:middle}
+  .demobar__mid{display:flex;align-items:center;gap:.6rem}
+  .demobar__label{text-transform:uppercase;letter-spacing:.1em;font-weight:600;opacity:.8}
+  .demobar__back{opacity:.85;font-weight:600;text-decoration:none;color:inherit;white-space:nowrap}
+  .demobar__back:hover{opacity:1;color:#b89bf2}
+  .demobar__right{display:flex;align-items:center;gap:.8rem}
+  .demobar__price{font-weight:700;color:#b89bf2}
+  .demobar__cta{background:#b89bf2;color:#171320;font-weight:700;text-transform:uppercase;letter-spacing:.05em;padding:.45rem .9rem;border-radius:999px;font-size:.74rem;text-decoration:none;white-space:nowrap}
+  .demobar__cta:hover{background:#a983ff}
+  @media(max-width:600px){.demobar__label{display:none}}
+</style>
