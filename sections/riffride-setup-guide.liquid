@@ -32,7 +32,7 @@
   .riffride-step__body { color: var(--color-brand-secondary, #aaa); line-height: 1.6; margin: 0 0 1rem; }
   .riffride-step__body ol { margin: 0.5rem 0 0; padding-left: 1.2rem; }
   .riffride-step__body li { margin-bottom: 0.4rem; }
-  .riffride-step__cta { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--color-brand-accent, #e8593c); color: #fff; text-decoration: none; font-weight: 600; padding: 0.7rem 1.4rem; border-radius: 6px; font-size: 0.95rem; }
+  .riffride-step__cta { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--color-brand-primary, #f5f5f5); color: var(--color-brand-bg, #0a0a0a); text-decoration: none; font-weight: 600; padding: 0.7rem 1.4rem; border-radius: 6px; font-size: 0.95rem; }
   .riffride-step__cta:hover { opacity: 0.9; }
   .riffride-setup__note { margin-top: 3rem; padding: 1.25rem 1.5rem; border-left: 3px solid var(--color-brand-accent, #e8593c); background: rgba(255,255,255,0.03); font-size: 0.95rem; color: var(--color-brand-secondary, #aaa); }
 </style>
@@ -42,6 +42,7 @@
     {%- if section.settings.eyebrow != blank -%}<p class="riffride-setup__eyebrow">{{ section.settings.eyebrow }}</p>{%- endif -%}
     <h1 class="riffride-setup__title">{{ section.settings.heading | default: 'Get your merch on Spotify' }}</h1>
     {%- if section.settings.lede != blank -%}<p class="riffride-setup__lede">{{ section.settings.lede }}</p>{%- endif -%}
+    <p class="riffride-setup__note" style="margin:0 0 2.75rem;"><strong>Only you can see this.</strong> This checklist shows on your homepage while your store is empty, and disappears on its own the moment you add your first product — so your fans never see it.</p>
 
     {%- comment -%} Step 1 — Merch with zero inventory {%- endcomment -%}
     <div class="riffride-step">
@@ -120,9 +121,6 @@
       </div>
     </div>
 
-    <div class="riffride-setup__note">
-      <strong>Tip:</strong> Shopify isn't free, but it's cheap — plans start around $5/month, and print-on-demand means zero inventory cost. That's the whole "quick path": a low monthly fee and you're selling merch on Spotify.
-    </div>
   </div>
 </section>
 
