@@ -405,6 +405,8 @@
     {% sections 'header-group' %}
 
     <main id="MainContent" class="content-for-layout focus-none" role="main" tabindex="-1">
+      {%- comment -%} Riffride onboarding: shows the Setup Guide on a brand-new (empty) store homepage; auto-hides once products are added {%- endcomment -%}
+      {%- if request.page_type == "index" and shop.products_count == 0 -%}{%- section "riffride-setup-guide" -%}{%- endif -%}
       {{ content_for_layout }}
     </main>
 
