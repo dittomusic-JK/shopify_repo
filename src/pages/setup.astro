@@ -1,0 +1,113 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { affiliates } from '../data/affiliates.js';
+
+const steps = [
+  {
+    n: 1,
+    title: 'Start your Shopify store',
+    body: 'Every Riffride site runs on Shopify — the most reliable way to host your site, sell merch and actually get paid. Start a free trial; paid plans run about $5–$25 a month.',
+    cta: { label: 'Start free on Shopify', href: affiliates.shopify, sponsored: true },
+  },
+  {
+    n: 2,
+    title: 'Add your Riffride theme',
+    body: 'Grab the free Standard theme or a $50 premium design, upload the .zip in your Shopify admin, and your whole site is styled in minutes — no code, no developer.',
+    cta: { label: 'Browse the themes', href: '/#templates' },
+  },
+  {
+    n: 3,
+    title: 'Add merch — no inventory, no upfront cost',
+    body: 'Connect a print-on-demand app: products are printed and shipped only when a fan buys, so you pay nothing up front. We recommend Printful (easiest) — Printify and Gelato are great too.',
+    cta: { label: 'Set up Printful', href: affiliates.printful, sponsored: true },
+    alts: [
+      { label: 'Printify', href: affiliates.printify },
+      { label: 'Gelato', href: affiliates.gelato },
+    ],
+  },
+  {
+    n: 4,
+    title: 'Put your merch on Spotify',
+    body: 'Connect your store to Spotify for Artists (free) and your merch shows right on your artist profile, release pages and the Now Playing view. Publish up to 250 items and pin 5 to the top.',
+    cta: { label: 'Open Spotify for Artists', href: 'https://artists.spotify.com/en/merch' },
+  },
+  {
+    n: 5,
+    title: 'Grow your fanbase with email',
+    body: 'Turn one-off buyers into superfans. Kit (formerly ConvertKit) is the creator-first email platform — free to start, with automations, broadcasts and landing pages. Wire it to your store’s newsletter signup so every fan joins your list.',
+    cta: { label: 'Start free with Kit', href: affiliates.kit, sponsored: true },
+  },
+  {
+    n: 6,
+    title: 'Get found on Google',
+    body: 'Fill in your artist branding, bio and links in the theme settings. Riffride outputs it all as structured data, so Google can build your artist knowledge panel — bio, tour dates, music and socials. Claim your Bandsintown and MusicBrainz profiles too.',
+    cta: null,
+  },
+];
+
+const relFor = (cta) => (cta.sponsored ? 'noopener sponsored' : 'noopener');
+const isExternal = (href) => href.startsWith('http');
+---
+<Base
+  title="Get started — Riffride"
+  description="Launch your musician website and sell merch on Spotify — the step-by-step setup: Shopify, your theme, print-on-demand merch, Spotify for Artists and email marketing."
+>
+  <Header />
+
+  <!-- INTRO -->
+  <section class="relative overflow-hidden py-[clamp(3.5rem,8vw,6rem)]" style="background:radial-gradient(ellipse 70% 60% at 50% 30%,rgba(154,115,236,.22),transparent 60%),var(--color-dark)">
+    <div class="reveal max-w-[820px] mx-auto px-5 sm:px-10 text-center relative z-[2]">
+      <p class="font-body font-semibold uppercase tracking-[.18em] text-purple text-[.8rem] mb-4">Setup guide</p>
+      <h1 class="font-funk uppercase text-[clamp(2.6rem,7vw,5rem)] leading-[1.02]" style="text-shadow:4px 4px 0 rgba(0,0,0,.25)">Launch your <span class="text-purple">music site</span></h1>
+      <p class="mt-5 text-[#d4cee2] text-[clamp(1.02rem,1.6vw,1.2rem)] max-w-[52ch] mx-auto">Six steps from an empty store to merch live on your Spotify profile. Free to start — you can be online this afternoon.</p>
+    </div>
+  </section>
+
+  <!-- STEPS -->
+  <section class="bg-cream text-ink py-[clamp(3rem,7vw,5rem)]">
+    <div class="max-w-[820px] mx-auto px-5 sm:px-10">
+      {steps.map((s) => (
+        <div class="reveal flex gap-5 sm:gap-7 py-8 border-t-2 border-[rgba(24,20,38,.12)]">
+          <div class="shrink-0 w-14 h-14 rounded-full bg-purple text-ink font-display text-[1.55rem] grid place-items-center border-[2.5px] border-ink" style="box-shadow:3px 3px 0 var(--color-ink)">{s.n}</div>
+          <div class="flex-1">
+            <h2 class="font-display text-[clamp(1.3rem,3vw,1.7rem)] uppercase leading-[1.05]">{s.title}</h2>
+            <p class="text-[#5e576b] mt-2.5 mb-4 leading-[1.6] max-w-[58ch]">{s.body}</p>
+            {s.cta && (
+              <a
+                href={s.cta.href}
+                class="btn btn-ink btn-sm"
+                {...(isExternal(s.cta.href) ? { target: '_blank', rel: relFor(s.cta) } : {})}
+              >{s.cta.label} →</a>
+            )}
+            {s.alts && (
+              <p class="text-[#5e576b] text-[.85rem] mt-3">Prefer another? {s.alts.map((a, i) => (
+                <>{i > 0 ? ' · ' : ''}<a href={a.href} target="_blank" rel="noopener sponsored" class="text-purple-deep font-semibold underline underline-offset-2">{a.label}</a></>
+              ))}</p>
+            )}
+          </div>
+        </div>
+      ))}
+
+      <!-- affiliate disclosure -->
+      <p class="mt-9 pt-6 border-t-2 border-[rgba(24,20,38,.12)] text-[#7a7388] text-[.82rem] leading-[1.6] max-w-[64ch]">
+        Heads up: some links above are affiliate links — if you sign up through them, Riffride may earn a commission at no extra cost to you. We only point you at tools we'd genuinely use ourselves.
+      </p>
+    </div>
+  </section>
+
+  <!-- CLOSING CTA -->
+  <section class="relative overflow-hidden py-[clamp(3rem,7vw,5rem)]" style="background:radial-gradient(circle at 70% 50%,rgba(154,115,236,.16),transparent 55%),var(--color-dark)">
+    <div class="reveal max-w-[680px] mx-auto px-5 text-center relative z-[2]">
+      <h2 class="font-funk text-[clamp(1.8rem,4.5vw,2.8rem)] leading-[1.05]">Ready to <span class="text-purple">build it?</span></h2>
+      <p class="text-[#d4cee2] text-[1.05rem] mt-3.5 mb-7">Pick a look, make it yours, go live. Your whole career — one site you own.</p>
+      <div class="flex flex-wrap gap-3.5 justify-center">
+        <a href="/#templates" class="btn btn-purple">See the themes</a>
+        <a href={affiliates.shopify} target="_blank" rel="noopener sponsored" class="btn btn-ghost">Start free on Shopify</a>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</Base>
