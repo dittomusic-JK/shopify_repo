@@ -57,7 +57,14 @@ const isExternal = (href) => href.startsWith('http');
   <Header />
 
   <!-- INTRO -->
-  <section class="relative overflow-hidden py-[clamp(3.5rem,8vw,6rem)]" style="background:radial-gradient(ellipse 70% 60% at 50% 30%,rgba(154,115,236,.22),transparent 60%),var(--color-dark)">
+  <section class="relative overflow-hidden grid place-items-center min-h-[clamp(440px,52vh,580px)] py-[clamp(3rem,7vw,5rem)]" style="background:radial-gradient(ellipse 70% 60% at 50% 30%,rgba(154,115,236,.22),transparent 60%),var(--color-dark)">
+    <!-- floating theme screenshots flanking the heading -->
+    <div class="hidden lg:block absolute inset-0 z-[1] pointer-events-none" aria-hidden="true">
+      <img src="/thumbs/vesper.jpg" class="hero-screen" style="width:152px;top:15%;left:4%;transform:rotate(-7deg);opacity:.32" />
+      <img src="/thumbs/block.jpg" class="hero-screen" style="width:132px;bottom:12%;left:9%;transform:rotate(6deg);opacity:.24" />
+      <img src="/thumbs/riot.jpg" class="hero-screen" style="width:152px;top:13%;right:4%;transform:rotate(8deg);opacity:.32" />
+      <img src="/thumbs/wander.jpg" class="hero-screen" style="width:134px;bottom:12%;right:8%;transform:rotate(-6deg);opacity:.24" />
+    </div>
     <div class="reveal max-w-[820px] mx-auto px-5 sm:px-10 text-center relative z-[2]">
       <p class="font-body font-semibold uppercase tracking-[.18em] text-purple text-[.8rem] mb-4">Setup guide</p>
       <h1 class="font-funk uppercase text-[clamp(2.6rem,7vw,5rem)] leading-[1.02]" style="text-shadow:4px 4px 0 rgba(0,0,0,.25)">Launch your <span class="text-purple">music site</span></h1>
