@@ -221,7 +221,7 @@
             "label": "Multi-page (traditional navigation)"
           }
         ],
-        "default": "onepage",
+        "default": "multipage",
         "info": "Choose between a single-page scrolling experience or traditional multi-page navigation"
       },
       {
