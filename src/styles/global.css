@@ -115,6 +115,23 @@ details p{color:#bdb6cc;margin-top:.7rem;font-size:.95rem}
 .reveal.d1{transition-delay:.08s}.reveal.d2{transition-delay:.16s}.reveal.d3{transition-delay:.24s}
 .reveal.d4{transition-delay:.32s}.reveal.d5{transition-delay:.4s}.reveal.d6{transition-delay:.48s}
 
+/* ---- help / guides page ---- */
+.help-cat{font-family:var(--font-display);text-transform:uppercase;font-size:clamp(1.3rem,3vw,1.7rem);color:var(--color-ink);margin:2.8rem 0 1rem;letter-spacing:.01em;display:flex;align-items:center;gap:.6rem}
+.help-cat:first-of-type{margin-top:0}
+.help-acc{border:2px solid rgba(24,20,38,.14);border-radius:12px;margin-bottom:.75rem;background:#fff;overflow:hidden;transition:border-color .2s}
+.help-acc[open]{border-color:var(--color-purple-deep)}
+.help-acc summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:1.05rem 1.25rem;font-weight:600;color:var(--color-ink);font-size:1.02rem}
+.help-acc summary::-webkit-details-marker{display:none}
+.help-acc summary::after{content:"+";color:var(--color-purple-deep);font-size:1.5rem;font-weight:700;line-height:1}
+.help-acc[open] summary::after{content:"–"}
+.help-acc__body{padding:0 1.25rem 1.35rem;color:#4a4458;line-height:1.65}
+.help-acc__body p{margin:0 0 .6rem}
+.help-acc__body ol{margin:.3rem 0 0;padding-left:1.35rem;display:grid;gap:.5rem}
+.help-acc__body a{color:var(--color-purple-deep);font-weight:600;text-decoration:underline;text-underline-offset:2px}
+.help-note{border-left:3px solid var(--color-purple-deep);background:#f3eefc;padding:.75rem 1rem;border-radius:0 8px 8px 0;font-size:.9rem;color:#4a4458;margin:.95rem 0 0}
+.shot-ph{display:flex;align-items:center;gap:.6rem;border:2px dashed rgba(24,20,38,.22);border-radius:10px;background:#faf7f1;padding:.8rem 1rem;color:#9a91a8;font-size:.8rem;margin:.95rem 0 0}
+.shot-ph svg{width:18px;height:18px;flex:none}
+
 @media(prefers-reduced-motion:reduce){
   .reveal{opacity:1;transform:none;transition:none}
   .marquee-track,.hero-art img{animation:none}

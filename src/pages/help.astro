@@ -1,0 +1,205 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+// Step-by-step guides. `steps` allow inline HTML (bold UI labels, links).
+// `note` = a gotcha callout. `shot` = a captioned screenshot placeholder.
+const cats = [
+  {
+    name: 'Pages & navigation',
+    items: [
+      {
+        q: 'My menu only shows Home, Catalog & Contact — where are my pages?',
+        intro: 'Because in Shopify, <strong>creating a page</strong> and <strong>adding it to your menu</strong> are two separate jobs. Your pages exist — they just aren’t in the menu yet. The header shows whatever’s in your Main menu, which starts as Home / Catalog / Contact.',
+        steps: [
+          'Go to <strong>Online Store → Navigation</strong> in your Shopify admin (this lives in the admin, not the theme editor).',
+          'Click <strong>Main menu</strong>.',
+          'Use <strong>Add menu item</strong> to add each of your pages — see the next guide for exactly what to add.',
+          '<strong>Save</strong>, then refresh your theme. Your real links now show.',
+        ],
+        note: 'Creating a page never adds it to your nav automatically — the menu is always built by hand under Navigation.',
+        shot: 'Online Store → Navigation → Main menu',
+      },
+      {
+        q: 'How do I set up my navigation menu?',
+        intro: 'Once your pages exist (see the guide below), build the menu:',
+        steps: [
+          '<strong>Online Store → Navigation → Main menu</strong>.',
+          '<strong>Add menu item</strong> → name it <strong>Music</strong> (or “Listen”) → in the link box, search and pick your Music page.',
+          'Add <strong>Tour</strong> → your Tour page.',
+          'Add <strong>Merch</strong> → choose <strong>Collections → All products</strong> (your merch is a collection, not a page).',
+          'Add <strong>Contact</strong> → your Contact page. You can rename or delete the default “Catalog” item.',
+          '<strong>Save</strong>. Your Header is already set to this Main menu, so the nav updates.',
+        ],
+        note: 'Drag items to reorder them — that’s the order they appear in your nav.',
+        shot: 'Adding a menu item linked to a page',
+      },
+      {
+        q: 'How do I link a template (Music, Tour, Contact) to a page?',
+        intro: 'Templates control how a page <em>looks</em> — your theme ships ready-made layouts for Music, Tour and Contact. You attach one when you create the page:',
+        steps: [
+          '<strong>Online Store → Pages → Add page</strong>.',
+          'Give it a title, e.g. “Music”.',
+          'On the right, open the <strong>Theme template</strong> dropdown and choose the matching template: <strong>music</strong> (latest release + discography), <strong>tour</strong>, or <strong>contact</strong>.',
+          '<strong>Save</strong>. Repeat for each page.',
+        ],
+        note: 'Pick the template BEFORE you save. A page left on the “default” template will look blank — the layout comes from choosing music / tour / contact.',
+        shot: 'The Theme template dropdown on the Add page screen',
+      },
+      {
+        q: 'One-page or multi-page — which should I use?',
+        intro: 'Two ways to run your site:',
+        steps: [
+          '<strong>Multi-page</strong> (recommended, and the default): a traditional site — Music, Tour, Merch and Contact are separate pages and your nav links to them.',
+          '<strong>One-page</strong>: everything stacked on the homepage; the nav scrolls down to each section.',
+          'To switch: theme editor → <strong>Theme settings</strong> (the gear icon, bottom-left) → <strong>Layout</strong> → <strong>Site layout mode</strong>.',
+        ],
+        note: 'If your menu links don’t show in the nav, you’re probably still on One-page — switch to Multi-page and your menu takes over.',
+        shot: 'Theme settings → Layout → Site layout mode',
+      },
+    ],
+  },
+  {
+    name: 'Getting started',
+    items: [
+      {
+        q: 'How do I install my Riffride theme?',
+        steps: [
+          'Download your theme’s .zip file from Riffride.',
+          'In Shopify: <strong>Online Store → Themes</strong> → <strong>Add theme → Upload zip file</strong> → choose the .zip.',
+          'Click <strong>Customize</strong> to edit it, or <strong>Publish</strong> to make it your live theme.',
+        ],
+        shot: 'Online Store → Themes → Add theme → Upload zip file',
+      },
+      {
+        q: 'Where’s the setup checklist, and how do I make it disappear?',
+        intro: 'Every Riffride theme shows a “Get your merch on Spotify” checklist on your homepage <em>while your store is empty</em>.',
+        steps: [
+          'It’s only visible to you — your fans never see it.',
+          'It disappears on its own the moment you add your first product.',
+          'So there’s nothing to delete — just work through it and it vanishes.',
+        ],
+      },
+      {
+        q: 'Why does my store look empty after I install the theme?',
+        intro: 'The theme is the <em>design</em>. Your products, images and text live in your store and aren’t bundled in the download — so you start with a clean slate.',
+        steps: [
+          'Add products under <strong>Products → Add product</strong>, or set up print-on-demand (see “Selling & music”).',
+          'Add your photos and text in the theme editor (hero image, bio, links).',
+          'Follow the on-homepage setup checklist — it walks you through the lot.',
+        ],
+      },
+    ],
+  },
+  {
+    name: 'Selling & music',
+    items: [
+      {
+        q: 'How do I sell merch without holding any stock?',
+        intro: 'Use print-on-demand: products are printed and shipped only when a fan buys, so there’s no upfront cost and no inventory.',
+        steps: [
+          'Install a print-on-demand app — we recommend Printful (Printify and Gelato work too).',
+          'Design your products in the app and push them to your Shopify store.',
+          'Our <a href="/setup">setup guide</a> has the links and the order to do it in.',
+        ],
+      },
+      {
+        q: 'How do I get my merch onto my Spotify profile?',
+        steps: [
+          'Log in at <strong>artists.spotify.com</strong> → <strong>Merch &amp; Events</strong>.',
+          'Click <strong>Connect store</strong> and enter your <strong>your-store.myshopify.com</strong> URL.',
+          'In Shopify, add <strong>Spotify</strong> as a sales channel, accept the terms, and pick your artist.',
+          'Publish up to 250 items, and pin up to 5 to the top of your profile.',
+        ],
+      },
+      {
+        q: 'How do I add my music / a Spotify player?',
+        steps: [
+          'In the theme editor, add the <strong>Spotify embed</strong> section to any page.',
+          'Open your album or track in Spotify → <strong>Share → Copy link</strong>.',
+          'Paste it into the section — it turns into a player automatically.',
+        ],
+      },
+      {
+        q: 'How do I collect my fans’ email addresses?',
+        intro: 'Email is the one audience you actually own. We use Kit (formerly ConvertKit) — free to start.',
+        steps: [
+          'Create a Kit account and a sign-up form.',
+          'Connect it to your theme’s newsletter section.',
+          'The <a href="/setup">setup guide</a> has the link.',
+        ],
+      },
+    ],
+  },
+  {
+    name: 'Going live',
+    items: [
+      {
+        q: 'How do I use my own domain (e.g. yourname.com)?',
+        steps: [
+          'In Shopify: <strong>Settings → Domains</strong>.',
+          'Buy a new domain through Shopify, or <strong>Connect existing domain</strong> if you already own one.',
+          'Follow Shopify’s prompts to point it — usually done in minutes.',
+        ],
+      },
+      {
+        q: 'How do I actually go live?',
+        steps: [
+          '<strong>Online Store → Themes</strong> → on your Riffride theme, click <strong>Publish</strong>.',
+          'Remove the storefront password: <strong>Online Store → Preferences</strong> → turn off password protection.',
+          'Share your link — you’re live. 🎸',
+        ],
+      },
+    ],
+  },
+];
+const camera = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h3l2-2h8l2 2h3a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1z"/><circle cx="12" cy="13" r="3.2"/></svg>';
+---
+<Base
+  title="Help & setup guides — Riffride"
+  description="Plain-English, step-by-step guides for setting up your Riffride musician website on Shopify — menus, page templates, merch, Spotify and going live."
+>
+  <Header />
+
+  <!-- INTRO -->
+  <section class="relative overflow-hidden py-[clamp(3.5rem,8vw,6rem)]" style="background:radial-gradient(ellipse 70% 60% at 50% 30%,rgba(154,115,236,.22),transparent 60%),var(--color-dark)">
+    <div class="reveal max-w-[820px] mx-auto px-5 sm:px-10 text-center relative z-[2]">
+      <p class="font-body font-semibold uppercase tracking-[.18em] text-purple text-[.8rem] mb-4">Help &amp; guides</p>
+      <h1 class="font-funk uppercase text-[clamp(2.4rem,6.5vw,4.6rem)] leading-[1.03]" style="text-shadow:4px 4px 0 rgba(0,0,0,.25)">Setup, made <span class="text-purple">simple</span></h1>
+      <p class="mt-5 text-[#d4cee2] text-[clamp(1.02rem,1.6vw,1.2rem)] max-w-[54ch] mx-auto">Shopify is powerful but a bit fiddly. Here’s every step in plain English — especially the stuff that trips everyone up.</p>
+    </div>
+  </section>
+
+  <!-- GUIDES -->
+  <section class="bg-cream text-ink py-[clamp(3rem,7vw,5rem)]">
+    <div class="max-w-[860px] mx-auto px-5 sm:px-10">
+      {cats.map((cat) => (
+        <div class="reveal">
+          <h2 class="help-cat">{cat.name}</h2>
+          {cat.items.map((item) => (
+            <details class="help-acc">
+              <summary>{item.q}</summary>
+              <div class="help-acc__body">
+                {item.intro && <p set:html={item.intro}></p>}
+                <ol>{item.steps.map((s) => <li set:html={s}></li>)}</ol>
+                {item.note && <p class="help-note" set:html={item.note}></p>}
+                {item.shot && (
+                  <div class="shot-ph"><Fragment set:html={camera} /><span>Screenshot: {item.shot}</span></div>
+                )}
+              </div>
+            </details>
+          ))}
+        </div>
+      ))}
+
+      <div class="reveal mt-12 text-center">
+        <p class="text-[#5e576b] mb-4">Still stuck, or want a feature walked through?</p>
+        <a href="/#contact" class="btn btn-ink">Get in touch</a>
+        <a href="/setup" class="btn btn-line ml-2">The 6-step setup</a>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</Base>
