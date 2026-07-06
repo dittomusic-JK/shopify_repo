@@ -1,0 +1,55 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+<Base
+  title="Support — Riffride"
+  description="Get help with your Riffride theme — setup questions, bug reports and feature requests. We reply within two business days."
+>
+  <Header />
+
+  <section class="relative overflow-hidden py-[clamp(3rem,7vw,5rem)]" style="background:radial-gradient(ellipse 70% 60% at 50% 30%,rgba(154,115,236,.12),transparent 60%),var(--color-dark)">
+    <div class="reveal max-w-[720px] mx-auto px-5 sm:px-10 text-center relative z-[2]">
+      <p class="font-body font-semibold uppercase tracking-[.18em] text-purple text-[.8rem] mb-4">Support</p>
+      <h1 class="font-funk uppercase text-[clamp(2.2rem,6vw,4rem)] leading-[1.03]" style="text-shadow:4px 4px 0 rgba(0,0,0,.25)">How can we <span class="text-purple">help?</span></h1>
+      <p class="mt-4 text-[#d4cee2] text-[1.05rem]">Check the <a href="/help" class="text-purple font-semibold underline underline-offset-2">setup guides</a> first — most questions are answered there. Otherwise, drop us a message and we'll reply within two business days.</p>
+    </div>
+  </section>
+
+  <section class="bg-cream text-ink py-[clamp(3rem,7vw,5rem)]">
+    <div class="reveal max-w-[560px] mx-auto px-5 sm:px-10">
+      <form action="https://formsubmit.co/james.keane@dittomusic.com" method="POST" class="grid gap-4">
+        <input type="hidden" name="_subject" value="Riffride support request">
+        <input type="hidden" name="_captcha" value="true">
+        <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+        <label class="grid gap-1.5">
+          <span class="text-[.8rem] font-semibold uppercase tracking-[.08em] text-[#5e576b]">Your name</span>
+          <input required type="text" name="name" autocomplete="name" class="bg-white border-2 border-[rgba(24,20,38,.16)] rounded-[10px] px-4 py-3 text-ink" />
+        </label>
+        <label class="grid gap-1.5">
+          <span class="text-[.8rem] font-semibold uppercase tracking-[.08em] text-[#5e576b]">Email</span>
+          <input required type="email" name="email" autocomplete="email" class="bg-white border-2 border-[rgba(24,20,38,.16)] rounded-[10px] px-4 py-3 text-ink" />
+        </label>
+        <label class="grid gap-1.5">
+          <span class="text-[.8rem] font-semibold uppercase tracking-[.08em] text-[#5e576b]">Which theme?</span>
+          <select name="theme" class="bg-white border-2 border-[rgba(24,20,38,.16)] rounded-[10px] px-4 py-3 text-ink">
+            <option>Riffride (Theme Store)</option>
+            <option>Standard (free)</option>
+            <option>Vesper</option><option>Riot</option><option>Static</option>
+            <option>Wander</option><option>Block</option><option>Frame</option>
+            <option>Not sure</option>
+          </select>
+        </label>
+        <label class="grid gap-1.5">
+          <span class="text-[.8rem] font-semibold uppercase tracking-[.08em] text-[#5e576b]">How can we help?</span>
+          <textarea required name="message" rows="6" class="bg-white border-2 border-[rgba(24,20,38,.16)] rounded-[10px] px-4 py-3 text-ink"></textarea>
+        </label>
+        <button type="submit" class="btn btn-purple justify-self-start">Send message</button>
+        <p class="text-[#7a7388] text-[.78rem]">We use your details only to reply to this request.</p>
+      </form>
+    </div>
+  </section>
+
+  <Footer />
+</Base>
