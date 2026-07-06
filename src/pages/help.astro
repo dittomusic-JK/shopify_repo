@@ -13,19 +13,19 @@ const cats = [
         q: 'My menu only shows Home, Catalog & Contact — where are my pages?',
         intro: 'Because in Shopify, <strong>creating a page</strong> and <strong>adding it to your menu</strong> are two separate jobs. Your pages exist — they just aren’t in the menu yet. The header shows whatever’s in your Main menu, which starts as Home / Catalog / Contact.',
         steps: [
-          'Go to <strong>Online Store → Navigation</strong> in your Shopify admin (this lives in the admin, not the theme editor).',
+          'Go to <strong>Content → Menus</strong> in your Shopify admin (this lives in the admin, not the theme editor).',
           'Click <strong>Main menu</strong>.',
           'Use <strong>Add menu item</strong> to add each of your pages — see the next guide for exactly what to add.',
           '<strong>Save</strong>, then refresh your theme. Your real links now show.',
         ],
-        note: 'Creating a page never adds it to your nav automatically — the menu is always built by hand under Navigation.',
-        shot: 'Online Store → Navigation → Main menu',
+        note: 'Creating a page never adds it to your nav automatically — the menu is always built by hand under Content → Menus.',
+        video: '/help/menu-setup.mp4',
       },
       {
         q: 'How do I set up my navigation menu?',
         intro: 'Once your pages exist (see the guide below), build the menu:',
         steps: [
-          '<strong>Online Store → Navigation → Main menu</strong>.',
+          '<strong>Content → Menus → Main menu</strong> in your Shopify admin.',
           '<strong>Add menu item</strong> → name it <strong>Music</strong> (or “Listen”) → in the link box, search and pick your Music page.',
           'Add <strong>Tour</strong> → your Tour page.',
           'Add <strong>Merch</strong> → choose <strong>Collections → All products</strong> (your merch is a collection, not a page).',
@@ -33,7 +33,7 @@ const cats = [
           '<strong>Save</strong>. Your Header is already set to this Main menu, so the nav updates.',
         ],
         note: 'Drag items to reorder them — that’s the order they appear in your nav.',
-        shot: 'Adding a menu item linked to a page',
+        video: '/help/menu-setup.mp4',
       },
       {
         q: 'How do I link a template (Music, Tour, Contact) to a page?',
@@ -184,6 +184,9 @@ const camera = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok
                 {item.intro && <p set:html={item.intro}></p>}
                 <ol>{item.steps.map((s) => <li set:html={s}></li>)}</ol>
                 {item.note && <p class="help-note" set:html={item.note}></p>}
+                {item.video && (
+                  <video class="help-video" controls muted playsinline preload="metadata" src={item.video}></video>
+                )}
                 {item.shot && (
                   <div class="shot-ph"><Fragment set:html={camera} /><span>Screenshot: {item.shot}</span></div>
                 )}

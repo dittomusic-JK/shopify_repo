@@ -130,6 +130,7 @@ details p{color:#bdb6cc;margin-top:.7rem;font-size:.95rem}
 .help-acc__body a{color:var(--color-purple-deep);font-weight:600;text-decoration:underline;text-underline-offset:2px}
 .help-note{border-left:3px solid var(--color-purple-deep);background:#f3eefc;padding:.75rem 1rem;border-radius:0 8px 8px 0;font-size:.9rem;color:#4a4458;margin:.95rem 0 0}
 .shot-ph{display:flex;align-items:center;gap:.6rem;border:2px dashed rgba(24,20,38,.22);border-radius:10px;background:#faf7f1;padding:.8rem 1rem;color:#9a91a8;font-size:.8rem;margin:.95rem 0 0}
+.help-video{display:block;width:100%;border-radius:10px;border:2px solid rgba(24,20,38,.14);margin:.95rem 0 0;background:#000}
 .shot-ph svg{width:18px;height:18px;flex:none}
 
 @media(prefers-reduced-motion:reduce){
