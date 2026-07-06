@@ -1,0 +1,20 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+<Base title="Page not found — Riffride" description="That page skipped a beat. Head back to the Riffride themes.">
+  <Header />
+  <section class="relative overflow-hidden grid place-items-center min-h-[62vh] py-[clamp(3rem,8vw,6rem)]" style="background:radial-gradient(ellipse 70% 60% at 50% 35%,rgba(154,115,236,.12),transparent 60%),var(--color-dark)">
+    <div class="reveal in max-w-[680px] mx-auto px-5 text-center relative z-[2]">
+      <p class="font-display uppercase tracking-[.2em] text-purple text-[1.1rem] mb-3">404</p>
+      <h1 class="font-funk uppercase text-[clamp(2.6rem,7vw,4.6rem)] leading-[1.03]" style="text-shadow:4px 4px 0 rgba(0,0,0,.25)">This page <span class="text-purple">skipped a beat</span></h1>
+      <p class="mt-5 text-[#d4cee2] text-[1.05rem]">It's not here — maybe it never was, maybe it's on tour. Either way, the good stuff is this way:</p>
+      <div class="flex flex-wrap gap-3.5 justify-center mt-8">
+        <a href="/" class="btn btn-purple">Back home</a>
+        <a href="/#templates" class="btn btn-ghost">See the themes</a>
+      </div>
+    </div>
+  </section>
+  <Footer />
+</Base>

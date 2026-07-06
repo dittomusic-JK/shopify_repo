@@ -3,7 +3,11 @@ import '../styles/global.css';
 const {
   title = 'Riffride — The website for artists & musicians',
   description = 'Build your professional musician website — music, merch, tour dates, press kit and links, all in one site you own and customise yourself. Shopify-powered, no code. Even sell merch on Spotify.',
+  ogImage = '/og.jpg',
 } = Astro.props;
+const base = Astro.site ?? 'https://www.riffride.com';
+const canonical = new URL(Astro.url.pathname, base);
+const ogImageUrl = new URL(ogImage, base);
 ---
 <!doctype html>
 <html lang="en">
@@ -22,6 +26,18 @@ const {
     />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Riffride" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+    <script defer src="/_vercel/insights/script.js"></script>
   </head>
   <body>
     <slot />
