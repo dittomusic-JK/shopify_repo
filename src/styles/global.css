@@ -14,7 +14,7 @@
   --color-muted: #8b8398;
   --font-funk: "Knewave", system-ui, cursive;
   --font-display: "Anton", Impact, sans-serif;
-  --font-body: "Bricolage Grotesque", system-ui, -apple-system, sans-serif;
+  --font-body: "Hanken Grotesk", system-ui, -apple-system, sans-serif;
 }
 
 @layer base {
@@ -89,8 +89,9 @@ body::before{
 .feat-ic-img{width:78px;height:78px;object-fit:contain;display:block;margin-bottom:.9rem;filter:drop-shadow(0 8px 16px rgba(0,0,0,.45));transition:transform .25s ease}
 .feat-card:hover .feat-ic-img{transform:scale(1.07) rotate(-3deg)}
 
-/* ---- hero floating screens ---- */
-.hero-screen{position:absolute;border-radius:11px;border:2px solid rgba(255,255,255,.16);box-shadow:0 18px 44px rgba(0,0,0,.55);filter:blur(1.2px) saturate(.85);object-fit:cover;object-position:top}
+/* ---- hero screens as flat sticker-objects (Gumroad-style: crisp,
+   thick outline, hard offset shadow — no blur, no soft glow) ---- */
+.hero-screen{position:absolute;border-radius:10px;border:3px solid var(--color-ink);box-shadow:6px 6px 0 rgba(184,155,242,.5);object-fit:cover;object-position:top}
 
 /* ---- funk heading underline ---- */
 .head-underline::after{content:"";display:block;width:74px;height:7px;background:var(--color-purple);margin:.7rem auto 0;border-radius:4px;transform:rotate(-1.5deg)}
@@ -137,4 +138,73 @@ details p{color:#bdb6cc;margin-top:.7rem;font-size:.95rem}
   .reveal{opacity:1;transform:none;transition:none}
   .marquee-track,.hero-art img{animation:none}
   .shot-img{transition:none}
+}
+
+/* ============================================================
+   MOTION PASS — craft + choreography (keeps the funk identity)
+   ============================================================ */
+
+/* brand selection, focus rings, scrollbar */
+::selection{background:var(--color-purple);color:var(--color-ink)}
+:focus-visible{outline:3px solid var(--color-purple);outline-offset:3px;border-radius:3px}
+html{scrollbar-width:thin;scrollbar-color:var(--color-purple-deep) var(--color-dark)}
+html::-webkit-scrollbar{width:12px;height:12px}
+html::-webkit-scrollbar-track{background:var(--color-dark)}
+html::-webkit-scrollbar-thumb{background:var(--color-purple-deep);border:3px solid var(--color-dark);border-radius:999px}
+html::-webkit-scrollbar-thumb:hover{background:var(--color-purple)}
+
+/* ---- hero load choreography ---- */
+@keyframes unmask{from{clip-path:inset(0 0 108% 0);transform:translateY(.26em)}to{clip-path:inset(0 0 -14% 0);transform:none}}
+@keyframes rise-in{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+.hero-headline{animation:unmask 1s cubic-bezier(.22,.61,.36,1) both}
+.hero-sub{animation:rise-in .7s ease both .46s}
+.hero-cta{animation:rise-in .7s ease both .62s}
+.hero-art{animation:rise-in .9s cubic-bezier(.22,.61,.36,1) both .28s}
+
+/* ---- scroll-driven heading unmask + hero parallax (progressive) ---- */
+@supports (animation-timeline: view()){
+  @media(prefers-reduced-motion:no-preference){
+    .head-reveal{animation:unmask 1ms linear both;animation-timeline:view();animation-range:entry 6% entry 44%}
+    /* floating screenshots drift at different speeds for depth; `translate`
+       composes with each screen's inline transform:rotate() */
+    .hero-screen{animation:screen-drift 1ms linear both;animation-timeline:scroll(root);animation-range:0 100vh}
+    .hero-screen:nth-child(1){--drift:-30px}
+    .hero-screen:nth-child(2){--drift:-72px}
+    .hero-screen:nth-child(3){--drift:-46px}
+    .hero-screen:nth-child(4){--drift:-92px}
+  }
+}
+@keyframes screen-drift{to{translate:0 var(--drift,-50px)}}
+
+/* ---- theme card: pointer-tracked tilt (JS sets --rx/--ry) ---- */
+.theme-card{transform:perspective(900px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) translateY(0);will-change:transform}
+.theme-card:hover{transform:perspective(900px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) translateY(-6px)}
+.theme-card__glare{position:absolute;inset:0;z-index:3;pointer-events:none;opacity:0;transition:opacity .25s ease;background:radial-gradient(320px circle at var(--gx,50%) var(--gy,0%),rgba(244,239,229,.22),transparent 60%);mix-blend-mode:screen}
+.theme-card:hover .theme-card__glare{opacity:1}
+
+/* ---- button shine (keeps the brutalist stroke + offset) ---- */
+.btn{position:relative;overflow:hidden}
+.btn::after{content:"";position:absolute;top:0;left:-120%;width:60%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.45),transparent);transform:skewX(-18deg);transition:none}
+.btn:hover::after{animation:btn-shine .7s ease}
+@keyframes btn-shine{to{left:130%}}
+
+/* ---- view transitions (Astro ClientRouter) ---- */
+@media(prefers-reduced-motion:no-preference){
+  ::view-transition-old(root),::view-transition-new(root){animation-duration:.32s}
+}
+/* ---- editorial spec index (features) — anti-template ---- */
+.spec-kicker{font-family:var(--font-body);font-weight:700;text-transform:uppercase;letter-spacing:.15em;font-size:.72rem;color:var(--color-purple);margin-bottom:1rem}
+.spec-list{list-style:none;padding:0;margin:0}
+.spec-row{position:relative;display:grid;grid-template-columns:auto 1fr;column-gap:1.15rem;align-items:start;padding:1.15rem .2rem 1.25rem;border-top:1.5px solid rgba(255,255,255,.13);transition:padding-left .3s cubic-bezier(.22,.61,.36,1),background .3s}
+.spec-row:hover{padding-left:.7rem;background:linear-gradient(90deg,rgba(184,155,242,.06),transparent 70%)}
+.spec-num{font-family:var(--font-display);font-size:1.85rem;line-height:1;min-width:2.1ch;-webkit-text-stroke:1.5px rgba(184,155,242,.5);color:transparent;transition:color .25s ease,-webkit-text-stroke-color .25s ease}
+.spec-row:hover .spec-num{color:var(--color-purple);-webkit-text-stroke-color:transparent}
+.spec-bar{position:absolute;left:0;top:-1.5px;height:1.5px;width:0;background:var(--color-purple);transition:width .4s cubic-bezier(.22,.61,.36,1)}
+.spec-row:hover .spec-bar{width:100%}
+
+@media(prefers-reduced-motion:reduce){
+  ::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none !important}
+  .hero-headline,.hero-sub,.hero-cta,.hero-art{animation:none}
+  .theme-card{transform:none}
+  .btn::after{display:none}
 }

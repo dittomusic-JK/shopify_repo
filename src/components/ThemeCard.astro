@@ -1,7 +1,8 @@
 ---
 const { theme, delay = '' } = Astro.props;
 ---
-<article class={`reveal ${delay} group theme-card bg-cream-card border-[2.5px] border-[rgba(24,20,38,.16)] rounded-[18px] overflow-hidden flex flex-col`}>
+<article class={`reveal ${delay} group theme-card relative bg-cream-card border-[2.5px] border-[rgba(24,20,38,.16)] rounded-[18px] overflow-hidden flex flex-col`}>
+  <span class="theme-card__glare" aria-hidden="true"></span>
   <a href={theme.demo} class="relative block aspect-[3/4] overflow-hidden bg-dark-2" aria-label={`View the ${theme.name} demo`}>
     <img src={`/shots/${theme.slug}.jpg`} alt={`${theme.name} theme preview`} loading="lazy" class="shot-img w-full h-full object-cover" />
     <span class="shot-hint absolute bottom-3 right-3 z-[2] flex items-center gap-1 bg-ink/80 text-cream text-[.58rem] font-semibold uppercase tracking-[.12em] px-2 py-1 rounded-full backdrop-blur-sm">

@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import { ClientRouter } from 'astro:transitions';
 const {
   title = 'Riffride — The website for artists & musicians',
   description = 'Build your professional musician website — music, merch, tour dates, press kit and links, all in one site you own and customise yourself. Shopify-powered, no code. Even sell merch on Spotify.',
@@ -21,7 +22,7 @@ const ogImageUrl = new URL(ogImage, base);
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Anton&family=Knewave&family=Bricolage+Grotesque:opsz,wght@12..96,400..700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Anton&family=Knewave&family=Hanken+Grotesk:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
     <title>{title}</title>
@@ -38,29 +39,53 @@ const ogImageUrl = new URL(ogImage, base);
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImageUrl} />
     <script defer src="/_vercel/insights/script.js"></script>
+    <ClientRouter />
   </head>
   <body>
     <slot />
     <script>
-      const io = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((e) => {
-            if (e.isIntersecting) {
-              e.target.classList.add('in');
-              io.unobserve(e.target);
-            }
-          });
-        },
-        { threshold: 0.12 }
-      );
-      document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+      // Re-runs on first load AND after every View Transitions soft-nav,
+      // otherwise .reveal elements on new pages stay invisible.
+      function initMotion() {
+        const io = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((e) => {
+              if (e.isIntersecting) {
+                e.target.classList.add('in');
+                io.unobserve(e.target);
+              }
+            });
+          },
+          { threshold: 0.12 }
+        );
+        document.querySelectorAll('.reveal:not(.in)').forEach((el) => io.observe(el));
 
-      const toggle = document.getElementById('navtoggle');
-      if (toggle) {
-        toggle.addEventListener('click', () => {
+        document.getElementById('navtoggle')?.addEventListener('click', () => {
           document.getElementById('mobilenav')?.classList.toggle('open');
         });
+
+        // pointer-tracked tilt + glare on theme cards (fine-pointer only)
+        if (matchMedia('(hover:hover) and (pointer:fine)').matches &&
+            !matchMedia('(prefers-reduced-motion:reduce)').matches) {
+          document.querySelectorAll('.theme-card').forEach((card) => {
+            card.addEventListener('pointermove', (ev) => {
+              const r = card.getBoundingClientRect();
+              const px = (ev.clientX - r.left) / r.width;
+              const py = (ev.clientY - r.top) / r.height;
+              card.style.setProperty('--ry', ((px - 0.5) * 7).toFixed(2) + 'deg');
+              card.style.setProperty('--rx', ((0.5 - py) * 7).toFixed(2) + 'deg');
+              card.style.setProperty('--gx', (px * 100).toFixed(1) + '%');
+              card.style.setProperty('--gy', (py * 100).toFixed(1) + '%');
+            });
+            card.addEventListener('pointerleave', () => {
+              card.style.setProperty('--ry', '0deg');
+              card.style.setProperty('--rx', '0deg');
+            });
+          });
+        }
       }
+      initMotion();
+      document.addEventListener('astro:page-load', initMotion);
     </script>
   </body>
 </html>
