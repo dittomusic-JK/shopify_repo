@@ -130,22 +130,27 @@ body.nav-open{overflow:hidden}
 .hero-cta{animation:rise-in .7s ease both .62s}
 .hero-note{animation:rise-in .7s ease both .9s}
 
-/* ---- the deck: eight themes as records in a crate ---- */
-.deck{position:relative;aspect-ratio:1.08/1;margin:1.5rem .5rem 2.5rem;--spread:1}
-.deck__card{position:absolute;left:50%;top:52%;width:44%;aspect-ratio:3/4;object-fit:cover;object-position:top;border:3px solid var(--color-ink);border-radius:12px;background:#0b0a10;box-shadow:6px 6px 0 var(--color-spot);transform-origin:50% 100%;transform:translate(-50%,-50%) translate(calc(var(--x) * var(--spread)),var(--y)) rotate(calc(var(--r) * var(--spread)));transition:transform .5s var(--ease),box-shadow .3s ease;will-change:transform}
-.deck__card[style*="--i:0"]{--x:-52%;--y:-4%;--r:-17deg;z-index:1}
-.deck__card[style*="--i:1"]{--x:-32%;--y:-7%;--r:-10deg;z-index:2}
-.deck__card[style*="--i:2"]{--x:-12%;--y:-8%;--r:-4deg;z-index:3}
-.deck__card[style*="--i:3"]{--x:10%;--y:-8%;--r:4deg;z-index:4}
-.deck__card[style*="--i:4"]{--x:30%;--y:-6%;--r:11deg;z-index:5}
-.deck__card[style*="--i:5"]{--x:0%;--y:8%;--r:0deg;z-index:6;width:50%;box-shadow:12px 12px 0 var(--color-spot)}
-.deck:hover{--spread:1.18}
-.deck__card:hover{z-index:7;box-shadow:12px 12px 0 var(--color-ink);transform:translate(-50%,-50%) translate(calc(var(--x) * var(--spread)),calc(var(--y) - 4%)) rotate(calc(var(--r) * var(--spread))) scale(1.04)}
-.deck__stamp{position:absolute;top:-7%;right:-5%;width:34%;transform:rotate(10deg);z-index:9;pointer-events:none;filter:drop-shadow(0 10px 18px rgba(20,17,24,.18))}
-@keyframes deal{from{opacity:0;transform:translate(-50%,-50%) translate(0,40%) rotate(0deg)}to{opacity:1}}
-@keyframes stamp-in{from{opacity:0;transform:rotate(-6deg) scale(.6)}to{opacity:1;transform:rotate(8deg) scale(1)}}
+/* ---- the collage: the line-up laid out at three sizes ---- */
+.collage{position:relative;container-type:inline-size;display:grid;grid-template-columns:100fr 230fr 150fr;column-gap:3cqw;align-items:start;margin:1rem 0 2rem;--g:3cqw;width:108%;justify-self:start}
+@media(min-width:1280px){.collage{width:118%}}
+.collage__col{display:flex;flex-direction:column;gap:var(--g);min-width:0}
+.collage__col--a{padding-top:15cqw}
+.collage__col--c{padding-top:6cqw}
+.collage__card{display:block;width:100%;aspect-ratio:5/7;object-fit:cover;object-position:top;border:3px solid var(--color-ink);border-radius:10px;background:#0b0a10;box-shadow:4px 4px 0 var(--color-ink);transition:translate .35s var(--ease),box-shadow .35s var(--ease);position:relative}
+.collage__col--c .collage__card{box-shadow:6px 6px 0 var(--color-ink)}
+.collage__card--flag{box-shadow:10px 10px 0 var(--color-spot);border-radius:14px;rotate:-1deg}
+.collage__card--wide{aspect-ratio:8/5;rotate:1.2deg}
+.collage__col--a .collage__card:nth-child(1){rotate:-2deg}
+.collage__col--a .collage__card:nth-child(2){rotate:1.5deg}
+.collage__col--c .collage__card:nth-child(1){rotate:2deg}
+.collage__col--c .collage__card:nth-child(2){rotate:-1.5deg}
+.collage__card:hover{translate:0 -6px;box-shadow:8px 8px 0 var(--color-ink);z-index:3}
+.collage__card--flag:hover{box-shadow:14px 14px 0 var(--color-spot)}
+.collage__stamp{position:absolute;top:-8cqw;left:57cqw;width:26cqw;rotate:10deg;z-index:5;pointer-events:none;filter:drop-shadow(0 10px 18px rgba(20,17,24,.18))}
+@keyframes rise{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+@keyframes stamp-in{from{opacity:0;rotate:-6deg;scale:.6}to{opacity:1;rotate:10deg;scale:1}}
 @keyframes screen-drift{to{translate:0 var(--drift,-50px)}}
-@media(max-width:1023px){.deck{aspect-ratio:1.15/1;margin:.5rem .25rem 2rem}.deck__stamp{width:36%;top:-8%;right:-3%}}
+@media(max-width:1023px){.collage{margin:.5rem auto 1.5rem;max-width:520px;width:100%}}
 
 /* ---- marquee ---- */
 @keyframes scroll{to{transform:translateX(-50%)}}
@@ -274,8 +279,8 @@ body.nav-open{overflow:hidden}
 .reveal.d4{transition-delay:.32s}.reveal.d5{transition-delay:.4s}.reveal.d6{transition-delay:.48s}
 @keyframes unmask{from{clip-path:inset(0 0 108% 0);transform:translateY(.26em)}to{clip-path:inset(0 0 -14% 0);transform:none}}
 @media(prefers-reduced-motion:no-preference){
-  .deck__card{animation:deal .9s var(--ease) both;animation-delay:calc(.08s * var(--i,0) + .25s)}
-  .deck__stamp{animation:stamp-in .6s var(--ease) both 1s}
+  .collage__card{animation:rise .8s var(--ease) both;animation-delay:calc(.07s * var(--i,0) + .2s)}
+  .collage__stamp{animation:stamp-in .6s var(--ease) both .9s}
   .mobile-nav.open{animation:rise-in .35s var(--ease)}
   .mobile-nav.open .navlink{animation:rise-in .5s var(--ease) both;animation-delay:calc(.06s * var(--i,0) + .08s)}
   ::view-transition{background:var(--color-spot)}
@@ -283,7 +288,8 @@ body.nav-open{overflow:hidden}
   ::view-transition-new(root){animation:vt-curtain-in .42s var(--ease) .14s both !important}
   @supports (animation-timeline: view()){
     .head-reveal{animation:unmask 1ms linear both;animation-timeline:view();animation-range:entry 6% entry 44%}
-    .deck{animation:screen-drift 1ms linear both;animation-timeline:scroll(root);animation-range:0 100vh;--drift:-60px}
+    .collage__col{animation:screen-drift 1ms linear both;animation-timeline:scroll(root);animation-range:0 100vh}
+    .collage__col--a{--drift:-28px}.collage__col--b{--drift:-70px}.collage__col--c{--drift:-46px}
     .proof__item{animation:proof-in 1ms linear both;animation-timeline:view();animation-range:entry 0% entry 55%}
   }
 }
@@ -291,7 +297,7 @@ body.nav-open{overflow:hidden}
 @keyframes vt-curtain-in{from{clip-path:inset(0 0 100% 0)}to{clip-path:inset(0)}}
 @media(prefers-reduced-motion:reduce){
   .reveal{opacity:1;transform:none;transition:none}
-  .marquee-track,.deck__card,.deck__stamp,.deck,.hero-headline .w,.hero-kicker,.hero-sub,.hero-cta,.hero-note{animation:none}
+  .marquee-track,.collage__card,.collage__stamp,.collage__col,.hero-headline .w,.hero-kicker,.hero-sub,.hero-cta,.hero-note{animation:none}
   .shot-img,.flagship__media img{transition:none}
   .theme-card{transform:none}
   .btn::after{display:none}

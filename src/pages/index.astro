@@ -11,7 +11,6 @@ const lineup = themes.filter((t) => !t.flagship);
 
 const headline = ['Shopify', 'themes', 'for', 'musicians'];
 // back to front — the flagship lands last, on top
-const deck = ['static', 'block', 'wander', 'vesper', 'riot', 'soundcheck'];
 
 const features = [
   { name: 'Storefront', desc: 'A full Shopify store — cart drawer, checkout and secure payments, built in.' },
@@ -63,11 +62,20 @@ const faqs = [
         <p class="hero-note mt-7 text-[.82rem] text-muted">Front of the crate: <a href={flagship.demo} target="_blank" rel="noopener" class="text-ink font-semibold underline underline-offset-4 decoration-spot hover:text-spot-deep transition">Soundcheck</a>, our flagship, dressed as the demo band GATEFOLD.</p>
       </div>
 
-      <div class="deck" aria-hidden="true">
-        {deck.map((slug, i) => (
-          <img src={`/thumbs/${slug}.jpg`} alt="" width="543" height="760" class="deck__card" style={`--i:${i}`} loading={i < 3 ? 'lazy' : 'eager'} decoding="async" />
-        ))}
-        <img src="/logo-roundel.png" alt="" width="430" height="424" class="deck__stamp" decoding="async" />
+      <div class="collage" aria-hidden="true">
+        <div class="collage__col collage__col--a">
+          <img src="/thumbs/static.jpg" alt="" width="543" height="760" class="collage__card" style="--i:0" decoding="async" />
+          <img src="/thumbs/wander.jpg" alt="" width="543" height="760" class="collage__card" style="--i:3" decoding="async" />
+        </div>
+        <div class="collage__col collage__col--b">
+          <img src="/thumbs/soundcheck.jpg" alt="" width="543" height="760" class="collage__card collage__card--flag" style="--i:1" fetchpriority="high" decoding="async" />
+          <img src="/thumbs/vesper.jpg" alt="" width="543" height="760" class="collage__card collage__card--wide" style="--i:5" decoding="async" />
+        </div>
+        <div class="collage__col collage__col--c">
+          <img src="/thumbs/riot.jpg" alt="" width="543" height="760" class="collage__card" style="--i:2" decoding="async" />
+          <img src="/thumbs/block.jpg" alt="" width="543" height="760" class="collage__card" style="--i:4" decoding="async" />
+        </div>
+        <img src="/logo-roundel.png" alt="" width="430" height="424" class="collage__stamp" decoding="async" />
       </div>
     </div>
   </section>
