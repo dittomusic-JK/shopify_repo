@@ -60,9 +60,42 @@ const ogImageUrl = new URL(ogImage, base);
         );
         document.querySelectorAll('.reveal:not(.in)').forEach((el) => io.observe(el));
 
-        document.getElementById('navtoggle')?.addEventListener('click', () => {
-          document.getElementById('mobilenav')?.classList.toggle('open');
-        });
+        const toggle = document.getElementById('navtoggle');
+        const mobile = document.getElementById('mobilenav');
+        if (toggle && mobile && !toggle.dataset.bound) {
+          toggle.dataset.bound = '1';
+          const setOpen = (open) => {
+            mobile.classList.toggle('open', open);
+            toggle.setAttribute('aria-expanded', String(open));
+            document.body.classList.toggle('nav-open', open);
+          };
+          toggle.addEventListener('click', () => setOpen(!mobile.classList.contains('open')));
+          mobile.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => setOpen(false)));
+          document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setOpen(false); });
+        }
+
+        // crew signup: post in place, keep people on the page
+        const crew = document.querySelector('[data-crew-form]');
+        if (crew && !crew.dataset.bound) {
+          crew.dataset.bound = '1';
+          crew.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const msg = document.querySelector('[data-crew-msg]');
+            const btn = crew.querySelector('button');
+            btn.disabled = true;
+            try {
+              const r = await fetch('https://formsubmit.co/ajax/james.keane@dittomusic.com', { method: 'POST', headers: { Accept: 'application/json' }, body: new FormData(crew) });
+              if (!r.ok) throw new Error('bad status');
+              crew.hidden = true;
+              msg.textContent = "You're in. One email when something's worth it.";
+              msg.hidden = false;
+            } catch (err) {
+              btn.disabled = false;
+              msg.textContent = 'That didn\'t send — email hello@riffride.com instead.';
+              msg.hidden = false;
+            }
+          });
+        }
 
         // pointer-tracked tilt + glare on theme cards (fine-pointer only)
         if (matchMedia('(hover:hover) and (pointer:fine)').matches &&

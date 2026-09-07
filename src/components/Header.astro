@@ -1,26 +1,29 @@
 ---
+const path = Astro.url.pathname;
+const links = [
+  { href: '/#themes', label: 'Themes' },
+  { href: '/#toolkit', label: 'Toolkit' },
+  { href: '/help', label: 'Help', current: path.startsWith('/help') },
+  { href: '/support', label: 'Support', current: path.startsWith('/support') },
+];
 ---
-<header class="sticky top-0 z-50 bg-dark/85 backdrop-blur-md border-b border-white/10">
+<header class="site-header sticky top-0 z-50 bg-dark/85 backdrop-blur-md">
   <div class="max-w-[1180px] mx-auto px-5 sm:px-10 flex items-center justify-between h-[74px]">
     <a href="/" aria-label="Riffride home" class="inline-flex items-center">
-      <img src="/logo_light.webp" alt="Riffride" class="h-11 w-auto block" style="view-transition-name:site-logo" />
+      <img src="/logo_light.webp" alt="Riffride" width="146" height="44" class="h-11 w-auto block" style="view-transition-name:site-logo" />
     </a>
-    <nav class="hidden md:flex gap-8 items-center">
-      <a href="/#templates" class="navlink">Templates</a>
-      <a href="/#about" class="navlink">About</a>
-      <a href="/help" class="navlink">Help</a>
-      <a href="/#contact" class="navlink">Contact</a>
+    <nav class="hidden md:flex gap-8 items-center" aria-label="Primary">
+      {links.map((l) => <a href={l.href} class="navlink" aria-current={l.current ? 'page' : undefined}>{l.label}</a>)}
       <a href="/setup" class="btn btn-purple">Get started</a>
     </nav>
-    <button id="navtoggle" class="md:hidden text-cream" aria-label="Menu">
-      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
+    <button id="navtoggle" class="md:hidden text-cream navtoggle" aria-label="Menu" aria-expanded="false" aria-controls="mobilenav">
+      <svg class="navtoggle__open" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
+      <svg class="navtoggle__close" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="5" y1="5" x2="19" y2="19"/><line x1="19" y1="5" x2="5" y2="19"/></svg>
     </button>
   </div>
-  <nav id="mobilenav" class="mobile-nav">
-    <a href="/#templates" class="navlink">Templates</a>
-    <a href="/#about" class="navlink">About</a>
-    <a href="/help" class="navlink">Help</a>
-    <a href="/#contact" class="navlink">Contact</a>
-    <a href="/setup" class="btn btn-purple self-start">Get started</a>
-  </nav>
 </header>
+<nav id="mobilenav" class="mobile-nav" aria-label="Primary mobile">
+    {links.map((l, i) => <a href={l.href} class="navlink" style={`--i:${i}`}>{l.label}</a>)}
+    <a href="/setup" class="btn btn-ink self-start">Get started</a>
+    <p class="mobile-nav__foot">Shopify themes for artists &amp; musicians</p>
+</nav>

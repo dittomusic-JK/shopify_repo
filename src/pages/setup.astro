@@ -57,61 +57,69 @@ const isExternal = (href) => href.startsWith('http');
   <Header />
 
   <!-- INTRO -->
-  <section class="relative overflow-hidden grid place-items-center min-h-[clamp(440px,52vh,580px)] py-[clamp(3rem,7vw,5rem)]" style="background:radial-gradient(ellipse 70% 60% at 50% 30%,rgba(154,115,236,.12),transparent 60%),var(--color-dark)">
-    <!-- floating theme screenshots flanking the heading -->
-    <div class="hidden lg:block absolute inset-0 z-[1] pointer-events-none" aria-hidden="true">
-      <img src="/thumbs/vesper.jpg" class="hero-screen" style="width:152px;top:15%;left:4%;transform:rotate(-7deg);opacity:.32" />
-      <img src="/thumbs/block.jpg" class="hero-screen" style="width:132px;bottom:12%;left:9%;transform:rotate(6deg);opacity:.24" />
-      <img src="/thumbs/riot.jpg" class="hero-screen" style="width:152px;top:13%;right:4%;transform:rotate(8deg);opacity:.32" />
-      <img src="/thumbs/wander.jpg" class="hero-screen" style="width:134px;bottom:12%;right:8%;transform:rotate(-6deg);opacity:.24" />
-    </div>
-    <div class="reveal max-w-[820px] mx-auto px-5 sm:px-10 text-center relative z-[2]">
-      <p class="font-body font-semibold uppercase tracking-[.18em] text-purple text-[.8rem] mb-4">Setup guide</p>
-      <h1 class="font-funk uppercase text-[clamp(2.6rem,7vw,5rem)] leading-[1.02]" style="text-shadow:4px 4px 0 rgba(0,0,0,.25)">Launch your <span class="text-purple">music site</span></h1>
-      <p class="mt-5 text-[#d4cee2] text-[clamp(1.02rem,1.6vw,1.2rem)] max-w-[52ch] mx-auto">Six steps from an empty store to merch live on your Spotify profile. Free to start — you can be online this afternoon.</p>
+  <section class="page-intro py-[clamp(3rem,7vw,5rem)]">
+    <div class="max-w-[1180px] mx-auto px-5 sm:px-10 page-intro__grid">
+      <div class="reveal in">
+        <p class="kicker">Setup guide — six steps</p>
+        <h1>Launch your <span class="text-purple">music site</span></h1>
+      </div>
+      <p class="reveal in page-intro__lead">From an empty store to merch live on your Spotify profile. Free to start — you can be online this afternoon.</p>
     </div>
   </section>
 
   <!-- STEPS -->
   <section class="bg-cream text-ink py-[clamp(3rem,7vw,5rem)]">
-    <div class="max-w-[820px] mx-auto px-5 sm:px-10">
-      {steps.map((s) => (
-        <div class="reveal flex gap-5 sm:gap-7 py-8 border-t-2 border-[rgba(24,20,38,.12)]">
-          <div class="shrink-0 w-14 h-14 rounded-full bg-purple text-ink font-display text-[1.55rem] grid place-items-center border-[2.5px] border-ink" style="box-shadow:3px 3px 0 var(--color-ink)">{s.n}</div>
-          <div class="flex-1">
-            <h2 class="font-display text-[clamp(1.3rem,3vw,1.7rem)] uppercase leading-[1.05]">{s.title}</h2>
-            <p class="text-[#5e576b] mt-2.5 mb-4 leading-[1.6] max-w-[58ch]">{s.body}</p>
-            {s.cta && (
-              <a
-                href={s.cta.href}
-                class="btn btn-ink btn-sm"
-                {...(isExternal(s.cta.href) ? { target: '_blank', rel: relFor(s.cta) } : {})}
-              >{s.cta.label} →</a>
-            )}
-            {s.alts && (
-              <p class="text-[#5e576b] text-[.85rem] mt-3">Prefer another? {s.alts.map((a, i) => (
-                <>{i > 0 ? ' · ' : ''}<a href={a.href} target="_blank" rel="noopener sponsored" class="text-purple-deep font-semibold underline underline-offset-2">{a.label}</a></>
-              ))}</p>
-            )}
+    <div class="max-w-[1180px] mx-auto px-5 sm:px-10 grid lg:grid-cols-[.7fr_1.3fr] gap-x-14 gap-y-8 items-start">
+      <aside class="reveal lg:sticky lg:top-24">
+        <p class="kicker kicker--ink">The route</p>
+        <ol class="mt-4 border-t-2 border-ink">
+          {steps.map((s) => (
+            <li class="py-2.5 border-b-[1.5px] border-[rgba(24,20,38,.15)] flex gap-3 items-baseline text-[.92rem]">
+              <span class="num-outline num-outline--ink text-[1.05rem]" aria-hidden="true">{String(s.n).padStart(2, '0')}</span>
+              <a href={`#step-${s.n}`} class="text-[#3f3a4d] hover:text-purple-deep transition">{s.title}</a>
+            </li>
+          ))}
+        </ol>
+      </aside>
+      <div class="ledger">
+        {steps.map((s) => (
+          <div class="reveal ledger__row" id={`step-${s.n}`}>
+            <span class="ledger__num" aria-hidden="true">{String(s.n).padStart(2, '0')}</span>
+            <div>
+              <h2 class="font-display text-[clamp(1.35rem,3vw,1.9rem)] uppercase leading-[1.05]">{s.title}</h2>
+              <p class="text-[#5e576b] mt-2.5 mb-4 leading-[1.62] max-w-[58ch]">{s.body}</p>
+              {s.cta && (
+                <a
+                  href={s.cta.href}
+                  class="btn btn-ink btn-sm"
+                  {...(isExternal(s.cta.href) ? { target: '_blank', rel: relFor(s.cta) } : {})}
+                >{s.cta.label} →</a>
+              )}
+              {s.alts && (
+                <p class="text-[#5e576b] text-[.85rem] mt-3">Prefer another? {s.alts.map((a, i) => (
+                  <>{i > 0 ? ' · ' : ''}<a href={a.href} target="_blank" rel="noopener sponsored" class="text-purple-deep font-semibold underline underline-offset-2">{a.label}</a></>
+                ))}</p>
+              )}
+            </div>
           </div>
-        </div>
-      ))}
-
-      <!-- affiliate disclosure -->
-      <p class="mt-9 pt-6 border-t-2 border-[rgba(24,20,38,.12)] text-[#7a7388] text-[.82rem] leading-[1.6] max-w-[64ch]">
-        Heads up: some links above are affiliate links — if you sign up through them, Riffride may earn a commission at no extra cost to you. We only point you at tools we'd genuinely use ourselves.
-      </p>
+        ))}
+        <p class="mt-8 text-[#625b70] text-[.82rem] leading-[1.6] max-w-[64ch]">
+          Heads up: some links above are affiliate links — if you sign up through them, Riffride may earn a commission at no extra cost to you. We only point you at tools we'd genuinely use ourselves.
+        </p>
+      </div>
     </div>
   </section>
 
-  <!-- CLOSING CTA -->
-  <section class="relative overflow-hidden py-[clamp(3rem,7vw,5rem)]" style="background:radial-gradient(circle at 70% 50%,rgba(154,115,236,.09),transparent 55%),var(--color-dark)">
-    <div class="reveal max-w-[680px] mx-auto px-5 text-center relative z-[2]">
-      <h2 class="font-funk text-[clamp(1.8rem,4.5vw,2.8rem)] leading-[1.05]">Ready to <span class="text-purple">build it?</span></h2>
-      <p class="text-[#d4cee2] text-[1.05rem] mt-3.5 mb-7">Pick a look, make it yours, go live. Your whole career — one site you own.</p>
-      <div class="flex flex-wrap gap-3.5 justify-center">
-        <a href="/#templates" class="btn btn-purple">See the themes</a>
-        <a href={affiliates.shopify} target="_blank" rel="noopener sponsored" class="btn btn-ghost">Start free on Shopify</a>
+  <!-- CLOSING -->
+  <section class="bg-dark py-[clamp(3.5rem,8vw,6rem)] overflow-hidden">
+    <div class="max-w-[1180px] mx-auto px-5 sm:px-10 grid md:grid-cols-[1.2fr_.8fr] gap-x-14 gap-y-6 items-end">
+      <h2 class="statement head-reveal" style="--stroke:var(--color-cream)"><span class="statement__o" style="-webkit-text-stroke-color:var(--color-cream)">Ready to</span><br /><span class="text-purple">build it?</span></h2>
+      <div class="reveal">
+        <p class="text-[#cfc8dd] text-[1.05rem] leading-[1.6] mb-6">Pick a look, make it yours, go live. Your whole career — one site you own.</p>
+        <div class="flex flex-wrap gap-3.5">
+          <a href="/#themes" class="btn btn-purple">See the themes</a>
+          <a href={affiliates.shopify} target="_blank" rel="noopener sponsored" class="btn btn-ghost">Start free on Shopify</a>
+        </div>
       </div>
     </div>
   </section>

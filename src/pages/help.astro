@@ -165,17 +165,19 @@ const camera = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok
   <Header />
 
   <!-- INTRO -->
-  <section class="relative overflow-hidden py-[clamp(3.5rem,8vw,6rem)]" style="background:radial-gradient(ellipse 70% 60% at 50% 30%,rgba(154,115,236,.12),transparent 60%),var(--color-dark)">
-    <div class="reveal max-w-[820px] mx-auto px-5 sm:px-10 text-center relative z-[2]">
-      <p class="font-body font-semibold uppercase tracking-[.18em] text-purple text-[.8rem] mb-4">Help &amp; guides</p>
-      <h1 class="font-funk uppercase text-[clamp(2.4rem,6.5vw,4.6rem)] leading-[1.03]" style="text-shadow:4px 4px 0 rgba(0,0,0,.25)">Setup, made <span class="text-purple">simple</span></h1>
-      <p class="mt-5 text-[#d4cee2] text-[clamp(1.02rem,1.6vw,1.2rem)] max-w-[54ch] mx-auto">Shopify is powerful but a bit fiddly. Here’s every step in plain English — especially the stuff that trips everyone up.</p>
+  <section class="page-intro py-[clamp(3rem,7vw,5rem)]">
+    <div class="max-w-[1180px] mx-auto px-5 sm:px-10 page-intro__grid">
+      <div class="reveal in">
+        <p class="kicker">Help &amp; guides</p>
+        <h1>Setup, made <span class="text-purple">simple</span></h1>
+      </div>
+      <p class="reveal in page-intro__lead">Shopify is powerful but a bit fiddly. Here's every step in plain English — especially the stuff that trips everyone up.</p>
     </div>
   </section>
 
   <!-- GUIDES -->
   <section class="bg-cream text-ink py-[clamp(3rem,7vw,5rem)]">
-    <div class="max-w-[860px] mx-auto px-5 sm:px-10">
+    <div class="max-w-[860px] mx-auto px-5 sm:px-10 help-list">
       {cats.map((cat) => (
         <div class="reveal">
           <h2 class="help-cat">{cat.name}</h2>
@@ -198,10 +200,12 @@ const camera = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strok
         </div>
       ))}
 
-      <div class="reveal mt-12 text-center">
-        <p class="text-[#5e576b] mb-4">Still stuck, or want a feature walked through?</p>
-        <a href="/support" class="btn btn-ink">Get in touch</a>
-        <a href="/setup" class="btn btn-line ml-2">The 6-step setup</a>
+      <div class="reveal mt-14 pt-8 border-t-2 border-ink flex flex-wrap items-center justify-between gap-4">
+        <p class="text-[#5e576b] max-w-[40ch]">Still stuck, or want a feature walked through? Two business days, tops.</p>
+        <div class="flex flex-wrap gap-2">
+          <a href="/support" class="btn btn-ink">Get in touch</a>
+          <a href="/setup" class="btn btn-line">The 6-step setup</a>
+        </div>
       </div>
     </div>
   </section>

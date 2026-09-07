@@ -6,73 +6,153 @@ import ThemeCard from '../components/ThemeCard.astro';
 import Footer from '../components/Footer.astro';
 import { themes } from '../data/themes.js';
 
+const flagship = themes.find((t) => t.flagship);
+const lineup = themes.filter((t) => !t.flagship);
+
+const headline = ['Shopify', 'themes', 'for', 'artists', '&', 'musicians'];
+
 const features = [
-  { name: 'Storefront', desc: 'A full Shopify store — cart, checkout and secure payments, built in.', img: '/icons/shopify_store.png' },
-  { name: 'Spotify embed', desc: 'Embed your latest release and let fans play it right on the page.', img: '/icons/spotify_embed.png' },
-  { name: 'MusicBrainz sync', desc: 'Auto-pull your verified discography straight from the MusicBrainz database.', img: '/icons/music_brainz.png' },
-  { name: 'EPK builder', desc: 'A press-ready electronic press kit for blogs, promoters and labels.', img: '/icons/epk.png' },
-  { name: 'Discography', desc: 'Showcase every album and single with full artwork and tracklists.', img: '/icons/discography.png' },
-  { name: 'Tour dates', desc: 'List shows with venues, ticket links and sold-out states.', img: '/icons/tour.png' },
-  { name: 'On-demand merch', desc: 'Print-on-demand via Printful, Printify and Gelato — no stock to hold.', img: '/icons/merch.png' },
-  { name: 'Photo galleries', desc: 'Editorial galleries and lookbooks to show off your whole world.', img: '/icons/gallery.png' },
-  { name: 'Links and socials', desc: 'Plug in every platform — Spotify, Apple, Bandcamp, Instagram, TikTok and more.', img: '/icons/links.png' },
+  { name: 'Storefront', desc: 'A full Shopify store — cart drawer, checkout and secure payments, built in.' },
+  { name: 'Spotify embed', desc: 'Embed your latest release and let fans play it right on the page.' },
+  { name: 'Discography', desc: 'Every album and single with full artwork, tracklists and preview clips.' },
+  { name: 'Tour dates', desc: 'Shows with venues, ticket links and sold-out states that look sold out.' },
+  { name: 'Release countdown', desc: 'A clock to the drop, in monumental numerals, that turns into "out now".' },
+  { name: 'EPK builder', desc: 'A press-ready electronic press kit for blogs, promoters and labels.' },
+  { name: 'On-demand merch', desc: 'Print-on-demand via Printful, Printify and Gelato — no stock to hold.' },
+  { name: 'Galleries & films', desc: 'Editorial galleries, lookbooks and click-to-play video pages.' },
+  { name: 'Links and socials', desc: 'Every platform — Spotify, Apple, Bandcamp, Instagram, TikTok and more.' },
+];
+
+const proof = [
+  { src: '/gatefold/cart-drawer.jpg', label: 'Cart drawer', note: 'opens in place, ruled like a sleeve' },
+  { src: '/gatefold/countdown.jpg', label: 'Release countdown', note: 'to the second, then "out now"' },
+  { src: '/gatefold/search.jpg', label: 'Search takeover', note: 'results as you type' },
+  { src: '/gatefold/pdp-tee.jpg', label: 'Product page', note: 'variant chips, sold-out states' },
+  { src: '/gatefold/fan.jpg', label: 'The catalogue', note: 'covers deal out as you scroll' },
+  { src: '/gatefold/tour.jpg', label: 'Tour dates', note: 'ruled rows, ticket links' },
+];
+
+const faqs = [
+  { q: 'Do I need a Shopify account?', a: 'Yes — the themes run on Shopify, with plans from around $5/month. The free theme works on any plan, and the built-in setup guide points you to the right one.' },
+  { q: 'How do I install a theme?', a: 'You get a .zip file plus a step-by-step setup guide built right into the theme. Upload it in your Shopify admin, follow the guide, and you\'re live — usually the same day.' },
+  { q: 'What\'s the difference between free and paid?', a: 'The free Standard theme has everything you need to launch and sell. The $50 themes are bespoke designs with extra polish and premium-only sections, and they remove the "Created with Riffride" credit.' },
+  { q: 'Can I really sell merch on Spotify?', a: 'Yes. Connect your Shopify store to Spotify for Artists and your merch shows on your artist profile, release pages and Now Playing. The setup guide walks you through every step.' },
+  { q: 'When can I buy Soundcheck?', a: 'It\'s with the Shopify Theme Store for review. Join the crew below and you\'ll get one email the day it goes live — nothing else.' },
 ];
 ---
 <Base>
   <Header />
 
-  <!-- HERO -->
-  <section id="top" class="relative overflow-hidden py-[clamp(3.5rem,9vw,7rem)]" style="background:var(--color-dark)">
-    <!-- theme screenshots as crisp sticker-objects, hard-outlined -->
-    <div class="hidden md:block absolute inset-0 z-[1] pointer-events-none" aria-hidden="true">
-      <img src="/thumbs/riot.jpg" class="hero-screen" style="width:150px;top:6%;right:31%;transform:rotate(-9deg);opacity:.9" />
-      <img src="/thumbs/vesper.jpg" class="hero-screen" style="width:172px;top:33%;right:2.5%;transform:rotate(7deg);opacity:.95" />
-      <img src="/thumbs/wander.jpg" class="hero-screen" style="width:138px;bottom:4%;right:27%;transform:rotate(-6deg);opacity:.9" />
-      <img src="/thumbs/block.jpg" class="hero-screen" style="width:126px;top:11%;right:1%;transform:rotate(12deg);opacity:.85" />
-    </div>
-    <div class="max-w-[1180px] mx-auto px-5 sm:px-10 grid md:grid-cols-[1.25fr_.75fr] gap-8 items-center relative z-[2]">
+  <!-- HERO — the real product as the object -->
+  <section id="top" class="hero relative overflow-hidden bg-dark">
+    <div class="max-w-[1180px] mx-auto px-5 sm:px-10 pt-[clamp(3rem,7vw,5.5rem)] pb-[clamp(3.5rem,8vw,7rem)] grid lg:grid-cols-[1.05fr_.95fr] gap-x-14 gap-y-12 items-center relative z-[2]">
       <div>
-        <h1 class="hero-headline font-funk uppercase text-[clamp(2.9rem,8.2vw,6.2rem)] leading-[1.02]" style="text-shadow:4px 4px 0 rgba(0,0,0,.25)">Shopify themes for <span class="text-purple">artists &amp; musicians</span></h1>
-        <p class="hero-sub mt-6 mb-8 text-[clamp(1.02rem,1.6vw,1.22rem)] text-[#d4cee2] max-w-[44ch]">Music, merch, tour dates, press kit, galleries and links — everything a working musician needs, in one site you build yourself and actually own. No code, no developer. You can even sell your merch right on Spotify.</p>
-        <div class="hero-cta flex flex-wrap gap-3.5">
-          <a href="#templates" class="btn btn-purple">See the themes</a>
+        <p class="kicker hero-kicker">Themes for the Shopify musician</p>
+        <h1 class="hero-headline font-funk uppercase text-[clamp(2.9rem,7.6vw,5.9rem)] leading-[1] mt-4">
+          {headline.map((w, i) => (
+            <span class={`w ${i >= 3 ? 'text-purple' : ''}`} style={`--i:${i}`}>{w}</span>
+          ))}
+        </h1>
+        <p class="hero-sub mt-6 text-[clamp(1.02rem,1.5vw,1.2rem)] text-[#d4cee2] max-w-[42ch] leading-[1.6]">Music, merch, tour dates, press kit and links in one site you own and build yourself. No code, no developer. You can even sell your merch on Spotify.</p>
+        <div class="hero-cta flex flex-wrap gap-3.5 mt-8">
+          <a href="#themes" class="btn btn-purple">See the themes</a>
           <a href="/setup" class="btn btn-ghost">Start free</a>
         </div>
+        <p class="hero-note mt-7 text-[.82rem] text-[#a89fbb]">Shown: <a href={flagship.demo} target="_blank" rel="noopener" class="text-cream underline underline-offset-4 decoration-purple hover:text-purple transition">Soundcheck</a>, our flagship, dressed as the demo band GATEFOLD.</p>
       </div>
-      <div class="hero-art flex items-center justify-center">
-        <img src="/hero_graphic.webp" alt="Built for creatives. Made to sell. Ready to rock." class="w-full max-w-[470px] h-auto" />
+
+      <div class="hero-stage" aria-hidden="true">
+        <div class="screen-object hero-stage__desktop">
+          <img src="/gatefold/hero-desktop.jpg" alt="" width="1800" height="1125" fetchpriority="high" decoding="async" />
+        </div>
+        <div class="screen-object hero-stage__mobile">
+          <img src="/gatefold/m-pdp.jpg" alt="" width="600" height="1298" loading="lazy" decoding="async" />
+        </div>
+        <img src="/hero_graphic.webp" alt="" width="470" height="400" class="hero-stage__badge" loading="lazy" decoding="async" />
       </div>
     </div>
   </section>
 
   <Marquee />
 
-  <!-- TEMPLATES -->
-  <section id="templates" class="bg-cream text-ink py-[clamp(3.5rem,8vw,6rem)]">
+  <!-- THEMES — flagship first, then the line-up as a numbered index -->
+  <section id="themes" class="bg-cream text-ink py-[clamp(3.5rem,8vw,6.5rem)]">
     <div class="max-w-[1180px] mx-auto px-5 sm:px-10">
-      <div class="text-center max-w-[660px] mx-auto mb-[clamp(2.2rem,4vw,3.2rem)]">
-        <h2 class="head-reveal head-underline font-funk text-[clamp(2.2rem,5.5vw,3.6rem)] leading-[1.02]">The themes</h2>
-        <p class="reveal d1 mt-3.5 text-[#5e576b] text-[1.08rem]">Every one is a complete musician website. Pick your look, make it yours, go live.</p>
+      <div class="section-head">
+        <div>
+          <p class="kicker kicker--ink">01 — The themes</p>
+          <h2 class="head-reveal font-funk text-[clamp(2.4rem,6.5vw,4.6rem)] leading-[.98] mt-3">Pick a look. <span class="text-purple-deep">Make it yours.</span></h2>
+        </div>
+        <p class="reveal section-head__intro">Every one is a complete musician website, not a template with a logo swapped in. Hover a card to scroll its demo; open it to click around.</p>
       </div>
-      <div class="grid gap-6" style="grid-template-columns:repeat(auto-fill,minmax(270px,1fr))">
-        {themes.map((t, i) => <ThemeCard theme={t} delay={i === 0 ? '' : 'd' + Math.min(i, 6)} />)}
+
+      <!-- flagship -->
+      <article class="reveal flagship">
+        <a href={flagship.demo} target="_blank" rel="noopener" class="flagship__media" aria-label="Open the Soundcheck live demo">
+          <img src="/shots/soundcheck.jpg" alt="" width="800" height="2560" loading="lazy" decoding="async" class="shot-img" />
+          <span class="sticker sticker--purple absolute top-4 left-4">Flagship</span>
+          <span class="shot-hint absolute bottom-3 right-3 z-[2] flex items-center gap-1 bg-ink text-cream text-[.58rem] font-semibold uppercase tracking-[.12em] px-2 py-1 rounded-full">Scroll</span>
+        </a>
+        <div class="flagship__body">
+          <div class="flex items-baseline justify-between gap-3">
+            <span class="num-outline num-outline--ink text-[2rem]" aria-hidden="true">00</span>
+            <span class="font-display text-[1rem] tracking-[.04em] uppercase text-purple-deep">{flagship.price} <span class="text-[#8b8398]">· {flagship.priceNote}</span></span>
+          </div>
+          <h3 class="font-funk text-[clamp(2.2rem,5vw,3.6rem)] leading-none mt-1">{flagship.name}</h3>
+          <div class="flex flex-wrap gap-1.5 mt-3">
+            {flagship.genre.split('·').map((g) => <span class="vibe-chip">{g.trim()}</span>)}
+          </div>
+          <p class="text-[#5e576b] text-[1rem] mt-4 leading-[1.6] max-w-[52ch]">{flagship.blurb}</p>
+          <ul class="flagship__facts">
+            <li><b>Video wordmark hero</b> that fits any band name</li>
+            <li><b>Cart drawer, countdown, track previews</b> — no apps</li>
+            <li><b>axe clean</b> across every template, on every colour scheme</li>
+          </ul>
+          <div class="flex flex-wrap gap-2 mt-6">
+            <a href={flagship.demo} target="_blank" rel="noopener" class="btn btn-ink">Open the live demo</a>
+            <a href="#crew" class="btn btn-line">Notify me</a>
+          </div>
+        </div>
+      </article>
+
+      <div class="theme-grid">
+        {lineup.map((t, i) => <ThemeCard theme={t} index={i + 1} delay={'d' + Math.min(i, 6)} />)}
+        <article class="reveal d6 custom-card">
+          <span class="num-outline text-[1.5rem]" aria-hidden="true">08</span>
+          <h3 class="font-funk text-[clamp(1.8rem,3vw,2.3rem)] leading-[1.02] mt-2">Something <span class="text-purple">else?</span></h3>
+          <p class="text-[#cfc8dd] text-[.92rem] mt-3 leading-[1.55] flex-1">A colourway of any theme, a custom build, or a hand with the setup. Say what you're after and we'll come back within two business days.</p>
+          <a href="/support" class="btn btn-purple btn-sm self-start mt-5">Talk to us</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- TOOLKIT — proof first, then the index -->
+  <section id="toolkit" class="bg-dark py-[clamp(4rem,9vw,7rem)] overflow-hidden">
+    <div class="max-w-[1180px] mx-auto px-5 sm:px-10">
+      <div class="section-head">
+        <div>
+          <p class="kicker">02 — The toolkit</p>
+          <h2 class="head-reveal font-funk text-[clamp(2.6rem,7vw,5.2rem)] leading-[.96] mt-3">Everything's <span class="text-purple">included</span></h2>
+        </div>
+        <p class="reveal section-head__intro section-head__intro--dark">Free or premium, every Riffride theme ships with the full kit. No apps to bolt on, no add-ons to buy — just the stuff a working musician actually uses. These are real screens from the flagship.</p>
       </div>
     </div>
 
-  </section>
+    <div class="proof-wrap">
+      <ul class="proof" data-proof tabindex="0" aria-label="Screens from the flagship theme, scroll sideways">
+        {proof.map((p, i) => (
+          <li class="proof__item" style={`--i:${i}`}>
+            <figure>
+              <img src={p.src} alt={`${p.label}: ${p.note}`} width="1400" height="875" loading="lazy" decoding="async" />
+              <figcaption><span class="num-outline text-[1.1rem]" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span><b>{p.label}</b><span>{p.note}</span></figcaption>
+            </figure>
+          </li>
+        ))}
+      </ul>
+    </div>
 
-  <!-- FEATURES — the toolkit, as a liner-note index -->
-  <section id="features" class="bg-dark py-[clamp(4rem,9vw,7rem)]">
-    <div class="max-w-[1180px] mx-auto px-5 sm:px-10">
-      <!-- asymmetric header: heading hard-left, intro offset right -->
-      <div class="grid md:grid-cols-[1.15fr_.85fr] gap-x-12 gap-y-4 items-end mb-[clamp(2.8rem,5.5vw,4.5rem)]">
-        <div>
-          <p class="spec-kicker">The toolkit — 09 things, zero add-ons</p>
-          <h2 class="head-reveal font-funk text-[clamp(2.7rem,7.5vw,5.4rem)] leading-[.95]">Everything's <span class="text-purple">included</span></h2>
-        </div>
-        <p class="reveal text-[#cfc8dd] text-[1.05rem] md:border-l-2 md:border-purple/35 md:pl-5 md:pb-1.5">Free or premium, every Riffride theme ships with the full kit. No apps to bolt on, no add-ons to buy — just the stuff a working musician actually uses.</p>
-      </div>
-      <!-- numbered editorial index, two columns, hairline rules -->
+    <div class="max-w-[1180px] mx-auto px-5 sm:px-10 mt-[clamp(2.5rem,5vw,4rem)]">
       <ol class="spec-list grid md:grid-cols-2 md:gap-x-14">
         {features.map((f, i) => (
           <li class="reveal spec-row">
@@ -88,37 +168,37 @@ const features = [
     </div>
   </section>
 
-  <!-- ABOUT -->
-  <section id="about" class="relative overflow-hidden py-[clamp(3.5rem,8vw,5.5rem)]" style="background:radial-gradient(circle at 30% 50%,rgba(154,115,236,.09),transparent 55%),var(--color-dark)">
-    <div class="reveal relative z-[2] max-w-[760px] mx-auto px-5 text-center">
-      <h2 class="font-funk text-[clamp(2rem,5vw,3rem)] leading-[1.05]">One site for your <span class="text-purple">whole career</span></h2>
-      <p class="text-[#d4cee2] text-[1.1rem] mt-4">Most artists scatter everything across a Linktree, a separate merch store and a press-kit PDF. Riffride brings it all together — music, merch, tour dates, press kit and links — on one professional site you build, customise and actually own. No designers, no developers, no big budget. And yes: connect it to Spotify and your merch shows right on your artist profile.</p>
+  <!-- STATEMENT -->
+  <section id="about" class="bg-cream text-ink py-[clamp(4rem,9vw,7rem)] overflow-hidden">
+    <div class="max-w-[1180px] mx-auto px-5 sm:px-10">
+      <p class="kicker kicker--ink">03 — Why one site</p>
+      <h2 class="statement head-reveal mt-4">
+        <span class="statement__o">One site.</span><br />
+        <span class="statement__f">Your whole</span> <span class="statement__o">career.</span>
+      </h2>
+      <div class="grid md:grid-cols-2 gap-x-14 gap-y-6 mt-[clamp(2rem,4vw,3rem)] pt-8 border-t-2 border-ink/15">
+        <p class="reveal text-[#3f3a4d] text-[1.08rem] leading-[1.65]">Most artists scatter everything across a link-in-bio, a separate merch store and a press-kit PDF. Riffride brings it together — music, merch, tour dates, press kit and links — on one professional site you build, customise and actually own.</p>
+        <p class="reveal d1 text-[#3f3a4d] text-[1.08rem] leading-[1.65]">No designers, no developers, no big budget. Connect it to Spotify and your merch shows right on your artist profile. Fill in your bio and links once and Google can build your artist panel from the structured data the theme writes for you.</p>
+      </div>
     </div>
   </section>
 
-  <!-- FAQ -->
-  <section id="faq" class="bg-dark pb-[clamp(3.5rem,8vw,5.5rem)]">
-    <div class="max-w-[760px] mx-auto px-5 sm:px-10">
-      <h2 class="font-funk text-[clamp(1.8rem,4.5vw,2.6rem)] text-center mb-6">FAQ</h2>
-      <details class="reveal" open>
-        <summary>Do I need a Shopify account?</summary>
-        <p>Yes — the themes run on Shopify, with plans from around $5/month. The free theme works on any plan, and the built-in setup guide points you to the right one.</p>
-      </details>
-      <details class="reveal">
-        <summary>How do I install the theme?</summary>
-        <p>You get a .zip file plus a step-by-step setup guide built right into the theme. Upload it in your Shopify admin, follow the guide, and you're live — usually the same day.</p>
-      </details>
-      <details class="reveal">
-        <summary>What's the difference between the free and paid themes?</summary>
-        <p>The free Standard theme has everything you need to launch and sell. The $50 themes are bespoke designs with extra polish, premium-only sections, and they remove the "Created with Riffride" credit.</p>
-      </details>
-      <details class="reveal">
-        <summary>Can I really sell merch on Spotify?</summary>
-        <p>Yes. Connect your Shopify store to Spotify for Artists and your merch shows on your artist profile, release pages and Now Playing. The setup guide walks you through every step.</p>
-      </details>
-      <div class="reveal text-center mt-8">
-        <p class="text-[#bdb6cc] mb-4">Need the step-by-step? We spell out menus, pages, merch and more — in plain English.</p>
-        <a href="/help" class="btn btn-purple">Browse the setup guides</a>
+  <!-- FAQ — a ruled index, not boxes -->
+  <section id="faq" class="bg-dark py-[clamp(3.5rem,8vw,6rem)]">
+    <div class="max-w-[1180px] mx-auto px-5 sm:px-10 grid md:grid-cols-[.8fr_1.2fr] gap-x-14 gap-y-8">
+      <div>
+        <p class="kicker">04 — Questions</p>
+        <h2 class="head-reveal font-funk text-[clamp(2.2rem,5.5vw,3.6rem)] leading-[.98] mt-3">Before you <span class="text-purple">ask</span></h2>
+        <p class="reveal text-[#a89fbb] mt-4 max-w-[34ch] leading-[1.6]">The step-by-step lives in the help guides — menus, pages, merch and Spotify, in plain English.</p>
+        <a href="/help" class="btn btn-purple mt-6">Browse the setup guides</a>
+      </div>
+      <div class="faq">
+        {faqs.map((f, i) => (
+          <details class="reveal" open={i === 0}>
+            <summary><span class="num-outline faq__n" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span><span>{f.q}</span></summary>
+            <p>{f.a}</p>
+          </details>
+        ))}
       </div>
     </div>
   </section>
