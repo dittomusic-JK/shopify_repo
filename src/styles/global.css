@@ -401,3 +401,77 @@ body.nav-open{overflow:hidden}
 
 /* ---- custom card (fills the eighth slot) ---- */
 .custom-card{display:flex;flex-direction:column;background:var(--color-dark);color:var(--color-cream);border:2.5px solid var(--color-ink);border-radius:16px;padding:1.4rem 1.3rem 1.5rem;box-shadow:6px 6px 0 var(--color-purple);min-height:100%}
+
+/* ============================================================
+   THE DECK — eight themes as records in a crate, flagship in front
+   ============================================================ */
+.deck{position:relative;aspect-ratio:1.08/1;margin:1.5rem .5rem 2.5rem;--spread:1}
+.deck__card{position:absolute;left:50%;top:52%;width:44%;aspect-ratio:3/4;object-fit:cover;object-position:top;border:3px solid var(--color-ink);border-radius:12px;background:#0b0a10;box-shadow:6px 6px 0 var(--color-purple-deep);transform-origin:50% 100%;transform:translate(-50%,-50%) translate(calc(var(--x) * var(--spread)),var(--y)) rotate(calc(var(--r) * var(--spread)));transition:transform .5s var(--ease),box-shadow .3s ease;will-change:transform}
+.deck__card[style*="--i:0"]{--x:-52%;--y:-4%;--r:-17deg;z-index:1}
+.deck__card[style*="--i:1"]{--x:-32%;--y:-7%;--r:-10deg;z-index:2}
+.deck__card[style*="--i:2"]{--x:-12%;--y:-8%;--r:-4deg;z-index:3}
+.deck__card[style*="--i:3"]{--x:10%;--y:-8%;--r:4deg;z-index:4}
+.deck__card[style*="--i:4"]{--x:30%;--y:-6%;--r:11deg;z-index:5}
+.deck__card[style*="--i:5"]{--x:0%;--y:8%;--r:0deg;z-index:6;width:50%;box-shadow:12px 12px 0 var(--color-purple)}
+.deck:hover{--spread:1.18}
+.deck__card:hover{z-index:7;box-shadow:12px 12px 0 var(--color-purple);transform:translate(-50%,-50%) translate(calc(var(--x) * var(--spread)),calc(var(--y) - 4%)) rotate(calc(var(--r) * var(--spread))) scale(1.04)}
+.deck__stamp{position:absolute;top:-4%;right:-6%;width:52%;transform:rotate(8deg);z-index:9;pointer-events:none}
+@media(prefers-reduced-motion:no-preference){
+  .deck__card{animation:deal .9s var(--ease) both;animation-delay:calc(.08s * var(--i,0) + .25s)}
+  .deck__stamp{animation:stamp-in .6s var(--ease) both 1s}
+  @supports (animation-timeline: view()){
+    .deck{animation:screen-drift 1ms linear both;animation-timeline:scroll(root);animation-range:0 100vh;--drift:-60px}
+  }
+}
+@keyframes deal{from{opacity:0;transform:translate(-50%,-50%) translate(0,40%) rotate(0deg)}to{opacity:1}}
+@keyframes stamp-in{from{opacity:0;transform:rotate(-6deg) scale(.6)}to{opacity:1;transform:rotate(8deg) scale(1)}}
+@media(max-width:1023px){.deck{aspect-ratio:1.15/1;margin:.5rem .25rem 2rem}.deck__stamp{width:48%;top:-6%;right:-4%}}
+@media(prefers-reduced-motion:reduce){.deck__card,.deck__stamp,.deck{animation:none}}
+.hero-stage{display:none}
+.logo-dark{display:none}
+
+/* ============================================================
+   COLOURWAY MOCKS (html[data-brand], html[data-paper]) — comparison only
+   ============================================================ */
+html[data-brand="violet"]{--color-purple:#5b2bd6;--color-purple-deep:#3f1a9e;--color-purple-bright:#6b3df0}
+html[data-brand="riso"]{--color-purple:#ff4d1c;--color-purple-deep:#c8340a;--color-purple-bright:#ff6a3d}
+/* paper-first: the page is paper and ink; dark becomes ink blocks in a few places */
+html[data-paper]{--color-dark:#f1ece1;--color-dark-2:#e7e1d4;--color-dark-card:#e7e1d4;--hair-dark:rgba(24,20,38,.15)}
+html[data-paper] body{color:#141118}
+html[data-paper] body::before{opacity:.07}
+html[data-paper] .text-cream,html[data-paper] .navlink,html[data-paper] .hero-headline,html[data-paper] .faq summary,html[data-paper] .foot-head{color:#141118}
+html[data-paper] :is(.text-\[\#cfc8dd\],.text-\[\#d4cee2\],.text-\[\#bdb6cc\],.section-head__intro--dark,.page-intro__lead){color:#3f3a4d}
+html[data-paper] :is(.text-\[\#a89fbb\],.text-\[\#8b8398\]),html[data-paper] .faq p,html[data-paper] .proof__item figcaption{color:#5e576b}
+html[data-paper] .hero-headline{text-shadow:4px 4px 0 var(--color-purple)}
+html[data-paper] .site-header{background:rgba(241,236,225,.88)}
+html[data-paper] .logo-light{display:none}
+html[data-paper] .logo-dark{display:block}
+html[data-paper] .navtoggle{color:#141118}
+html[data-paper] .btn-ghost{border-color:#141118;color:#141118;box-shadow:4px 4px 0 var(--color-purple)}
+html[data-paper] .btn-ghost:hover{background:#141118;color:#f1ece1}
+html[data-paper] .btn-purple{color:#141118}
+html[data-paper] .deck__card,html[data-paper] .screen-object,html[data-paper] .proof__item img{box-shadow:6px 6px 0 var(--color-purple)}
+html[data-paper] .marquee{background:var(--color-purple);color:#141118}
+html[data-brand="violet"] .marquee,html[data-brand="violet"] .marquee .mg{color:#f1ece1}
+html[data-brand="violet"] .btn-purple,html[data-brand="violet"] .sticker--purple{color:#f1ece1}
+html[data-paper] .statement__o{-webkit-text-stroke-color:#141118}
+html[data-paper] .statement__f{color:var(--color-purple)}
+html[data-paper] .num-outline{-webkit-text-stroke-color:#141118}
+html[data-paper] .spec-num{-webkit-text-stroke-color:rgba(24,20,38,.55)}
+html[data-paper] .spec-row{border-top-color:rgba(24,20,38,.15)}
+html[data-paper] .spec-row:hover{background:linear-gradient(90deg,rgba(24,20,38,.05),transparent 70%)}
+html[data-paper] .spec-row h4{color:#141118}
+html[data-paper] .crew-input{background:#fff;border-color:#141118;color:#141118}
+/* ink blocks: the toolkit strip, page intros, custom card and footer stay dark */
+html[data-paper] :is(#toolkit,.site-footer,.custom-card,.page-intro){background:#141118;color:#f1ece1}
+html[data-paper] :is(#toolkit,.site-footer,.custom-card,.page-intro) :is(.text-cream,.spec-row h4,.foot-head,h1){color:#f1ece1}
+html[data-paper] :is(#toolkit,.site-footer,.custom-card,.page-intro) :is(.text-\[\#cfc8dd\],.text-\[\#d4cee2\],.section-head__intro--dark,.page-intro__lead){color:#d4cee2}
+html[data-paper] :is(#toolkit,.site-footer,.custom-card,.page-intro) :is(.text-\[\#a89fbb\],.foot-link,.proof__item figcaption){color:#a89fbb}
+html[data-paper] #toolkit .spec-num{-webkit-text-stroke-color:rgba(241,236,225,.55)}
+html[data-paper] #toolkit .spec-row{border-top-color:rgba(241,236,225,.15)}
+html[data-paper] .site-footer .crew-input{background:#221d2e;border-color:rgba(255,255,255,.16);color:#f1ece1}
+html[data-paper] .foot-mark{-webkit-text-stroke-color:rgba(241,236,225,.16)}
+html[data-paper] .mobile-nav{color:#141118}
+html[data-brand="riso"] .deck__stamp,html[data-brand="riso"] .logo-dark{filter:hue-rotate(118deg) saturate(1.15)}
+html[data-brand="violet"] .deck__stamp,html[data-brand="violet"] .logo-dark{filter:hue-rotate(-8deg) saturate(1.25) brightness(.92)}
+html[data-brand="riso"] ::selection{background:#ff4d1c;color:#141118}

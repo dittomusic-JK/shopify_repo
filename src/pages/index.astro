@@ -10,6 +10,8 @@ const flagship = themes.find((t) => t.flagship);
 const lineup = themes.filter((t) => !t.flagship);
 
 const headline = ['Shopify', 'themes', 'for', 'artists', '&', 'musicians'];
+// back to front — the flagship lands last, on top
+const deck = ['static', 'block', 'wander', 'vesper', 'riot', 'soundcheck'];
 
 const features = [
   { name: 'Storefront', desc: 'A full Shopify store — cart drawer, checkout and secure payments, built in.' },
@@ -47,7 +49,7 @@ const faqs = [
   <section id="top" class="hero relative overflow-hidden bg-dark">
     <div class="max-w-[1180px] mx-auto px-5 sm:px-10 pt-[clamp(3rem,7vw,5.5rem)] pb-[clamp(3.5rem,8vw,7rem)] grid lg:grid-cols-[1.05fr_.95fr] gap-x-14 gap-y-12 items-center relative z-[2]">
       <div>
-        <p class="kicker hero-kicker">Themes for the Shopify musician</p>
+        <p class="kicker hero-kicker">Eight themes · one free · for the Shopify musician</p>
         <h1 class="hero-headline font-funk uppercase text-[clamp(2.9rem,7.6vw,5.9rem)] leading-[1] mt-4">
           {headline.map((w, i) => (
             <span class={`w ${i >= 3 ? 'text-purple' : ''}`} style={`--i:${i}`}>{w}</span>
@@ -58,17 +60,14 @@ const faqs = [
           <a href="#themes" class="btn btn-purple">See the themes</a>
           <a href="/setup" class="btn btn-ghost">Start free</a>
         </div>
-        <p class="hero-note mt-7 text-[.82rem] text-[#a89fbb]">Shown: <a href={flagship.demo} target="_blank" rel="noopener" class="text-cream underline underline-offset-4 decoration-purple hover:text-purple transition">Soundcheck</a>, our flagship, dressed as the demo band GATEFOLD.</p>
+        <p class="hero-note mt-7 text-[.82rem] text-[#a89fbb]">Front of the crate: <a href={flagship.demo} target="_blank" rel="noopener" class="text-cream underline underline-offset-4 decoration-purple hover:text-purple transition">Soundcheck</a>, our flagship, dressed as the demo band GATEFOLD.</p>
       </div>
 
-      <div class="hero-stage" aria-hidden="true">
-        <div class="screen-object hero-stage__desktop">
-          <img src="/gatefold/hero-desktop.jpg" alt="" width="1800" height="1125" fetchpriority="high" decoding="async" />
-        </div>
-        <div class="screen-object hero-stage__mobile">
-          <img src="/gatefold/m-pdp.jpg" alt="" width="600" height="1298" loading="lazy" decoding="async" />
-        </div>
-        <img src="/hero_graphic.webp" alt="" width="470" height="400" class="hero-stage__badge" loading="lazy" decoding="async" />
+      <div class="deck" aria-hidden="true">
+        {deck.map((slug, i) => (
+          <img src={`/thumbs/${slug}.jpg`} alt="" width="543" height="760" class="deck__card" style={`--i:${i}`} loading={i < 3 ? 'lazy' : 'eager'} decoding="async" />
+        ))}
+        <img src="/hero_graphic.webp" alt="" width="470" height="400" class="deck__stamp" decoding="async" />
       </div>
     </div>
   </section>

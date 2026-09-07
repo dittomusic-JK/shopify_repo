@@ -9,9 +9,12 @@ const {
 const base = Astro.site ?? 'https://www.riffride.com';
 const canonical = new URL(Astro.url.pathname, base);
 const ogImageUrl = new URL(ogImage, base);
+// Colourway mocks: ?brand=violet|riso (paper-first) — comparison only, not shipped
+const brand = Astro.url.searchParams.get('brand') || '';
+const paper = brand === 'violet' || brand === 'riso';
 ---
 <!doctype html>
-<html lang="en">
+<html lang="en" data-brand={brand || undefined} data-paper={paper ? '' : undefined}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />

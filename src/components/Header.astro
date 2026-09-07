@@ -10,7 +10,7 @@ const links = [
 <header class="site-header sticky top-0 z-50 bg-dark/85 backdrop-blur-md">
   <div class="max-w-[1180px] mx-auto px-5 sm:px-10 flex items-center justify-between h-[74px]">
     <a href="/" aria-label="Riffride home" class="inline-flex items-center">
-      <img src="/logo_light.webp" alt="Riffride" width="146" height="44" class="h-11 w-auto block" style="view-transition-name:site-logo" />
+      <img src="/logo_light.webp" alt="Riffride" width="146" height="44" class="logo-light h-11 w-auto block" style="view-transition-name:site-logo" /><img src="/logo_dark.webp" alt="" width="146" height="44" class="logo-dark h-11 w-auto hidden" aria-hidden="true" />
     </a>
     <nav class="hidden md:flex gap-8 items-center" aria-label="Primary">
       {links.map((l) => <a href={l.href} class="navlink" aria-current={l.current ? 'page' : undefined}>{l.label}</a>)}
