@@ -57,26 +57,26 @@ const isExternal = (href) => href.startsWith('http');
   <Header />
 
   <!-- INTRO -->
-  <section class="page-intro py-[clamp(3rem,7vw,5rem)]">
+  <section class="page-intro ink-block py-[clamp(3rem,7vw,5rem)]">
     <div class="max-w-[1180px] mx-auto px-5 sm:px-10 page-intro__grid">
       <div class="reveal in">
         <p class="kicker">Setup guide — six steps</p>
-        <h1>Launch your <span class="text-purple">music site</span></h1>
+        <h1>Launch your <span class="is-spot">music site</span></h1>
       </div>
       <p class="reveal in page-intro__lead">From an empty store to merch live on your Spotify profile. Free to start — you can be online this afternoon.</p>
     </div>
   </section>
 
   <!-- STEPS -->
-  <section class="bg-cream text-ink py-[clamp(3rem,7vw,5rem)]">
+  <section class="bg-paper text-ink py-[clamp(3rem,7vw,5rem)]">
     <div class="max-w-[1180px] mx-auto px-5 sm:px-10 grid lg:grid-cols-[.7fr_1.3fr] gap-x-14 gap-y-8 items-start">
       <aside class="reveal lg:sticky lg:top-24">
-        <p class="kicker kicker--ink">The route</p>
+        <p class="kicker">The route</p>
         <ol class="mt-4 border-t-2 border-ink">
           {steps.map((s) => (
-            <li class="py-2.5 border-b-[1.5px] border-[rgba(24,20,38,.15)] flex gap-3 items-baseline text-[.92rem]">
-              <span class="num-outline num-outline--ink text-[1.05rem]" aria-hidden="true">{String(s.n).padStart(2, '0')}</span>
-              <a href={`#step-${s.n}`} class="text-[#3f3a4d] hover:text-purple-deep transition">{s.title}</a>
+            <li class="py-2.5 border-b-[1.5px] border-[rgba(20,17,24,.15)] flex gap-3 items-baseline text-[.92rem]">
+              <span class="num-outline text-[1.05rem]" aria-hidden="true">{String(s.n).padStart(2, '0')}</span>
+              <a href={`#step-${s.n}`} class="text-[#3f3a4d] hover:text-spot-deep transition">{s.title}</a>
             </li>
           ))}
         </ol>
@@ -87,7 +87,7 @@ const isExternal = (href) => href.startsWith('http');
             <span class="ledger__num" aria-hidden="true">{String(s.n).padStart(2, '0')}</span>
             <div>
               <h2 class="font-display text-[clamp(1.35rem,3vw,1.9rem)] uppercase leading-[1.05]">{s.title}</h2>
-              <p class="text-[#5e576b] mt-2.5 mb-4 leading-[1.62] max-w-[58ch]">{s.body}</p>
+              <p class="text-muted mt-2.5 mb-4 leading-[1.62] max-w-[58ch]">{s.body}</p>
               {s.cta && (
                 <a
                   href={s.cta.href}
@@ -96,14 +96,14 @@ const isExternal = (href) => href.startsWith('http');
                 >{s.cta.label} →</a>
               )}
               {s.alts && (
-                <p class="text-[#5e576b] text-[.85rem] mt-3">Prefer another? {s.alts.map((a, i) => (
-                  <>{i > 0 ? ' · ' : ''}<a href={a.href} target="_blank" rel="noopener sponsored" class="text-purple-deep font-semibold underline underline-offset-2">{a.label}</a></>
+                <p class="text-muted text-[.85rem] mt-3">Prefer another? {s.alts.map((a, i) => (
+                  <>{i > 0 ? ' · ' : ''}<a href={a.href} target="_blank" rel="noopener sponsored" class="text-spot-deep font-semibold underline underline-offset-2">{a.label}</a></>
                 ))}</p>
               )}
             </div>
           </div>
         ))}
-        <p class="mt-8 text-[#625b70] text-[.82rem] leading-[1.6] max-w-[64ch]">
+        <p class="mt-8 text-muted text-[.82rem] leading-[1.6] max-w-[64ch]">
           Heads up: some links above are affiliate links — if you sign up through them, Riffride may earn a commission at no extra cost to you. We only point you at tools we'd genuinely use ourselves.
         </p>
       </div>
@@ -111,13 +111,13 @@ const isExternal = (href) => href.startsWith('http');
   </section>
 
   <!-- CLOSING -->
-  <section class="bg-dark py-[clamp(3.5rem,8vw,6rem)] overflow-hidden">
+  <section class="ink-block py-[clamp(3.5rem,8vw,6rem)] overflow-hidden">
     <div class="max-w-[1180px] mx-auto px-5 sm:px-10 grid md:grid-cols-[1.2fr_.8fr] gap-x-14 gap-y-6 items-end">
-      <h2 class="statement head-reveal" style="--stroke:var(--color-cream)"><span class="statement__o" style="-webkit-text-stroke-color:var(--color-cream)">Ready to</span><br /><span class="text-purple">build it?</span></h2>
+      <h2 class="statement head-reveal"><span class="statement__o">Ready to</span><br /><span class="statement__f">build it?</span></h2>
       <div class="reveal">
-        <p class="text-[#cfc8dd] text-[1.05rem] leading-[1.6] mb-6">Pick a look, make it yours, go live. Your whole career — one site you own.</p>
+        <p class="text-muted text-[1.05rem] leading-[1.6] mb-6">Pick a look, make it yours, go live. Your whole career — one site you own.</p>
         <div class="flex flex-wrap gap-3.5">
-          <a href="/#themes" class="btn btn-purple">See the themes</a>
+          <a href="/#themes" class="btn btn-spot">See the themes</a>
           <a href={affiliates.shopify} target="_blank" rel="noopener sponsored" class="btn btn-ghost">Start free on Shopify</a>
         </div>
       </div>

@@ -7,16 +7,14 @@ const links = [
   { href: '/support', label: 'Support', current: path.startsWith('/support') },
 ];
 ---
-<header class="site-header sticky top-0 z-50 bg-dark/85 backdrop-blur-md">
+<header class="site-header sticky top-0 z-50 bg-paper/90 backdrop-blur-md">
   <div class="max-w-[1180px] mx-auto px-5 sm:px-10 flex items-center justify-between h-[74px]">
-    <a href="/" aria-label="Riffride home" class="inline-flex items-center">
-      <img src="/logo_light.webp" alt="Riffride" width="146" height="44" class="logo-light h-11 w-auto block" style="view-transition-name:site-logo" /><img src="/logo_dark.webp" alt="" width="146" height="44" class="logo-dark h-11 w-auto hidden" aria-hidden="true" />
-    </a>
+    <a href="/" aria-label="Riffride home" class="wordmark" style="view-transition-name:site-logo">Riffride<i aria-hidden="true"></i></a>
     <nav class="hidden md:flex gap-8 items-center" aria-label="Primary">
       {links.map((l) => <a href={l.href} class="navlink" aria-current={l.current ? 'page' : undefined}>{l.label}</a>)}
-      <a href="/setup" class="btn btn-purple">Get started</a>
+      <a href="/setup" class="btn btn-spot">Get started</a>
     </nav>
-    <button id="navtoggle" class="md:hidden text-cream navtoggle" aria-label="Menu" aria-expanded="false" aria-controls="mobilenav">
+    <button id="navtoggle" class="md:hidden navtoggle" aria-label="Menu" aria-expanded="false" aria-controls="mobilenav">
       <svg class="navtoggle__open" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
       <svg class="navtoggle__close" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="5" y1="5" x2="19" y2="19"/><line x1="19" y1="5" x2="5" y2="19"/></svg>
     </button>

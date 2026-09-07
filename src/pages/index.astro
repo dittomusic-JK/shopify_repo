@@ -9,7 +9,7 @@ import { themes } from '../data/themes.js';
 const flagship = themes.find((t) => t.flagship);
 const lineup = themes.filter((t) => !t.flagship);
 
-const headline = ['Shopify', 'themes', 'for', 'artists', '&', 'musicians'];
+const headline = ['Shopify', 'themes', 'for', 'musicians'];
 // back to front — the flagship lands last, on top
 const deck = ['static', 'block', 'wander', 'vesper', 'riot', 'soundcheck'];
 
@@ -46,28 +46,28 @@ const faqs = [
   <Header />
 
   <!-- HERO — the real product as the object -->
-  <section id="top" class="hero relative overflow-hidden bg-dark">
+  <section id="top" class="hero relative overflow-hidden bg-paper">
     <div class="max-w-[1180px] mx-auto px-5 sm:px-10 pt-[clamp(3rem,7vw,5.5rem)] pb-[clamp(3.5rem,8vw,7rem)] grid lg:grid-cols-[1.05fr_.95fr] gap-x-14 gap-y-12 items-center relative z-[2]">
       <div>
         <p class="kicker hero-kicker">Eight themes · one free · for the Shopify musician</p>
-        <h1 class="hero-headline font-funk uppercase text-[clamp(2.9rem,7.6vw,5.9rem)] leading-[1] mt-4">
+        <h1 class="hero-headline mt-4">
           {headline.map((w, i) => (
-            <span class={`w ${i >= 3 ? 'text-purple' : ''}`} style={`--i:${i}`}>{w}</span>
+            <span class={`w ${i >= 2 ? 'is-spot' : ''}`} style={`--i:${i}`}>{w}</span>
           ))}
         </h1>
-        <p class="hero-sub mt-6 text-[clamp(1.02rem,1.5vw,1.2rem)] text-[#d4cee2] max-w-[42ch] leading-[1.6]">Music, merch, tour dates, press kit and links in one site you own and build yourself. No code, no developer. You can even sell your merch on Spotify.</p>
+        <p class="hero-sub mt-6 text-[clamp(1.02rem,1.5vw,1.2rem)] text-[#3f3a4d] max-w-[42ch] leading-[1.6]">Music, merch, tour dates, press kit and links in one site you own and build yourself. No code, no developer. You can even sell your merch on Spotify.</p>
         <div class="hero-cta flex flex-wrap gap-3.5 mt-8">
-          <a href="#themes" class="btn btn-purple">See the themes</a>
+          <a href="#themes" class="btn btn-spot">See the themes</a>
           <a href="/setup" class="btn btn-ghost">Start free</a>
         </div>
-        <p class="hero-note mt-7 text-[.82rem] text-[#a89fbb]">Front of the crate: <a href={flagship.demo} target="_blank" rel="noopener" class="text-cream underline underline-offset-4 decoration-purple hover:text-purple transition">Soundcheck</a>, our flagship, dressed as the demo band GATEFOLD.</p>
+        <p class="hero-note mt-7 text-[.82rem] text-muted">Front of the crate: <a href={flagship.demo} target="_blank" rel="noopener" class="text-ink font-semibold underline underline-offset-4 decoration-spot hover:text-spot-deep transition">Soundcheck</a>, our flagship, dressed as the demo band GATEFOLD.</p>
       </div>
 
       <div class="deck" aria-hidden="true">
         {deck.map((slug, i) => (
           <img src={`/thumbs/${slug}.jpg`} alt="" width="543" height="760" class="deck__card" style={`--i:${i}`} loading={i < 3 ? 'lazy' : 'eager'} decoding="async" />
         ))}
-        <img src="/hero_graphic.webp" alt="" width="470" height="400" class="deck__stamp" decoding="async" />
+        <img src="/badge.webp" alt="" width="470" height="400" class="deck__stamp" decoding="async" />
       </div>
     </div>
   </section>
@@ -75,12 +75,12 @@ const faqs = [
   <Marquee />
 
   <!-- THEMES — flagship first, then the line-up as a numbered index -->
-  <section id="themes" class="bg-cream text-ink py-[clamp(3.5rem,8vw,6.5rem)]">
+  <section id="themes" class="bg-paper text-ink py-[clamp(3.5rem,8vw,6.5rem)]">
     <div class="max-w-[1180px] mx-auto px-5 sm:px-10">
       <div class="section-head">
         <div>
-          <p class="kicker kicker--ink">01 — The themes</p>
-          <h2 class="head-reveal font-funk text-[clamp(2.4rem,6.5vw,4.6rem)] leading-[.98] mt-3">Pick a look. <span class="text-purple-deep">Make it yours.</span></h2>
+          <p class="kicker">01 — The themes</p>
+          <h2 class="head-reveal font-funk text-[clamp(2rem,5vw,3.6rem)] leading-[1.02] mt-3">Pick a look. <span class="text-spot">Make it yours.</span></h2>
         </div>
         <p class="reveal section-head__intro">Every one is a complete musician website, not a template with a logo swapped in. Hover a card to scroll its demo; open it to click around.</p>
       </div>
@@ -89,19 +89,19 @@ const faqs = [
       <article class="reveal flagship">
         <a href={flagship.demo} target="_blank" rel="noopener" class="flagship__media" aria-label="Open the Soundcheck live demo">
           <img src="/shots/soundcheck.jpg" alt="" width="800" height="2560" loading="lazy" decoding="async" class="shot-img" />
-          <span class="sticker sticker--purple absolute top-4 left-4">Flagship</span>
-          <span class="shot-hint absolute bottom-3 right-3 z-[2] flex items-center gap-1 bg-ink text-cream text-[.58rem] font-semibold uppercase tracking-[.12em] px-2 py-1 rounded-full">Scroll</span>
+          <span class="sticker sticker--spot absolute top-4 left-4">Flagship</span>
+          <span class="shot-hint absolute bottom-3 right-3 z-[2] flex items-center gap-1 bg-ink text-paper text-[.58rem] font-semibold uppercase tracking-[.12em] px-2 py-1 rounded-full">Scroll</span>
         </a>
         <div class="flagship__body">
           <div class="flex items-baseline justify-between gap-3">
-            <span class="num-outline num-outline--ink text-[2rem]" aria-hidden="true">00</span>
-            <span class="font-display text-[1rem] tracking-[.04em] uppercase text-purple-deep">{flagship.price} <span class="text-[#8b8398]">· {flagship.priceNote}</span></span>
+            <span class="num-outline text-[2rem]" aria-hidden="true">00</span>
+            <span class="font-display text-[1rem] tracking-[.04em] uppercase text-spot-deep">{flagship.price} <span class="text-muted">· {flagship.priceNote}</span></span>
           </div>
-          <h3 class="font-funk text-[clamp(2.2rem,5vw,3.6rem)] leading-none mt-1">{flagship.name}</h3>
+          <h3 class="font-funk text-[clamp(1.8rem,4vw,2.8rem)] leading-none mt-1">{flagship.name}</h3>
           <div class="flex flex-wrap gap-1.5 mt-3">
             {flagship.genre.split('·').map((g) => <span class="vibe-chip">{g.trim()}</span>)}
           </div>
-          <p class="text-[#5e576b] text-[1rem] mt-4 leading-[1.6] max-w-[52ch]">{flagship.blurb}</p>
+          <p class="text-muted text-[1rem] mt-4 leading-[1.6] max-w-[52ch]">{flagship.blurb}</p>
           <ul class="flagship__facts">
             <li><b>Video wordmark hero</b> that fits any band name</li>
             <li><b>Cart drawer, countdown, track previews</b> — no apps</li>
@@ -116,25 +116,25 @@ const faqs = [
 
       <div class="theme-grid">
         {lineup.map((t, i) => <ThemeCard theme={t} index={i + 1} delay={'d' + Math.min(i, 6)} />)}
-        <article class="reveal d6 custom-card">
+        <article class="reveal d6 custom-card ink-block">
           <span class="num-outline text-[1.5rem]" aria-hidden="true">08</span>
-          <h3 class="font-funk text-[clamp(1.8rem,3vw,2.3rem)] leading-[1.02] mt-2">Something <span class="text-purple">else?</span></h3>
-          <p class="text-[#cfc8dd] text-[.92rem] mt-3 leading-[1.55] flex-1">A colourway of any theme, a custom build, or a hand with the setup. Say what you're after and we'll come back within two business days.</p>
-          <a href="/support" class="btn btn-purple btn-sm self-start mt-5">Talk to us</a>
+          <h3 class="font-funk text-[clamp(1.4rem,2.4vw,1.8rem)] leading-[1.05] mt-2">Something <span class="text-spot">else?</span></h3>
+          <p class="text-muted text-[.92rem] mt-3 leading-[1.55] flex-1">A colourway of any theme, a custom build, or a hand with the setup. Say what you're after and we'll come back within two business days.</p>
+          <a href="/support" class="btn btn-spot btn-sm self-start mt-5">Talk to us</a>
         </article>
       </div>
     </div>
   </section>
 
   <!-- TOOLKIT — proof first, then the index -->
-  <section id="toolkit" class="bg-dark py-[clamp(4rem,9vw,7rem)] overflow-hidden">
+  <section id="toolkit" class="ink-block py-[clamp(4rem,9vw,7rem)] overflow-hidden">
     <div class="max-w-[1180px] mx-auto px-5 sm:px-10">
       <div class="section-head">
         <div>
           <p class="kicker">02 — The toolkit</p>
-          <h2 class="head-reveal font-funk text-[clamp(2.6rem,7vw,5.2rem)] leading-[.96] mt-3">Everything's <span class="text-purple">included</span></h2>
+          <h2 class="head-reveal font-funk text-[clamp(2rem,5.4vw,3.9rem)] leading-[1] mt-3">Everything's <span class="text-spot">included</span></h2>
         </div>
-        <p class="reveal section-head__intro section-head__intro--dark">Free or premium, every Riffride theme ships with the full kit. No apps to bolt on, no add-ons to buy — just the stuff a working musician actually uses. These are real screens from the flagship.</p>
+        <p class="reveal section-head__intro text-muted">Free or premium, every Riffride theme ships with the full kit. No apps to bolt on, no add-ons to buy — just the stuff a working musician actually uses. These are real screens from the flagship.</p>
       </div>
     </div>
 
@@ -157,8 +157,8 @@ const faqs = [
           <li class="reveal spec-row">
             <span class="spec-num">{String(i + 1).padStart(2, '0')}</span>
             <div>
-              <h4 class="font-display text-[1.18rem] uppercase tracking-[.02em] text-cream">{f.name}</h4>
-              <p class="text-[#a89fbb] text-[.9rem] mt-1 leading-[1.55]">{f.desc}</p>
+              <h4 class="font-display text-[1.18rem] uppercase tracking-[.02em] text-paper">{f.name}</h4>
+              <p class="text-muted text-[.9rem] mt-1 leading-[1.55]">{f.desc}</p>
             </div>
             <span class="spec-bar" aria-hidden="true"></span>
           </li>
@@ -168,9 +168,9 @@ const faqs = [
   </section>
 
   <!-- STATEMENT -->
-  <section id="about" class="bg-cream text-ink py-[clamp(4rem,9vw,7rem)] overflow-hidden">
+  <section id="about" class="bg-paper text-ink py-[clamp(4rem,9vw,7rem)] overflow-hidden">
     <div class="max-w-[1180px] mx-auto px-5 sm:px-10">
-      <p class="kicker kicker--ink">03 — Why one site</p>
+      <p class="kicker">03 — Why one site</p>
       <h2 class="statement head-reveal mt-4">
         <span class="statement__o">One site.</span><br />
         <span class="statement__f">Your whole</span> <span class="statement__o">career.</span>
@@ -183,13 +183,13 @@ const faqs = [
   </section>
 
   <!-- FAQ — a ruled index, not boxes -->
-  <section id="faq" class="bg-dark py-[clamp(3.5rem,8vw,6rem)]">
+  <section id="faq" class="bg-paper-2 py-[clamp(3.5rem,8vw,6rem)]">
     <div class="max-w-[1180px] mx-auto px-5 sm:px-10 grid md:grid-cols-[.8fr_1.2fr] gap-x-14 gap-y-8">
       <div>
         <p class="kicker">04 — Questions</p>
-        <h2 class="head-reveal font-funk text-[clamp(2.2rem,5.5vw,3.6rem)] leading-[.98] mt-3">Before you <span class="text-purple">ask</span></h2>
-        <p class="reveal text-[#a89fbb] mt-4 max-w-[34ch] leading-[1.6]">The step-by-step lives in the help guides — menus, pages, merch and Spotify, in plain English.</p>
-        <a href="/help" class="btn btn-purple mt-6">Browse the setup guides</a>
+        <h2 class="head-reveal font-funk text-[clamp(1.8rem,4.4vw,3rem)] leading-[1.02] mt-3">Before you <span class="text-spot">ask</span></h2>
+        <p class="reveal text-muted mt-4 max-w-[34ch] leading-[1.6]">The step-by-step lives in the help guides — menus, pages, merch and Spotify, in plain English.</p>
+        <a href="/help" class="btn btn-spot mt-6">Browse the setup guides</a>
       </div>
       <div class="faq">
         {faqs.map((f, i) => (

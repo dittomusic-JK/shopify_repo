@@ -14,26 +14,6 @@ const ogImageUrl = new URL(ogImage, base);
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <script is:inline>
-      // Colourway mocks for comparison only: ?brand=violet|riso (paper-first). Runs before paint.
-      (function () {
-        var q = new URLSearchParams(location.search);
-        var b = q.get('brand');
-        if (b) {
-          document.documentElement.setAttribute('data-brand', b);
-          if (b === 'violet' || b === 'riso') document.documentElement.setAttribute('data-paper', '');
-        }
-        // display-face mocks: ?font=archivo|dela|bungee|shoulders|unbounded|anton
-        var f = q.get('font');
-        if (f) {
-          document.documentElement.setAttribute('data-font', f);
-          var l = document.createElement('link');
-          l.rel = 'stylesheet';
-          l.href = 'https://fonts.googleapis.com/css2?family=Archivo+Black&family=Dela+Gothic+One&family=Bungee&family=Big+Shoulders+Display:wght@900&family=Unbounded:wght@900&display=swap';
-          document.head.appendChild(l);
-        }
-      })();
-    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="icon" type="image/png" href="/favicon-32.png" sizes="32x32" />
@@ -42,7 +22,7 @@ const ogImageUrl = new URL(ogImage, base);
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Anton&family=Knewave&family=Hanken+Grotesk:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Anton&family=Dela+Gothic+One&family=Hanken+Grotesk:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
     <title>{title}</title>

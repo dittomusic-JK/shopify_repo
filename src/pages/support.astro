@@ -9,17 +9,17 @@ import Footer from '../components/Footer.astro';
 >
   <Header />
 
-  <section class="page-intro py-[clamp(3rem,7vw,5rem)]">
+  <section class="page-intro ink-block py-[clamp(3rem,7vw,5rem)]">
     <div class="max-w-[1180px] mx-auto px-5 sm:px-10 page-intro__grid">
       <div class="reveal in">
         <p class="kicker">Support</p>
-        <h1>How can we <span class="text-purple">help?</span></h1>
+        <h1>How can we <span class="is-spot">help?</span></h1>
       </div>
-      <p class="reveal in page-intro__lead">Check the <a href="/help" class="text-cream font-semibold underline underline-offset-4 decoration-purple">setup guides</a> first — most questions are answered there. Otherwise, drop us a message and we'll reply within two business days.</p>
+      <p class="reveal in page-intro__lead">Check the <a href="/help" class="text-paper font-semibold underline underline-offset-4 decoration-spot">setup guides</a> first — most questions are answered there. Otherwise, drop us a message and we'll reply within two business days.</p>
     </div>
   </section>
 
-  <section class="bg-cream text-ink py-[clamp(3rem,7vw,5rem)]">
+  <section class="bg-paper text-ink py-[clamp(3rem,7vw,5rem)]">
     <div class="reveal max-w-[560px] mx-auto px-5 sm:px-10">
       <form action="https://formsubmit.co/james.keane@dittomusic.com" method="POST" class="grid gap-4">
         <input type="hidden" name="_subject" value="Riffride support request">
@@ -47,8 +47,8 @@ import Footer from '../components/Footer.astro';
           <span>How can we help?</span>
           <textarea required name="message" rows="6"></textarea>
         </label>
-        <button type="submit" class="btn btn-purple justify-self-start">Send message</button>
-        <p class="text-[#625b70] text-[.78rem]">We use your details only to reply to this request.</p>
+        <button type="submit" class="btn btn-spot justify-self-start">Send message</button>
+        <p class="text-muted text-[.78rem]">We use your details only to reply to this request.</p>
       </form>
     </div>
   </section>
