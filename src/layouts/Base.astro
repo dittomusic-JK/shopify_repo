@@ -9,14 +9,20 @@ const {
 const base = Astro.site ?? 'https://www.riffride.com';
 const canonical = new URL(Astro.url.pathname, base);
 const ogImageUrl = new URL(ogImage, base);
-// Colourway mocks: ?brand=violet|riso (paper-first) — comparison only, not shipped
-const brand = Astro.url.searchParams.get('brand') || '';
-const paper = brand === 'violet' || brand === 'riso';
 ---
 <!doctype html>
-<html lang="en" data-brand={brand || undefined} data-paper={paper ? '' : undefined}>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
+    <script is:inline>
+      // Colourway mocks for comparison only: ?brand=violet|riso (paper-first). Runs before paint.
+      (function () {
+        var b = new URLSearchParams(location.search).get('brand');
+        if (!b) return;
+        document.documentElement.setAttribute('data-brand', b);
+        if (b === 'violet' || b === 'riso') document.documentElement.setAttribute('data-paper', '');
+      })();
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="icon" type="image/png" href="/favicon-32.png" sizes="32x32" />
