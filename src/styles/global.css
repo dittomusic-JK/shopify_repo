@@ -100,6 +100,7 @@ html{scrollbar-width:thin;scrollbar-color:var(--color-ink) var(--color-paper)}
 .navlink::after{content:"";position:absolute;left:0;right:0;bottom:-4px;height:2px;background:var(--color-spot);transform:scaleX(0);transform-origin:left;transition:transform .32s var(--ease)}
 .navlink:hover::after,.navlink[aria-current="page"]::after{transform:scaleX(1)}
 .navtoggle{display:inline-grid;place-items:center;width:44px;height:44px;background:none;border:0;cursor:pointer;color:var(--color-ink)}
+@media(min-width:768px){.navtoggle{display:none}}
 .navtoggle__close{display:none}
 .navtoggle[aria-expanded="true"] .navtoggle__open{display:none}
 .navtoggle[aria-expanded="true"] .navtoggle__close{display:block}
