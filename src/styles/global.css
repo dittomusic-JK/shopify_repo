@@ -94,6 +94,11 @@ html{scrollbar-width:thin;scrollbar-color:var(--color-ink) var(--color-paper)}
 
 /* ---- header ---- */
 .site-header{border-bottom:1.5px solid var(--hair)}
+.logo{display:inline-flex;align-items:center;text-decoration:none;line-height:0}
+.logo img{height:40px;width:auto;display:block}
+.logo--lg img{height:56px}
+@media(max-width:640px){.logo img{height:34px}.logo--lg img{height:48px}}
+.logo:focus-visible{outline:3px solid var(--color-spot);outline-offset:6px;border-radius:4px}
 .wordmark{font-family:var(--font-funk);font-size:1.55rem;line-height:1;text-transform:uppercase;color:var(--color-ink);text-decoration:none;display:inline-flex;align-items:baseline;gap:.3rem;letter-spacing:-.01em}
 .wordmark i{display:inline-block;width:.42em;height:.42em;background:var(--color-spot);border:2px solid var(--color-ink);transform:rotate(12deg);translate:0 -.05em}
 .navlink{position:relative;padding-bottom:2px;font-size:.82rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--color-ink);text-decoration:none;transition:color .2s}
@@ -136,11 +141,11 @@ body.nav-open{overflow:hidden}
 .deck__card[style*="--i:5"]{--x:0%;--y:8%;--r:0deg;z-index:6;width:50%;box-shadow:12px 12px 0 var(--color-spot)}
 .deck:hover{--spread:1.18}
 .deck__card:hover{z-index:7;box-shadow:12px 12px 0 var(--color-ink);transform:translate(-50%,-50%) translate(calc(var(--x) * var(--spread)),calc(var(--y) - 4%)) rotate(calc(var(--r) * var(--spread))) scale(1.04)}
-.deck__stamp{position:absolute;top:-4%;right:-6%;width:52%;transform:rotate(8deg);z-index:9;pointer-events:none}
+.deck__stamp{position:absolute;top:-7%;right:-5%;width:34%;transform:rotate(10deg);z-index:9;pointer-events:none;filter:drop-shadow(0 10px 18px rgba(20,17,24,.18))}
 @keyframes deal{from{opacity:0;transform:translate(-50%,-50%) translate(0,40%) rotate(0deg)}to{opacity:1}}
 @keyframes stamp-in{from{opacity:0;transform:rotate(-6deg) scale(.6)}to{opacity:1;transform:rotate(8deg) scale(1)}}
 @keyframes screen-drift{to{translate:0 var(--drift,-50px)}}
-@media(max-width:1023px){.deck{aspect-ratio:1.15/1;margin:.5rem .25rem 2rem}.deck__stamp{width:48%;top:-6%;right:-4%}}
+@media(max-width:1023px){.deck{aspect-ratio:1.15/1;margin:.5rem .25rem 2rem}.deck__stamp{width:36%;top:-8%;right:-3%}}
 
 /* ---- marquee ---- */
 @keyframes scroll{to{transform:translateX(-50%)}}

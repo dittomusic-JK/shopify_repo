@@ -121,7 +121,7 @@ const followLinks = [
       <div class="bl-wrap">
         <h2 class="bl-h2">Listen</h2>
         <div class="bl-embed">
-          <iframe style="border-radius:12px" src="https://open.spotify.com/embed/album/41GuZcammIkupMPKH2OJ6I?theme=0" width="100%" height="352" frameborder="0" allow="autoplay;clipboard-write;encrypted-media;fullscreen;picture-in-picture" loading="lazy"></iframe>
+          <iframe title="Spotify player" style="border-radius:12px" src="https://open.spotify.com/embed/album/41GuZcammIkupMPKH2OJ6I?theme=0" width="100%" height="352" frameborder="0" allow="autoplay;clipboard-write;encrypted-media;fullscreen;picture-in-picture" loading="lazy"></iframe>
         </div>
         <p class="bl-embed__cap">New Album — Midnight Currency</p>
       </div>
@@ -135,7 +135,7 @@ const followLinks = [
           <button class="bl-arrow" type="button" aria-label="Next">&rsaquo;</button>
         </div>
       </div>
-      <div class="bl-slider">
+      <div class="bl-slider" tabindex="0" aria-label="Merch, scroll sideways">
         {merch.map((m) => (
           <article class="bl-card">
             <img class="bl-card__img" src={`/demo/block/${m.img}`} alt={m.name} loading="lazy" />
@@ -288,13 +288,13 @@ const followLinks = [
   .bl-tour__list{list-style:none}
   .bl-tour__row{display:grid;grid-template-columns:160px 1fr 1.2fr auto;gap:1.2rem;align-items:center;padding:1.1rem 0;border-bottom:1px solid #2c2c2c}
   .bl-tour__row--head{padding-bottom:.8rem}
-  .bl-tour__row--head span{font-family:'Anton',sans-serif;text-transform:uppercase;color:#6E6E6E;font-size:.78rem;letter-spacing:.16em}
+  .bl-tour__row--head span{font-family:'Anton',sans-serif;text-transform:uppercase;color:#9A9A9A;font-size:.78rem;letter-spacing:.16em}
   .bl-tour__date{color:#fff;font-weight:600;font-size:.95rem}
   .bl-tour__city{color:#9A9A9A;font-size:.92rem}
   .bl-tour__venue{color:#9A9A9A;font-size:.92rem}
   .bl-tour__tix{font-family:'Anton',sans-serif;background:#C8A04A;color:#0E0E0E;text-transform:uppercase;letter-spacing:.06em;font-size:.78rem;padding:.55rem 1.3rem;border-radius:3px;justify-self:end;transition:background .2s}
   .bl-tour__tix:hover{background:#d9b663}
-  .bl-tour__sold{font-family:'Anton',sans-serif;color:#6E6E6E;text-transform:uppercase;letter-spacing:.14em;font-size:.78rem;justify-self:end}
+  .bl-tour__sold{font-family:'Anton',sans-serif;color:#9A9A9A;text-transform:uppercase;letter-spacing:.14em;font-size:.78rem;justify-self:end}
 
   /* MAILING LIST */
   .bl-mail{padding:clamp(3.5rem,7vw,5.5rem) 0;text-align:center}
@@ -310,7 +310,7 @@ const followLinks = [
   .bl-foot{background:#0E0E0E;border-top:1px solid #1f1f1f;padding:2.4rem 1.5rem;text-align:center}
   .bl-foot__copy{color:#9A9A9A;font-size:.8rem;letter-spacing:.04em}
   .bl-credit{margin-top:.7rem;color:#6E6E6E;font-size:.8rem;letter-spacing:.04em}
-  .bl-credit a{color:#C8A04A}
+  .bl-credit a{color:#C8A04A;text-decoration:underline;text-underline-offset:.2em}
 
   /* RESPONSIVE */
   @media(max-width:860px){
