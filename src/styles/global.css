@@ -475,3 +475,23 @@ html[data-paper] .mobile-nav{color:#141118}
 html[data-brand="riso"] .deck__stamp,html[data-brand="riso"] .logo-dark{filter:hue-rotate(118deg) saturate(1.15)}
 html[data-brand="violet"] .deck__stamp,html[data-brand="violet"] .logo-dark{filter:hue-rotate(-8deg) saturate(1.25) brightness(.92)}
 html[data-brand="riso"] ::selection{background:#ff4d1c;color:#141118}
+
+/* ---- display-face mocks (html[data-font]) — comparison only ---- */
+html[data-font="archivo"]{--font-funk:"Archivo Black",Impact,sans-serif}
+html[data-font="dela"]{--font-funk:"Dela Gothic One",Impact,sans-serif}
+html[data-font="bungee"]{--font-funk:"Bungee",Impact,sans-serif}
+html[data-font="shoulders"]{--font-funk:"Big Shoulders Display",Impact,sans-serif}
+html[data-font="unbounded"]{--font-funk:"Unbounded",Impact,sans-serif}
+html[data-font="anton"]{--font-funk:"Anton",Impact,sans-serif}
+html[data-font] .hero-headline,html[data-font] .font-funk,html[data-font] .mobile-nav .navlink,html[data-font] .foot-mark{font-family:var(--font-funk);font-weight:900;letter-spacing:-.01em}
+html[data-font] .hero-headline{text-shadow:5px 5px 0 var(--color-purple)}
+html[data-paper][data-font] .hero-headline{text-shadow:5px 5px 0 var(--color-purple)}
+html[data-font="archivo"] .hero-headline{font-size:clamp(2.6rem,6.6vw,5.1rem);line-height:.98}
+html[data-font="dela"] .hero-headline{font-size:clamp(2.3rem,5.8vw,4.5rem);line-height:1.02;letter-spacing:0}
+html[data-font="bungee"] .hero-headline{font-size:clamp(2.5rem,6.3vw,4.9rem);line-height:1;letter-spacing:.01em}
+html[data-font="shoulders"] .hero-headline{font-size:clamp(3.4rem,9vw,7rem);line-height:.9;letter-spacing:0}
+html[data-font="unbounded"] .hero-headline{font-size:clamp(2.4rem,6vw,4.7rem);line-height:1;letter-spacing:-.02em}
+html[data-font="anton"] .hero-headline{font-size:clamp(3.4rem,9vw,7rem);line-height:.92;letter-spacing:.005em}
+html[data-font="shoulders"] .font-funk,html[data-font="anton"] .font-funk{letter-spacing:.005em}
+html[data-font] .head-reveal.font-funk{text-transform:uppercase}
+html[data-font] .flagship h3,html[data-font] .custom-card h3{text-transform:uppercase}
