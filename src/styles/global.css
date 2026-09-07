@@ -95,9 +95,9 @@ html{scrollbar-width:thin;scrollbar-color:var(--color-ink) var(--color-paper)}
 /* ---- header ---- */
 .site-header{border-bottom:1.5px solid var(--hair)}
 .logo{display:inline-flex;align-items:center;text-decoration:none;line-height:0}
-.logo img{height:40px;width:auto;display:block}
-.logo--lg img{height:56px}
-@media(max-width:640px){.logo img{height:34px}.logo--lg img{height:48px}}
+.logo img{height:38px;width:auto;display:block}
+.logo--lg img{height:60px}
+@media(max-width:640px){.logo img{height:32px}.logo--lg img{height:52px}}
 .logo:focus-visible{outline:3px solid var(--color-spot);outline-offset:6px;border-radius:4px}
 .wordmark{font-family:var(--font-funk);font-size:1.55rem;line-height:1;text-transform:uppercase;color:var(--color-ink);text-decoration:none;display:inline-flex;align-items:baseline;gap:.3rem;letter-spacing:-.01em}
 .wordmark i{display:inline-block;width:.42em;height:.42em;background:var(--color-spot);border:2px solid var(--color-ink);transform:rotate(12deg);translate:0 -.05em}
