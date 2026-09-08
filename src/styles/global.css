@@ -264,7 +264,7 @@ body.nav-open{overflow:hidden}
 @media(min-width:640px){.ledger__row{grid-template-columns:6rem 1fr;gap:1.5rem}.ledger__num{font-size:3.4rem}}
 .help-list{counter-reset:cat}
 .help-cat{counter-increment:cat;display:flex;align-items:baseline;gap:.8rem;margin:4.5rem 0 .6rem;padding-bottom:.8rem;border-bottom:2px solid var(--color-ink);font-family:var(--font-display);text-transform:uppercase;font-size:clamp(1.4rem,3vw,1.9rem);color:var(--color-ink);letter-spacing:.01em}
-.help-cat:first-of-type{margin-top:0}
+.help-list > :first-child .help-cat{margin-top:0}
 .help-cat::before{content:counter(cat,decimal-leading-zero);font-family:var(--font-display);-webkit-text-stroke:1.5px var(--color-ink);color:transparent;font-size:1.1em}
 .help-acc{border:0;border-radius:0;background:transparent;margin:0;border-bottom:1.5px solid var(--hair);overflow:visible}
 .help-acc summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:1.05rem 0;font-family:var(--font-display);font-weight:400;text-transform:uppercase;letter-spacing:.02em;font-size:1.05rem;color:var(--color-ink)}
