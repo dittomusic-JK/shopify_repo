@@ -20,8 +20,17 @@ import Footer from '../components/Footer.astro';
   </section>
 
   <section class="bg-paper text-ink py-[clamp(3rem,7vw,5rem)]">
-    <div class="reveal max-w-[560px] mx-auto px-5 sm:px-10">
-      <form action="https://formsubmit.co/james.keane@dittomusic.com" method="POST" class="grid gap-4">
+    <div class="max-w-[1180px] mx-auto px-5 sm:px-10 support-grid">
+      <aside class="reveal">
+        <p class="kicker">What helps us help you</p>
+        <ol class="support-notes mt-4">
+          <li><div><b>Your store address</b><p>The myshopify.com URL, or your own domain if it's connected.</p></div></li>
+          <li><div><b>Where it happens</b><p>The page and the section — a screenshot or a short screen recording is gold.</p></div></li>
+          <li><div><b>What you expected</b><p>One line on what you were trying to do, so we fix the right thing.</p></div></li>
+        </ol>
+        <p class="text-muted text-[.9rem] mt-6 leading-[1.6]">We answer every message ourselves, in order, within two business days. Setup questions are usually covered in the <a href="/help" class="text-ink font-semibold underline underline-offset-4 decoration-spot">guides</a>.</p>
+      </aside>
+      <form action="https://formsubmit.co/james.keane@dittomusic.com" method="POST" class="reveal grid gap-4">
         <input type="hidden" name="_subject" value="Riffride support request">
         <input type="hidden" name="_captcha" value="true">
         <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
@@ -36,7 +45,7 @@ import Footer from '../components/Footer.astro';
         <label class="field">
           <span>Which theme?</span>
           <select name="theme">
-            <option>Riffride (Theme Store)</option>
+            <option>Soundcheck (Theme Store)</option>
             <option>Standard (free)</option>
             <option>Vesper</option><option>Riot</option><option>Static</option>
             <option>Wander</option><option>Block</option><option>Frame</option>
